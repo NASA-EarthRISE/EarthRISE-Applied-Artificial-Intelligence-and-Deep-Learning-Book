@@ -26,21 +26,17 @@ Each chapter contains both the theoretical background as well as a practical han
 ## Applied Deep Learning Book Outline
 
 * [Introduction](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/01_Introduction)
-* [Data Preparation](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/02_Data_Preperation)
-* [Semantic Segmentation](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/03_Semantic_Segmentation)
-  * [Crop Type Modeling](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/01__Crop_Mapping) 
-* [Object Detection](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/04_Object_Detection)
-* [Time Series](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/05_Time_Series)
-* [Ecological Processes Simulation](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/06_Ecological_Processes_Simulation)
-* [Transfer Learning](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/07_Transfer_Learning)
-* [Fusion](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/07_Transfer_Learning)
-* [Downscaling](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/09_Downscaling)
-* [Future of Deep Learning and Foundational Models](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/10_Future_of_Deep_Learning_and_Foundational_Models) 
-* [Ethics of Artificial Intelligence](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/11_Ethics_and_Artificial_Intelligence)
-* [Conclusions](https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/tree/main/12_Conclusions)
-
-
-	
+* [Data Preparation](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/02-Data-Preparation)
+* [Semantic Segmentation](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation)
+  * [Crop Type Modeling](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/01__Crop_Mapping)
+* [Object Detection](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/04_Object_Detection)
+* [Ecological Processes Simulation](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/06_Eco_Process_Sim)
+* [Transfer Learning](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/07_Transfer_Learning)
+* [Fusion](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/08_Fusion)
+* [Downscaling](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/09_Downscaling)
+* [Future of Deep Learning and Foundational Models](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/10_Future)
+* [Ethics of Artificial Intelligence](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/11_Ethics)
+* [Conclusions](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/12_Conclusions)
 
 
 ## License and Distribution
