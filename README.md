@@ -1,10 +1,11 @@
-# SERVIR Applied Deep Learning Book
+# EarthRISE Applied Artificial Intelligence and Deep Learning-Book
+
 
 [![Python: 3.x](https://img.shields.io/badge/python-3.x-blue.svg)](https://www.python.org/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![image](https://img.shields.io/pypi/v/servir-aces.svg)](https://pypi.python.org/pypi/servir-aces)
 [![image](https://img.shields.io/conda/vn/conda-forge/servir-aces.svg)](https://anaconda.org/conda-forge/servir-aces)
-[![SERVIR: Global](https://img.shields.io/badge/SERVIR-Global-green)](https://servirglobal.net)
+
 <!-- [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/servir-aces.svg)](https://anaconda.org/conda-forge/servir-aces) -->
 
 <!-- #![](Images/Book_Cover.png) -->
@@ -14,7 +15,7 @@
 </p>
 
 
-The [SERVIR](https://servirglobal.net/) program which is a partnership of NASA, USAID, and leading technical organizations striving to strengthens the capacity of countries in Asia, Africa, and the Americas to use satellite data and geospatial technology to address critical challenges in weather & climate resilience, agriculture and food security, ecosystem and carbon management, water security, disasters, as well as air quality and health. SERVIR co-develops innovative solutions through a network of regional hubs to improve resilience and sustainable resource management at local, national, and regional scales. Additionally, SERVIR focuses on developing participate in innovative knowledge products such as the [SAR Handbook](https://servirglobal.net/resources/sar-handbook) and the [GEE book](https://www.eefabook.org/) designed to support capacity building in applying Remote Sensing and geospatial approaches to address challenges. 
+The NASA EarthRISE program which is a partnership of NASA, USAID, and leading technical organizations striving to strengthens the capacity of countries in Asia, Africa, and the Americas to use satellite data and geospatial technology to address critical challenges in weather & climate resilience, agriculture and food security, ecosystem and carbon management, water security, disasters, as well as air quality and health. SERVIR co-develops innovative solutions through a network of regional hubs to improve resilience and sustainable resource management at local, national, and regional scales. Additionally, SERVIR focuses on developing participate in innovative knowledge products such as the [SAR Handbook](https://servirglobal.net/resources/sar-handbook) and the [GEE book](https://www.eefabook.org/) designed to support capacity building in applying Remote Sensing and geospatial approaches to address challenges. 
 
 The focus of the SERVIR Applied Deep Learning Book is to provide practitioners with a wide variety of applied examples of Remote Sensing Deep Learning approaches. With each chapter focusing on a specific problem set such as object detection of downscaling using Deep Learning. Additionally, throughout the books chapters various examples are provided spanning the aforementioned SERVIR thematic areas. Thereby providing a wide variety of thematic applications to complement reader’s domain specific practical knowledge such as agronomy or forestry etc. 
 
