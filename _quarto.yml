@@ -2,23 +2,29 @@ project:
   type: book
 
 book:
-  title: "SERVIR's Applied Deep Learning Handbook"
+  title: "Applied Artificial Intelligence and Deep Learning Book"
   author:
     - name: Tim Mayer
       affiliations:
-        - id: nasa-servir
-          name: NASA - SERVIR
+        - id: nasa-earthtrise
+          name: NASA - EarthRISE
         - id: UofA-huntsville
           name: The University of Alabama in Huntsville
     - name: Biplov Bhandari
       affiliations:
         - id: woolpert
           name: Woolpert Digital Innovations
+    - name: David Saah
+      affiliations:
+        - id: USF
+          name: University of San Francisco
+        - id: spatial-informatics-group
+          name: Spatial Informatics Group
 
-  date: "11/15/2024"
+  date: "9/18/2025"
   cover-image: Images/Book_Cover_delta_6_25.png #images/Book_Cover.png
   # repo-url: https://servir.github.io/SERVIR-Applied-Deep-Learning-Book/ #https://mayert1.github.io/quarto_book_trial/
-  repo-url: https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book
+  repo-url: https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
   repo-actions: [source, edit, issue]
   downloads: [pdf]
   chapters:
@@ -55,3 +61,6 @@ format:
     code-fold: false  # Don't fold code in PDF
     output-fold: false  # Don't fold output in PDF
   # page-tools: ["colab", "github"]
+
+website:
+  google-analytics: "G-FSHTGR1D98"
