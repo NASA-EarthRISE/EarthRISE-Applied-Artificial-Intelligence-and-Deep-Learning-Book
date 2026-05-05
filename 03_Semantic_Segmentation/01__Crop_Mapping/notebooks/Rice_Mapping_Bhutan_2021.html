@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Biplov Bhandari">
+<meta name="author" content="Tim Mayer">
+
+<title>2&nbsp; Crop Mapping – Applied Artificial Intelligence and Deep Learning Book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/2_model_training.html" rel="next">
+<link href="../../../02-Data-Preparation/index.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">Applied Artificial Intelligence and Deep Learning Book</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../../../Applied-Artificial-Intelligence-and-Deep-Learning-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../02-Data-Preparation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Preparation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semantic Segmentation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/2_model_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../04_Object_Detection/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Object Detection</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Time Series</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../06_Eco_Process_Sim/01_Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../07_Transfer_Learning/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transfer Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../08_Fusion/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../09_Downscaling/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Downscaling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Future of Deep Learning and Foundational Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../10_Future/01_Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../11_Ethics/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ethics and Artificial Intelligence</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../12_Conclusions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery" id="toc-rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery" class="nav-link active" data-scroll-target="#rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery"><span class="header-section-number">2.1</span> Rice mapping in Bhutan with U-Net using high resolution satellite imagery</a></li>
+  <li><a href="#note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." id="toc-note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." class="nav-link" data-scroll-target="#note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places."><span class="header-section-number">2.2</span> Note: This notebook is meant to be run in Colab. You can still run this locally, make sure you have Google Drive API installed and path adjusted in relevant places.</a></li>
+  <li><a href="#setup-environment" id="toc-setup-environment" class="nav-link" data-scroll-target="#setup-environment"><span class="header-section-number">2.3</span> Setup environment</a>
+  <ul class="collapse">
+  <li><a href="#download-datasets" id="toc-download-datasets" class="nav-link" data-scroll-target="#download-datasets"><span class="header-section-number">2.3.1</span> Download datasets</a></li>
+  <li><a href="#setup-config-file-variables" id="toc-setup-config-file-variables" class="nav-link" data-scroll-target="#setup-config-file-variables"><span class="header-section-number">2.3.2</span> Setup config file variables</a></li>
+  <li><a href="#update-the-config-file-programtically" id="toc-update-the-config-file-programtically" class="nav-link" data-scroll-target="#update-the-config-file-programtically"><span class="header-section-number">2.3.3</span> Update the config file programtically</a></li>
+  </ul></li>
+  <li><a href="#u-net-model" id="toc-u-net-model" class="nav-link" data-scroll-target="#u-net-model"><span class="header-section-number">2.4</span> U-Net Model</a>
+  <ul class="collapse">
+  <li><a href="#load-config-file-variables" id="toc-load-config-file-variables" class="nav-link" data-scroll-target="#load-config-file-variables"><span class="header-section-number">2.4.1</span> Load config file variables</a></li>
+  <li><a href="#load-modeltrainer-class" id="toc-load-modeltrainer-class" class="nav-link" data-scroll-target="#load-modeltrainer-class"><span class="header-section-number">2.4.2</span> Load <code>ModelTrainer</code> class</a></li>
+  <li><a href="#train-and-save-u-net-model" id="toc-train-and-save-u-net-model" class="nav-link" data-scroll-target="#train-and-save-u-net-model"><span class="header-section-number">2.4.3</span> Train and Save U-Net model</a></li>
+  <li><a href="#save-the-config-file" id="toc-save-the-config-file" class="nav-link" data-scroll-target="#save-the-config-file"><span class="header-section-number">2.4.4</span> Save the config file</a></li>
+  <li><a href="#load-the-logs-files-via-tensorboard" id="toc-load-the-logs-files-via-tensorboard" class="nav-link" data-scroll-target="#load-the-logs-files-via-tensorboard"><span class="header-section-number">2.4.5</span> Load the logs files via TensorBoard</a></li>
+  <li><a href="#load-the-saved-u-net-model" id="toc-load-the-saved-u-net-model" class="nav-link" data-scroll-target="#load-the-saved-u-net-model"><span class="header-section-number">2.4.6</span> Load the Saved U-Net Model</a></li>
+  <li><a href="#inference-using-saved-u-net-model" id="toc-inference-using-saved-u-net-model" class="nav-link" data-scroll-target="#inference-using-saved-u-net-model"><span class="header-section-number">2.4.7</span> Inference using Saved U-Net Model</a></li>
+  </ul></li>
+  <li><a href="#dnn-model" id="toc-dnn-model" class="nav-link" data-scroll-target="#dnn-model"><span class="header-section-number">2.5</span> DNN Model</a>
+  <ul class="collapse">
+  <li><a href="#setup-any-changes-in-the-config-file-for-dnn-model" id="toc-setup-any-changes-in-the-config-file-for-dnn-model" class="nav-link" data-scroll-target="#setup-any-changes-in-the-config-file-for-dnn-model"><span class="header-section-number">2.5.1</span> Setup any changes in the config file for DNN Model</a></li>
+  <li><a href="#update-the-config-file-programtically-1" id="toc-update-the-config-file-programtically-1" class="nav-link" data-scroll-target="#update-the-config-file-programtically-1"><span class="header-section-number">2.5.2</span> Update the config file programtically</a></li>
+  <li><a href="#load-config-file-variables-for-dnn-model" id="toc-load-config-file-variables-for-dnn-model" class="nav-link" data-scroll-target="#load-config-file-variables-for-dnn-model"><span class="header-section-number">2.5.3</span> Load config file variables for DNN Model</a></li>
+  <li><a href="#load-modeltrainer-class-1" id="toc-load-modeltrainer-class-1" class="nav-link" data-scroll-target="#load-modeltrainer-class-1"><span class="header-section-number">2.5.4</span> Load <code>ModelTrainer</code> class</a></li>
+  <li><a href="#train-and-save-dnn-model" id="toc-train-and-save-dnn-model" class="nav-link" data-scroll-target="#train-and-save-dnn-model"><span class="header-section-number">2.5.5</span> Train and Save DNN model</a></li>
+  <li><a href="#save-the-config-file-1" id="toc-save-the-config-file-1" class="nav-link" data-scroll-target="#save-the-config-file-1"><span class="header-section-number">2.5.6</span> Save the config file</a></li>
+  <li><a href="#load-the-logs-files-via-tensorboard-1" id="toc-load-the-logs-files-via-tensorboard-1" class="nav-link" data-scroll-target="#load-the-logs-files-via-tensorboard-1"><span class="header-section-number">2.5.7</span> Load the logs files via TensorBoard</a></li>
+  <li><a href="#load-the-saved-dnn-model" id="toc-load-the-saved-dnn-model" class="nav-link" data-scroll-target="#load-the-saved-dnn-model"><span class="header-section-number">2.5.8</span> Load the Saved DNN Model</a></li>
+  <li><a href="#inference-using-saved-dnn-model" id="toc-inference-using-saved-dnn-model" class="nav-link" data-scroll-target="#inference-using-saved-dnn-model"><span class="header-section-number">2.5.9</span> Inference using Saved DNN Model</a></li>
+  </ul></li>
+  <li><a href="#independent-validation" id="toc-independent-validation" class="nav-link" data-scroll-target="#independent-validation"><span class="header-section-number">2.6</span> Independent Validation</a>
+  <ul class="collapse">
+  <li><a href="#update-the-config-file" id="toc-update-the-config-file" class="nav-link" data-scroll-target="#update-the-config-file"><span class="header-section-number">2.6.1</span> Update the config file</a></li>
+  <li><a href="#load-config-file-variable" id="toc-load-config-file-variable" class="nav-link" data-scroll-target="#load-config-file-variable"><span class="header-section-number">2.6.2</span> Load config file variable</a></li>
+  <li><a href="#import-earthengine-and-geemap-for-visualization" id="toc-import-earthengine-and-geemap-for-visualization" class="nav-link" data-scroll-target="#import-earthengine-and-geemap-for-visualization"><span class="header-section-number">2.6.3</span> Import earthengine and geemap for visualization</a></li>
+  <li><a href="#class-information-and-masking" id="toc-class-information-and-masking" class="nav-link" data-scroll-target="#class-information-and-masking"><span class="header-section-number">2.6.4</span> Class Information and Masking</a></li>
+  <li><a href="#model-u-net" id="toc-model-u-net" class="nav-link" data-scroll-target="#model-u-net"><span class="header-section-number">2.6.5</span> Model: U-Net</a></li>
+  <li><a href="#model-dnn" id="toc-model-dnn" class="nav-link" data-scroll-target="#model-dnn"><span class="header-section-number">2.6.6</span> Model: DNN</a></li>
+  </ul></li>
+  <li><a href="#figures-and-plots" id="toc-figures-and-plots" class="nav-link" data-scroll-target="#figures-and-plots"><span class="header-section-number">2.7</span> Figures and Plots</a>
+  <ul class="collapse">
+  <li><a href="#training-and-validation-plot" id="toc-training-and-validation-plot" class="nav-link" data-scroll-target="#training-and-validation-plot"><span class="header-section-number">2.7.1</span> Training and Validation Plot</a></li>
+  <li><a href="#probability-distribution-plot" id="toc-probability-distribution-plot" class="nav-link" data-scroll-target="#probability-distribution-plot"><span class="header-section-number">2.7.2</span> Probability Distribution Plot</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Biplov Bhandari <a href="https://orcid.org/0000-0001-6169-8236" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Woolpert Digital Innovations
+          </p>
+        <p class="affiliation">
+            Woolpert, Inc
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Tim Mayer <a href="https://orcid.org/0000-0001-9489-9392" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            NASA
+          </p>
+        <p class="affiliation">
+            University of Alabama in Huntsville
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery"><span class="header-section-number">2.1</span> Rice mapping in Bhutan with U-Net using high resolution satellite imagery</h2>
+<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid"> <a href="https://colab.research.google.com/github/SERVIR/SERVIR-Applied-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid"> <a href="https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb">View on GitHub</a></p>
+</section>
+<section id="note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places."><span class="header-section-number">2.2</span> Note: This notebook is meant to be run in Colab. You can still run this locally, make sure you have <a href="https://developers.google.com/workspace/drive/api/quickstart/python">Google Drive API</a> installed and path adjusted in relevant places.</h2>
+<p>This notebook is also available in this github repo: <a href="https://github.com/SERVIR/servir-aces">https://github.com/SERVIR/servir-aces</a>. Navigate to the <code>notebook</code> folder.</p>
+</section>
+<section id="setup-environment" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="setup-environment"><span class="header-section-number">2.3</span> Setup environment</h2>
+<div id="cell-6" class="cell" data-outputid="8b3da502-46cf-4613-c619-42e640f5105a">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb1-2"><a href="#cb1-2"></a>drive.mount(<span class="st">"/content/drive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-7" class="cell" data-outputid="78155889-e4cd-48f0-fe73-7be89609deaa">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">!</span>pip install servir<span class="op">-</span>aces</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-8" class="cell" data-outputid="c2b3c329-2cd5-4072-95fa-88faf5893ade">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">!</span>git clone https:<span class="op">//</span>github.com<span class="op">/</span>SERVIR<span class="op">/</span>servir<span class="op">-</span>aces</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="download-datasets" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="download-datasets"><span class="header-section-number">2.3.1</span> Download datasets</h3>
+<p>For this chapter, we have already prepared and exported the training datasets. They can be found at the google cloud storage and we will use <code>gsutil</code> to get the dataset in our workspace. The dataset has <code>training</code>, <code>testing</code>, and <code>validation</code> subdirectory. Let’s start by downloading these datasets in our workspace.</p>
+<p>If you’re looking to produce your own datasets, you can follow this <a href="https://colab.research.google.com/drive/1LCFLeSCu969wIW8TD68-j4hfIu7WiRIK?usp=sharing">notebook</a> which was used to produce these training, testing, and validation datasets provided in this notebook.</p>
+<div id="cell-12" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">!</span>mkdir <span class="op">-</span>p content<span class="op">/</span>datasets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-13" class="cell" data-outputid="e9dcc757-f3f9-4d2b-9ba4-6387d450b5bf">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">!</span>gsutil <span class="op">-</span>m cp <span class="op">-</span>r gs:<span class="op">//</span>dl<span class="op">-</span>book<span class="op">/</span>chapter<span class="op">-</span><span class="dv">1</span> content<span class="op">/</span>datasets<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="setup-config-file-variables" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="setup-config-file-variables"><span class="header-section-number">2.3.2</span> Setup config file variables</h3>
+<p>Now the repo is downloaded. We will create an environment file file to place point to our training data and customize parameters for the model. To do this, we make a copy of the <code>.env.example</code> file provided.</p>
+<p>Under the hood, all the configuration provided via the environment file are parsed as a config object and can be accessed programatically.</p>
+<p>Note current version does not expose all the model intracacies through the environment file but future version may include those depending on the need.</p>
+<div id="cell-16" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="op">!</span>cp servir<span class="op">-</span>aces<span class="op">/</span>.env.example servir<span class="op">-</span>aces<span class="op">/</span>config.env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Okay, now we have the <code>config.env</code> file, we will use this to provide our environments and parameters.</p>
+<p>Note there are several parameters that can be changed. Let’s start by changing the <code>BASEDIR</code> and <code>OUTPUT_DIR</code> as below.</p>
+<pre><code>BASEDIR = "/content/"
+OUTPUT_DIR = "/content/drive/MyDrive/Colab Notebooks/DL_Book/Chapter_1/output"</code></pre>
+<p>We will start by training a <a href="https://insert-citation-here">U-Net</a> model using the <code>dl-book/chapter-1/unet_256x256_planet_wo_indices</code> dataset inside the <code>dataset</code> folder for this exercise. Let’s go ahead and change our DATADIR in the <code>config.env</code> file as below.</p>
+<pre><code>DATADIR = "datasets/unet_256x256_planet_wo_indices"</code></pre>
+<p>These datasets have RGBN from Planetscope mosiac. Since we are trying to map the rice fields, we use growing season and pre-growing season information. Thus, we have 8 optical bands, namely <code>red_before</code>, <code>green_before</code>, <code>blue_before</code>, <code>nir_before</code>, <code>red_during</code>, <code>green_during</code>, <code>blue_during</code>, and <code>nir_during</code>. In adidition, you can use <code>USE_ELEVATION</code> and <code>USE_S1</code> config to include the topographic and radar information. Since this datasets have toppgraphic and radar features, so we won’t be settting these config values. Similarly, these datasets are tiled to 256x256 pixels, so let’s also change that.</p>
+<pre><code># For model training, USE_ELEVATION extends FEATURES with "elevation" &amp; "slope"
+# USE_S1 extends FEATURES with "vv_asc_before", "vh_asc_before", "vv_asc_during", "vh_asc_during",
+# "vv_desc_before", "vh_desc_before", "vv_desc_during", "vh_desc_during"
+# In case these are not useful and you have other bands in your training data, you can do set
+# USE_ELEVATION and USE_S1 to False and update FEATURES to include needed bands
+USE_ELEVATION = False
+USE_S1 = False
+
+PATCH_SHAPE = (256, 256)</code></pre>
+<p>Next, we need to calculate the size of the traiing, testing and validation dataset. For this, we know our size before hand. But <code>aces</code> also provides handful of functions that we can use to calculate this. See this <a href="https://colab.research.google.com/drive/12WgDI3ptFZHmcfOw89fmPSsDwO-sXIUH?usp=sharing">notebook</a> to learn more about how to do it. We will also change the <code>BATCH_SIZE</code> to 32; if you have larger memory available, you can increase the <code>BATCH_SIZE</code>. You can run for longer <code>EPOCHS</code> by changing the <code>EPOCHS</code> paramter; we will keep it to 5 for now.</p>
+<pre><code># Sizes of the training and evaluation datasets.
+TRAIN_SIZE = 8531
+TEST_SIZE = 1222
+VAL_SIZE = 2404
+BATCH_SIZE = 32
+EPOCHS = 30</code></pre>
+</section>
+<section id="update-the-config-file-programtically" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="update-the-config-file-programtically"><span class="header-section-number">2.3.3</span> Update the config file programtically</h3>
+<p>We can also make a dictionary so we can change these config settings programatically.</p>
+<div id="cell-23" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>BASEDIR   <span class="op">=</span> <span class="st">"/content/"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>OUTPUT_DIR <span class="op">=</span> <span class="st">"/content/drive/MyDrive/Colab Notebooks/DL_Book/Chapter_1/output"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>DATADIR <span class="op">=</span> <span class="st">"datasets/unet_256x256_planet_wo_indices"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># PATCH_SHAPE, USE_ELEVATION, USE_S1, TRAIN_SIZE, TEST_SIZE, VAL_SIZE</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co"># BATCH_SIZE, EPOCHS are converted to their appropriate type.</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>USE_ELEVATION <span class="op">=</span> <span class="st">"False"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>USE_S1 <span class="op">=</span> <span class="st">"False"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>PATCH_SHAPE <span class="op">=</span> <span class="st">"(256, 256)"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>TRAIN_SIZE <span class="op">=</span> <span class="st">"8531"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>TEST_SIZE <span class="op">=</span> <span class="st">"1222"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>VAL_SIZE <span class="op">=</span> <span class="st">"2404"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>BATCH_SIZE <span class="op">=</span> <span class="st">"32"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>EPOCHS <span class="op">=</span> <span class="st">"30"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>MODEL_DIR_NAME <span class="op">=</span> <span class="st">"unet_v1"</span> <span class="co"># @param {type:"string"}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-24" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>unet_config_settings <span class="op">=</span> {</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="st">"BASEDIR"</span> : BASEDIR,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="st">"OUTPUT_DIR"</span>: OUTPUT_DIR,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="st">"DATADIR"</span>: DATADIR,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="st">"USE_ELEVATION"</span>: USE_ELEVATION,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="st">"USE_S1"</span>: USE_S1,</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="st">"PATCH_SHAPE"</span>: PATCH_SHAPE,</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="st">"TRAIN_SIZE"</span>: TRAIN_SIZE,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="st">"TEST_SIZE"</span>: TEST_SIZE,</span>
+<span id="cb12-10"><a href="#cb12-10"></a>    <span class="st">"VAL_SIZE"</span>: VAL_SIZE,</span>
+<span id="cb12-11"><a href="#cb12-11"></a>    <span class="st">"BATCH_SIZE"</span>: BATCH_SIZE,</span>
+<span id="cb12-12"><a href="#cb12-12"></a>    <span class="st">"EPOCHS"</span>: EPOCHS,</span>
+<span id="cb12-13"><a href="#cb12-13"></a>    <span class="st">"MODEL_DIR_NAME"</span>: MODEL_DIR_NAME,</span>
+<span id="cb12-14"><a href="#cb12-14"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-25" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> dotenv</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>config_file <span class="op">=</span> <span class="st">"servir-aces/config.env"</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="cf">for</span> config_key <span class="kw">in</span> unet_config_settings:</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    dotenv.set_key(dotenv_path<span class="op">=</span>config_file,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>                   key_to_set<span class="op">=</span>config_key,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>                   value_to_set<span class="op">=</span>unet_config_settings[config_key]</span>
+<span id="cb13-9"><a href="#cb13-9"></a>                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="u-net-model" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="u-net-model"><span class="header-section-number">2.4</span> U-Net Model</h2>
+<section id="load-config-file-variables" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="load-config-file-variables"><span class="header-section-number">2.4.1</span> Load config file variables</h3>
+<div id="cell-28" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">from</span> aces <span class="im">import</span> Config, DataProcessor, ModelTrainer, EEUtils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let’s load our config file through the <code>Config</code> class.</p>
+<div id="cell-30" class="cell" data-outputid="25e08952-d33c-4f37-b6e7-d0c605c10b17">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>unet_config <span class="op">=</span> Config(config_file<span class="op">=</span>config_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Most of the config in the <code>config.env</code> is now available via the config instance. Let’s check few of them here.</p>
+<div id="cell-32" class="cell" data-outputid="cfdd6f70-f82d-4af4-b54e-abb67038c02e">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>unet_config.TRAINING_DIR, unet_config.OUTPUT_DIR, unet_config.BATCH_SIZE, unet_config.TRAIN_SIZE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-modeltrainer-class" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="load-modeltrainer-class"><span class="header-section-number">2.4.2</span> Load <code>ModelTrainer</code> class</h3>
+<p>Next, let’s make an instance of the <code>ModelTrainer</code> object. The <code>ModelTrainer</code> class provides various tools for training, buidling, compiling, and running specified deep learning models.</p>
+<div id="cell-35" class="cell" data-outputid="bafab6c8-72bc-41a7-f8bb-516a423a9e19">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>unet_model_trainer <span class="op">=</span> ModelTrainer(unet_config, seed<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="train-and-save-u-net-model" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="train-and-save-u-net-model"><span class="header-section-number">2.4.3</span> Train and Save U-Net model</h3>
+<p><a href="https://servir.github.io/servir-aces/model_trainer/"><code>ModelTrainer</code></a> class provides various functionality. We will use <code>train_model</code> function that helps to train the model using the provided configuration settings.</p>
+<p>This method performs the following steps: - Configures memory growth for TensorFlow. - Creates TensorFlow datasets for training, testing, and validation. - Builds and compiles the model. - Prepares the output directory for saving models and results. - Starts the training process. - Evaluates and prints validation metrics. - Saves training parameters, plots, and models.</p>
+<div id="cell-38" class="cell" data-outputid="199f9beb-c7e0-4b03-8216-a77c6412a4d5">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>unet_model_trainer.train_model()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="save-the-config-file" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="save-the-config-file"><span class="header-section-number">2.4.4</span> Save the config file</h3>
+<div id="cell-40" class="cell" data-outputid="f751bd04-3c88-4cc6-fb98-ee80f115d8d6">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="im">import</span> shutil</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a>config_file <span class="op">=</span> Path(config_file)</span>
+<span id="cb19-5"><a href="#cb19-5"></a>drive_config_file <span class="op">=</span> Path(unet_config.MODEL_DIR <span class="op">/</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(config_file)<span class="sc">.</span>split(<span class="st">'/'</span>)[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6"></a></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="co"># Create the target directory if it doesn't exist</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>drive_config_file.parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-9"><a href="#cb19-9"></a></span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="co"># Copy the file</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>shutil.copy(config_file, drive_config_file)</span>
+<span id="cb19-12"><a href="#cb19-12"></a></span>
+<span id="cb19-13"><a href="#cb19-13"></a><span class="bu">print</span>(<span class="ss">f"File copied from </span><span class="sc">{</span>config_file<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>drive_config_file<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-the-logs-files-via-tensorboard" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="load-the-logs-files-via-tensorboard"><span class="header-section-number">2.4.5</span> Load the logs files via TensorBoard</h3>
+<p>Tensorboard provides a unique way to view and interact with the logs while the model is being trained. Learn more <a href="https://www.tensorflow.org/tensorboard/get_started">here</a>. Here we only show you how you can load them to tensorboard with our training logs.</p>
+<div id="cell-43" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Load the TensorBoard notebook extension</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="op">%</span>load_ext tensorboard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-44" class="cell" data-outputid="ff93a47c-3b66-4393-9579-2b86e3f8cc20">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>log_dir_unet <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(unet_config.MODEL_DIR)<span class="sc">}</span><span class="ss">/logs"</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>log_dir_unet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-45" class="cell" data-outputid="30a9af61-22d2-4f18-9760-b535b73b5535">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="op">%</span>tensorboard <span class="op">--</span>logdir <span class="st">"</span><span class="sc">{log_dir_unet}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-the-saved-u-net-model" class="level3" data-number="2.4.6">
+<h3 data-number="2.4.6" class="anchored" data-anchor-id="load-the-saved-u-net-model"><span class="header-section-number">2.4.6</span> Load the Saved U-Net Model</h3>
+<p>Load the saved model</p>
+<div id="cell-48" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-49" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>unet_model <span class="op">=</span> tf.keras.models.load_model(<span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(unet_config.MODEL_DIR)<span class="sc">}</span><span class="ss">/trained-model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-50" class="cell" data-outputid="f5bdceec-a77d-4057-ba1c-d57661f46b21">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="bu">print</span>(unet_model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="inference-using-saved-u-net-model" class="level3" data-number="2.4.7">
+<h3 data-number="2.4.7" class="anchored" data-anchor-id="inference-using-saved-u-net-model"><span class="header-section-number">2.4.7</span> Inference using Saved U-Net Model</h3>
+<p>Now we can use the saved model to start the export of the prediction of the image. For prediction, you would need to first prepare your image data. We have already exported the image needed here, which we will use for now. See <a href="https://colab.research.google.com/drive/1MZexam3GZKsQySQO9Jk_RPNyyMLmciEq?usp=sharing">this notebook</a> to understand how we did it.</p>
+<p>In addition, <a href="https://colab.research.google.com/drive/19AZ-I7YrGNSsWkqbzjNLw3MXVeV4N2uX?usp=sharing">this notebook</a> shows how you can then use the image to predict from the saved Model.</p>
+<p>In any case, you now have the prediction in the Earth Engine as image.</p>
+</section>
+</section>
+<section id="dnn-model" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="dnn-model"><span class="header-section-number">2.5</span> DNN Model</h2>
+<section id="setup-any-changes-in-the-config-file-for-dnn-model" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="setup-any-changes-in-the-config-file-for-dnn-model"><span class="header-section-number">2.5.1</span> Setup any changes in the config file for DNN Model</h3>
+<p>There are few config variables that needs to be changed for running a DNN model. First would be the data itself so let’s change the <code>DATADIR</code>. We also need to change our output directory using <code>MODEL_DIR_NAME</code>. This is the sub-directory inside the <code>OUTPUT_DIR</code> for this model run. We also need to specify this is the DNN model that we want to run. We have <code>MODEL_TYPE</code> parameter for that. Currently, it supports unet, dnn, and cnn (case sensitive) models; default being unet. Make other changes, as appropriate.</p>
+<pre><code>DATADIR = "datasets/dnn_planet_wo_indices"
+MODEL_DIR_NAME = "dnn_v1"
+MODEL_TYPE = "dnn"</code></pre>
+</section>
+<section id="update-the-config-file-programtically-1" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="update-the-config-file-programtically-1"><span class="header-section-number">2.5.2</span> Update the config file programtically</h3>
+<div id="cell-57" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>DATADIR <span class="op">=</span> <span class="st">"datasets/dnn_planet_wo_indices"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="co"># PATCH_SHAPE, USE_ELEVATION, USE_S1, TRAIN_SIZE, TEST_SIZE, VAL_SIZE</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="co"># BATCH_SIZE, EPOCHS are converted to their appropriate type.</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>MODEL_DIR_NAME <span class="op">=</span> <span class="st">"dnn_v1"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>MODEL_TYPE <span class="op">=</span> <span class="st">"dnn"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>BATCH_SIZE <span class="op">=</span> <span class="st">"32"</span> <span class="co"># @param {type:"string"}</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a>EPOCHS <span class="op">=</span> <span class="st">"30"</span> <span class="co"># @param {type:"string"}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-58" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>dnn_config_settings <span class="op">=</span> {</span>
+<span id="cb28-2"><a href="#cb28-2"></a>    <span class="st">"DATADIR"</span>: DATADIR,</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="st">"MODEL_DIR_NAME"</span>: MODEL_DIR_NAME,</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="st">"MODEL_TYPE"</span>: MODEL_TYPE,</span>
+<span id="cb28-5"><a href="#cb28-5"></a>    <span class="st">"BATCH_SIZE"</span>: BATCH_SIZE,</span>
+<span id="cb28-6"><a href="#cb28-6"></a>    <span class="st">"EPOCHS"</span>: EPOCHS,</span>
+<span id="cb28-7"><a href="#cb28-7"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-59" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="cf">for</span> config_key <span class="kw">in</span> dnn_config_settings:</span>
+<span id="cb29-2"><a href="#cb29-2"></a>    dotenv.set_key(dotenv_path<span class="op">=</span>config_file,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>                   key_to_set<span class="op">=</span>config_key,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>                   value_to_set<span class="op">=</span>dnn_config_settings[config_key]</span>
+<span id="cb29-5"><a href="#cb29-5"></a>                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-config-file-variables-for-dnn-model" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="load-config-file-variables-for-dnn-model"><span class="header-section-number">2.5.3</span> Load config file variables for DNN Model</h3>
+<div id="cell-61" class="cell" data-outputid="5018db03-3df7-4f78-e8a7-09cc66e3d211">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>dnn_config <span class="op">=</span> Config(config_file<span class="op">=</span>config_file, override<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Most of the config in the <code>config.env</code> is now available via the config instance. Let’s check few of them here.</p>
+<div id="cell-63" class="cell" data-outputid="c867ad8b-d755-470d-ce5a-b3246ec1448f">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>dnn_config.TRAINING_DIR, dnn_config.OUTPUT_DIR, dnn_config.BATCH_SIZE, dnn_config.MODEL_TYPE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-modeltrainer-class-1" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="load-modeltrainer-class-1"><span class="header-section-number">2.5.4</span> Load <code>ModelTrainer</code> class</h3>
+<p>Next, let’s make an instance of the <code>ModelTrainer</code> object. The <code>ModelTrainer</code> class provides various tools for training, buidling, compiling, and running specified deep learning models.</p>
+<div id="cell-66" class="cell" data-outputid="8c731ca8-ba05-4b20-ab20-614c6a94d01f">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>dnn_model_trainer <span class="op">=</span> ModelTrainer(dnn_config, seed<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="train-and-save-dnn-model" class="level3" data-number="2.5.5">
+<h3 data-number="2.5.5" class="anchored" data-anchor-id="train-and-save-dnn-model"><span class="header-section-number">2.5.5</span> Train and Save DNN model</h3>
+<div id="cell-68" class="cell" data-outputid="e8263864-6791-42ad-fac2-ca9f8864be74">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>dnn_model_trainer.train_model()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="save-the-config-file-1" class="level3" data-number="2.5.6">
+<h3 data-number="2.5.6" class="anchored" data-anchor-id="save-the-config-file-1"><span class="header-section-number">2.5.6</span> Save the config file</h3>
+<div id="cell-70" class="cell" data-outputid="48f021ce-949b-44df-bbaf-d7e401886040">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>drive_config_file <span class="op">=</span> Path(dnn_config.MODEL_DIR <span class="op">/</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(config_file)<span class="sc">.</span>split(<span class="st">'/'</span>)[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2"></a></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="co"># Create the target directory if it doesn't exist</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a>drive_config_file.parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb34-5"><a href="#cb34-5"></a></span>
+<span id="cb34-6"><a href="#cb34-6"></a><span class="co"># Copy the file</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a>shutil.copy(config_file, drive_config_file)</span>
+<span id="cb34-8"><a href="#cb34-8"></a></span>
+<span id="cb34-9"><a href="#cb34-9"></a><span class="bu">print</span>(<span class="ss">f"File copied from </span><span class="sc">{</span>config_file<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>drive_config_file<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-the-logs-files-via-tensorboard-1" class="level3" data-number="2.5.7">
+<h3 data-number="2.5.7" class="anchored" data-anchor-id="load-the-logs-files-via-tensorboard-1"><span class="header-section-number">2.5.7</span> Load the logs files via TensorBoard</h3>
+<div id="cell-72" class="cell" data-outputid="99cdda0a-82e6-4f65-afd9-e0fd944ae4db">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>log_dir_dnn <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(dnn_config.MODEL_DIR)<span class="sc">}</span><span class="ss">/logs"</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>log_dir_dnn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-73" class="cell" data-outputid="3fadcdc1-4dd7-4b16-d623-015c431640e1">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="op">%</span>tensorboard <span class="op">--</span>logdir <span class="st">"</span><span class="sc">{log_dir_dnn}</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-the-saved-dnn-model" class="level3" data-number="2.5.8">
+<h3 data-number="2.5.8" class="anchored" data-anchor-id="load-the-saved-dnn-model"><span class="header-section-number">2.5.8</span> Load the Saved DNN Model</h3>
+<div id="cell-75" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>dnn_model <span class="op">=</span> tf.keras.models.load_model(<span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(dnn_config.MODEL_DIR)<span class="sc">}</span><span class="ss">/trained-model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-76" class="cell" data-outputid="f6fa4ff9-813f-4a4b-a0f3-b73f83382952">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="bu">print</span>(dnn_model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="inference-using-saved-dnn-model" class="level3" data-number="2.5.9">
+<h3 data-number="2.5.9" class="anchored" data-anchor-id="inference-using-saved-dnn-model"><span class="header-section-number">2.5.9</span> Inference using Saved DNN Model</h3>
+<p>Now we can use the saved model to start the export of the prediction of the image. For prediction, you would need to first prepare your image data. We have already exported the image needed here, which we will use for now. See <a href="https://colab.research.google.com/drive/1MZexam3GZKsQySQO9Jk_RPNyyMLmciEq?usp=sharing">this notebook</a> to understand how we did it.</p>
+<p>In addition, <a href="https://colab.research.google.com/drive/1c59eWgw637n1aQfyIobOKIIulqKSXeqv?usp=sharing">this notebook</a> shows how you can then use the image to predict from the saved Model.</p>
+<p>In any case, you now have the prediction in the Earth Engine as image.</p>
+</section>
+</section>
+<section id="independent-validation" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="independent-validation"><span class="header-section-number">2.6</span> Independent Validation</h2>
+<p>For independent validation, we will use a file that we have prepared. These files were collected using <a href="https://app.collect.earth/home">Collect Earth Online</a> by SCO and NASA DEVELOP interns. We will be using GEE here. Before we do that, let’s make changes in our config file.</p>
+<p>We will make sure our <code>GCS_PROJECT</code> is setup correctly.</p>
+<pre><code>GCS_PROJECT = "servir-ee"</code></pre>
+<section id="update-the-config-file" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="update-the-config-file"><span class="header-section-number">2.6.1</span> Update the config file</h3>
+<div id="cell-83" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>GCS_PROJECT <span class="op">=</span> <span class="st">"servir-ee"</span> <span class="co"># @param {type:"string"}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-84" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>config_settings <span class="op">=</span> {</span>
+<span id="cb41-2"><a href="#cb41-2"></a>    <span class="st">"GCS_PROJECT"</span>: GCS_PROJECT,</span>
+<span id="cb41-3"><a href="#cb41-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-85" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="cf">for</span> config_key <span class="kw">in</span> config_settings:</span>
+<span id="cb42-2"><a href="#cb42-2"></a>    dotenv.set_key(dotenv_path<span class="op">=</span>config_file,</span>
+<span id="cb42-3"><a href="#cb42-3"></a>                   key_to_set<span class="op">=</span>config_key,</span>
+<span id="cb42-4"><a href="#cb42-4"></a>                   value_to_set<span class="op">=</span>config_settings[config_key]</span>
+<span id="cb42-5"><a href="#cb42-5"></a>                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-config-file-variable" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="load-config-file-variable"><span class="header-section-number">2.6.2</span> Load config file variable</h3>
+<div id="cell-87" class="cell" data-outputid="51b1a579-56f4-4bf9-938d-9f0d016a022d">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>config <span class="op">=</span> Config(config_file<span class="op">=</span>config_file, override<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="import-earthengine-and-geemap-for-visualization" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="import-earthengine-and-geemap-for-visualization"><span class="header-section-number">2.6.3</span> Import earthengine and geemap for visualization</h3>
+<div id="cell-89" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># Import, authenticate and initialize the Earth Engine library.</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="im">import</span> ee</span>
+<span id="cb44-3"><a href="#cb44-3"></a>ee.Authenticate()</span>
+<span id="cb44-4"><a href="#cb44-4"></a>EEUtils.initialize_session(use_highvolume<span class="op">=</span><span class="va">True</span>, project<span class="op">=</span>config.GCS_PROJECT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-90" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="im">import</span> geemap</span>
+<span id="cb45-2"><a href="#cb45-2"></a></span>
+<span id="cb45-3"><a href="#cb45-3"></a>Map <span class="op">=</span> geemap.Map()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="class-information-and-masking" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="class-information-and-masking"><span class="header-section-number">2.6.4</span> Class Information and Masking</h3>
+<div id="cell-92" class="cell" data-outputid="c8d93ba3-f58d-4c69-bbdf-867d44fbe4ea">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># CLASS</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="co"># 0 - cropland etc.</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a><span class="co"># 1 - rice</span></span>
+<span id="cb46-4"><a href="#cb46-4"></a><span class="co"># 2 - forest</span></span>
+<span id="cb46-5"><a href="#cb46-5"></a><span class="co"># 3 - Built up</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a><span class="co"># 4 - Others (includes water body)</span></span>
+<span id="cb46-7"><a href="#cb46-7"></a>l1 <span class="op">=</span> ee.FeatureCollection(<span class="st">"projects/servir-sco-assets/assets/Bhutan/BT_Admin_1"</span>)</span>
+<span id="cb46-8"><a href="#cb46-8"></a>paro <span class="op">=</span> l1.<span class="bu">filter</span>(ee.Filter.eq(<span class="st">"ADM1_EN"</span>, <span class="st">"Paro"</span>))</span>
+<span id="cb46-9"><a href="#cb46-9"></a></span>
+<span id="cb46-10"><a href="#cb46-10"></a></span>
+<span id="cb46-11"><a href="#cb46-11"></a><span class="co"># mask the rice growing zone</span></span>
+<span id="cb46-12"><a href="#cb46-12"></a><span class="co"># in Paro, rice grows upto 2600 m asl (double check to make sure??)</span></span>
+<span id="cb46-13"><a href="#cb46-13"></a>dem <span class="op">=</span> ee.Image(<span class="st">"MERIT/DEM/v1_0_3"</span>) <span class="co"># ee.Image('USGS/SRTMGL1_003')</span></span>
+<span id="cb46-14"><a href="#cb46-14"></a>dem <span class="op">=</span> dem.clip(paro)</span>
+<span id="cb46-15"><a href="#cb46-15"></a>rice_zone <span class="op">=</span> dem.gte(<span class="dv">0</span>).And(dem.lte(<span class="dv">2600</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="model-u-net" class="level3" data-number="2.6.5">
+<h3 data-number="2.6.5" class="anchored" data-anchor-id="model-u-net"><span class="header-section-number">2.6.5</span> Model: U-Net</h3>
+<section id="load-and-visualize-the-prediction-output" class="level4" data-number="2.6.5.1">
+<h4 data-number="2.6.5.1" class="anchored" data-anchor-id="load-and-visualize-the-prediction-output"><span class="header-section-number">2.6.5.1</span> Load and visualize the prediction output</h4>
+<div id="cell-95" class="cell" data-outputid="0da7abaf-6e17-4c63-ccb0-016f1c019316">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>UNET_RGBN <span class="op">=</span> ee.Image(<span class="st">"projects/servir-ee/assets/dl-book/chapter-1/prediction/prediction_unet_v1"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2"></a>UNET_RGBN <span class="op">=</span> UNET_RGBN.updateMask(rice_zone)</span>
+<span id="cb47-3"><a href="#cb47-3"></a>Map.centerObject(UNET_RGBN, <span class="dv">11</span>)</span>
+<span id="cb47-4"><a href="#cb47-4"></a>Map.addLayer(UNET_RGBN.clip(paro), {<span class="st">"bands"</span>: [<span class="st">"prediction"</span>], <span class="st">"min"</span>:<span class="dv">0</span>, <span class="st">"max"</span>:<span class="dv">4</span>, <span class="st">"palette"</span>: [<span class="st">"FFFF00"</span>, <span class="st">"FFC0CB"</span>, <span class="st">"267300"</span>, <span class="st">"E60000"</span>, <span class="st">"005CE6"</span>]}, <span class="st">"UNET_RGBN"</span>)</span>
+<span id="cb47-5"><a href="#cb47-5"></a>Map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="calculate-classification-metrics" class="level4" data-number="2.6.5.2">
+<h4 data-number="2.6.5.2" class="anchored" data-anchor-id="calculate-classification-metrics"><span class="header-section-number">2.6.5.2</span> Calculate classification metrics</h4>
+<p>Remapping to rice and non-rice output</p>
+<div id="cell-98" class="cell" data-outputid="f0f64493-74c6-4f1a-9583-732b5cf0647a">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>UNET_RGBN_remapped <span class="op">=</span> UNET_RGBN.remap([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>], <span class="dv">0</span>, <span class="st">"prediction"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2"></a>Map.addLayer(UNET_RGBN_remapped, {<span class="st">"min"</span>: <span class="dv">0</span>, <span class="st">"max"</span>: <span class="dv">1</span>, <span class="st">"palette"</span>: [<span class="st">"cfcf00"</span>, <span class="st">"267300"</span>]}, <span class="st">"UNET_RGBN_remapped"</span>)</span>
+<span id="cb48-3"><a href="#cb48-3"></a>Map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-99" class="cell" data-outputid="0b58e242-61da-4d02-bae1-e06b81dd4740">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>sampling_geom <span class="op">=</span> ee.FeatureCollection(<span class="st">"projects/servir-ee/assets/dl-book/chapter-1/data/sampledGeom"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2"></a>ceo_final_data <span class="op">=</span> ee.FeatureCollection(<span class="st">"projects/servir-ee/assets/dl-book/chapter-1/data/ceoData"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3"></a>ceo_final_data <span class="op">=</span> ee.FeatureCollection(ceo_final_data.<span class="bu">filter</span>(ee.Filter.bounds(sampling_geom).Not()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-100" class="cell" data-outputid="f0b56aa8-fad3-437a-e402-f05788e253bf">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>prediction_unet <span class="op">=</span> UNET_RGBN_remapped.sampleRegions(</span>
+<span id="cb50-2"><a href="#cb50-2"></a>    collection <span class="op">=</span> ceo_final_data,</span>
+<span id="cb50-3"><a href="#cb50-3"></a>    scale <span class="op">=</span> <span class="dv">10</span>,</span>
+<span id="cb50-4"><a href="#cb50-4"></a>    geometries <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb50-5"><a href="#cb50-5"></a>)</span>
+<span id="cb50-6"><a href="#cb50-6"></a></span>
+<span id="cb50-7"><a href="#cb50-7"></a><span class="co"># print("predictionOutputUnet", prediction_unet.getInfo())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-101" class="cell" data-outputid="823782a4-4832-4a0e-e987-2f125ef86715">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>error_matrix_unet <span class="op">=</span> prediction_unet.errorMatrix(actual<span class="op">=</span><span class="st">"rice"</span>, predicted<span class="op">=</span><span class="st">"remapped"</span>)</span>
+<span id="cb51-2"><a href="#cb51-2"></a>test_acc_unet <span class="op">=</span> error_matrix_unet.accuracy()</span>
+<span id="cb51-3"><a href="#cb51-3"></a>test_kappa_unet <span class="op">=</span> error_matrix_unet.kappa()</span>
+<span id="cb51-4"><a href="#cb51-4"></a>test_recall_producer_acc_unet <span class="op">=</span> error_matrix_unet.producersAccuracy().get([<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb51-5"><a href="#cb51-5"></a>test_precision_consumer_acc_unet <span class="op">=</span> error_matrix_unet.consumersAccuracy().get([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb51-6"><a href="#cb51-6"></a>f1_unet <span class="op">=</span> error_matrix_unet.fscore().get([<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-102" class="cell" data-outputid="21ef35bb-6cab-476e-cd2d-36bde597fb09">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="bu">print</span>(<span class="st">"error_matrix_unet"</span>, error_matrix_unet.getInfo())</span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="bu">print</span>(<span class="st">"test_acc_unet"</span>, test_acc_unet.getInfo())</span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="bu">print</span>(<span class="st">"test_kappa_unet"</span>, test_kappa_unet.getInfo())</span>
+<span id="cb52-4"><a href="#cb52-4"></a><span class="bu">print</span>(<span class="st">"test_recall_producer_acc_unet"</span>, test_recall_producer_acc_unet.getInfo())</span>
+<span id="cb52-5"><a href="#cb52-5"></a><span class="bu">print</span>(<span class="st">"test_precision_consumer_acc_unet"</span>, test_precision_consumer_acc_unet.getInfo())</span>
+<span id="cb52-6"><a href="#cb52-6"></a><span class="bu">print</span>(<span class="st">"f1_unet"</span>, f1_unet.getInfo())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="calculate-probability-distribution" class="level4" data-number="2.6.5.3">
+<h4 data-number="2.6.5.3" class="anchored" data-anchor-id="calculate-probability-distribution"><span class="header-section-number">2.6.5.3</span> Calculate Probability Distribution</h4>
+<div id="cell-104" class="cell" data-outputid="28849e66-5a43-42c1-e3cf-0d75e394f28c">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>prob_output_unet <span class="op">=</span> UNET_RGBN.select([<span class="st">"prediction"</span>, <span class="st">"others_etc"</span>, <span class="st">"cropland_etc"</span>, <span class="st">"urban"</span>, <span class="st">"forest"</span>, <span class="st">"rice"</span>]) <span class="op">\</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>                            .rename([<span class="st">"prediction_class"</span>, <span class="st">"others_prob"</span>, <span class="st">"cropland_prob"</span>, <span class="st">"urban_prob"</span>, <span class="st">"forest_prob"</span>, <span class="st">"rice_prob"</span>]) <span class="op">\</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a>                            .sampleRegions(collection<span class="op">=</span>ceo_final_data, scale<span class="op">=</span><span class="dv">10</span>, geometries<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb53-4"><a href="#cb53-4"></a></span>
+<span id="cb53-5"><a href="#cb53-5"></a><span class="co"># print("prob_output_unet", prob_output_unet.getInfo())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-105" class="cell" data-outputid="856e045e-264f-469a-8d3c-39fe889fc676">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>prob_output_unet <span class="op">=</span> prob_output_unet.getInfo()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="model-dnn" class="level3" data-number="2.6.6">
+<h3 data-number="2.6.6" class="anchored" data-anchor-id="model-dnn"><span class="header-section-number">2.6.6</span> Model: DNN</h3>
+<section id="load-and-visualize-the-prediction-output-1" class="level4" data-number="2.6.6.1">
+<h4 data-number="2.6.6.1" class="anchored" data-anchor-id="load-and-visualize-the-prediction-output-1"><span class="header-section-number">2.6.6.1</span> Load and visualize the prediction output</h4>
+<div id="cell-108" class="cell" data-outputid="c1596c35-ee83-4d60-f7ec-df12eb68f9b6">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>DNN_RGBN <span class="op">=</span> ee.Image(<span class="st">"projects/servir-ee/assets/dl-book/chapter-1/prediction/prediction_dnn_v1"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2"></a>DNN_RGBN <span class="op">=</span> DNN_RGBN.updateMask(rice_zone)</span>
+<span id="cb55-3"><a href="#cb55-3"></a>Map.centerObject(DNN_RGBN)</span>
+<span id="cb55-4"><a href="#cb55-4"></a>Map.addLayer(DNN_RGBN.clip(paro), {<span class="st">"bands"</span>: [<span class="st">"prediction"</span>], <span class="st">"min"</span>:<span class="dv">0</span>, <span class="st">"max"</span>:<span class="dv">4</span>, <span class="st">"palette"</span>: [<span class="st">"FFFF00"</span>, <span class="st">"FFC0CB"</span>, <span class="st">"267300"</span>, <span class="st">"E60000"</span>, <span class="st">"005CE6"</span>]}, <span class="st">"DNN_RGBN"</span>)</span>
+<span id="cb55-5"><a href="#cb55-5"></a>Map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="calculate-classification-metrics-1" class="level4" data-number="2.6.6.2">
+<h4 data-number="2.6.6.2" class="anchored" data-anchor-id="calculate-classification-metrics-1"><span class="header-section-number">2.6.6.2</span> Calculate classification metrics</h4>
+<div id="cell-110" class="cell" data-outputid="4664a7c0-7bb8-4b93-b701-ae6325c68dd1">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>DNN_RGBN_remapped <span class="op">=</span> DNN_RGBN.remap([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>], <span class="dv">0</span>, <span class="st">"prediction"</span>)</span>
+<span id="cb56-2"><a href="#cb56-2"></a>Map.addLayer(DNN_RGBN_remapped, {<span class="st">"min"</span>: <span class="dv">0</span>, <span class="st">"max"</span>: <span class="dv">1</span>, <span class="st">"palette"</span>: [<span class="st">"cfcf00"</span>, <span class="st">"267300"</span>]}, <span class="st">"DNN_RGBN_remapped"</span>)</span>
+<span id="cb56-3"><a href="#cb56-3"></a>Map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-111" class="cell" data-outputid="0997cfa1-e5e3-493d-f879-097db0c61e5e">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>prediction_dnn <span class="op">=</span> DNN_RGBN_remapped.sampleRegions(</span>
+<span id="cb57-2"><a href="#cb57-2"></a>    collection <span class="op">=</span> ceo_final_data,</span>
+<span id="cb57-3"><a href="#cb57-3"></a>    scale <span class="op">=</span> <span class="dv">10</span>,</span>
+<span id="cb57-4"><a href="#cb57-4"></a>    geometries <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb57-5"><a href="#cb57-5"></a>)</span>
+<span id="cb57-6"><a href="#cb57-6"></a></span>
+<span id="cb57-7"><a href="#cb57-7"></a><span class="co"># print("predictionOutputDNN", prediction_dnn.getInfo())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-112" class="cell" data-outputid="4fc4e8b3-0d83-43ac-d69e-e3e5f7354f06">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>error_matrix_dnn <span class="op">=</span> prediction_dnn.errorMatrix(actual<span class="op">=</span><span class="st">"rice"</span>, predicted<span class="op">=</span><span class="st">"remapped"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2"></a>test_acc_dnn <span class="op">=</span> error_matrix_dnn.accuracy()</span>
+<span id="cb58-3"><a href="#cb58-3"></a>test_kappa_dnn <span class="op">=</span> error_matrix_dnn.kappa()</span>
+<span id="cb58-4"><a href="#cb58-4"></a>test_recall_producer_acc_dnn <span class="op">=</span> error_matrix_dnn.producersAccuracy().get([<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb58-5"><a href="#cb58-5"></a>test_precision_consumer_acc_dnn <span class="op">=</span> error_matrix_dnn.consumersAccuracy().get([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb58-6"><a href="#cb58-6"></a>f1_dnn <span class="op">=</span> error_matrix_dnn.fscore().get([<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-113" class="cell" data-outputid="68fcb3ce-9505-4fff-8ec6-54af9f063403">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="bu">print</span>(<span class="st">"error_matrix_dnn"</span>, error_matrix_dnn.getInfo())</span>
+<span id="cb59-2"><a href="#cb59-2"></a><span class="bu">print</span>(<span class="st">"test_acc_dnn"</span>, test_acc_dnn.getInfo())</span>
+<span id="cb59-3"><a href="#cb59-3"></a><span class="bu">print</span>(<span class="st">"test_kappa_dnn"</span>, test_kappa_dnn.getInfo())</span>
+<span id="cb59-4"><a href="#cb59-4"></a><span class="bu">print</span>(<span class="st">"test_recall_producer_acc_dnn"</span>, test_recall_producer_acc_dnn.getInfo())</span>
+<span id="cb59-5"><a href="#cb59-5"></a><span class="bu">print</span>(<span class="st">"test_precision_consumer_acc_dnn"</span>, test_precision_consumer_acc_dnn.getInfo())</span>
+<span id="cb59-6"><a href="#cb59-6"></a><span class="bu">print</span>(<span class="st">"f1_dnn"</span>, f1_dnn.getInfo())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="calculate-probability-distribution-1" class="level4" data-number="2.6.6.3">
+<h4 data-number="2.6.6.3" class="anchored" data-anchor-id="calculate-probability-distribution-1"><span class="header-section-number">2.6.6.3</span> Calculate Probability Distribution</h4>
+<div id="cell-115" class="cell" data-outputid="ccb621ca-9399-4076-b1b7-4b54561661c7">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>prob_output_dnn <span class="op">=</span> DNN_RGBN.select([<span class="st">"prediction"</span>, <span class="st">"others_etc"</span>, <span class="st">"cropland_etc"</span>, <span class="st">"urban"</span>, <span class="st">"forest"</span>, <span class="st">"rice"</span>]) <span class="op">\</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a>                            .rename([<span class="st">"prediction_class"</span>, <span class="st">"others_prob"</span>, <span class="st">"cropland_prob"</span>, <span class="st">"urban_prob"</span>, <span class="st">"forest_prob"</span>, <span class="st">"rice_prob"</span>]) <span class="op">\</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a>                            .sampleRegions(collection<span class="op">=</span>ceo_final_data, scale<span class="op">=</span><span class="dv">10</span>, geometries<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb60-4"><a href="#cb60-4"></a></span>
+<span id="cb60-5"><a href="#cb60-5"></a><span class="co"># print("prob_output_dnn", prob_output_dnn.getInfo())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-116" class="cell" data-outputid="3a301b2e-0119-4596-a6c9-184265c2ea6d">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>prob_output_dnn <span class="op">=</span> prob_output_dnn.getInfo()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+</section>
+<section id="figures-and-plots" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="figures-and-plots"><span class="header-section-number">2.7</span> Figures and Plots</h2>
+<section id="training-and-validation-plot" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="training-and-validation-plot"><span class="header-section-number">2.7.1</span> Training and Validation Plot</h3>
+<div id="cell-119" class="cell" data-outputid="9b652d89-cd4f-4534-f70c-a05ef4fc9598">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb62-2"><a href="#cb62-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb62-3"><a href="#cb62-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb62-4"><a href="#cb62-4"></a><span class="im">import</span> pickle</span>
+<span id="cb62-5"><a href="#cb62-5"></a></span>
+<span id="cb62-6"><a href="#cb62-6"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-120" class="cell" data-outputid="3f5a9530-1c81-432b-8575-f84216deda6c">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="cf">with</span> <span class="bu">open</span>(unet_config.MODEL_DIR <span class="op">/</span> <span class="st">"model.pkl"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb63-2"><a href="#cb63-2"></a>    unet_model_metrics <span class="op">=</span> pickle.load(f)</span>
+<span id="cb63-3"><a href="#cb63-3"></a></span>
+<span id="cb63-4"><a href="#cb63-4"></a><span class="cf">with</span> <span class="bu">open</span>(dnn_config.MODEL_DIR <span class="op">/</span> <span class="st">"model.pkl"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb63-5"><a href="#cb63-5"></a>    dnn_model_metrics <span class="op">=</span> pickle.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-121" class="cell" data-outputid="0be4b0c6-01ad-4f2a-915b-31ac6a7ef95d">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># Create subplots for different metrics in a 3x4 grid</span></span>
+<span id="cb64-2"><a href="#cb64-2"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">4</span><span class="op">*</span><span class="dv">7</span>, <span class="dv">6</span><span class="op">*</span><span class="dv">2</span>))</span>
+<span id="cb64-3"><a href="#cb64-3"></a></span>
+<span id="cb64-4"><a href="#cb64-4"></a>colors <span class="op">=</span> [<span class="st">"#1f77b4"</span>, <span class="st">"#ff7f0e"</span>, <span class="st">"#2ca02c"</span>, <span class="st">"#d62728"</span>]</span>
+<span id="cb64-5"><a href="#cb64-5"></a>metrics <span class="op">=</span> [<span class="st">"loss"</span>, <span class="st">"precision"</span>, <span class="st">"recall"</span>, <span class="st">"categorical_accuracy"</span>]</span>
+<span id="cb64-6"><a href="#cb64-6"></a>metrics_name <span class="op">=</span> [<span class="st">"Loss"</span>, <span class="st">"Precision"</span>, <span class="st">"Recall"</span>, <span class="st">"Categorical Accuracy"</span>]</span>
+<span id="cb64-7"><a href="#cb64-7"></a></span>
+<span id="cb64-8"><a href="#cb64-8"></a>epochs <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, config.EPOCHS <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb64-9"><a href="#cb64-9"></a></span>
+<span id="cb64-10"><a href="#cb64-10"></a>title_fontsize <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb64-11"><a href="#cb64-11"></a>label_fontsize <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb64-12"><a href="#cb64-12"></a>legend_fontsize <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb64-13"><a href="#cb64-13"></a>tick_fontsize <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb64-14"><a href="#cb64-14"></a>lw<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb64-15"><a href="#cb64-15"></a></span>
+<span id="cb64-16"><a href="#cb64-16"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb64-17"><a href="#cb64-17"></a>    <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(metrics)):</span>
+<span id="cb64-18"><a href="#cb64-18"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb64-19"><a href="#cb64-19"></a>            axs[i][y].plot(epochs, unet_model_metrics[<span class="ss">f"val_</span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>], color<span class="op">=</span>colors[<span class="dv">0</span>], marker<span class="op">=</span><span class="st">"o"</span>, lw<span class="op">=</span>lw, label<span class="op">=</span><span class="ss">f"U-Net validate </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb64-20"><a href="#cb64-20"></a>            axs[i][y].plot(epochs, dnn_model_metrics[<span class="ss">f"val_</span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>], color<span class="op">=</span>colors[<span class="dv">1</span>], lw<span class="op">=</span>lw, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="ss">f"DNN validate </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb64-21"><a href="#cb64-21"></a>            axs[i][y].set_title(<span class="ss">f"Validate </span><span class="sc">{</span>metrics_name[y]<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span>title_fontsize)</span>
+<span id="cb64-22"><a href="#cb64-22"></a>            axs[i][y].set_xlabel(<span class="st">"epochs"</span>, fontsize<span class="op">=</span>label_fontsize)</span>
+<span id="cb64-23"><a href="#cb64-23"></a>            axs[i][y].set_ylabel(<span class="ss">f"</span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span>label_fontsize)</span>
+<span id="cb64-24"><a href="#cb64-24"></a>            axs[i][y].grid(linestyle<span class="op">=</span><span class="st">"dotted"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb64-25"><a href="#cb64-25"></a>            axs[i][y].legend(fontsize<span class="op">=</span>legend_fontsize)</span>
+<span id="cb64-26"><a href="#cb64-26"></a>            axs[i][y].tick_params(axis<span class="op">=</span><span class="st">"both"</span>, which<span class="op">=</span><span class="st">"major"</span>, labelsize<span class="op">=</span>tick_fontsize)</span>
+<span id="cb64-27"><a href="#cb64-27"></a>        <span class="cf">else</span>:</span>
+<span id="cb64-28"><a href="#cb64-28"></a>            axs[i][y].plot(epochs, unet_model_metrics[metrics[y]], color<span class="op">=</span>colors[<span class="dv">0</span>], lw<span class="op">=</span>lw, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="ss">f"U-Net train </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb64-29"><a href="#cb64-29"></a>            axs[i][y].plot(epochs, dnn_model_metrics[metrics[y]], color<span class="op">=</span>colors[<span class="dv">1</span>], lw<span class="op">=</span>lw, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="ss">f"DNN train </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb64-30"><a href="#cb64-30"></a>            axs[i][y].set_title(<span class="ss">f"Train </span><span class="sc">{</span>metrics_name[y]<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span>title_fontsize)</span>
+<span id="cb64-31"><a href="#cb64-31"></a>            axs[i][y].set_xlabel(<span class="st">"epochs"</span>, fontsize<span class="op">=</span>label_fontsize)</span>
+<span id="cb64-32"><a href="#cb64-32"></a>            axs[i][y].set_ylabel(<span class="ss">f"</span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span>label_fontsize)</span>
+<span id="cb64-33"><a href="#cb64-33"></a>            axs[i][y].grid(linestyle<span class="op">=</span><span class="st">"dotted"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb64-34"><a href="#cb64-34"></a>            axs[i][y].legend(fontsize<span class="op">=</span>legend_fontsize)</span>
+<span id="cb64-35"><a href="#cb64-35"></a>            axs[i][y].tick_params(axis<span class="op">=</span><span class="st">"both"</span>, which<span class="op">=</span><span class="st">"major"</span>, labelsize<span class="op">=</span>tick_fontsize)</span>
+<span id="cb64-36"><a href="#cb64-36"></a></span>
+<span id="cb64-37"><a href="#cb64-37"></a></span>
+<span id="cb64-38"><a href="#cb64-38"></a><span class="co"># Adjust layout and show the plot</span></span>
+<span id="cb64-39"><a href="#cb64-39"></a>plt.tight_layout()</span>
+<span id="cb64-40"><a href="#cb64-40"></a><span class="co"># plt.savefig("metrics_plot_model_comparison.png", dpi=500, bbox_inches="tight")</span></span>
+<span id="cb64-41"><a href="#cb64-41"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-122" class="cell" data-outputid="12836c8b-749c-4d9f-bbde-51b66ed651d0">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># Create subplots for different metrics in a 3x4 grid</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">4</span><span class="op">*</span><span class="dv">7</span>, <span class="dv">6</span><span class="op">*</span><span class="dv">1</span>))</span>
+<span id="cb65-3"><a href="#cb65-3"></a></span>
+<span id="cb65-4"><a href="#cb65-4"></a>colors <span class="op">=</span> [<span class="st">"#1f77b4"</span>, <span class="st">"#ff7f0e"</span>, <span class="st">"#2ca02c"</span>, <span class="st">"#d62728"</span>]</span>
+<span id="cb65-5"><a href="#cb65-5"></a>metrics <span class="op">=</span> [<span class="st">"loss"</span>, <span class="st">"precision"</span>, <span class="st">"recall"</span>, <span class="st">"categorical_accuracy"</span>]</span>
+<span id="cb65-6"><a href="#cb65-6"></a>metrics_name <span class="op">=</span> [<span class="st">"Loss"</span>, <span class="st">"Precision"</span>, <span class="st">"Recall"</span>, <span class="st">"Categorical Accuracy"</span>]</span>
+<span id="cb65-7"><a href="#cb65-7"></a></span>
+<span id="cb65-8"><a href="#cb65-8"></a>epochs <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, config.EPOCHS <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb65-9"><a href="#cb65-9"></a></span>
+<span id="cb65-10"><a href="#cb65-10"></a>title_fontsize <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb65-11"><a href="#cb65-11"></a>label_fontsize <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb65-12"><a href="#cb65-12"></a>legend_fontsize <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb65-13"><a href="#cb65-13"></a>tick_fontsize <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb65-14"><a href="#cb65-14"></a>lw<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb65-15"><a href="#cb65-15"></a></span>
+<span id="cb65-16"><a href="#cb65-16"></a><span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(metrics)):</span>
+<span id="cb65-17"><a href="#cb65-17"></a>    axs[y].plot(epochs, unet_model_metrics[<span class="ss">f"val_</span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>], color<span class="op">=</span>colors[<span class="dv">0</span>], marker<span class="op">=</span><span class="st">"o"</span>, lw<span class="op">=</span>lw, label<span class="op">=</span><span class="ss">f"U-Net validate </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb65-18"><a href="#cb65-18"></a>    axs[y].plot(epochs, dnn_model_metrics[<span class="ss">f"val_</span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>], color<span class="op">=</span>colors[<span class="dv">1</span>], lw<span class="op">=</span>lw, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="ss">f"DNN validate </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb65-19"><a href="#cb65-19"></a></span>
+<span id="cb65-20"><a href="#cb65-20"></a>    axs[y].plot(epochs, unet_model_metrics[metrics[y]], color<span class="op">=</span>colors[<span class="dv">2</span>], lw<span class="op">=</span>lw, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="ss">f"U-Net train </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb65-21"><a href="#cb65-21"></a>    axs[y].plot(epochs, dnn_model_metrics[metrics[y]], color<span class="op">=</span>colors[<span class="dv">3</span>], lw<span class="op">=</span>lw, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="ss">f"DNN train </span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb65-22"><a href="#cb65-22"></a>    axs[y].set_title(<span class="ss">f"</span><span class="sc">{</span>metrics_name[y]<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span>title_fontsize)</span>
+<span id="cb65-23"><a href="#cb65-23"></a>    axs[y].set_xlabel(<span class="st">"epochs"</span>, fontsize<span class="op">=</span>label_fontsize)</span>
+<span id="cb65-24"><a href="#cb65-24"></a>    axs[y].set_ylabel(<span class="ss">f"</span><span class="sc">{</span>metrics[y]<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span>label_fontsize)</span>
+<span id="cb65-25"><a href="#cb65-25"></a>    axs[y].grid(linestyle<span class="op">=</span><span class="st">"dotted"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb65-26"><a href="#cb65-26"></a>    axs[y].legend(fontsize<span class="op">=</span>legend_fontsize)</span>
+<span id="cb65-27"><a href="#cb65-27"></a>    axs[y].tick_params(axis<span class="op">=</span><span class="st">"both"</span>, which<span class="op">=</span><span class="st">"major"</span>, labelsize<span class="op">=</span>tick_fontsize)</span>
+<span id="cb65-28"><a href="#cb65-28"></a></span>
+<span id="cb65-29"><a href="#cb65-29"></a></span>
+<span id="cb65-30"><a href="#cb65-30"></a><span class="co"># Adjust layout and show the plot</span></span>
+<span id="cb65-31"><a href="#cb65-31"></a>plt.tight_layout()</span>
+<span id="cb65-32"><a href="#cb65-32"></a><span class="co"># plt.savefig("metrics_plot_model_comparison.png", dpi=500, bbox_inches="tight")</span></span>
+<span id="cb65-33"><a href="#cb65-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="probability-distribution-plot" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="probability-distribution-plot"><span class="header-section-number">2.7.2</span> Probability Distribution Plot</h3>
+<div id="cell-124" class="cell" data-outputid="f36044bf-95c6-42b0-924a-79f84e71a903">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a>all_data <span class="op">=</span> {}</span>
+<span id="cb66-2"><a href="#cb66-2"></a></span>
+<span id="cb66-3"><a href="#cb66-3"></a>unet_data <span class="op">=</span> []</span>
+<span id="cb66-4"><a href="#cb66-4"></a>dnn_data <span class="op">=</span> []</span>
+<span id="cb66-5"><a href="#cb66-5"></a></span>
+<span id="cb66-6"><a href="#cb66-6"></a>unet_rice_data <span class="op">=</span> []</span>
+<span id="cb66-7"><a href="#cb66-7"></a>dnn_rice_data <span class="op">=</span> []</span>
+<span id="cb66-8"><a href="#cb66-8"></a></span>
+<span id="cb66-9"><a href="#cb66-9"></a>unet_other_data <span class="op">=</span> []</span>
+<span id="cb66-10"><a href="#cb66-10"></a>dnn_other_data <span class="op">=</span> []</span>
+<span id="cb66-11"><a href="#cb66-11"></a></span>
+<span id="cb66-12"><a href="#cb66-12"></a><span class="cf">for</span> i, feature <span class="kw">in</span> <span class="bu">enumerate</span>(prob_output_unet[<span class="st">"features"</span>]):</span>
+<span id="cb66-13"><a href="#cb66-13"></a>    unet_rice_prob <span class="op">=</span> <span class="bu">round</span>(feature[<span class="st">"properties"</span>][<span class="st">"rice_prob"</span>], <span class="dv">5</span>)</span>
+<span id="cb66-14"><a href="#cb66-14"></a>    unet_other_prob <span class="op">=</span> <span class="bu">round</span>(feature[<span class="st">"properties"</span>][<span class="st">"cropland_prob"</span>] <span class="op">+</span> <span class="bu">round</span>(feature[<span class="st">"properties"</span>][<span class="st">"forest_prob"</span>] <span class="op">+</span> feature[<span class="st">"properties"</span>][<span class="st">"others_prob"</span>]<span class="op">+</span> feature[<span class="st">"properties"</span>][<span class="st">"urban_prob"</span>]), <span class="dv">5</span>)</span>
+<span id="cb66-15"><a href="#cb66-15"></a>    unet_data.append([unet_rice_prob, unet_other_prob])</span>
+<span id="cb66-16"><a href="#cb66-16"></a>    unet_rice_data.append(unet_rice_prob)</span>
+<span id="cb66-17"><a href="#cb66-17"></a>    unet_other_data.append(unet_other_prob)</span>
+<span id="cb66-18"><a href="#cb66-18"></a></span>
+<span id="cb66-19"><a href="#cb66-19"></a>    dnn_feature <span class="op">=</span> prob_output_dnn[<span class="st">"features"</span>][i]</span>
+<span id="cb66-20"><a href="#cb66-20"></a>    dnn_rice_prob <span class="op">=</span> <span class="bu">round</span>(dnn_feature[<span class="st">"properties"</span>][<span class="st">"rice_prob"</span>], <span class="dv">5</span>)</span>
+<span id="cb66-21"><a href="#cb66-21"></a>    dnn_other_prob <span class="op">=</span> <span class="fl">1.</span> <span class="op">-</span> <span class="bu">round</span>(dnn_feature[<span class="st">"properties"</span>][<span class="st">"rice_prob"</span>], <span class="dv">5</span>)</span>
+<span id="cb66-22"><a href="#cb66-22"></a>    <span class="co"># dnn_other_prob = round(dnn_feature["properties"]["cropland_prob"] + dnn_feature["properties"]["forest_prob"] + dnn_feature["properties"]["others_prob"]+ dnn_feature["properties"]["urban_prob"], 5)</span></span>
+<span id="cb66-23"><a href="#cb66-23"></a>    dnn_data.append([dnn_rice_prob, dnn_other_prob])</span>
+<span id="cb66-24"><a href="#cb66-24"></a>    dnn_rice_data.append(dnn_rice_prob)</span>
+<span id="cb66-25"><a href="#cb66-25"></a>    dnn_other_data.append(dnn_other_prob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-125" class="cell" data-outputid="7663f08a-4787-4b96-d39f-5367654d8bce">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb67-2"><a href="#cb67-2"></a></span>
+<span id="cb67-3"><a href="#cb67-3"></a>title_fontsize <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb67-4"><a href="#cb67-4"></a>label_fontsize <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb67-5"><a href="#cb67-5"></a>tick_fontsize <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb67-6"><a href="#cb67-6"></a></span>
+<span id="cb67-7"><a href="#cb67-7"></a><span class="co"># rectangular box plot</span></span>
+<span id="cb67-8"><a href="#cb67-8"></a>bplot1 <span class="op">=</span> ax1.boxplot([unet_rice_data, dnn_rice_data],</span>
+<span id="cb67-9"><a href="#cb67-9"></a>                     notch<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb67-10"><a href="#cb67-10"></a>                     vert<span class="op">=</span><span class="va">True</span>,  <span class="co"># vertical box alignment</span></span>
+<span id="cb67-11"><a href="#cb67-11"></a>                     patch_artist<span class="op">=</span><span class="va">True</span>,  <span class="co"># fill with color</span></span>
+<span id="cb67-12"><a href="#cb67-12"></a>                     labels<span class="op">=</span>[<span class="st">"U-Net"</span>, <span class="st">"DNN"</span>],</span>
+<span id="cb67-13"><a href="#cb67-13"></a>                     sym<span class="op">=</span><span class="st">"k+"</span>)  <span class="co"># will be used to label x-ticks</span></span>
+<span id="cb67-14"><a href="#cb67-14"></a>ax1.set_title(<span class="st">"Rice Probability"</span>)</span>
+<span id="cb67-15"><a href="#cb67-15"></a></span>
+<span id="cb67-16"><a href="#cb67-16"></a><span class="co"># notch shape box plot</span></span>
+<span id="cb67-17"><a href="#cb67-17"></a>bplot2 <span class="op">=</span> ax2.boxplot([unet_other_data, dnn_other_data],</span>
+<span id="cb67-18"><a href="#cb67-18"></a>                     notch<span class="op">=</span><span class="va">True</span>,  <span class="co"># notch shape</span></span>
+<span id="cb67-19"><a href="#cb67-19"></a>                     vert<span class="op">=</span><span class="va">True</span>,  <span class="co"># vertical box alignment</span></span>
+<span id="cb67-20"><a href="#cb67-20"></a>                     patch_artist<span class="op">=</span><span class="va">True</span>,  <span class="co"># fill with color</span></span>
+<span id="cb67-21"><a href="#cb67-21"></a>                     labels<span class="op">=</span>[<span class="st">"U-Net"</span>, <span class="st">"DNN"</span>],</span>
+<span id="cb67-22"><a href="#cb67-22"></a>                     sym<span class="op">=</span><span class="st">"k+"</span>)  <span class="co"># will be used to label x-ticks</span></span>
+<span id="cb67-23"><a href="#cb67-23"></a>ax2.set_title(<span class="st">"Other Probability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../02-Data-Preparation/index.html" class="pagination-link" aria-label="Data Preparation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Preparation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/2_model_training.html" class="pagination-link" aria-label="Selective Logging Detection with Deep Learning and Very-High Resolution Imagery">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
