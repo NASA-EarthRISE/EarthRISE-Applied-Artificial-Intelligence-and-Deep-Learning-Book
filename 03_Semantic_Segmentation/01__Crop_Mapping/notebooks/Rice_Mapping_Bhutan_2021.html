@@ -9,7 +9,7 @@
 <meta name="author" content="Biplov Bhandari">
 <meta name="author" content="Tim Mayer">
 
-<title>2&nbsp; Crop Mapping – Applied Artificial Intelligence and Deep Learning Book</title>
+<title>2&nbsp; Crop Mapping — Rice Mapping in Bhutan with U-Net – Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping — Rice Mapping in Bhutan with U-Net</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping — Rice Mapping in Bhutan with U-Net</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -445,49 +445,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery" id="toc-rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery" class="nav-link active" data-scroll-target="#rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery"><span class="header-section-number">2.1</span> Rice mapping in Bhutan with U-Net using high resolution satellite imagery</a></li>
-  <li><a href="#note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." id="toc-note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." class="nav-link" data-scroll-target="#note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places."><span class="header-section-number">2.2</span> Note: This notebook is meant to be run in Colab. You can still run this locally, make sure you have Google Drive API installed and path adjusted in relevant places.</a></li>
-  <li><a href="#setup-environment" id="toc-setup-environment" class="nav-link" data-scroll-target="#setup-environment"><span class="header-section-number">2.3</span> Setup environment</a>
+  <li><a href="#note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." id="toc-note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." class="nav-link active" data-scroll-target="#note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places."><span class="header-section-number">2.1</span> Note: This notebook is meant to be run in Colab. You can still run this locally, make sure you have Google Drive API installed and path adjusted in relevant places.</a></li>
+  <li><a href="#setup-environment" id="toc-setup-environment" class="nav-link" data-scroll-target="#setup-environment"><span class="header-section-number">2.2</span> Setup environment</a>
   <ul class="collapse">
-  <li><a href="#download-datasets" id="toc-download-datasets" class="nav-link" data-scroll-target="#download-datasets"><span class="header-section-number">2.3.1</span> Download datasets</a></li>
-  <li><a href="#setup-config-file-variables" id="toc-setup-config-file-variables" class="nav-link" data-scroll-target="#setup-config-file-variables"><span class="header-section-number">2.3.2</span> Setup config file variables</a></li>
-  <li><a href="#update-the-config-file-programtically" id="toc-update-the-config-file-programtically" class="nav-link" data-scroll-target="#update-the-config-file-programtically"><span class="header-section-number">2.3.3</span> Update the config file programtically</a></li>
+  <li><a href="#download-datasets" id="toc-download-datasets" class="nav-link" data-scroll-target="#download-datasets"><span class="header-section-number">2.2.1</span> Download datasets</a></li>
+  <li><a href="#setup-config-file-variables" id="toc-setup-config-file-variables" class="nav-link" data-scroll-target="#setup-config-file-variables"><span class="header-section-number">2.2.2</span> Setup config file variables</a></li>
+  <li><a href="#update-the-config-file-programtically" id="toc-update-the-config-file-programtically" class="nav-link" data-scroll-target="#update-the-config-file-programtically"><span class="header-section-number">2.2.3</span> Update the config file programtically</a></li>
   </ul></li>
-  <li><a href="#u-net-model" id="toc-u-net-model" class="nav-link" data-scroll-target="#u-net-model"><span class="header-section-number">2.4</span> U-Net Model</a>
+  <li><a href="#u-net-model" id="toc-u-net-model" class="nav-link" data-scroll-target="#u-net-model"><span class="header-section-number">2.3</span> U-Net Model</a>
   <ul class="collapse">
-  <li><a href="#load-config-file-variables" id="toc-load-config-file-variables" class="nav-link" data-scroll-target="#load-config-file-variables"><span class="header-section-number">2.4.1</span> Load config file variables</a></li>
-  <li><a href="#load-modeltrainer-class" id="toc-load-modeltrainer-class" class="nav-link" data-scroll-target="#load-modeltrainer-class"><span class="header-section-number">2.4.2</span> Load <code>ModelTrainer</code> class</a></li>
-  <li><a href="#train-and-save-u-net-model" id="toc-train-and-save-u-net-model" class="nav-link" data-scroll-target="#train-and-save-u-net-model"><span class="header-section-number">2.4.3</span> Train and Save U-Net model</a></li>
-  <li><a href="#save-the-config-file" id="toc-save-the-config-file" class="nav-link" data-scroll-target="#save-the-config-file"><span class="header-section-number">2.4.4</span> Save the config file</a></li>
-  <li><a href="#load-the-logs-files-via-tensorboard" id="toc-load-the-logs-files-via-tensorboard" class="nav-link" data-scroll-target="#load-the-logs-files-via-tensorboard"><span class="header-section-number">2.4.5</span> Load the logs files via TensorBoard</a></li>
-  <li><a href="#load-the-saved-u-net-model" id="toc-load-the-saved-u-net-model" class="nav-link" data-scroll-target="#load-the-saved-u-net-model"><span class="header-section-number">2.4.6</span> Load the Saved U-Net Model</a></li>
-  <li><a href="#inference-using-saved-u-net-model" id="toc-inference-using-saved-u-net-model" class="nav-link" data-scroll-target="#inference-using-saved-u-net-model"><span class="header-section-number">2.4.7</span> Inference using Saved U-Net Model</a></li>
+  <li><a href="#load-config-file-variables" id="toc-load-config-file-variables" class="nav-link" data-scroll-target="#load-config-file-variables"><span class="header-section-number">2.3.1</span> Load config file variables</a></li>
+  <li><a href="#load-modeltrainer-class" id="toc-load-modeltrainer-class" class="nav-link" data-scroll-target="#load-modeltrainer-class"><span class="header-section-number">2.3.2</span> Load <code>ModelTrainer</code> class</a></li>
+  <li><a href="#train-and-save-u-net-model" id="toc-train-and-save-u-net-model" class="nav-link" data-scroll-target="#train-and-save-u-net-model"><span class="header-section-number">2.3.3</span> Train and Save U-Net model</a></li>
+  <li><a href="#save-the-config-file" id="toc-save-the-config-file" class="nav-link" data-scroll-target="#save-the-config-file"><span class="header-section-number">2.3.4</span> Save the config file</a></li>
+  <li><a href="#load-the-logs-files-via-tensorboard" id="toc-load-the-logs-files-via-tensorboard" class="nav-link" data-scroll-target="#load-the-logs-files-via-tensorboard"><span class="header-section-number">2.3.5</span> Load the logs files via TensorBoard</a></li>
+  <li><a href="#load-the-saved-u-net-model" id="toc-load-the-saved-u-net-model" class="nav-link" data-scroll-target="#load-the-saved-u-net-model"><span class="header-section-number">2.3.6</span> Load the Saved U-Net Model</a></li>
+  <li><a href="#inference-using-saved-u-net-model" id="toc-inference-using-saved-u-net-model" class="nav-link" data-scroll-target="#inference-using-saved-u-net-model"><span class="header-section-number">2.3.7</span> Inference using Saved U-Net Model</a></li>
   </ul></li>
-  <li><a href="#dnn-model" id="toc-dnn-model" class="nav-link" data-scroll-target="#dnn-model"><span class="header-section-number">2.5</span> DNN Model</a>
+  <li><a href="#dnn-model" id="toc-dnn-model" class="nav-link" data-scroll-target="#dnn-model"><span class="header-section-number">2.4</span> DNN Model</a>
   <ul class="collapse">
-  <li><a href="#setup-any-changes-in-the-config-file-for-dnn-model" id="toc-setup-any-changes-in-the-config-file-for-dnn-model" class="nav-link" data-scroll-target="#setup-any-changes-in-the-config-file-for-dnn-model"><span class="header-section-number">2.5.1</span> Setup any changes in the config file for DNN Model</a></li>
-  <li><a href="#update-the-config-file-programtically-1" id="toc-update-the-config-file-programtically-1" class="nav-link" data-scroll-target="#update-the-config-file-programtically-1"><span class="header-section-number">2.5.2</span> Update the config file programtically</a></li>
-  <li><a href="#load-config-file-variables-for-dnn-model" id="toc-load-config-file-variables-for-dnn-model" class="nav-link" data-scroll-target="#load-config-file-variables-for-dnn-model"><span class="header-section-number">2.5.3</span> Load config file variables for DNN Model</a></li>
-  <li><a href="#load-modeltrainer-class-1" id="toc-load-modeltrainer-class-1" class="nav-link" data-scroll-target="#load-modeltrainer-class-1"><span class="header-section-number">2.5.4</span> Load <code>ModelTrainer</code> class</a></li>
-  <li><a href="#train-and-save-dnn-model" id="toc-train-and-save-dnn-model" class="nav-link" data-scroll-target="#train-and-save-dnn-model"><span class="header-section-number">2.5.5</span> Train and Save DNN model</a></li>
-  <li><a href="#save-the-config-file-1" id="toc-save-the-config-file-1" class="nav-link" data-scroll-target="#save-the-config-file-1"><span class="header-section-number">2.5.6</span> Save the config file</a></li>
-  <li><a href="#load-the-logs-files-via-tensorboard-1" id="toc-load-the-logs-files-via-tensorboard-1" class="nav-link" data-scroll-target="#load-the-logs-files-via-tensorboard-1"><span class="header-section-number">2.5.7</span> Load the logs files via TensorBoard</a></li>
-  <li><a href="#load-the-saved-dnn-model" id="toc-load-the-saved-dnn-model" class="nav-link" data-scroll-target="#load-the-saved-dnn-model"><span class="header-section-number">2.5.8</span> Load the Saved DNN Model</a></li>
-  <li><a href="#inference-using-saved-dnn-model" id="toc-inference-using-saved-dnn-model" class="nav-link" data-scroll-target="#inference-using-saved-dnn-model"><span class="header-section-number">2.5.9</span> Inference using Saved DNN Model</a></li>
+  <li><a href="#setup-any-changes-in-the-config-file-for-dnn-model" id="toc-setup-any-changes-in-the-config-file-for-dnn-model" class="nav-link" data-scroll-target="#setup-any-changes-in-the-config-file-for-dnn-model"><span class="header-section-number">2.4.1</span> Setup any changes in the config file for DNN Model</a></li>
+  <li><a href="#update-the-config-file-programtically-1" id="toc-update-the-config-file-programtically-1" class="nav-link" data-scroll-target="#update-the-config-file-programtically-1"><span class="header-section-number">2.4.2</span> Update the config file programtically</a></li>
+  <li><a href="#load-config-file-variables-for-dnn-model" id="toc-load-config-file-variables-for-dnn-model" class="nav-link" data-scroll-target="#load-config-file-variables-for-dnn-model"><span class="header-section-number">2.4.3</span> Load config file variables for DNN Model</a></li>
+  <li><a href="#load-modeltrainer-class-1" id="toc-load-modeltrainer-class-1" class="nav-link" data-scroll-target="#load-modeltrainer-class-1"><span class="header-section-number">2.4.4</span> Load <code>ModelTrainer</code> class</a></li>
+  <li><a href="#train-and-save-dnn-model" id="toc-train-and-save-dnn-model" class="nav-link" data-scroll-target="#train-and-save-dnn-model"><span class="header-section-number">2.4.5</span> Train and Save DNN model</a></li>
+  <li><a href="#save-the-config-file-1" id="toc-save-the-config-file-1" class="nav-link" data-scroll-target="#save-the-config-file-1"><span class="header-section-number">2.4.6</span> Save the config file</a></li>
+  <li><a href="#load-the-logs-files-via-tensorboard-1" id="toc-load-the-logs-files-via-tensorboard-1" class="nav-link" data-scroll-target="#load-the-logs-files-via-tensorboard-1"><span class="header-section-number">2.4.7</span> Load the logs files via TensorBoard</a></li>
+  <li><a href="#load-the-saved-dnn-model" id="toc-load-the-saved-dnn-model" class="nav-link" data-scroll-target="#load-the-saved-dnn-model"><span class="header-section-number">2.4.8</span> Load the Saved DNN Model</a></li>
+  <li><a href="#inference-using-saved-dnn-model" id="toc-inference-using-saved-dnn-model" class="nav-link" data-scroll-target="#inference-using-saved-dnn-model"><span class="header-section-number">2.4.9</span> Inference using Saved DNN Model</a></li>
   </ul></li>
-  <li><a href="#independent-validation" id="toc-independent-validation" class="nav-link" data-scroll-target="#independent-validation"><span class="header-section-number">2.6</span> Independent Validation</a>
+  <li><a href="#independent-validation" id="toc-independent-validation" class="nav-link" data-scroll-target="#independent-validation"><span class="header-section-number">2.5</span> Independent Validation</a>
   <ul class="collapse">
-  <li><a href="#update-the-config-file" id="toc-update-the-config-file" class="nav-link" data-scroll-target="#update-the-config-file"><span class="header-section-number">2.6.1</span> Update the config file</a></li>
-  <li><a href="#load-config-file-variable" id="toc-load-config-file-variable" class="nav-link" data-scroll-target="#load-config-file-variable"><span class="header-section-number">2.6.2</span> Load config file variable</a></li>
-  <li><a href="#import-earthengine-and-geemap-for-visualization" id="toc-import-earthengine-and-geemap-for-visualization" class="nav-link" data-scroll-target="#import-earthengine-and-geemap-for-visualization"><span class="header-section-number">2.6.3</span> Import earthengine and geemap for visualization</a></li>
-  <li><a href="#class-information-and-masking" id="toc-class-information-and-masking" class="nav-link" data-scroll-target="#class-information-and-masking"><span class="header-section-number">2.6.4</span> Class Information and Masking</a></li>
-  <li><a href="#model-u-net" id="toc-model-u-net" class="nav-link" data-scroll-target="#model-u-net"><span class="header-section-number">2.6.5</span> Model: U-Net</a></li>
-  <li><a href="#model-dnn" id="toc-model-dnn" class="nav-link" data-scroll-target="#model-dnn"><span class="header-section-number">2.6.6</span> Model: DNN</a></li>
+  <li><a href="#update-the-config-file" id="toc-update-the-config-file" class="nav-link" data-scroll-target="#update-the-config-file"><span class="header-section-number">2.5.1</span> Update the config file</a></li>
+  <li><a href="#load-config-file-variable" id="toc-load-config-file-variable" class="nav-link" data-scroll-target="#load-config-file-variable"><span class="header-section-number">2.5.2</span> Load config file variable</a></li>
+  <li><a href="#import-earthengine-and-geemap-for-visualization" id="toc-import-earthengine-and-geemap-for-visualization" class="nav-link" data-scroll-target="#import-earthengine-and-geemap-for-visualization"><span class="header-section-number">2.5.3</span> Import earthengine and geemap for visualization</a></li>
+  <li><a href="#class-information-and-masking" id="toc-class-information-and-masking" class="nav-link" data-scroll-target="#class-information-and-masking"><span class="header-section-number">2.5.4</span> Class Information and Masking</a></li>
+  <li><a href="#model-u-net" id="toc-model-u-net" class="nav-link" data-scroll-target="#model-u-net"><span class="header-section-number">2.5.5</span> Model: U-Net</a></li>
+  <li><a href="#model-dnn" id="toc-model-dnn" class="nav-link" data-scroll-target="#model-dnn"><span class="header-section-number">2.5.6</span> Model: DNN</a></li>
   </ul></li>
-  <li><a href="#figures-and-plots" id="toc-figures-and-plots" class="nav-link" data-scroll-target="#figures-and-plots"><span class="header-section-number">2.7</span> Figures and Plots</a>
+  <li><a href="#figures-and-plots" id="toc-figures-and-plots" class="nav-link" data-scroll-target="#figures-and-plots"><span class="header-section-number">2.6</span> Figures and Plots</a>
   <ul class="collapse">
-  <li><a href="#training-and-validation-plot" id="toc-training-and-validation-plot" class="nav-link" data-scroll-target="#training-and-validation-plot"><span class="header-section-number">2.7.1</span> Training and Validation Plot</a></li>
-  <li><a href="#probability-distribution-plot" id="toc-probability-distribution-plot" class="nav-link" data-scroll-target="#probability-distribution-plot"><span class="header-section-number">2.7.2</span> Probability Distribution Plot</a></li>
+  <li><a href="#training-and-validation-plot" id="toc-training-and-validation-plot" class="nav-link" data-scroll-target="#training-and-validation-plot"><span class="header-section-number">2.6.1</span> Training and Validation Plot</a></li>
+  <li><a href="#probability-distribution-plot" id="toc-probability-distribution-plot" class="nav-link" data-scroll-target="#probability-distribution-plot"><span class="header-section-number">2.6.2</span> Probability Distribution Plot</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -496,9 +495,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping — Rice Mapping in Bhutan with U-Net</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Crop Mapping — Rice Mapping in Bhutan with U-Net</span></h1>
 </div>
 
 
@@ -542,17 +541,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="rice-mapping-in-bhutan-with-u-net-using-high-resolution-satellite-imagery"><span class="header-section-number">2.1</span> Rice mapping in Bhutan with U-Net using high resolution satellite imagery</h2>
-<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid"> <a href="https://colab.research.google.com/github/SERVIR/SERVIR-Applied-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid"> <a href="https://github.com/SERVIR/SERVIR-Applied-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb">View on GitHub</a></p>
+<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb">View on GitHub</a></p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/l3Tv5UBlw9I" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section>
-<section id="note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places."><span class="header-section-number">2.2</span> Note: This notebook is meant to be run in Colab. You can still run this locally, make sure you have <a href="https://developers.google.com/workspace/drive/api/quickstart/python">Google Drive API</a> installed and path adjusted in relevant places.</h2>
+<section id="note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places." class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="note-this-notebook-is-meant-to-be-run-in-colab.-you-can-still-run-this-locally-make-sure-you-have-google-drive-api-installed-and-path-adjusted-in-relevant-places."><span class="header-section-number">2.1</span> Note: This notebook is meant to be run in Colab. You can still run this locally, make sure you have <a href="https://developers.google.com/workspace/drive/api/quickstart/python">Google Drive API</a> installed and path adjusted in relevant places.</h2>
 <p>This notebook is also available in this github repo: <a href="https://github.com/SERVIR/servir-aces">https://github.com/SERVIR/servir-aces</a>. Navigate to the <code>notebook</code> folder.</p>
 </section>
-<section id="setup-environment" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="setup-environment"><span class="header-section-number">2.3</span> Setup environment</h2>
+<section id="setup-environment" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="setup-environment"><span class="header-section-number">2.2</span> Setup environment</h2>
 <div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8b3da502-46cf-4613-c619-42e640f5105a">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -572,8 +568,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">!</span>git clone https:<span class="op">//</span>github.com<span class="op">/</span>SERVIR<span class="op">/</span>servir<span class="op">-</span>aces</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<section id="download-datasets" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="download-datasets"><span class="header-section-number">2.3.1</span> Download datasets</h3>
+<section id="download-datasets" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="download-datasets"><span class="header-section-number">2.2.1</span> Download datasets</h3>
 <p>For this chapter, we have already prepared and exported the training datasets. They can be found at the google cloud storage and we will use <code>gsutil</code> to get the dataset in our workspace. The dataset has <code>training</code>, <code>testing</code>, and <code>validation</code> subdirectory. Let’s start by downloading these datasets in our workspace.</p>
 <p>If you’re looking to produce your own datasets, you can follow this <a href="https://colab.research.google.com/drive/1LCFLeSCu969wIW8TD68-j4hfIu7WiRIK?usp=sharing">notebook</a> which was used to produce these training, testing, and validation datasets provided in this notebook.</p>
 <div id="cell-13" class="cell">
@@ -589,8 +585,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="setup-config-file-variables" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="setup-config-file-variables"><span class="header-section-number">2.3.2</span> Setup config file variables</h3>
+<section id="setup-config-file-variables" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="setup-config-file-variables"><span class="header-section-number">2.2.2</span> Setup config file variables</h3>
 <p>Now the repo is downloaded. We will create an environment file file to place point to our training data and customize parameters for the model. To do this, we make a copy of the <code>.env.example</code> file provided.</p>
 <p>Under the hood, all the configuration provided via the environment file are parsed as a config object and can be accessed programatically.</p>
 <p>Note current version does not expose all the model intracacies through the environment file but future version may include those depending on the need.</p>
@@ -624,8 +620,8 @@ VAL_SIZE = 2404
 BATCH_SIZE = 32
 EPOCHS = 30</code></pre>
 </section>
-<section id="update-the-config-file-programtically" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="update-the-config-file-programtically"><span class="header-section-number">2.3.3</span> Update the config file programtically</h3>
+<section id="update-the-config-file-programtically" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="update-the-config-file-programtically"><span class="header-section-number">2.2.3</span> Update the config file programtically</h3>
 <p>We can also make a dictionary so we can change these config settings programatically.</p>
 <div id="cell-24" class="cell">
 <details open="" class="code-fold">
@@ -681,10 +677,10 @@ EPOCHS = 30</code></pre>
 </div>
 </section>
 </section>
-<section id="u-net-model" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="u-net-model"><span class="header-section-number">2.4</span> U-Net Model</h2>
-<section id="load-config-file-variables" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="load-config-file-variables"><span class="header-section-number">2.4.1</span> Load config file variables</h3>
+<section id="u-net-model" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="u-net-model"><span class="header-section-number">2.3</span> U-Net Model</h2>
+<section id="load-config-file-variables" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="load-config-file-variables"><span class="header-section-number">2.3.1</span> Load config file variables</h3>
 <div id="cell-29" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -706,8 +702,8 @@ EPOCHS = 30</code></pre>
 </details>
 </div>
 </section>
-<section id="load-modeltrainer-class" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="load-modeltrainer-class"><span class="header-section-number">2.4.2</span> Load <code>ModelTrainer</code> class</h3>
+<section id="load-modeltrainer-class" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="load-modeltrainer-class"><span class="header-section-number">2.3.2</span> Load <code>ModelTrainer</code> class</h3>
 <p>Next, let’s make an instance of the <code>ModelTrainer</code> object. The <code>ModelTrainer</code> class provides various tools for training, buidling, compiling, and running specified deep learning models.</p>
 <div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="bafab6c8-72bc-41a7-f8bb-516a423a9e19">
 <details open="" class="code-fold">
@@ -716,8 +712,8 @@ EPOCHS = 30</code></pre>
 </details>
 </div>
 </section>
-<section id="train-and-save-u-net-model" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="train-and-save-u-net-model"><span class="header-section-number">2.4.3</span> Train and Save U-Net model</h3>
+<section id="train-and-save-u-net-model" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="train-and-save-u-net-model"><span class="header-section-number">2.3.3</span> Train and Save U-Net model</h3>
 <p><a href="https://servir.github.io/servir-aces/model_trainer/"><code>ModelTrainer</code></a> class provides various functionality. We will use <code>train_model</code> function that helps to train the model using the provided configuration settings.</p>
 <p>This method performs the following steps: - Configures memory growth for TensorFlow. - Creates TensorFlow datasets for training, testing, and validation. - Builds and compiles the model. - Prepares the output directory for saving models and results. - Starts the training process. - Evaluates and prints validation metrics. - Saves training parameters, plots, and models.</p>
 <div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;background_save&quot;:true,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="199f9beb-c7e0-4b03-8216-a77c6412a4d5">
@@ -727,8 +723,8 @@ EPOCHS = 30</code></pre>
 </details>
 </div>
 </section>
-<section id="save-the-config-file" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="save-the-config-file"><span class="header-section-number">2.4.4</span> Save the config file</h3>
+<section id="save-the-config-file" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="save-the-config-file"><span class="header-section-number">2.3.4</span> Save the config file</h3>
 <div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;background_save&quot;:true}}" data-outputid="f751bd04-3c88-4cc6-fb98-ee80f115d8d6">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -748,8 +744,8 @@ EPOCHS = 30</code></pre>
 </details>
 </div>
 </section>
-<section id="load-the-logs-files-via-tensorboard" class="level3" data-number="2.4.5">
-<h3 data-number="2.4.5" class="anchored" data-anchor-id="load-the-logs-files-via-tensorboard"><span class="header-section-number">2.4.5</span> Load the logs files via TensorBoard</h3>
+<section id="load-the-logs-files-via-tensorboard" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="load-the-logs-files-via-tensorboard"><span class="header-section-number">2.3.5</span> Load the logs files via TensorBoard</h3>
 <p>Tensorboard provides a unique way to view and interact with the logs while the model is being trained. Learn more <a href="https://www.tensorflow.org/tensorboard/get_started">here</a>. Here we only show you how you can load them to tensorboard with our training logs.</p>
 <div id="cell-44" class="cell">
 <details open="" class="code-fold">
@@ -772,8 +768,8 @@ EPOCHS = 30</code></pre>
 </details>
 </div>
 </section>
-<section id="load-the-saved-u-net-model" class="level3" data-number="2.4.6">
-<h3 data-number="2.4.6" class="anchored" data-anchor-id="load-the-saved-u-net-model"><span class="header-section-number">2.4.6</span> Load the Saved U-Net Model</h3>
+<section id="load-the-saved-u-net-model" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="load-the-saved-u-net-model"><span class="header-section-number">2.3.6</span> Load the Saved U-Net Model</h3>
 <p>Load the saved model</p>
 <div id="cell-49" class="cell">
 <details open="" class="code-fold">
@@ -794,24 +790,24 @@ EPOCHS = 30</code></pre>
 </details>
 </div>
 </section>
-<section id="inference-using-saved-u-net-model" class="level3" data-number="2.4.7">
-<h3 data-number="2.4.7" class="anchored" data-anchor-id="inference-using-saved-u-net-model"><span class="header-section-number">2.4.7</span> Inference using Saved U-Net Model</h3>
+<section id="inference-using-saved-u-net-model" class="level3" data-number="2.3.7">
+<h3 data-number="2.3.7" class="anchored" data-anchor-id="inference-using-saved-u-net-model"><span class="header-section-number">2.3.7</span> Inference using Saved U-Net Model</h3>
 <p>Now we can use the saved model to start the export of the prediction of the image. For prediction, you would need to first prepare your image data. We have already exported the image needed here, which we will use for now. See <a href="https://colab.research.google.com/drive/1MZexam3GZKsQySQO9Jk_RPNyyMLmciEq?usp=sharing">this notebook</a> to understand how we did it.</p>
 <p>In addition, <a href="https://colab.research.google.com/drive/19AZ-I7YrGNSsWkqbzjNLw3MXVeV4N2uX?usp=sharing">this notebook</a> shows how you can then use the image to predict from the saved Model.</p>
 <p>In any case, you now have the prediction in the Earth Engine as image.</p>
 </section>
 </section>
-<section id="dnn-model" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="dnn-model"><span class="header-section-number">2.5</span> DNN Model</h2>
-<section id="setup-any-changes-in-the-config-file-for-dnn-model" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="setup-any-changes-in-the-config-file-for-dnn-model"><span class="header-section-number">2.5.1</span> Setup any changes in the config file for DNN Model</h3>
+<section id="dnn-model" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="dnn-model"><span class="header-section-number">2.4</span> DNN Model</h2>
+<section id="setup-any-changes-in-the-config-file-for-dnn-model" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="setup-any-changes-in-the-config-file-for-dnn-model"><span class="header-section-number">2.4.1</span> Setup any changes in the config file for DNN Model</h3>
 <p>There are few config variables that needs to be changed for running a DNN model. First would be the data itself so let’s change the <code>DATADIR</code>. We also need to change our output directory using <code>MODEL_DIR_NAME</code>. This is the sub-directory inside the <code>OUTPUT_DIR</code> for this model run. We also need to specify this is the DNN model that we want to run. We have <code>MODEL_TYPE</code> parameter for that. Currently, it supports unet, dnn, and cnn (case sensitive) models; default being unet. Make other changes, as appropriate.</p>
 <pre><code>DATADIR = "datasets/dnn_planet_wo_indices"
 MODEL_DIR_NAME = "dnn_v1"
 MODEL_TYPE = "dnn"</code></pre>
 </section>
-<section id="update-the-config-file-programtically-1" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="update-the-config-file-programtically-1"><span class="header-section-number">2.5.2</span> Update the config file programtically</h3>
+<section id="update-the-config-file-programtically-1" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="update-the-config-file-programtically-1"><span class="header-section-number">2.4.2</span> Update the config file programtically</h3>
 <div id="cell-58" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -847,8 +843,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="load-config-file-variables-for-dnn-model" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="load-config-file-variables-for-dnn-model"><span class="header-section-number">2.5.3</span> Load config file variables for DNN Model</h3>
+<section id="load-config-file-variables-for-dnn-model" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="load-config-file-variables-for-dnn-model"><span class="header-section-number">2.4.3</span> Load config file variables for DNN Model</h3>
 <div id="cell-62" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="5018db03-3df7-4f78-e8a7-09cc66e3d211">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -863,8 +859,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="load-modeltrainer-class-1" class="level3" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="load-modeltrainer-class-1"><span class="header-section-number">2.5.4</span> Load <code>ModelTrainer</code> class</h3>
+<section id="load-modeltrainer-class-1" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="load-modeltrainer-class-1"><span class="header-section-number">2.4.4</span> Load <code>ModelTrainer</code> class</h3>
 <p>Next, let’s make an instance of the <code>ModelTrainer</code> object. The <code>ModelTrainer</code> class provides various tools for training, buidling, compiling, and running specified deep learning models.</p>
 <div id="cell-67" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8c731ca8-ba05-4b20-ab20-614c6a94d01f">
 <details open="" class="code-fold">
@@ -873,8 +869,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="train-and-save-dnn-model" class="level3" data-number="2.5.5">
-<h3 data-number="2.5.5" class="anchored" data-anchor-id="train-and-save-dnn-model"><span class="header-section-number">2.5.5</span> Train and Save DNN model</h3>
+<section id="train-and-save-dnn-model" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="train-and-save-dnn-model"><span class="header-section-number">2.4.5</span> Train and Save DNN model</h3>
 <div id="cell-69" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;background_save&quot;:true}}" data-outputid="e8263864-6791-42ad-fac2-ca9f8864be74">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -882,8 +878,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="save-the-config-file-1" class="level3" data-number="2.5.6">
-<h3 data-number="2.5.6" class="anchored" data-anchor-id="save-the-config-file-1"><span class="header-section-number">2.5.6</span> Save the config file</h3>
+<section id="save-the-config-file-1" class="level3" data-number="2.4.6">
+<h3 data-number="2.4.6" class="anchored" data-anchor-id="save-the-config-file-1"><span class="header-section-number">2.4.6</span> Save the config file</h3>
 <div id="cell-71" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;background_save&quot;:true}}" data-outputid="48f021ce-949b-44df-bbaf-d7e401886040">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -899,8 +895,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="load-the-logs-files-via-tensorboard-1" class="level3" data-number="2.5.7">
-<h3 data-number="2.5.7" class="anchored" data-anchor-id="load-the-logs-files-via-tensorboard-1"><span class="header-section-number">2.5.7</span> Load the logs files via TensorBoard</h3>
+<section id="load-the-logs-files-via-tensorboard-1" class="level3" data-number="2.4.7">
+<h3 data-number="2.4.7" class="anchored" data-anchor-id="load-the-logs-files-via-tensorboard-1"><span class="header-section-number">2.4.7</span> Load the logs files via TensorBoard</h3>
 <div id="cell-73" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:35}}" data-outputid="99cdda0a-82e6-4f65-afd9-e0fd944ae4db">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -915,8 +911,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="load-the-saved-dnn-model" class="level3" data-number="2.5.8">
-<h3 data-number="2.5.8" class="anchored" data-anchor-id="load-the-saved-dnn-model"><span class="header-section-number">2.5.8</span> Load the Saved DNN Model</h3>
+<section id="load-the-saved-dnn-model" class="level3" data-number="2.4.8">
+<h3 data-number="2.4.8" class="anchored" data-anchor-id="load-the-saved-dnn-model"><span class="header-section-number">2.4.8</span> Load the Saved DNN Model</h3>
 <div id="cell-76" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -930,20 +926,20 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="inference-using-saved-dnn-model" class="level3" data-number="2.5.9">
-<h3 data-number="2.5.9" class="anchored" data-anchor-id="inference-using-saved-dnn-model"><span class="header-section-number">2.5.9</span> Inference using Saved DNN Model</h3>
+<section id="inference-using-saved-dnn-model" class="level3" data-number="2.4.9">
+<h3 data-number="2.4.9" class="anchored" data-anchor-id="inference-using-saved-dnn-model"><span class="header-section-number">2.4.9</span> Inference using Saved DNN Model</h3>
 <p>Now we can use the saved model to start the export of the prediction of the image. For prediction, you would need to first prepare your image data. We have already exported the image needed here, which we will use for now. See <a href="https://colab.research.google.com/drive/1MZexam3GZKsQySQO9Jk_RPNyyMLmciEq?usp=sharing">this notebook</a> to understand how we did it.</p>
 <p>In addition, <a href="https://colab.research.google.com/drive/1c59eWgw637n1aQfyIobOKIIulqKSXeqv?usp=sharing">this notebook</a> shows how you can then use the image to predict from the saved Model.</p>
 <p>In any case, you now have the prediction in the Earth Engine as image.</p>
 </section>
 </section>
-<section id="independent-validation" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="independent-validation"><span class="header-section-number">2.6</span> Independent Validation</h2>
+<section id="independent-validation" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="independent-validation"><span class="header-section-number">2.5</span> Independent Validation</h2>
 <p>For independent validation, we will use a file that we have prepared. These files were collected using <a href="https://app.collect.earth/home">Collect Earth Online</a> by SCO and NASA DEVELOP interns. We will be using GEE here. Before we do that, let’s make changes in our config file.</p>
 <p>We will make sure our <code>GCS_PROJECT</code> is setup correctly.</p>
 <pre><code>GCS_PROJECT = "servir-ee"</code></pre>
-<section id="update-the-config-file" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="update-the-config-file"><span class="header-section-number">2.6.1</span> Update the config file</h3>
+<section id="update-the-config-file" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="update-the-config-file"><span class="header-section-number">2.5.1</span> Update the config file</h3>
 <div id="cell-84" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -969,8 +965,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="load-config-file-variable" class="level3" data-number="2.6.2">
-<h3 data-number="2.6.2" class="anchored" data-anchor-id="load-config-file-variable"><span class="header-section-number">2.6.2</span> Load config file variable</h3>
+<section id="load-config-file-variable" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="load-config-file-variable"><span class="header-section-number">2.5.2</span> Load config file variable</h3>
 <div id="cell-88" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="51b1a579-56f4-4bf9-938d-9f0d016a022d">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -978,8 +974,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="import-earthengine-and-geemap-for-visualization" class="level3" data-number="2.6.3">
-<h3 data-number="2.6.3" class="anchored" data-anchor-id="import-earthengine-and-geemap-for-visualization"><span class="header-section-number">2.6.3</span> Import earthengine and geemap for visualization</h3>
+<section id="import-earthengine-and-geemap-for-visualization" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="import-earthengine-and-geemap-for-visualization"><span class="header-section-number">2.5.3</span> Import earthengine and geemap for visualization</h3>
 <div id="cell-90" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -998,8 +994,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="class-information-and-masking" class="level3" data-number="2.6.4">
-<h3 data-number="2.6.4" class="anchored" data-anchor-id="class-information-and-masking"><span class="header-section-number">2.6.4</span> Class Information and Masking</h3>
+<section id="class-information-and-masking" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="class-information-and-masking"><span class="header-section-number">2.5.4</span> Class Information and Masking</h3>
 <div id="cell-93" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:17}}" data-outputid="c8d93ba3-f58d-4c69-bbdf-867d44fbe4ea">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1021,10 +1017,10 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="model-u-net" class="level3" data-number="2.6.5">
-<h3 data-number="2.6.5" class="anchored" data-anchor-id="model-u-net"><span class="header-section-number">2.6.5</span> Model: U-Net</h3>
-<section id="load-and-visualize-the-prediction-output" class="level4" data-number="2.6.5.1">
-<h4 data-number="2.6.5.1" class="anchored" data-anchor-id="load-and-visualize-the-prediction-output"><span class="header-section-number">2.6.5.1</span> Load and visualize the prediction output</h4>
+<section id="model-u-net" class="level3" data-number="2.5.5">
+<h3 data-number="2.5.5" class="anchored" data-anchor-id="model-u-net"><span class="header-section-number">2.5.5</span> Model: U-Net</h3>
+<section id="load-and-visualize-the-prediction-output" class="level4" data-number="2.5.5.1">
+<h4 data-number="2.5.5.1" class="anchored" data-anchor-id="load-and-visualize-the-prediction-output"><span class="header-section-number">2.5.5.1</span> Load and visualize the prediction output</h4>
 <div id="cell-96" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:621,&quot;referenced_widgets&quot;:[&quot;e62f4972a04047768315ec5337734964&quot;,&quot;2fb2b33622424835b41f36d7cc170d66&quot;,&quot;2a1e424ea9f7414699936b1853b0d6d1&quot;,&quot;4939b83e554145ff8ea0d4103a4a5272&quot;,&quot;8cf5120154a045c4946815c1367f4f01&quot;,&quot;6ae5113f023241cd8727c30349a0ddce&quot;,&quot;ca1ef0c1db454c80846b3236d7a33bf5&quot;,&quot;9b67ac7d447a4ac2bb76fc3743008a69&quot;,&quot;0d366aa12bdd46f6ab4d1889b35a4de8&quot;,&quot;514da32ce49d44558374ba786ab3243f&quot;,&quot;b2ed3d00fa574dbab8b317bffd771696&quot;,&quot;35ce835d00f149159d26e7e5771501e4&quot;,&quot;2063bf44aa46462bb1b1da736abad607&quot;,&quot;305f6d03c8f8463ea06314f7cec9d0d2&quot;,&quot;76e0789a1919471bbb9a7cd00102cea9&quot;,&quot;41fbc94481334b53aa9d273153e968ce&quot;,&quot;007108c5cc4d44b1858db778d89c2d97&quot;,&quot;7d003a3cb04b4b2a9842276d0298323c&quot;,&quot;9b46d07f8b0f431dbc1060ee8f7152be&quot;,&quot;ae7ad206d56c46838b9da14f696f3567&quot;,&quot;dd4d5f7c794948d2a4654e874188b75a&quot;,&quot;db680420a5904c4db54a9ae7be950532&quot;,&quot;abb314db1e324874a576f0bd5c9ffb4c&quot;,&quot;c08e8a0436df4f278ed0597177490a2d&quot;,&quot;4f6431f6464c452eb09a360a1a416cb1&quot;,&quot;ac37d8d5482b4793bdbe85d07ca562f4&quot;,&quot;f8f7124bab224742ad4404ed7ac2f122&quot;,&quot;290f0fd585f1428d8c55ebc1fde3bf06&quot;]}}" data-outputid="0da7abaf-6e17-4c63-ccb0-016f1c019316">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1036,8 +1032,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="calculate-classification-metrics" class="level4" data-number="2.6.5.2">
-<h4 data-number="2.6.5.2" class="anchored" data-anchor-id="calculate-classification-metrics"><span class="header-section-number">2.6.5.2</span> Calculate classification metrics</h4>
+<section id="calculate-classification-metrics" class="level4" data-number="2.5.5.2">
+<h4 data-number="2.5.5.2" class="anchored" data-anchor-id="calculate-classification-metrics"><span class="header-section-number">2.5.5.2</span> Calculate classification metrics</h4>
 <p>Remapping to rice and non-rice output</p>
 <div id="cell-99" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:621,&quot;referenced_widgets&quot;:[&quot;e62f4972a04047768315ec5337734964&quot;,&quot;2fb2b33622424835b41f36d7cc170d66&quot;,&quot;2a1e424ea9f7414699936b1853b0d6d1&quot;,&quot;4939b83e554145ff8ea0d4103a4a5272&quot;,&quot;8cf5120154a045c4946815c1367f4f01&quot;,&quot;6ae5113f023241cd8727c30349a0ddce&quot;,&quot;ca1ef0c1db454c80846b3236d7a33bf5&quot;,&quot;9b67ac7d447a4ac2bb76fc3743008a69&quot;,&quot;0d366aa12bdd46f6ab4d1889b35a4de8&quot;,&quot;514da32ce49d44558374ba786ab3243f&quot;,&quot;b2ed3d00fa574dbab8b317bffd771696&quot;,&quot;35ce835d00f149159d26e7e5771501e4&quot;,&quot;2063bf44aa46462bb1b1da736abad607&quot;,&quot;ac37d8d5482b4793bdbe85d07ca562f4&quot;,&quot;305f6d03c8f8463ea06314f7cec9d0d2&quot;,&quot;76e0789a1919471bbb9a7cd00102cea9&quot;,&quot;41fbc94481334b53aa9d273153e968ce&quot;,&quot;007108c5cc4d44b1858db778d89c2d97&quot;,&quot;7d003a3cb04b4b2a9842276d0298323c&quot;,&quot;9b46d07f8b0f431dbc1060ee8f7152be&quot;,&quot;ae7ad206d56c46838b9da14f696f3567&quot;,&quot;dd4d5f7c794948d2a4654e874188b75a&quot;,&quot;db680420a5904c4db54a9ae7be950532&quot;,&quot;abb314db1e324874a576f0bd5c9ffb4c&quot;,&quot;c08e8a0436df4f278ed0597177490a2d&quot;,&quot;4f6431f6464c452eb09a360a1a416cb1&quot;,&quot;f8f7124bab224742ad4404ed7ac2f122&quot;,&quot;290f0fd585f1428d8c55ebc1fde3bf06&quot;]}}" data-outputid="f0f64493-74c6-4f1a-9583-732b5cf0647a">
 <details open="" class="code-fold">
@@ -1090,8 +1086,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="calculate-probability-distribution" class="level4" data-number="2.6.5.3">
-<h4 data-number="2.6.5.3" class="anchored" data-anchor-id="calculate-probability-distribution"><span class="header-section-number">2.6.5.3</span> Calculate Probability Distribution</h4>
+<section id="calculate-probability-distribution" class="level4" data-number="2.5.5.3">
+<h4 data-number="2.5.5.3" class="anchored" data-anchor-id="calculate-probability-distribution"><span class="header-section-number">2.5.5.3</span> Calculate Probability Distribution</h4>
 <div id="cell-105" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:17}}" data-outputid="28849e66-5a43-42c1-e3cf-0d75e394f28c">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1110,10 +1106,10 @@ MODEL_TYPE = "dnn"</code></pre>
 </div>
 </section>
 </section>
-<section id="model-dnn" class="level3" data-number="2.6.6">
-<h3 data-number="2.6.6" class="anchored" data-anchor-id="model-dnn"><span class="header-section-number">2.6.6</span> Model: DNN</h3>
-<section id="load-and-visualize-the-prediction-output-1" class="level4" data-number="2.6.6.1">
-<h4 data-number="2.6.6.1" class="anchored" data-anchor-id="load-and-visualize-the-prediction-output-1"><span class="header-section-number">2.6.6.1</span> Load and visualize the prediction output</h4>
+<section id="model-dnn" class="level3" data-number="2.5.6">
+<h3 data-number="2.5.6" class="anchored" data-anchor-id="model-dnn"><span class="header-section-number">2.5.6</span> Model: DNN</h3>
+<section id="load-and-visualize-the-prediction-output-1" class="level4" data-number="2.5.6.1">
+<h4 data-number="2.5.6.1" class="anchored" data-anchor-id="load-and-visualize-the-prediction-output-1"><span class="header-section-number">2.5.6.1</span> Load and visualize the prediction output</h4>
 <div id="cell-109" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:621,&quot;referenced_widgets&quot;:[&quot;e62f4972a04047768315ec5337734964&quot;,&quot;2fb2b33622424835b41f36d7cc170d66&quot;,&quot;2a1e424ea9f7414699936b1853b0d6d1&quot;,&quot;4939b83e554145ff8ea0d4103a4a5272&quot;,&quot;8cf5120154a045c4946815c1367f4f01&quot;,&quot;6ae5113f023241cd8727c30349a0ddce&quot;,&quot;ca1ef0c1db454c80846b3236d7a33bf5&quot;,&quot;9b67ac7d447a4ac2bb76fc3743008a69&quot;,&quot;0d366aa12bdd46f6ab4d1889b35a4de8&quot;,&quot;514da32ce49d44558374ba786ab3243f&quot;,&quot;b2ed3d00fa574dbab8b317bffd771696&quot;,&quot;35ce835d00f149159d26e7e5771501e4&quot;,&quot;2063bf44aa46462bb1b1da736abad607&quot;,&quot;ac37d8d5482b4793bdbe85d07ca562f4&quot;,&quot;f8f7124bab224742ad4404ed7ac2f122&quot;,&quot;305f6d03c8f8463ea06314f7cec9d0d2&quot;,&quot;76e0789a1919471bbb9a7cd00102cea9&quot;,&quot;41fbc94481334b53aa9d273153e968ce&quot;,&quot;007108c5cc4d44b1858db778d89c2d97&quot;,&quot;7d003a3cb04b4b2a9842276d0298323c&quot;,&quot;9b46d07f8b0f431dbc1060ee8f7152be&quot;,&quot;ae7ad206d56c46838b9da14f696f3567&quot;,&quot;dd4d5f7c794948d2a4654e874188b75a&quot;,&quot;db680420a5904c4db54a9ae7be950532&quot;,&quot;abb314db1e324874a576f0bd5c9ffb4c&quot;,&quot;c08e8a0436df4f278ed0597177490a2d&quot;,&quot;4f6431f6464c452eb09a360a1a416cb1&quot;,&quot;290f0fd585f1428d8c55ebc1fde3bf06&quot;]}}" data-outputid="c1596c35-ee83-4d60-f7ec-df12eb68f9b6">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1125,8 +1121,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="calculate-classification-metrics-1" class="level4" data-number="2.6.6.2">
-<h4 data-number="2.6.6.2" class="anchored" data-anchor-id="calculate-classification-metrics-1"><span class="header-section-number">2.6.6.2</span> Calculate classification metrics</h4>
+<section id="calculate-classification-metrics-1" class="level4" data-number="2.5.6.2">
+<h4 data-number="2.5.6.2" class="anchored" data-anchor-id="calculate-classification-metrics-1"><span class="header-section-number">2.5.6.2</span> Calculate classification metrics</h4>
 <div id="cell-111" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:621,&quot;referenced_widgets&quot;:[&quot;e62f4972a04047768315ec5337734964&quot;,&quot;2fb2b33622424835b41f36d7cc170d66&quot;,&quot;2a1e424ea9f7414699936b1853b0d6d1&quot;,&quot;4939b83e554145ff8ea0d4103a4a5272&quot;,&quot;8cf5120154a045c4946815c1367f4f01&quot;,&quot;6ae5113f023241cd8727c30349a0ddce&quot;,&quot;ca1ef0c1db454c80846b3236d7a33bf5&quot;,&quot;9b67ac7d447a4ac2bb76fc3743008a69&quot;,&quot;0d366aa12bdd46f6ab4d1889b35a4de8&quot;,&quot;514da32ce49d44558374ba786ab3243f&quot;,&quot;b2ed3d00fa574dbab8b317bffd771696&quot;,&quot;35ce835d00f149159d26e7e5771501e4&quot;,&quot;2063bf44aa46462bb1b1da736abad607&quot;,&quot;ac37d8d5482b4793bdbe85d07ca562f4&quot;,&quot;f8f7124bab224742ad4404ed7ac2f122&quot;,&quot;290f0fd585f1428d8c55ebc1fde3bf06&quot;,&quot;305f6d03c8f8463ea06314f7cec9d0d2&quot;,&quot;41fbc94481334b53aa9d273153e968ce&quot;,&quot;007108c5cc4d44b1858db778d89c2d97&quot;,&quot;7d003a3cb04b4b2a9842276d0298323c&quot;,&quot;9b46d07f8b0f431dbc1060ee8f7152be&quot;,&quot;ae7ad206d56c46838b9da14f696f3567&quot;,&quot;dd4d5f7c794948d2a4654e874188b75a&quot;,&quot;db680420a5904c4db54a9ae7be950532&quot;,&quot;abb314db1e324874a576f0bd5c9ffb4c&quot;,&quot;c08e8a0436df4f278ed0597177490a2d&quot;,&quot;4f6431f6464c452eb09a360a1a416cb1&quot;]}}" data-outputid="4664a7c0-7bb8-4b93-b701-ae6325c68dd1">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1170,8 +1166,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="calculate-probability-distribution-1" class="level4" data-number="2.6.6.3">
-<h4 data-number="2.6.6.3" class="anchored" data-anchor-id="calculate-probability-distribution-1"><span class="header-section-number">2.6.6.3</span> Calculate Probability Distribution</h4>
+<section id="calculate-probability-distribution-1" class="level4" data-number="2.5.6.3">
+<h4 data-number="2.5.6.3" class="anchored" data-anchor-id="calculate-probability-distribution-1"><span class="header-section-number">2.5.6.3</span> Calculate Probability Distribution</h4>
 <div id="cell-116" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:17}}" data-outputid="ccb621ca-9399-4076-b1b7-4b54561661c7">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1191,10 +1187,10 @@ MODEL_TYPE = "dnn"</code></pre>
 </section>
 </section>
 </section>
-<section id="figures-and-plots" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="figures-and-plots"><span class="header-section-number">2.7</span> Figures and Plots</h2>
-<section id="training-and-validation-plot" class="level3" data-number="2.7.1">
-<h3 data-number="2.7.1" class="anchored" data-anchor-id="training-and-validation-plot"><span class="header-section-number">2.7.1</span> Training and Validation Plot</h3>
+<section id="figures-and-plots" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="figures-and-plots"><span class="header-section-number">2.6</span> Figures and Plots</h2>
+<section id="training-and-validation-plot" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="training-and-validation-plot"><span class="header-section-number">2.6.1</span> Training and Validation Plot</h3>
 <div id="cell-120" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:17}}" data-outputid="9b652d89-cd4f-4534-f70c-a05ef4fc9598">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1301,8 +1297,8 @@ MODEL_TYPE = "dnn"</code></pre>
 </details>
 </div>
 </section>
-<section id="probability-distribution-plot" class="level3" data-number="2.7.2">
-<h3 data-number="2.7.2" class="anchored" data-anchor-id="probability-distribution-plot"><span class="header-section-number">2.7.2</span> Probability Distribution Plot</h3>
+<section id="probability-distribution-plot" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="probability-distribution-plot"><span class="header-section-number">2.6.2</span> Probability Distribution Plot</h3>
 <div id="cell-125" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:17}}" data-outputid="f36044bf-95c6-42b0-924a-79f84e71a903">
 <details open="" class="code-fold">
 <summary>Show code</summary>
