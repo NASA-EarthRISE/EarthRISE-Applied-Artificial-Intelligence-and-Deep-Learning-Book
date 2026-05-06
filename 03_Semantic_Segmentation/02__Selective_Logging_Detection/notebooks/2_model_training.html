@@ -9,7 +9,7 @@
 <meta name="author" content="Osmar Yupanqui">
 <meta name="author" content="Marvin Quispe">
 
-<title>3&nbsp; Copyright 2026 - Osmar Yupanqui &amp; Marvin Quispe – Applied Artificial Intelligence and Deep Learning Book</title>
+<title>3&nbsp; Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -445,23 +445,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#selective-logging-detection-with-deep-learning-and-very-high-resolution-imagery" id="toc-selective-logging-detection-with-deep-learning-and-very-high-resolution-imagery" class="nav-link active" data-scroll-target="#selective-logging-detection-with-deep-learning-and-very-high-resolution-imagery"><span class="header-section-number">4</span> Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</a>
+  <li><a href="#part-2-modeling" id="toc-part-2-modeling" class="nav-link active" data-scroll-target="#part-2-modeling"><span class="header-section-number">3.1</span> Part 2: Modeling</a></li>
+  <li><a href="#data-collection-and-initial-settings" id="toc-data-collection-and-initial-settings" class="nav-link" data-scroll-target="#data-collection-and-initial-settings"><span class="header-section-number">3.2</span> 1. Data collection and initial settings</a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">3.3</span> 2. Data visualization</a></li>
+  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">3.4</span> 3. Data processing</a>
   <ul class="collapse">
-  <li><a href="#part-2-modeling" id="toc-part-2-modeling" class="nav-link" data-scroll-target="#part-2-modeling"><span class="header-section-number">4.1</span> Part 2: Modeling</a></li>
-  <li><a href="#data-collection-and-initial-settings" id="toc-data-collection-and-initial-settings" class="nav-link" data-scroll-target="#data-collection-and-initial-settings"><span class="header-section-number">4.2</span> 1. Data collection and initial settings</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">4.3</span> 2. Data visualization</a></li>
-  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">4.4</span> 3. Data processing</a>
-  <ul class="collapse">
-  <li><a href="#definition-of-variables" id="toc-definition-of-variables" class="nav-link" data-scroll-target="#definition-of-variables"><span class="header-section-number">4.4.1</span> 3.1 Definition of variables</a></li>
-  <li><a href="#create-a-tfrecorddataset" id="toc-create-a-tfrecorddataset" class="nav-link" data-scroll-target="#create-a-tfrecorddataset"><span class="header-section-number">4.4.2</span> 3.2 Create a TFRecordDataset</a></li>
+  <li><a href="#definition-of-variables" id="toc-definition-of-variables" class="nav-link" data-scroll-target="#definition-of-variables"><span class="header-section-number">3.4.1</span> 3.1 Definition of variables</a></li>
+  <li><a href="#create-a-tfrecorddataset" id="toc-create-a-tfrecorddataset" class="nav-link" data-scroll-target="#create-a-tfrecorddataset"><span class="header-section-number">3.4.2</span> 3.2 Create a TFRecordDataset</a></li>
   </ul></li>
-  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link" data-scroll-target="#deep-learning"><span class="header-section-number">4.5</span> 4. Deep Learning</a>
+  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link" data-scroll-target="#deep-learning"><span class="header-section-number">3.5</span> 4. Deep Learning</a>
   <ul class="collapse">
-  <li><a href="#model-construction" id="toc-model-construction" class="nav-link" data-scroll-target="#model-construction"><span class="header-section-number">4.5.1</span> 4.1 Model construction</a></li>
-  <li><a href="#model-training" id="toc-model-training" class="nav-link" data-scroll-target="#model-training"><span class="header-section-number">4.5.2</span> 4.2 Model training</a></li>
-  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation"><span class="header-section-number">4.5.3</span> 4.3 Model evaluation</a></li>
-  <li><a href="#save-the-model" id="toc-save-the-model" class="nav-link" data-scroll-target="#save-the-model"><span class="header-section-number">4.5.4</span> 4.4 Save the model</a></li>
-  </ul></li>
+  <li><a href="#model-construction" id="toc-model-construction" class="nav-link" data-scroll-target="#model-construction"><span class="header-section-number">3.5.1</span> 4.1 Model construction</a></li>
+  <li><a href="#model-training" id="toc-model-training" class="nav-link" data-scroll-target="#model-training"><span class="header-section-number">3.5.2</span> 4.2 Model training</a></li>
+  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation"><span class="header-section-number">3.5.3</span> 4.3 Model evaluation</a></li>
+  <li><a href="#save-the-model" id="toc-save-the-model" class="nav-link" data-scroll-target="#save-the-model"><span class="header-section-number">3.5.4</span> 4.4 Save the model</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/2_model_training.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/2_model_training.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -472,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html">Semantic Segmentation</a></li><li class="breadcrumb-item"><a href="../../../03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/2_model_training.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Copyright 2026 - Osmar Yupanqui &amp; Marvin Quispe</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></h1>
 </div>
 
 
@@ -510,108 +507,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cell-1" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Conservación Amazónica - ACCA</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Licensed under the Apache License, Version 2.0 (the "License");</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># you may not use this file except in compliance with the License.</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># You may obtain a copy of the License at</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#     https://www.apache.org/licenses/LICENSE-2.0</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Unless required by applicable law or agreed to in writing, software</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># distributed under the License is distributed on an "AS IS" BASIS,</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># See the License for the specific language governing permissions and</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># limitations under the License.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<section id="selective-logging-detection-with-deep-learning-and-very-high-resolution-imagery" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</h1>
-<section id="authors-osmar-yupanqui-and-marvin-quispe" class="level4" data-number="4.0.0.1">
-<h4 data-number="4.0.0.1" class="anchored" data-anchor-id="authors-osmar-yupanqui-and-marvin-quispe"><span class="header-section-number">4.0.0.1</span> Authors: Osmar Yupanqui and Marvin Quispe</h4>
+<section id="authors-osmar-yupanqui-and-marvin-quispe" class="level4" data-number="3.0.0.1">
+<h4 data-number="3.0.0.1" class="anchored" data-anchor-id="authors-osmar-yupanqui-and-marvin-quispe"><span class="header-section-number">3.0.0.1</span> Authors: Osmar Yupanqui and Marvin Quispe</h4>
 <p><br></p>
 </section>
-<section id="part-2-modeling" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="part-2-modeling"><span class="header-section-number">4.1</span> Part 2: Modeling</h2>
+<section id="part-2-modeling" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="part-2-modeling"><span class="header-section-number">3.1</span> Part 2: Modeling</h2>
 <p>This notebook shows the workflow used to train a deep learning model with the patches saved from the previous notebook (Notebook n.º1). We will load our TFRecords, train a model with them and save it for further use (inference). The notebook was developed and configured specifically to run on Google Colab, so its implementation is optimized to run on that platform. In addition, it is necessary to configure the environment to enable GPU computing by changing the runtime type. First, navigate to <em>Edit → Notebook Settings</em> and select GPU from the Hardware Accelerator options.</p>
 </section>
-<section id="data-collection-and-initial-settings" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="data-collection-and-initial-settings"><span class="header-section-number">4.2</span> 1. Data collection and initial settings</h2>
+<section id="data-collection-and-initial-settings" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-collection-and-initial-settings"><span class="header-section-number">3.2</span> 1. Data collection and initial settings</h2>
 <p>We are going to connect <strong>Google Drive</strong> with <strong>Google Colab</strong> to manage the exported data (patches) from the previous Notebook.</p>
 <div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:18791,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383920158,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="229c3422-eaa4-4d33-dbcc-5514c34dc96c">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
-<span id="cb2-2"><a href="#cb2-2"></a>drive.mount(<span class="st">'/content/drive'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb1-2"><a href="#cb1-2"></a>drive.mount(<span class="st">'/content/drive'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Get the data that has been staged Yupanqui Carrasco, O., &amp; Quispe Sedano, M. J. (2026). Selective Logging Detection with Deep Learning and Very-High Resolution Imagery_TF_records [Data set]. Zenodo. https://doi.org/10.5281/zenodo.19614389</p>
 <div id="cell-7" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> os</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> zipfile</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> requests</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># =========================</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># CONFIG</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># =========================</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>use_drive <span class="op">=</span> <span class="va">True</span>  <span class="co"># True = save to Google Drive, False = save to /content</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="cf">if</span> use_drive:</span>
-<span id="cb3-11"><a href="#cb3-11"></a>    <span class="im">from</span> google.colab <span class="im">import</span> drive</span>
-<span id="cb3-12"><a href="#cb3-12"></a>    drive.mount(<span class="st">'/content/drive'</span>)</span>
-<span id="cb3-13"><a href="#cb3-13"></a>    base_path <span class="op">=</span> <span class="st">"/content/drive/MyDrive/DL_book"</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="cf">else</span>:</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    base_path <span class="op">=</span> <span class="st">"/content/DL_book"</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co"># Zenodo file URL (direct download)</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>url <span class="op">=</span> <span class="st">"https://zenodo.org/records/19614389/files/dataset.zip?download=1"</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a></span>
-<span id="cb3-20"><a href="#cb3-20"></a>zip_path <span class="op">=</span> os.path.join(base_path, <span class="st">"dataset.zip"</span>)</span>
-<span id="cb3-21"><a href="#cb3-21"></a></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co"># =========================</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co"># SETUP DIRECTORY</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="co"># =========================</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a>os.makedirs(base_path, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-26"><a href="#cb3-26"></a></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="co"># =========================</span></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="co"># DOWNLOAD FILE</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="co"># =========================</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a><span class="bu">print</span>(<span class="st">"Downloading dataset..."</span>)</span>
-<span id="cb3-31"><a href="#cb3-31"></a>response <span class="op">=</span> requests.get(url, stream<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-32"><a href="#cb3-32"></a></span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="cf">with</span> <span class="bu">open</span>(zip_path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb3-34"><a href="#cb3-34"></a>    <span class="cf">for</span> chunk <span class="kw">in</span> response.iter_content(chunk_size<span class="op">=</span><span class="dv">8192</span>):</span>
-<span id="cb3-35"><a href="#cb3-35"></a>        <span class="cf">if</span> chunk:</span>
-<span id="cb3-36"><a href="#cb3-36"></a>            f.write(chunk)</span>
-<span id="cb3-37"><a href="#cb3-37"></a></span>
-<span id="cb3-38"><a href="#cb3-38"></a><span class="bu">print</span>(<span class="ss">f"Downloaded to: </span><span class="sc">{</span>zip_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-39"><a href="#cb3-39"></a></span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="co"># =========================</span></span>
-<span id="cb3-41"><a href="#cb3-41"></a><span class="co"># UNZIP FILE</span></span>
-<span id="cb3-42"><a href="#cb3-42"></a><span class="co"># =========================</span></span>
-<span id="cb3-43"><a href="#cb3-43"></a><span class="bu">print</span>(<span class="st">"Extracting dataset..."</span>)</span>
-<span id="cb3-44"><a href="#cb3-44"></a><span class="cf">with</span> zipfile.ZipFile(zip_path, <span class="st">'r'</span>) <span class="im">as</span> zip_ref:</span>
-<span id="cb3-45"><a href="#cb3-45"></a>    zip_ref.extractall(base_path)</span>
-<span id="cb3-46"><a href="#cb3-46"></a></span>
-<span id="cb3-47"><a href="#cb3-47"></a><span class="bu">print</span>(<span class="ss">f"Extracted to: </span><span class="sc">{</span>base_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-48"><a href="#cb3-48"></a></span>
-<span id="cb3-49"><a href="#cb3-49"></a><span class="co"># =========================</span></span>
-<span id="cb3-50"><a href="#cb3-50"></a><span class="co"># (OPTIONAL) DELETE ZIP</span></span>
-<span id="cb3-51"><a href="#cb3-51"></a><span class="co"># =========================</span></span>
-<span id="cb3-52"><a href="#cb3-52"></a>os.remove(zip_path)</span>
-<span id="cb3-53"><a href="#cb3-53"></a><span class="bu">print</span>(<span class="st">"Zip file removed."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> zipfile</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> requests</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># =========================</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># CONFIG</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># =========================</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>use_drive <span class="op">=</span> <span class="va">True</span>  <span class="co"># True = save to Google Drive, False = save to /content</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="cf">if</span> use_drive:</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    drive.mount(<span class="st">'/content/drive'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    base_path <span class="op">=</span> <span class="st">"/content/drive/MyDrive/DL_book"</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="cf">else</span>:</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    base_path <span class="op">=</span> <span class="st">"/content/DL_book"</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co"># Zenodo file URL (direct download)</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>url <span class="op">=</span> <span class="st">"https://zenodo.org/records/19614389/files/dataset.zip?download=1"</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a>zip_path <span class="op">=</span> os.path.join(base_path, <span class="st">"dataset.zip"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co"># =========================</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="co"># SETUP DIRECTORY</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="co"># =========================</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>os.makedirs(base_path, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="co"># =========================</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="co"># DOWNLOAD FILE</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="co"># =========================</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="bu">print</span>(<span class="st">"Downloading dataset..."</span>)</span>
+<span id="cb2-31"><a href="#cb2-31"></a>response <span class="op">=</span> requests.get(url, stream<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-32"><a href="#cb2-32"></a></span>
+<span id="cb2-33"><a href="#cb2-33"></a><span class="cf">with</span> <span class="bu">open</span>(zip_path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-34"><a href="#cb2-34"></a>    <span class="cf">for</span> chunk <span class="kw">in</span> response.iter_content(chunk_size<span class="op">=</span><span class="dv">8192</span>):</span>
+<span id="cb2-35"><a href="#cb2-35"></a>        <span class="cf">if</span> chunk:</span>
+<span id="cb2-36"><a href="#cb2-36"></a>            f.write(chunk)</span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="bu">print</span>(<span class="ss">f"Downloaded to: </span><span class="sc">{</span>zip_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39"></a></span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="co"># =========================</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="co"># UNZIP FILE</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="co"># =========================</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a><span class="bu">print</span>(<span class="st">"Extracting dataset..."</span>)</span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="cf">with</span> zipfile.ZipFile(zip_path, <span class="st">'r'</span>) <span class="im">as</span> zip_ref:</span>
+<span id="cb2-45"><a href="#cb2-45"></a>    zip_ref.extractall(base_path)</span>
+<span id="cb2-46"><a href="#cb2-46"></a></span>
+<span id="cb2-47"><a href="#cb2-47"></a><span class="bu">print</span>(<span class="ss">f"Extracted to: </span><span class="sc">{</span>base_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-48"><a href="#cb2-48"></a></span>
+<span id="cb2-49"><a href="#cb2-49"></a><span class="co"># =========================</span></span>
+<span id="cb2-50"><a href="#cb2-50"></a><span class="co"># (OPTIONAL) DELETE ZIP</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a><span class="co"># =========================</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a>os.remove(zip_path)</span>
+<span id="cb2-53"><a href="#cb2-53"></a><span class="bu">print</span>(<span class="st">"Zip file removed."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Let’s see the contents of our Drive folder using the linux command <code>!ls</code>. Note: This command only runs on Google Colab</p>
 <div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1204,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383921372,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="1375f775-b352-43fa-a7fc-b78e4de81928">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">!</span>ls <span class="op">-</span>F <span class="op">/</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>DL_Book</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">!</span>ls <span class="op">-</span>F <span class="op">/</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>DL_Book</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Our folder should contain several files whose names begin with: - train - testing - validation</p>
@@ -620,41 +597,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:8524,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383941763,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="dffc071f-62d5-4acb-9797-ed46d0d48ffb">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">print</span>(tf.__version__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(tf.__version__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><a href="https://numpy.org/">Numpy</a> is another important library, that allow us to perform operations with tensors, matrices and vectors.</p>
 <div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:14,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383941790,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We will also import <a href="https://matplotlib.org/">Matplotlib</a>, for the data visualization.</p>
 <div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:2,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383941810,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Finally, we will also import <a href="https://docs.python.org/3/library/os.html">os</a>, to read files and manipulate paths.</p>
 <div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:21,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383941832,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> os</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> os</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="data-visualization" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">4.3</span> 2. Data visualization</h2>
+<section id="data-visualization" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">3.3</span> 2. Data visualization</h2>
 <p>We will start by viewing a single TFRecord file, if we explore the folder where the files were downloaded, we can see that they are “compressed” with a special <code>.gz</code> format, Tensorflow allows the use of this special format, without the need to decompress the files.<br>
 We will start by creating a variable called record, which will include in a container <code>tf.data.TFRecordDataset()</code> the path of an exported file. <em>Please verify that the export path is the same, in the previous example we exported our data to the DL_Book folder in Google Drive</em></p>
 <div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:15,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383943174,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="cbbf1efb-2788-433e-befb-e0b87fdac9be">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>record <span class="op">=</span> tf.data.TFRecordDataset(<span class="st">'/content/drive/MyDrive/DL_Book/testing_0.tfrecord.gz'</span>, compression_type <span class="op">=</span> <span class="st">'GZIP'</span>) <span class="co"># This loads our TFRecord into a TFRecordDataset container</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(record)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>record <span class="op">=</span> tf.data.TFRecordDataset(<span class="st">'/content/drive/MyDrive/DL_Book/testing_0.tfrecord.gz'</span>, compression_type <span class="op">=</span> <span class="st">'GZIP'</span>) <span class="co"># This loads our TFRecord into a TFRecordDataset container</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="bu">print</span>(record)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We can see that the TFRecordDataset does not show all the information, we cannot know the <code>shape</code> of the tensors, even though we know based on the previous code that they have a 128 by 128 shape. We also cannot know the <code>dtype</code> (the data type) neither the number of elements that our TFRecordDataset has.</p>
@@ -662,48 +639,48 @@ We will start by creating a variable called record, which will include in a cont
 <div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:13,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383943190,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>features <span class="op">=</span> {</span>
-<span id="cb10-2"><a href="#cb10-2"></a>    <span class="st">'b1'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    <span class="st">'b2'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    <span class="st">'b3'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    <span class="st">'b4'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    <span class="st">'class'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
-<span id="cb10-7"><a href="#cb10-7"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>features <span class="op">=</span> {</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="st">'b1'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="st">'b2'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="st">'b3'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="st">'b4'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="st">'class'</span>: tf.io.FixedLenFeature([<span class="dv">128</span>, <span class="dv">128</span>], tf.float32),</span>
+<span id="cb9-7"><a href="#cb9-7"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We will create a function to read a serialized example into the structure defined by the dictionary created above.</p>
 <div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:8,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383943477,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> parse_tfrecord(example_proto):</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="cf">return</span> tf.io.parse_single_example(example_proto, features) <span class="co"># This parses each TFRecord to a defined structure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> parse_tfrecord(example_proto):</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="cf">return</span> tf.io.parse_single_example(example_proto, features) <span class="co"># This parses each TFRecord to a defined structure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We will apply the newly created function to our TFRecordDataset using the <code>.map()</code> function, which allows iterating through each element of our TFRecordDataset.</p>
 <div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:38,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383944843,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="50f776ff-9b24-4d76-c6ab-f52c42d58c51">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>serialized <span class="op">=</span> record.<span class="bu">map</span>(parse_tfrecord) <span class="co"># With .map() we loop through each element of our TFRecordDataset</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="bu">print</span>(serialized)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>serialized <span class="op">=</span> record.<span class="bu">map</span>(parse_tfrecord) <span class="co"># With .map() we loop through each element of our TFRecordDataset</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(serialized)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We can see that the newly created object named <code>serialized</code> has a different form than the original TFRecordDataset. This new object has the structure defined by the dictionary created. To display the numerical values of each of the bands of our new object, we will use the function <code>get_single_element()</code>.</p>
 <div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:645,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383947284,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="559a6145-3469-4a12-99d8-8548dc61eac8">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>element <span class="op">=</span> serialized.get_single_element() <span class="co"># With .get_single_element() we retrieve an individual element from our TFRecordDataset</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="bu">print</span>(element)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>element <span class="op">=</span> serialized.get_single_element() <span class="co"># With .get_single_element() we retrieve an individual element from our TFRecordDataset</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="bu">print</span>(element)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The result is a dictionary, from which we can extract each band using <code>get()</code> followed by the <code>key</code>, which in this case is the name of the exported band.</p>
 <div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:10,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383948291,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>b1 <span class="op">=</span> element.get(<span class="st">'b1'</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>b2 <span class="op">=</span> element.get(<span class="st">'b2'</span>)</span>
-<span id="cb14-3"><a href="#cb14-3"></a>b3 <span class="op">=</span> element.get(<span class="st">'b3'</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a>b4 <span class="op">=</span> element.get(<span class="st">'b4'</span>)</span>
-<span id="cb14-5"><a href="#cb14-5"></a>label <span class="op">=</span> element.get(<span class="st">'class'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>b1 <span class="op">=</span> element.get(<span class="st">'b1'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>b2 <span class="op">=</span> element.get(<span class="st">'b2'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>b3 <span class="op">=</span> element.get(<span class="st">'b3'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>b4 <span class="op">=</span> element.get(<span class="st">'b4'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>label <span class="op">=</span> element.get(<span class="st">'class'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We can now view the numerical values ​​of any exported band. We can also transform the objects to a numpy array using the <code>numpy()</code> function.<br>
@@ -711,139 +688,139 @@ Now we will create an “image” to be able to visualize it, concatenating the 
 <div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:19,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383949907,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="43faf936-8767-46a8-fe2f-8579f90ed1fd">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>img <span class="op">=</span> tf.constant([b3.numpy(), b2.numpy(), b1.numpy()]) <span class="co"># This appends each band to a constant tensor</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="bu">print</span>(img)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>img <span class="op">=</span> tf.constant([b3.numpy(), b2.numpy(), b1.numpy()]) <span class="co"># This appends each band to a constant tensor</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="bu">print</span>(img)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>If we visualize the shape of the tensor, we see that it has the shape of (3, 128, 128), in order to plot it we must transform the shape to (128, 128, 3). To do this we will use the <code>.transpose()</code> function. In addition, since Matplotlib does only tolerate values from 0 to 255, we will normalize our image (tensor) with <code>.divide()</code>.</p>
 <div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:18,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383952034,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>imgRGB <span class="op">=</span> tf.transpose(tf.divide(img, <span class="dv">12000</span>), [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>imgRGB <span class="op">=</span> tf.transpose(tf.divide(img, <span class="dv">12000</span>), [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Now we will plot the results using the matplotlib library. We will be able to contrast how the logging activity is visualized with a SkySat (0.5 m) image (on the left), and the hand-digitized label (on the right).</p>
 <div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:450,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383954831,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="f7d6e4fd-e46c-422b-d869-8db0c5f5e207">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">15</span>, <span class="dv">15</span>))</span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'RGB Image'</span>)</span>
-<span id="cb17-4"><a href="#cb17-4"></a>axs[<span class="dv">0</span>].imshow(imgRGB)</span>
-<span id="cb17-5"><a href="#cb17-5"></a></span>
-<span id="cb17-6"><a href="#cb17-6"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'Label'</span>)</span>
-<span id="cb17-7"><a href="#cb17-7"></a>axs[<span class="dv">1</span>].imshow(label.numpy())</span>
-<span id="cb17-8"><a href="#cb17-8"></a></span>
-<span id="cb17-9"><a href="#cb17-9"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">15</span>, <span class="dv">15</span>))</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'RGB Image'</span>)</span>
+<span id="cb16-4"><a href="#cb16-4"></a>axs[<span class="dv">0</span>].imshow(imgRGB)</span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'Label'</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>axs[<span class="dv">1</span>].imshow(label.numpy())</span>
+<span id="cb16-8"><a href="#cb16-8"></a></span>
+<span id="cb16-9"><a href="#cb16-9"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>This plot compares the exported SkySat satellite image patch with the hand-digitized label. Performing the manual digitization process takes many hours, especially when the logging activity is intense. Deep Learning models greatly speed up this manual process and allow the user to focus on evaluating the output.</p>
 </section>
-<section id="data-processing" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">4.4</span> 3. Data processing</h2>
-<section id="definition-of-variables" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="definition-of-variables"><span class="header-section-number">4.4.1</span> 3.1 Definition of variables</h3>
+<section id="data-processing" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">3.4</span> 3. Data processing</h2>
+<section id="definition-of-variables" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="definition-of-variables"><span class="header-section-number">3.4.1</span> 3.1 Definition of variables</h3>
 <p>Before performing data processing, some variables will be defined for the training. - The variable <code>kernel_size</code> contains the size of the patch, from which we build its <code>shape</code>. - The variable <code>patch_path</code> refers to the folder containing the previously exported patches. - <code>buffer_size</code> this number is the amount of data that will be filled when shuffling. For example, if our data contains 100 records and we have a buffer_size of 10, then <code>shuffle</code> will select a random element from the first 10 records. The space of this element will be replaced by the 101-st element. Since our dataset contains less than 250 files, and we want the model to shuffle randomly the <strong>whole dataset</strong> then we will define this parameter to 1000 (it could be higher).</p>
 <p>The model also needs hyperparameters, defining these parameters can sometimes be time consuming and experimental. Some of the most important are described below: - <code>batch_size</code>: The number of examples used in a pass throught the network. A high batch size can lead to faster training times but may result in lower accuracy and overfitting, while a small batch sizes can provide better accuracy, but can be computationally expensive and time-consuming. We will set our batch size to 4 (because this is a small dataset). - <code>epochs</code>: This is the amount of training cycles through all of the samples in the training dataset. This is how many times the model will see the entire training data before completing training. We will set this value to 10. - <code>learning_rate</code>: This controls how much the model’s parameters are adjusted during each training step. This will be set to 0.1</p>
 <div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:10,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383966873,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>bands <span class="op">=</span> [<span class="st">'b1'</span>, <span class="st">'b2'</span>, <span class="st">'b3'</span>, <span class="st">'b4'</span>]</span>
-<span id="cb18-2"><a href="#cb18-2"></a>response <span class="op">=</span> [<span class="st">'class'</span>]</span>
-<span id="cb18-3"><a href="#cb18-3"></a>features <span class="op">=</span> bands <span class="op">+</span> response</span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a>kernel_size <span class="op">=</span> <span class="dv">128</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>kernel_shape <span class="op">=</span> [kernel_size, kernel_size]</span>
-<span id="cb18-7"><a href="#cb18-7"></a></span>
-<span id="cb18-8"><a href="#cb18-8"></a>columns <span class="op">=</span> [</span>
-<span id="cb18-9"><a href="#cb18-9"></a>  tf.io.FixedLenFeature(shape <span class="op">=</span> kernel_shape, dtype <span class="op">=</span> tf.float32) <span class="cf">for</span> k <span class="kw">in</span> features</span>
-<span id="cb18-10"><a href="#cb18-10"></a>]</span>
-<span id="cb18-11"><a href="#cb18-11"></a></span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="co"># Path to the folder with patches (Benchmark dataset)</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a>patch_path <span class="op">=</span> <span class="st">'/content/drive/MyDrive/DL_Book'</span></span>
-<span id="cb18-14"><a href="#cb18-14"></a>train_path <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>patch_path<span class="sc">}</span><span class="ss">/train*'</span></span>
-<span id="cb18-15"><a href="#cb18-15"></a>val_path   <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>patch_path<span class="sc">}</span><span class="ss">/validation*'</span></span>
-<span id="cb18-16"><a href="#cb18-16"></a>test_path  <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>patch_path<span class="sc">}</span><span class="ss">/testing*'</span></span>
-<span id="cb18-17"><a href="#cb18-17"></a></span>
-<span id="cb18-18"><a href="#cb18-18"></a>features_dict <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(features, columns))</span>
-<span id="cb18-19"><a href="#cb18-19"></a></span>
-<span id="cb18-20"><a href="#cb18-20"></a>train_size <span class="op">=</span> <span class="bu">len</span>([f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(patch_path) <span class="cf">if</span> f.startswith(<span class="st">'train'</span>)])</span>
-<span id="cb18-21"><a href="#cb18-21"></a>val_size <span class="op">=</span> <span class="bu">len</span>([f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(patch_path) <span class="cf">if</span> f.startswith(<span class="st">'validation'</span>)])</span>
-<span id="cb18-22"><a href="#cb18-22"></a>test_size <span class="op">=</span> <span class="bu">len</span>([f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(patch_path) <span class="cf">if</span> f.startswith(<span class="st">'testing'</span>)])</span>
-<span id="cb18-23"><a href="#cb18-23"></a></span>
-<span id="cb18-24"><a href="#cb18-24"></a><span class="co"># Hyperparameters</span></span>
-<span id="cb18-25"><a href="#cb18-25"></a>batch_size <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb18-26"><a href="#cb18-26"></a>epochs <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb18-27"><a href="#cb18-27"></a>buffer_size <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb18-28"><a href="#cb18-28"></a>learning_rate <span class="op">=</span> <span class="fl">0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>bands <span class="op">=</span> [<span class="st">'b1'</span>, <span class="st">'b2'</span>, <span class="st">'b3'</span>, <span class="st">'b4'</span>]</span>
+<span id="cb17-2"><a href="#cb17-2"></a>response <span class="op">=</span> [<span class="st">'class'</span>]</span>
+<span id="cb17-3"><a href="#cb17-3"></a>features <span class="op">=</span> bands <span class="op">+</span> response</span>
+<span id="cb17-4"><a href="#cb17-4"></a></span>
+<span id="cb17-5"><a href="#cb17-5"></a>kernel_size <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>kernel_shape <span class="op">=</span> [kernel_size, kernel_size]</span>
+<span id="cb17-7"><a href="#cb17-7"></a></span>
+<span id="cb17-8"><a href="#cb17-8"></a>columns <span class="op">=</span> [</span>
+<span id="cb17-9"><a href="#cb17-9"></a>  tf.io.FixedLenFeature(shape <span class="op">=</span> kernel_shape, dtype <span class="op">=</span> tf.float32) <span class="cf">for</span> k <span class="kw">in</span> features</span>
+<span id="cb17-10"><a href="#cb17-10"></a>]</span>
+<span id="cb17-11"><a href="#cb17-11"></a></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="co"># Path to the folder with patches (Benchmark dataset)</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>patch_path <span class="op">=</span> <span class="st">'/content/drive/MyDrive/DL_Book'</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>train_path <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>patch_path<span class="sc">}</span><span class="ss">/train*'</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>val_path   <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>patch_path<span class="sc">}</span><span class="ss">/validation*'</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a>test_path  <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>patch_path<span class="sc">}</span><span class="ss">/testing*'</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a></span>
+<span id="cb17-18"><a href="#cb17-18"></a>features_dict <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(features, columns))</span>
+<span id="cb17-19"><a href="#cb17-19"></a></span>
+<span id="cb17-20"><a href="#cb17-20"></a>train_size <span class="op">=</span> <span class="bu">len</span>([f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(patch_path) <span class="cf">if</span> f.startswith(<span class="st">'train'</span>)])</span>
+<span id="cb17-21"><a href="#cb17-21"></a>val_size <span class="op">=</span> <span class="bu">len</span>([f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(patch_path) <span class="cf">if</span> f.startswith(<span class="st">'validation'</span>)])</span>
+<span id="cb17-22"><a href="#cb17-22"></a>test_size <span class="op">=</span> <span class="bu">len</span>([f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(patch_path) <span class="cf">if</span> f.startswith(<span class="st">'testing'</span>)])</span>
+<span id="cb17-23"><a href="#cb17-23"></a></span>
+<span id="cb17-24"><a href="#cb17-24"></a><span class="co"># Hyperparameters</span></span>
+<span id="cb17-25"><a href="#cb17-25"></a>batch_size <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb17-26"><a href="#cb17-26"></a>epochs <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb17-27"><a href="#cb17-27"></a>buffer_size <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb17-28"><a href="#cb17-28"></a>learning_rate <span class="op">=</span> <span class="fl">0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="create-a-tfrecorddataset" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="create-a-tfrecorddataset"><span class="header-section-number">4.4.2</span> 3.2 Create a TFRecordDataset</h3>
+<section id="create-a-tfrecorddataset" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="create-a-tfrecorddataset"><span class="header-section-number">3.4.2</span> 3.2 Create a TFRecordDataset</h3>
 <p>TFRecordDataset are a collection of TFRecords, so they are very useful for storing large amounts of data, and are optimized to save memory.<br>
 First we will create a function called <code>.parse_tfrecord()</code>, which will perform the same functionality as in the data visualization, done previously. We will transform the structure of each TFRecord.</p>
 <div id="cell-45" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:8,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383969898,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">def</span> parse_tfrecord(example_proto):</span>
-<span id="cb19-2"><a href="#cb19-2"></a>    <span class="cf">return</span> tf.io.parse_single_example(example_proto, features_dict)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">def</span> parse_tfrecord(example_proto):</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="cf">return</span> tf.io.parse_single_example(example_proto, features_dict)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Second, a function called <code>.to_tuple()</code> will be created, which will convert the tensor dictionary to a tuple, with the scheme (inputs, outputs).</p>
 <div id="cell-47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:7,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383973255,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">def</span> to_tuple(inputs):</span>
-<span id="cb20-2"><a href="#cb20-2"></a>    inputsList <span class="op">=</span> [inputs.get(key) <span class="cf">for</span> key <span class="kw">in</span> features]</span>
-<span id="cb20-3"><a href="#cb20-3"></a>    stacked <span class="op">=</span> tf.stack(inputsList, axis <span class="op">=</span> <span class="dv">0</span>) <span class="co"># This stacks the input list to a single tensor</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>    stacked <span class="op">=</span> tf.transpose(stacked, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>]) <span class="co"># Transposition of the stacked tensor to the shape 128x128x4</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>    <span class="cf">return</span> stacked[:, :, :<span class="bu">len</span>(bands)], stacked[:, :, <span class="bu">len</span>(bands):]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">def</span> to_tuple(inputs):</span>
+<span id="cb19-2"><a href="#cb19-2"></a>    inputsList <span class="op">=</span> [inputs.get(key) <span class="cf">for</span> key <span class="kw">in</span> features]</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    stacked <span class="op">=</span> tf.stack(inputsList, axis <span class="op">=</span> <span class="dv">0</span>) <span class="co"># This stacks the input list to a single tensor</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>    stacked <span class="op">=</span> tf.transpose(stacked, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>]) <span class="co"># Transposition of the stacked tensor to the shape 128x128x4</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>    <span class="cf">return</span> stacked[:, :, :<span class="bu">len</span>(bands)], stacked[:, :, <span class="bu">len</span>(bands):]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Third, a function will be created to read the tensors, this function will also apply the functions created previously: <code>.parse_tfrecord()</code> and <code>.to_tuple()</code></p>
 <div id="cell-49" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:8,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383974881,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">def</span> get_dataset(pattern):</span>
-<span id="cb21-2"><a href="#cb21-2"></a>    glob <span class="op">=</span> tf.io.gfile.glob(pattern) <span class="co"># This reads the files in our path</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>    dataset <span class="op">=</span> tf.data.TFRecordDataset(glob, compression_type <span class="op">=</span> <span class="st">'GZIP'</span>) <span class="co"># Add the files to a TFRecordDataset container</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>    dataset <span class="op">=</span> dataset.<span class="bu">map</span>(parse_tfrecord, num_parallel_calls <span class="op">=</span> <span class="dv">5</span>)</span>
-<span id="cb21-5"><a href="#cb21-5"></a>    dataset <span class="op">=</span> dataset.<span class="bu">map</span>(to_tuple, num_parallel_calls <span class="op">=</span> <span class="dv">5</span>)</span>
-<span id="cb21-6"><a href="#cb21-6"></a>    <span class="cf">return</span> dataset</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">def</span> get_dataset(pattern):</span>
+<span id="cb20-2"><a href="#cb20-2"></a>    glob <span class="op">=</span> tf.io.gfile.glob(pattern) <span class="co"># This reads the files in our path</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>    dataset <span class="op">=</span> tf.data.TFRecordDataset(glob, compression_type <span class="op">=</span> <span class="st">'GZIP'</span>) <span class="co"># Add the files to a TFRecordDataset container</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>    dataset <span class="op">=</span> dataset.<span class="bu">map</span>(parse_tfrecord, num_parallel_calls <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    dataset <span class="op">=</span> dataset.<span class="bu">map</span>(to_tuple, num_parallel_calls <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="cf">return</span> dataset</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We will create 3 TFRecordDataset, which will contain our training, validation and test data set, respectively. To do this we will use functions, within each one there will be an object called <code>glob</code> that will indicate the path of the data sets.</p>
 <div id="cell-51" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1885,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383978308,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">def</span> get_patch_from_path(path, batch_size, buffer_size <span class="op">=</span> <span class="dv">1000</span>, shuffle <span class="op">=</span> <span class="va">False</span>, repeat <span class="op">=</span> <span class="va">False</span>):</span>
-<span id="cb22-2"><a href="#cb22-2"></a>    dataset <span class="op">=</span> get_dataset(path <span class="op">+</span> <span class="st">'*'</span>)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>    dataset <span class="op">=</span> dataset.shuffle(buffer_size, seed <span class="op">=</span> <span class="dv">42</span>) <span class="cf">if</span> shuffle <span class="cf">else</span> dataset <span class="co"># We will shuffle only the training dataset</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>    dataset <span class="op">=</span> dataset.batch(batch_size)</span>
-<span id="cb22-5"><a href="#cb22-5"></a>    dataset <span class="op">=</span> dataset.repeat() <span class="cf">if</span> repeat <span class="cf">else</span> dataset</span>
-<span id="cb22-6"><a href="#cb22-6"></a>    <span class="cf">return</span> dataset</span>
-<span id="cb22-7"><a href="#cb22-7"></a></span>
-<span id="cb22-8"><a href="#cb22-8"></a>training_data <span class="op">=</span> get_patch_from_path(train_path, batch_size <span class="op">=</span> batch_size, buffer_size <span class="op">=</span> buffer_size, shuffle <span class="op">=</span> <span class="va">True</span>, repeat <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb22-9"><a href="#cb22-9"></a>validation_data <span class="op">=</span> get_patch_from_path(val_path, batch_size <span class="op">=</span> <span class="dv">1</span>, repeat <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb22-10"><a href="#cb22-10"></a>testing_data <span class="op">=</span> get_patch_from_path(test_path, batch_size <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">def</span> get_patch_from_path(path, batch_size, buffer_size <span class="op">=</span> <span class="dv">1000</span>, shuffle <span class="op">=</span> <span class="va">False</span>, repeat <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb21-2"><a href="#cb21-2"></a>    dataset <span class="op">=</span> get_dataset(path <span class="op">+</span> <span class="st">'*'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    dataset <span class="op">=</span> dataset.shuffle(buffer_size, seed <span class="op">=</span> <span class="dv">42</span>) <span class="cf">if</span> shuffle <span class="cf">else</span> dataset <span class="co"># We will shuffle only the training dataset</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>    dataset <span class="op">=</span> dataset.batch(batch_size)</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    dataset <span class="op">=</span> dataset.repeat() <span class="cf">if</span> repeat <span class="cf">else</span> dataset</span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="cf">return</span> dataset</span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a>training_data <span class="op">=</span> get_patch_from_path(train_path, batch_size <span class="op">=</span> batch_size, buffer_size <span class="op">=</span> buffer_size, shuffle <span class="op">=</span> <span class="va">True</span>, repeat <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb21-9"><a href="#cb21-9"></a>validation_data <span class="op">=</span> get_patch_from_path(val_path, batch_size <span class="op">=</span> <span class="dv">1</span>, repeat <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb21-10"><a href="#cb21-10"></a>testing_data <span class="op">=</span> get_patch_from_path(test_path, batch_size <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>If we print the 3 sets of data we will see that the training and validation data we see are of type <code>RepeatDataset()</code>, that is, they are files that are constantly being generated, which based on the previous functions are being ordered randomly and the Outgoing data set has a size of 1 (based on batch size).</p>
 <div id="cell-53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:10,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383979480,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="e7531d5c-e900-473c-e124-d05dcf78b706">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">print</span>(training_data)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="bu">print</span>(validation_data)</span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="bu">print</span>(testing_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="bu">print</span>(training_data)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="bu">print</span>(validation_data)</span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="bu">print</span>(testing_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 </section>
-<section id="deep-learning" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="deep-learning"><span class="header-section-number">4.5</span> 4. Deep Learning</h2>
-<section id="model-construction" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="model-construction"><span class="header-section-number">4.5.1</span> 4.1 Model construction</h3>
+<section id="deep-learning" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="deep-learning"><span class="header-section-number">3.5</span> 4. Deep Learning</h2>
+<section id="model-construction" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="model-construction"><span class="header-section-number">3.5.1</span> 4.1 Model construction</h3>
 <p>In this notebook we will use a modification of the U-Net architecture developed by <a href="https://arxiv.org/abs/1505.04597">Ronneberger et al., (2015)</a>. The U-Net architecture was initially designed for use in biomedical imaging but proved to be very efficient in the segmentation of satellite and drone images, and is currently one of the most widely used for that purpose. This architecture has demonstrated remarkable effectiveness in various environmental monitoring applications, including agricultural field boundary detection <a href="https://doi.org/10.1016/j.jag.2022.102685">John &amp; Zhang, 2022</a>, urban land use classification, and coastal change detection. <a href="https://doi.org/10.48550/arXiv.2003.02899">Ulmas &amp; Liiv, 2020</a> further validated U-Net’s superiority in crop type mapping from multi-spectral satellite imagery, showing that its ability to preserve spatial resolution through the decoder path results in more precise segmentation boundaries compared to traditional convolutional neural networks or patch-based classification approaches. The architecture’s robustness to varying image resolutions and its capacity to learn from limited training data through effective data augmentation make it particularly well-suited for remote sensing applications where high-quality labeled data may be scarce <a href="https://doi.org/10.3390/rs14112719">Manos et al., 2022</a>.</p>
 <p>To represent the architecture we will use some layers of <code>tensorflow.keras</code>. This modified version of U-Net has more encoding and decoding blocks than the original architecture, which increases the depth of the model and its learnability. Unlike the original design, which starts and ends with 64 filters, this implementation starts and ends with a layer of 32 filters, slightly reducing the initial complexity before continuing with the standard progression. Below is a diagram of the modified U-Net architecture used.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -856,50 +833,50 @@ First we will create a function called <code>.parse_tfrecord()</code>, which wil
 <div id="cell-57" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:21,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383984407,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">def</span> conv_block(input_tensor, num_filters):</span>
-<span id="cb24-2"><a href="#cb24-2"></a>    encoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(input_tensor)</span>
-<span id="cb24-3"><a href="#cb24-3"></a>    encoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(encoder)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>    encoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(encoder)</span>
-<span id="cb24-5"><a href="#cb24-5"></a>    encoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(encoder)</span>
-<span id="cb24-6"><a href="#cb24-6"></a>    encoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(encoder)</span>
-<span id="cb24-7"><a href="#cb24-7"></a>    encoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(encoder)</span>
-<span id="cb24-8"><a href="#cb24-8"></a>    <span class="cf">return</span> encoder</span>
-<span id="cb24-9"><a href="#cb24-9"></a></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="kw">def</span> encoder_block(input_tensor, num_filters):</span>
-<span id="cb24-11"><a href="#cb24-11"></a>    encoder <span class="op">=</span> conv_block(input_tensor, num_filters)</span>
-<span id="cb24-12"><a href="#cb24-12"></a>    encoder_pool <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>), strides<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))(encoder)</span>
-<span id="cb24-13"><a href="#cb24-13"></a>    <span class="cf">return</span> encoder_pool, encoder</span>
-<span id="cb24-14"><a href="#cb24-14"></a></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="kw">def</span> decoder_block(input_tensor, concat_tensor, num_filters):</span>
-<span id="cb24-16"><a href="#cb24-16"></a>    decoder <span class="op">=</span> tf.keras.layers.Conv2DTranspose(num_filters, (<span class="dv">2</span>, <span class="dv">2</span>), strides<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>), padding<span class="op">=</span><span class="st">'same'</span>)(input_tensor)</span>
-<span id="cb24-17"><a href="#cb24-17"></a>    decoder <span class="op">=</span> tf.keras.layers.concatenate([concat_tensor, decoder], axis<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb24-18"><a href="#cb24-18"></a>    decoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(decoder)</span>
-<span id="cb24-19"><a href="#cb24-19"></a>    decoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(decoder)</span>
-<span id="cb24-20"><a href="#cb24-20"></a>    decoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(decoder)</span>
-<span id="cb24-21"><a href="#cb24-21"></a>    decoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(decoder)</span>
-<span id="cb24-22"><a href="#cb24-22"></a>    decoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(decoder)</span>
-<span id="cb24-23"><a href="#cb24-23"></a>    decoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(decoder)</span>
-<span id="cb24-24"><a href="#cb24-24"></a>    decoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(decoder)</span>
-<span id="cb24-25"><a href="#cb24-25"></a>    decoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(decoder)</span>
-<span id="cb24-26"><a href="#cb24-26"></a>    <span class="cf">return</span> decoder</span>
-<span id="cb24-27"><a href="#cb24-27"></a></span>
-<span id="cb24-28"><a href="#cb24-28"></a><span class="kw">def</span> get_model():</span>
-<span id="cb24-29"><a href="#cb24-29"></a>    inputs <span class="op">=</span> tf.keras.Input(shape<span class="op">=</span>[kernel_size, kernel_size, <span class="bu">len</span>(bands)])</span>
-<span id="cb24-30"><a href="#cb24-30"></a>    encoder0_pool, encoder0 <span class="op">=</span> encoder_block(inputs, <span class="dv">32</span>)</span>
-<span id="cb24-31"><a href="#cb24-31"></a>    encoder1_pool, encoder1 <span class="op">=</span> encoder_block(encoder0_pool, <span class="dv">64</span>)</span>
-<span id="cb24-32"><a href="#cb24-32"></a>    encoder2_pool, encoder2 <span class="op">=</span> encoder_block(encoder1_pool, <span class="dv">128</span>)</span>
-<span id="cb24-33"><a href="#cb24-33"></a>    encoder3_pool, encoder3 <span class="op">=</span> encoder_block(encoder2_pool, <span class="dv">256</span>)</span>
-<span id="cb24-34"><a href="#cb24-34"></a>    encoder4_pool, encoder4 <span class="op">=</span> encoder_block(encoder3_pool, <span class="dv">512</span>)</span>
-<span id="cb24-35"><a href="#cb24-35"></a>    center <span class="op">=</span> conv_block(encoder4_pool, <span class="dv">1024</span>)</span>
-<span id="cb24-36"><a href="#cb24-36"></a>    decoder4 <span class="op">=</span> decoder_block(center, encoder4, <span class="dv">512</span>)</span>
-<span id="cb24-37"><a href="#cb24-37"></a>    decoder3 <span class="op">=</span> decoder_block(decoder4, encoder3, <span class="dv">256</span>)</span>
-<span id="cb24-38"><a href="#cb24-38"></a>    decoder2 <span class="op">=</span> decoder_block(decoder3, encoder2, <span class="dv">128</span>)</span>
-<span id="cb24-39"><a href="#cb24-39"></a>    decoder1 <span class="op">=</span> decoder_block(decoder2, encoder1, <span class="dv">64</span>)</span>
-<span id="cb24-40"><a href="#cb24-40"></a>    decoder0 <span class="op">=</span> decoder_block(decoder1, encoder0, <span class="dv">32</span>)</span>
-<span id="cb24-41"><a href="#cb24-41"></a>    outputs <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>, (<span class="dv">1</span>, <span class="dv">1</span>), activation<span class="op">=</span><span class="st">'sigmoid'</span>)(decoder0)</span>
-<span id="cb24-42"><a href="#cb24-42"></a></span>
-<span id="cb24-43"><a href="#cb24-43"></a>    model <span class="op">=</span> tf.keras.models.Model(inputs<span class="op">=</span>[inputs], outputs<span class="op">=</span>[outputs])</span>
-<span id="cb24-44"><a href="#cb24-44"></a>    <span class="cf">return</span> model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">def</span> conv_block(input_tensor, num_filters):</span>
+<span id="cb23-2"><a href="#cb23-2"></a>    encoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(input_tensor)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    encoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(encoder)</span>
+<span id="cb23-4"><a href="#cb23-4"></a>    encoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(encoder)</span>
+<span id="cb23-5"><a href="#cb23-5"></a>    encoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(encoder)</span>
+<span id="cb23-6"><a href="#cb23-6"></a>    encoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(encoder)</span>
+<span id="cb23-7"><a href="#cb23-7"></a>    encoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(encoder)</span>
+<span id="cb23-8"><a href="#cb23-8"></a>    <span class="cf">return</span> encoder</span>
+<span id="cb23-9"><a href="#cb23-9"></a></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="kw">def</span> encoder_block(input_tensor, num_filters):</span>
+<span id="cb23-11"><a href="#cb23-11"></a>    encoder <span class="op">=</span> conv_block(input_tensor, num_filters)</span>
+<span id="cb23-12"><a href="#cb23-12"></a>    encoder_pool <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>), strides<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))(encoder)</span>
+<span id="cb23-13"><a href="#cb23-13"></a>    <span class="cf">return</span> encoder_pool, encoder</span>
+<span id="cb23-14"><a href="#cb23-14"></a></span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="kw">def</span> decoder_block(input_tensor, concat_tensor, num_filters):</span>
+<span id="cb23-16"><a href="#cb23-16"></a>    decoder <span class="op">=</span> tf.keras.layers.Conv2DTranspose(num_filters, (<span class="dv">2</span>, <span class="dv">2</span>), strides<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>), padding<span class="op">=</span><span class="st">'same'</span>)(input_tensor)</span>
+<span id="cb23-17"><a href="#cb23-17"></a>    decoder <span class="op">=</span> tf.keras.layers.concatenate([concat_tensor, decoder], axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb23-18"><a href="#cb23-18"></a>    decoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(decoder)</span>
+<span id="cb23-19"><a href="#cb23-19"></a>    decoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(decoder)</span>
+<span id="cb23-20"><a href="#cb23-20"></a>    decoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(decoder)</span>
+<span id="cb23-21"><a href="#cb23-21"></a>    decoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(decoder)</span>
+<span id="cb23-22"><a href="#cb23-22"></a>    decoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(decoder)</span>
+<span id="cb23-23"><a href="#cb23-23"></a>    decoder <span class="op">=</span> tf.keras.layers.Conv2D(num_filters, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="st">'same'</span>)(decoder)</span>
+<span id="cb23-24"><a href="#cb23-24"></a>    decoder <span class="op">=</span> tf.keras.layers.BatchNormalization()(decoder)</span>
+<span id="cb23-25"><a href="#cb23-25"></a>    decoder <span class="op">=</span> tf.keras.layers.Activation(<span class="st">'relu'</span>)(decoder)</span>
+<span id="cb23-26"><a href="#cb23-26"></a>    <span class="cf">return</span> decoder</span>
+<span id="cb23-27"><a href="#cb23-27"></a></span>
+<span id="cb23-28"><a href="#cb23-28"></a><span class="kw">def</span> get_model():</span>
+<span id="cb23-29"><a href="#cb23-29"></a>    inputs <span class="op">=</span> tf.keras.Input(shape<span class="op">=</span>[kernel_size, kernel_size, <span class="bu">len</span>(bands)])</span>
+<span id="cb23-30"><a href="#cb23-30"></a>    encoder0_pool, encoder0 <span class="op">=</span> encoder_block(inputs, <span class="dv">32</span>)</span>
+<span id="cb23-31"><a href="#cb23-31"></a>    encoder1_pool, encoder1 <span class="op">=</span> encoder_block(encoder0_pool, <span class="dv">64</span>)</span>
+<span id="cb23-32"><a href="#cb23-32"></a>    encoder2_pool, encoder2 <span class="op">=</span> encoder_block(encoder1_pool, <span class="dv">128</span>)</span>
+<span id="cb23-33"><a href="#cb23-33"></a>    encoder3_pool, encoder3 <span class="op">=</span> encoder_block(encoder2_pool, <span class="dv">256</span>)</span>
+<span id="cb23-34"><a href="#cb23-34"></a>    encoder4_pool, encoder4 <span class="op">=</span> encoder_block(encoder3_pool, <span class="dv">512</span>)</span>
+<span id="cb23-35"><a href="#cb23-35"></a>    center <span class="op">=</span> conv_block(encoder4_pool, <span class="dv">1024</span>)</span>
+<span id="cb23-36"><a href="#cb23-36"></a>    decoder4 <span class="op">=</span> decoder_block(center, encoder4, <span class="dv">512</span>)</span>
+<span id="cb23-37"><a href="#cb23-37"></a>    decoder3 <span class="op">=</span> decoder_block(decoder4, encoder3, <span class="dv">256</span>)</span>
+<span id="cb23-38"><a href="#cb23-38"></a>    decoder2 <span class="op">=</span> decoder_block(decoder3, encoder2, <span class="dv">128</span>)</span>
+<span id="cb23-39"><a href="#cb23-39"></a>    decoder1 <span class="op">=</span> decoder_block(decoder2, encoder1, <span class="dv">64</span>)</span>
+<span id="cb23-40"><a href="#cb23-40"></a>    decoder0 <span class="op">=</span> decoder_block(decoder1, encoder0, <span class="dv">32</span>)</span>
+<span id="cb23-41"><a href="#cb23-41"></a>    outputs <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">1</span>, (<span class="dv">1</span>, <span class="dv">1</span>), activation<span class="op">=</span><span class="st">'sigmoid'</span>)(decoder0)</span>
+<span id="cb23-42"><a href="#cb23-42"></a></span>
+<span id="cb23-43"><a href="#cb23-43"></a>    model <span class="op">=</span> tf.keras.models.Model(inputs<span class="op">=</span>[inputs], outputs<span class="op">=</span>[outputs])</span>
+<span id="cb23-44"><a href="#cb23-44"></a>    <span class="cf">return</span> model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Now we will define the model, using the created function <code>.get_model()</code> and compiling it.</p>
@@ -907,141 +884,140 @@ First we will create a function called <code>.parse_tfrecord()</code>, which wil
 <div id="cell-59" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1345,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383987724,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>model <span class="op">=</span> get_model()</span>
-<span id="cb25-2"><a href="#cb25-2"></a>model.<span class="bu">compile</span>(</span>
-<span id="cb25-3"><a href="#cb25-3"></a>    optimizer <span class="op">=</span> tf.keras.optimizers.Adam(learning_rate <span class="op">=</span> learning_rate),</span>
-<span id="cb25-4"><a href="#cb25-4"></a>    loss <span class="op">=</span> tf.keras.losses.BinaryCrossentropy(),</span>
-<span id="cb25-5"><a href="#cb25-5"></a>    metrics <span class="op">=</span> [tf.keras.metrics.IoU(num_classes <span class="op">=</span> <span class="dv">2</span>, target_class_ids <span class="op">=</span> [<span class="dv">0</span>] , name <span class="op">=</span> <span class="st">'iou'</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>model <span class="op">=</span> get_model()</span>
+<span id="cb24-2"><a href="#cb24-2"></a>model.<span class="bu">compile</span>(</span>
+<span id="cb24-3"><a href="#cb24-3"></a>    optimizer <span class="op">=</span> tf.keras.optimizers.Adam(learning_rate <span class="op">=</span> learning_rate),</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    loss <span class="op">=</span> tf.keras.losses.BinaryCrossentropy(),</span>
+<span id="cb24-5"><a href="#cb24-5"></a>    metrics <span class="op">=</span> [tf.keras.metrics.IoU(num_classes <span class="op">=</span> <span class="dv">2</span>, target_class_ids <span class="op">=</span> [<span class="dv">0</span>] , name <span class="op">=</span> <span class="st">'iou'</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Once the model is compiled, we can see the layers it has using the <code>.summary()</code> function</p>
 <div id="cell-61" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:244,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774383385825,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="09d34d79-3a86-4b28-9001-1c12d2e9fdac">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="model-training" class="level3" data-number="4.5.2">
-<h3 data-number="4.5.2" class="anchored" data-anchor-id="model-training"><span class="header-section-number">4.5.2</span> 4.2 Model training</h3>
+<section id="model-training" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="model-training"><span class="header-section-number">3.5.2</span> 4.2 Model training</h3>
 <p>Once the model is defined, we will proceed to train it, adjusting it to the already processed data set, using the <code>.fit()</code> function. Feel free to change the parameters and use the GPU environment!</p>
 <div id="cell-64" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:91779,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774384081186,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="e44b0136-144f-409b-cd23-8a2d35b675f5">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>history <span class="op">=</span> model.fit(</span>
-<span id="cb27-2"><a href="#cb27-2"></a>    x <span class="op">=</span> training_data,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>    epochs <span class="op">=</span> epochs,</span>
-<span id="cb27-4"><a href="#cb27-4"></a>    batch_size <span class="op">=</span> batch_size,</span>
-<span id="cb27-5"><a href="#cb27-5"></a>    verbose <span class="op">=</span> <span class="dv">1</span>,</span>
-<span id="cb27-6"><a href="#cb27-6"></a>    steps_per_epoch <span class="op">=</span> <span class="bu">int</span>(train_size <span class="op">/</span> batch_size),</span>
-<span id="cb27-7"><a href="#cb27-7"></a>    validation_data <span class="op">=</span> validation_data,</span>
-<span id="cb27-8"><a href="#cb27-8"></a>    validation_steps <span class="op">=</span> val_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>history <span class="op">=</span> model.fit(</span>
+<span id="cb26-2"><a href="#cb26-2"></a>    x <span class="op">=</span> training_data,</span>
+<span id="cb26-3"><a href="#cb26-3"></a>    epochs <span class="op">=</span> epochs,</span>
+<span id="cb26-4"><a href="#cb26-4"></a>    batch_size <span class="op">=</span> batch_size,</span>
+<span id="cb26-5"><a href="#cb26-5"></a>    verbose <span class="op">=</span> <span class="dv">1</span>,</span>
+<span id="cb26-6"><a href="#cb26-6"></a>    steps_per_epoch <span class="op">=</span> <span class="bu">int</span>(train_size <span class="op">/</span> batch_size),</span>
+<span id="cb26-7"><a href="#cb26-7"></a>    validation_data <span class="op">=</span> validation_data,</span>
+<span id="cb26-8"><a href="#cb26-8"></a>    validation_steps <span class="op">=</span> val_size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We can plot the training results by epoch using matplotlib.</p>
 <div id="cell-66" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:389,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774384112936,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="8ff45c78-dcaf-487a-a4e4-5659e1aadff6">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Metrics graph</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>fig, ax <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">2</span>, sharex <span class="op">=</span> <span class="va">True</span>, figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">10</span>))</span>
-<span id="cb28-3"><a href="#cb28-3"></a></span>
-<span id="cb28-4"><a href="#cb28-4"></a>ax[<span class="dv">0</span>].plot(history.history[<span class="st">'loss'</span>], color <span class="op">=</span> <span class="st">'#1f77b4'</span>, label <span class="op">=</span> <span class="st">'Training Loss'</span>)</span>
-<span id="cb28-5"><a href="#cb28-5"></a>ax[<span class="dv">0</span>].plot(history.history[<span class="st">'val_loss'</span>], linestyle <span class="op">=</span> <span class="st">':'</span>, marker <span class="op">=</span> <span class="st">'o'</span>, markersize <span class="op">=</span> <span class="dv">3</span>, color <span class="op">=</span> <span class="st">'#1f77b4'</span>, label <span class="op">=</span> <span class="st">'Validation Loss'</span>)</span>
-<span id="cb28-6"><a href="#cb28-6"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'Loss'</span>)</span>
-<span id="cb28-7"><a href="#cb28-7"></a>ax[<span class="dv">0</span>].set_ylim(<span class="fl">0.0</span>, <span class="dv">1</span>)</span>
-<span id="cb28-8"><a href="#cb28-8"></a>ax[<span class="dv">0</span>].legend()</span>
-<span id="cb28-9"><a href="#cb28-9"></a></span>
-<span id="cb28-10"><a href="#cb28-10"></a>ax[<span class="dv">1</span>].plot(history.history[<span class="st">'iou'</span>], color <span class="op">=</span> <span class="st">'#E5D31F'</span>, label <span class="op">=</span> <span class="st">'Training IoU'</span>)</span>
-<span id="cb28-11"><a href="#cb28-11"></a>ax[<span class="dv">1</span>].plot(history.history[<span class="st">'val_iou'</span>], linestyle <span class="op">=</span> <span class="st">':'</span>, marker <span class="op">=</span> <span class="st">'o'</span>, markersize <span class="op">=</span> <span class="dv">3</span>, color <span class="op">=</span> <span class="st">'#E5D31F'</span>, label <span class="op">=</span> <span class="st">'Validation IoU'</span>)</span>
-<span id="cb28-12"><a href="#cb28-12"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'IoU'</span>)</span>
-<span id="cb28-13"><a href="#cb28-13"></a>ax[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
-<span id="cb28-14"><a href="#cb28-14"></a></span>
-<span id="cb28-15"><a href="#cb28-15"></a>ax[<span class="dv">1</span>].set_xticks(history.epoch)</span>
-<span id="cb28-16"><a href="#cb28-16"></a>ax[<span class="dv">1</span>].set_xticklabels(<span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(history.epoch) <span class="op">+</span> <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb28-17"><a href="#cb28-17"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'Epoch'</span>)</span>
-<span id="cb28-18"><a href="#cb28-18"></a>ax[<span class="dv">1</span>].set_ylim(<span class="fl">0.0</span>, <span class="dv">1</span>)</span>
-<span id="cb28-19"><a href="#cb28-19"></a></span>
-<span id="cb28-20"><a href="#cb28-20"></a>plt.legend()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Metrics graph</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>fig, ax <span class="op">=</span> plt.subplots(nrows <span class="op">=</span> <span class="dv">2</span>, sharex <span class="op">=</span> <span class="va">True</span>, figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">10</span>))</span>
+<span id="cb27-3"><a href="#cb27-3"></a></span>
+<span id="cb27-4"><a href="#cb27-4"></a>ax[<span class="dv">0</span>].plot(history.history[<span class="st">'loss'</span>], color <span class="op">=</span> <span class="st">'#1f77b4'</span>, label <span class="op">=</span> <span class="st">'Training Loss'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5"></a>ax[<span class="dv">0</span>].plot(history.history[<span class="st">'val_loss'</span>], linestyle <span class="op">=</span> <span class="st">':'</span>, marker <span class="op">=</span> <span class="st">'o'</span>, markersize <span class="op">=</span> <span class="dv">3</span>, color <span class="op">=</span> <span class="st">'#1f77b4'</span>, label <span class="op">=</span> <span class="st">'Validation Loss'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'Loss'</span>)</span>
+<span id="cb27-7"><a href="#cb27-7"></a>ax[<span class="dv">0</span>].set_ylim(<span class="fl">0.0</span>, <span class="dv">1</span>)</span>
+<span id="cb27-8"><a href="#cb27-8"></a>ax[<span class="dv">0</span>].legend()</span>
+<span id="cb27-9"><a href="#cb27-9"></a></span>
+<span id="cb27-10"><a href="#cb27-10"></a>ax[<span class="dv">1</span>].plot(history.history[<span class="st">'iou'</span>], color <span class="op">=</span> <span class="st">'#E5D31F'</span>, label <span class="op">=</span> <span class="st">'Training IoU'</span>)</span>
+<span id="cb27-11"><a href="#cb27-11"></a>ax[<span class="dv">1</span>].plot(history.history[<span class="st">'val_iou'</span>], linestyle <span class="op">=</span> <span class="st">':'</span>, marker <span class="op">=</span> <span class="st">'o'</span>, markersize <span class="op">=</span> <span class="dv">3</span>, color <span class="op">=</span> <span class="st">'#E5D31F'</span>, label <span class="op">=</span> <span class="st">'Validation IoU'</span>)</span>
+<span id="cb27-12"><a href="#cb27-12"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'IoU'</span>)</span>
+<span id="cb27-13"><a href="#cb27-13"></a>ax[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
+<span id="cb27-14"><a href="#cb27-14"></a></span>
+<span id="cb27-15"><a href="#cb27-15"></a>ax[<span class="dv">1</span>].set_xticks(history.epoch)</span>
+<span id="cb27-16"><a href="#cb27-16"></a>ax[<span class="dv">1</span>].set_xticklabels(<span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(history.epoch) <span class="op">+</span> <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb27-17"><a href="#cb27-17"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'Epoch'</span>)</span>
+<span id="cb27-18"><a href="#cb27-18"></a>ax[<span class="dv">1</span>].set_ylim(<span class="fl">0.0</span>, <span class="dv">1</span>)</span>
+<span id="cb27-19"><a href="#cb27-19"></a></span>
+<span id="cb27-20"><a href="#cb27-20"></a>plt.legend()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The training loss exhibits a clear downward trend, decreasing from approximately 0.08 to around 0.04 over the 10 epochs, indicating that the model is effectively learning and reducing error on the training dataset. The training IoU remains stable at about 0.97 throughout the process, while the validation IoU is consistently slightly higher at approximately 0.975, suggesting good generalization performance.</p>
 <p>Although the validation loss shows some instability, particularly a very high value during the first epoch followed by fluctuations in subsequent epochs, it quickly stabilizes to low values, which may be attributed to initialization effects or data scaling issues rather than persistent model misfit. Overall, the model demonstrates strong and consistent segmentation performance.</p>
 <p>Given these results, extending the training beyond 10 epochs may yield only marginal improvements. Considering the relatively small dataset, additional training could increase the risk of overfitting without significantly enhancing model performance.</p>
 </section>
-<section id="model-evaluation" class="level3" data-number="4.5.3">
-<h3 data-number="4.5.3" class="anchored" data-anchor-id="model-evaluation"><span class="header-section-number">4.5.3</span> 4.3 Model evaluation</h3>
+<section id="model-evaluation" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="model-evaluation"><span class="header-section-number">3.5.3</span> 4.3 Model evaluation</h3>
 <p>Now we will use the test dataset, reserved for this moment. We can get the total metrics for the entire test data set.</p>
 <div id="cell-70" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:373,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774384127194,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="f4b7baeb-b218-410a-92a8-87f5bf40a6ef">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>evaluation <span class="op">=</span> model.evaluate(</span>
-<span id="cb29-2"><a href="#cb29-2"></a>    x <span class="op">=</span> testing_data,</span>
-<span id="cb29-3"><a href="#cb29-3"></a>    verbose <span class="op">=</span> <span class="dv">1</span>,</span>
-<span id="cb29-4"><a href="#cb29-4"></a>    steps <span class="op">=</span> test_size</span>
-<span id="cb29-5"><a href="#cb29-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>evaluation <span class="op">=</span> model.evaluate(</span>
+<span id="cb28-2"><a href="#cb28-2"></a>    x <span class="op">=</span> testing_data,</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    verbose <span class="op">=</span> <span class="dv">1</span>,</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    steps <span class="op">=</span> test_size</span>
+<span id="cb28-5"><a href="#cb28-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We can also apply the model to the test dataset, and graph the results.</p>
 <div id="cell-72" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:3338,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774384133487,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="e276c023-7b2e-4a37-e13e-514e6b81cf54">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>prediction <span class="op">=</span> model.predict(</span>
-<span id="cb30-2"><a href="#cb30-2"></a>    x <span class="op">=</span> testing_data,</span>
-<span id="cb30-3"><a href="#cb30-3"></a>    verbose <span class="op">=</span> <span class="dv">1</span>,</span>
-<span id="cb30-4"><a href="#cb30-4"></a>    steps <span class="op">=</span> test_size</span>
-<span id="cb30-5"><a href="#cb30-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>prediction <span class="op">=</span> model.predict(</span>
+<span id="cb29-2"><a href="#cb29-2"></a>    x <span class="op">=</span> testing_data,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    verbose <span class="op">=</span> <span class="dv">1</span>,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>    steps <span class="op">=</span> test_size</span>
+<span id="cb29-5"><a href="#cb29-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>By running the following code block we can visualize 3 random images from our test data set, and the model predictions.</p>
 <div id="cell-74" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1553,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774384136048,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="9a9c1a42-c91e-4d6a-9b1c-d8e5cc11cf1a">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb31-2"><a href="#cb31-2"></a>n_images <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a></span>
-<span id="cb31-4"><a href="#cb31-4"></a>listTest <span class="op">=</span> np.random.choice(test_size, size <span class="op">=</span> n_images, replace <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb31-5"><a href="#cb31-5"></a></span>
-<span id="cb31-6"><a href="#cb31-6"></a><span class="bu">print</span>(listTest)</span>
-<span id="cb31-7"><a href="#cb31-7"></a></span>
-<span id="cb31-8"><a href="#cb31-8"></a>fig, axs <span class="op">=</span> plt.subplots(n_images, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">15</span>, <span class="dv">15</span>))</span>
-<span id="cb31-9"><a href="#cb31-9"></a></span>
-<span id="cb31-10"><a href="#cb31-10"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(listTest)):</span>
-<span id="cb31-11"><a href="#cb31-11"></a>    imgTest <span class="op">=</span> tf.math.divide(tf.squeeze(<span class="bu">list</span>(testing_data)[listTest[i]][<span class="dv">0</span>]), <span class="dv">12000</span>)[:, :, <span class="dv">0</span>:<span class="dv">3</span>].numpy()</span>
-<span id="cb31-12"><a href="#cb31-12"></a>    imgPred <span class="op">=</span> prediction[listTest[i]].reshape(kernel_size, kernel_size)</span>
-<span id="cb31-13"><a href="#cb31-13"></a></span>
-<span id="cb31-14"><a href="#cb31-14"></a>    axs[i, <span class="dv">0</span>].set_title(<span class="st">'RGB Test Image '</span> <span class="op">+</span> <span class="bu">str</span>(listTest[i]))</span>
-<span id="cb31-15"><a href="#cb31-15"></a>    axs[i, <span class="dv">0</span>].imshow(imgTest)</span>
-<span id="cb31-16"><a href="#cb31-16"></a>    axs[i, <span class="dv">1</span>].set_title(<span class="st">'Prediction '</span> <span class="op">+</span> <span class="bu">str</span>(listTest[i]))</span>
-<span id="cb31-17"><a href="#cb31-17"></a>    axs[i, <span class="dv">1</span>].imshow(imgPred, cmap<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
-<span id="cb31-18"><a href="#cb31-18"></a></span>
-<span id="cb31-19"><a href="#cb31-19"></a>plt.subplots_adjust(wspace <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span>, hspace <span class="op">=</span> <span class="fl">0.4</span>)</span>
-<span id="cb31-20"><a href="#cb31-20"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>n_images <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a>listTest <span class="op">=</span> np.random.choice(test_size, size <span class="op">=</span> n_images, replace <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb30-5"><a href="#cb30-5"></a></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="bu">print</span>(listTest)</span>
+<span id="cb30-7"><a href="#cb30-7"></a></span>
+<span id="cb30-8"><a href="#cb30-8"></a>fig, axs <span class="op">=</span> plt.subplots(n_images, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">15</span>, <span class="dv">15</span>))</span>
+<span id="cb30-9"><a href="#cb30-9"></a></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(listTest)):</span>
+<span id="cb30-11"><a href="#cb30-11"></a>    imgTest <span class="op">=</span> tf.math.divide(tf.squeeze(<span class="bu">list</span>(testing_data)[listTest[i]][<span class="dv">0</span>]), <span class="dv">12000</span>)[:, :, <span class="dv">0</span>:<span class="dv">3</span>].numpy()</span>
+<span id="cb30-12"><a href="#cb30-12"></a>    imgPred <span class="op">=</span> prediction[listTest[i]].reshape(kernel_size, kernel_size)</span>
+<span id="cb30-13"><a href="#cb30-13"></a></span>
+<span id="cb30-14"><a href="#cb30-14"></a>    axs[i, <span class="dv">0</span>].set_title(<span class="st">'RGB Test Image '</span> <span class="op">+</span> <span class="bu">str</span>(listTest[i]))</span>
+<span id="cb30-15"><a href="#cb30-15"></a>    axs[i, <span class="dv">0</span>].imshow(imgTest)</span>
+<span id="cb30-16"><a href="#cb30-16"></a>    axs[i, <span class="dv">1</span>].set_title(<span class="st">'Prediction '</span> <span class="op">+</span> <span class="bu">str</span>(listTest[i]))</span>
+<span id="cb30-17"><a href="#cb30-17"></a>    axs[i, <span class="dv">1</span>].imshow(imgPred, cmap<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
+<span id="cb30-18"><a href="#cb30-18"></a></span>
+<span id="cb30-19"><a href="#cb30-19"></a>plt.subplots_adjust(wspace <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span>, hspace <span class="op">=</span> <span class="fl">0.4</span>)</span>
+<span id="cb30-20"><a href="#cb30-20"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Despite being trained on a small dataset for only 10 epochs, the model produces high-quality segmentations with well-defined boundaries and contiguous regions, validating both the architecture choice and the training approach for this VHR satellite imagery application. This model proves that effective selective logging monitoring is achievable without massive datasets or extensive computational power. This modified U-Net architecture provides a powerful combination of high precision, data efficiency, and proven real-world effectiveness.</p>
 </section>
-<section id="save-the-model" class="level3" data-number="4.5.4">
-<h3 data-number="4.5.4" class="anchored" data-anchor-id="save-the-model"><span class="header-section-number">4.5.4</span> 4.4 Save the model</h3>
+<section id="save-the-model" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="save-the-model"><span class="header-section-number">3.5.4</span> 4.4 Save the model</h3>
 <p>Once we have an adequate model based on the metrics used, we will proceed to save it.<br>
 To do this we will use the <code>tf.keras.save_model()</code> function and we will have to specify the path to save the model.</p>
 <div id="cell-78" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:106,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774384189528,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># If necessary</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="op">!</span>mkdir <span class="op">/</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>DL_Book<span class="op">/</span>model<span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># If necessary</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="op">!</span>mkdir <span class="op">/</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>DL_Book<span class="op">/</span>model<span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-79" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:2190,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774384195019,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>modelDir <span class="op">=</span> <span class="st">'/content/drive/MyDrive/DL_Book/model/logging_model.keras'</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>tf.keras.models.save_model(model, modelDir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>modelDir <span class="op">=</span> <span class="st">'/content/drive/MyDrive/DL_Book/model/logging_model.keras'</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>tf.keras.models.save_model(model, modelDir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>In the next chapter, we will load our model again and apply it to the whole image!</p>
 
 
-</section>
 </section>
 </section>
 
