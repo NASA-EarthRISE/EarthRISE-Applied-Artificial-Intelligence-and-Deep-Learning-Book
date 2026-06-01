@@ -21,6 +21,7 @@ The NASA EarthRISE program harnesses NASA Earth Action capabilities to deliver t
 * **Semantic Segmentation**
   * [Crop Mapping — Rice Mapping in Bhutan with U-Net](03_Semantic_Segmentation/01__Crop_Mapping/)
   * [Selective Logging Detection with Very-High Resolution Imagery](03_Semantic_Segmentation/02__Selective_Logging_Detection/)
+  * [Clay Deforestation Segmentation Model](03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/)
 * [Object Detection](04_Object_Detection/) *(coming soon)*
 * **Time Series**
   * [Soybean Yield Prediction](05_Time_Series/01__Soybean_Yield_Prediction/)

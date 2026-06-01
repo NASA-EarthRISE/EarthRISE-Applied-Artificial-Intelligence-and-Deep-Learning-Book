@@ -33,7 +33,7 @@ book:
         chapters:
           - 03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb
           - 03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb
-          - 03_Semantic_Segmentation/03__Clay_Deforestation_Segementation_Model/notebooks/ClayDeforestationv3.ipynb
+          - 03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb
       - 04_Object_Detection/index.ipynb
       - part: "Time Series"
         chapters:
