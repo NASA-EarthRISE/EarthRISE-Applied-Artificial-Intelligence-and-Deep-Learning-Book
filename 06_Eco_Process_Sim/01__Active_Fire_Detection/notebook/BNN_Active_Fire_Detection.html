@@ -14,7 +14,7 @@
 <meta name="author" content="Alan S. Cantin">
 <meta name="author" content="Morgan A. Crowley">
 
-<title>6&nbsp; Understanding active fire detection uncertainty with Bayesian Neural Networks – Applied Artificial Intelligence and Deep Learning Book</title>
+<title>7&nbsp; Understanding active fire detection uncertainty with Bayesian Neural Networks – Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -88,9 +88,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-8ab829a406bb82c3c25f3f995d66718d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-572759a31dbf19445929766e6dd1d3cf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-8ab829a406bb82c3c25f3f995d66718d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-92f3cf769593a58be848ceeec9558dfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-24de15af17bdbfd16d885fbbd080e274.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-92f3cf769593a58be848ceeec9558dfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -356,12 +356,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Selective Logging Detection with Deep Learning and Very-High Resolution Imagery</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Clay Deforestation Segmentation Model</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../04_Object_Detection/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Object Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object Detection</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -376,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></span></a>
   </div>
 </li>
       </ul>
@@ -384,25 +390,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../07_Transfer_Learning/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transfer Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Transfer Learning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../08_Fusion/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../09_Downscaling/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Downscaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Downscaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -417,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
   </div>
 </li>
       </ul>
@@ -425,13 +431,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../11_Ethics/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ethics and Artificial Intelligence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ethics and Artificial Intelligence</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../12_Conclusions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -450,37 +456,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#important-notes-read-before-running" id="toc-important-notes-read-before-running" class="nav-link active" data-scroll-target="#important-notes-read-before-running"><span class="header-section-number">6.1</span> Important Notes (Read Before Running)</a>
+  <li><a href="#important-notes-read-before-running" id="toc-important-notes-read-before-running" class="nav-link active" data-scroll-target="#important-notes-read-before-running"><span class="header-section-number">7.1</span> Important Notes (Read Before Running)</a>
   <ul class="collapse">
-  <li><a href="#python-versioning" id="toc-python-versioning" class="nav-link" data-scroll-target="#python-versioning"><span class="header-section-number">6.1.1</span> Python Versioning</a></li>
-  <li><a href="#code-order" id="toc-code-order" class="nav-link" data-scroll-target="#code-order"><span class="header-section-number">6.1.2</span> Code Order</a></li>
-  <li><a href="#colab-vs-jupyter" id="toc-colab-vs-jupyter" class="nav-link" data-scroll-target="#colab-vs-jupyter"><span class="header-section-number">6.1.3</span> Colab vs Jupyter</a></li>
-  <li><a href="#how-to-run-this-notebook-on-colab---default-setting" id="toc-how-to-run-this-notebook-on-colab---default-setting" class="nav-link" data-scroll-target="#how-to-run-this-notebook-on-colab---default-setting"><span class="header-section-number">6.1.4</span> How to Run This Notebook on Colab - Default setting</a></li>
-  <li><a href="#how-to-run-this-notebook-on-local" id="toc-how-to-run-this-notebook-on-local" class="nav-link" data-scroll-target="#how-to-run-this-notebook-on-local"><span class="header-section-number">6.1.5</span> How to Run This Notebook on Local</a></li>
+  <li><a href="#python-versioning" id="toc-python-versioning" class="nav-link" data-scroll-target="#python-versioning"><span class="header-section-number">7.1.1</span> Python Versioning</a></li>
+  <li><a href="#code-order" id="toc-code-order" class="nav-link" data-scroll-target="#code-order"><span class="header-section-number">7.1.2</span> Code Order</a></li>
+  <li><a href="#colab-vs-jupyter" id="toc-colab-vs-jupyter" class="nav-link" data-scroll-target="#colab-vs-jupyter"><span class="header-section-number">7.1.3</span> Colab vs Jupyter</a></li>
+  <li><a href="#how-to-run-this-notebook-on-colab---default-setting" id="toc-how-to-run-this-notebook-on-colab---default-setting" class="nav-link" data-scroll-target="#how-to-run-this-notebook-on-colab---default-setting"><span class="header-section-number">7.1.4</span> How to Run This Notebook on Colab - Default setting</a></li>
+  <li><a href="#how-to-run-this-notebook-on-local" id="toc-how-to-run-this-notebook-on-local" class="nav-link" data-scroll-target="#how-to-run-this-notebook-on-local"><span class="header-section-number">7.1.5</span> How to Run This Notebook on Local</a></li>
   </ul></li>
-  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions"><span class="header-section-number">6.2</span> Frequently Asked Questions</a>
+  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions"><span class="header-section-number">7.2</span> Frequently Asked Questions</a>
   <ul class="collapse">
-  <li><a href="#running-this-notebook-without-training-models" id="toc-running-this-notebook-without-training-models" class="nav-link" data-scroll-target="#running-this-notebook-without-training-models"><span class="header-section-number">6.2.1</span> Running this Notebook without Training Models</a></li>
+  <li><a href="#running-this-notebook-without-training-models" id="toc-running-this-notebook-without-training-models" class="nav-link" data-scroll-target="#running-this-notebook-without-training-models"><span class="header-section-number">7.2.1</span> Running this Notebook without Training Models</a></li>
   </ul></li>
-  <li><a href="#colab-specific-installations" id="toc-colab-specific-installations" class="nav-link" data-scroll-target="#colab-specific-installations"><span class="header-section-number">6.3</span> Colab Specific Installations</a>
+  <li><a href="#colab-specific-installations" id="toc-colab-specific-installations" class="nav-link" data-scroll-target="#colab-specific-installations"><span class="header-section-number">7.3</span> Colab Specific Installations</a>
   <ul class="collapse">
-  <li><a href="#import-statements" id="toc-import-statements" class="nav-link" data-scroll-target="#import-statements"><span class="header-section-number">6.3.1</span> Import Statements</a></li>
+  <li><a href="#import-statements" id="toc-import-statements" class="nav-link" data-scroll-target="#import-statements"><span class="header-section-number">7.3.1</span> Import Statements</a></li>
   </ul></li>
-  <li><a href="#case-study-a" id="toc-case-study-a" class="nav-link" data-scroll-target="#case-study-a"><span class="header-section-number">6.4</span> Case Study A</a>
+  <li><a href="#case-study-a" id="toc-case-study-a" class="nav-link" data-scroll-target="#case-study-a"><span class="header-section-number">7.4</span> Case Study A</a>
   <ul class="collapse">
-  <li><a href="#define-epochs" id="toc-define-epochs" class="nav-link" data-scroll-target="#define-epochs"><span class="header-section-number">6.4.1</span> Define epochs</a></li>
-  <li><a href="#model-one" id="toc-model-one" class="nav-link" data-scroll-target="#model-one"><span class="header-section-number">6.4.2</span> Model One</a></li>
-  <li><a href="#model-two" id="toc-model-two" class="nav-link" data-scroll-target="#model-two"><span class="header-section-number">6.4.3</span> Model Two</a></li>
-  <li><a href="#model-three" id="toc-model-three" class="nav-link" data-scroll-target="#model-three"><span class="header-section-number">6.4.4</span> Model Three</a></li>
-  <li><a href="#define-epochs-1" id="toc-define-epochs-1" class="nav-link" data-scroll-target="#define-epochs-1"><span class="header-section-number">6.4.5</span> Define epochs</a></li>
-  <li><a href="#results-all-models" id="toc-results-all-models" class="nav-link" data-scroll-target="#results-all-models"><span class="header-section-number">6.4.6</span> Results (All Models)</a></li>
+  <li><a href="#define-epochs" id="toc-define-epochs" class="nav-link" data-scroll-target="#define-epochs"><span class="header-section-number">7.4.1</span> Define epochs</a></li>
+  <li><a href="#model-one" id="toc-model-one" class="nav-link" data-scroll-target="#model-one"><span class="header-section-number">7.4.2</span> Model One</a></li>
+  <li><a href="#model-two" id="toc-model-two" class="nav-link" data-scroll-target="#model-two"><span class="header-section-number">7.4.3</span> Model Two</a></li>
+  <li><a href="#model-three" id="toc-model-three" class="nav-link" data-scroll-target="#model-three"><span class="header-section-number">7.4.4</span> Model Three</a></li>
+  <li><a href="#define-epochs-1" id="toc-define-epochs-1" class="nav-link" data-scroll-target="#define-epochs-1"><span class="header-section-number">7.4.5</span> Define epochs</a></li>
+  <li><a href="#results-all-models" id="toc-results-all-models" class="nav-link" data-scroll-target="#results-all-models"><span class="header-section-number">7.4.6</span> Results (All Models)</a></li>
   </ul></li>
-  <li><a href="#case-study-b" id="toc-case-study-b" class="nav-link" data-scroll-target="#case-study-b"><span class="header-section-number">6.5</span> Case Study B</a>
+  <li><a href="#case-study-b" id="toc-case-study-b" class="nav-link" data-scroll-target="#case-study-b"><span class="header-section-number">7.5</span> Case Study B</a>
   <ul class="collapse">
-  <li><a href="#model-one-1" id="toc-model-one-1" class="nav-link" data-scroll-target="#model-one-1"><span class="header-section-number">6.5.1</span> Model One</a></li>
-  <li><a href="#model-two-1" id="toc-model-two-1" class="nav-link" data-scroll-target="#model-two-1"><span class="header-section-number">6.5.2</span> Model Two</a></li>
-  <li><a href="#results-all-models-1" id="toc-results-all-models-1" class="nav-link" data-scroll-target="#results-all-models-1"><span class="header-section-number">6.5.3</span> Results (All Models)</a></li>
-  <li><a href="#hypothesis-review" id="toc-hypothesis-review" class="nav-link" data-scroll-target="#hypothesis-review"><span class="header-section-number">6.5.4</span> Hypothesis review</a></li>
+  <li><a href="#model-one-1" id="toc-model-one-1" class="nav-link" data-scroll-target="#model-one-1"><span class="header-section-number">7.5.1</span> Model One</a></li>
+  <li><a href="#model-two-1" id="toc-model-two-1" class="nav-link" data-scroll-target="#model-two-1"><span class="header-section-number">7.5.2</span> Model Two</a></li>
+  <li><a href="#results-all-models-1" id="toc-results-all-models-1" class="nav-link" data-scroll-target="#results-all-models-1"><span class="header-section-number">7.5.3</span> Results (All Models)</a></li>
+  <li><a href="#hypothesis-review" id="toc-hypothesis-review" class="nav-link" data-scroll-target="#hypothesis-review"><span class="header-section-number">7.5.4</span> Hypothesis review</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -491,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></h1>
 </div>
 
 
@@ -594,22 +600,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This tutorial accompanies the work titled “Understanding active fire detection uncertainty with Bayesian Neural Networks”. This notebook is intended to be accompanied by the written document and is not meant to be a standalone notebook. Please reference the written text to find further information and explanations of the steps and plots produced here.</p>
 <p>This work was based off of the <a href="https://keras.io/examples/keras_recipes/bayesian_neural_networks/">Keras Bayesian Neural Networks tutorial</a>. Note that this tutorial uses specific versions of packages that are compatible with Keras 2.0, as Keras version 3 (at the time of development) did not support the tensorflow probabilistic layers. The import statements note the correct versions. We also provide a yml file which forces Keras 2 if you would like to run locally. Additionally, the Keras tutorial is set up for regression, and so this notebook altered the tutorial to be compatible for classification tasks.</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/e6lqjTUAvmI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<section id="important-notes-read-before-running" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="important-notes-read-before-running"><span class="header-section-number">6.1</span> Important Notes (Read Before Running)</h2>
-<section id="python-versioning" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="python-versioning"><span class="header-section-number">6.1.1</span> Python Versioning</h3>
+<section id="important-notes-read-before-running" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="important-notes-read-before-running"><span class="header-section-number">7.1</span> Important Notes (Read Before Running)</h2>
+<section id="python-versioning" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="python-versioning"><span class="header-section-number">7.1.1</span> Python Versioning</h3>
 <p>This code is only compatible with Python 3.10, which is no longer the default version loaded by Colab. We have included the instructions on how to force the notebook to use Python 3.10, to ensure there are no errors related to version incompatabilties.</p>
 </section>
-<section id="code-order" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="code-order"><span class="header-section-number">6.1.2</span> Code Order</h3>
+<section id="code-order" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="code-order"><span class="header-section-number">7.1.2</span> Code Order</h3>
 <p>The code in this tutorial is intended to be run start to finish in order. A user must also read the initial sections to properly load in the data before attempting to “Run All”. Functions are defined in the section where they are first called in, and may be called again during additional sections without being re-defined in those sections. Therefore if you wish to run only a portion of this code make sure to run all the function defining code blocks of previous sections to ensure all required functions have been defined.</p>
 </section>
-<section id="colab-vs-jupyter" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="colab-vs-jupyter"><span class="header-section-number">6.1.3</span> Colab vs Jupyter</h3>
+<section id="colab-vs-jupyter" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="colab-vs-jupyter"><span class="header-section-number">7.1.3</span> Colab vs Jupyter</h3>
 <p>This tutorial was constructed so that every step can be run within the Google Colab environment to take advantage of the computing resources it provides. We highly recommend users who are new to Python use the option of running in Colab as it negates the need to have Python and the associated packages configured on their local machines. Therefore this is the default option of the code. However, we do recognize that for more advanced users a local workflow may be preferred, so we have included instructions for how to adapt this script to run locally if desired.</p>
 </section>
-<section id="how-to-run-this-notebook-on-colab---default-setting" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="how-to-run-this-notebook-on-colab---default-setting"><span class="header-section-number">6.1.4</span> How to Run This Notebook on Colab - Default setting</h3>
+<section id="how-to-run-this-notebook-on-colab---default-setting" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="how-to-run-this-notebook-on-colab---default-setting"><span class="header-section-number">7.1.4</span> How to Run This Notebook on Colab - Default setting</h3>
 <hr>
 <ol type="1">
 <li>Upload the recommened files using the code block below</li>
@@ -646,8 +652,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="how-to-run-this-notebook-on-local" class="level3" data-number="6.1.5">
-<h3 data-number="6.1.5" class="anchored" data-anchor-id="how-to-run-this-notebook-on-local"><span class="header-section-number">6.1.5</span> How to Run This Notebook on Local</h3>
+<section id="how-to-run-this-notebook-on-local" class="level3" data-number="7.1.5">
+<h3 data-number="7.1.5" class="anchored" data-anchor-id="how-to-run-this-notebook-on-local"><span class="header-section-number">7.1.5</span> How to Run This Notebook on Local</h3>
 <p>This notebook can be run locally on your machine IF you have a GPU and are at an intermediate Python programming level, otherwise you will need to use Google Colab. We suggest all users first use the Google Colab as the environment can be tricky to set up on local machines, and it is already set up here for you. The figures and numbers in the accompanying text will match the model files available for preloading with Colab. If you retrain the models (as is necessary within the Jupyter option), you will get slightly different statistics and figures when compared to the text due to some internal randomness in Keras. 1. Download: 1. the provided yml file and install to your local computer 2. the provided csv files that contain the data needed 3. Create your anaconda environment using the yml file 4. Import the anaconda environment into jupyter using these commands in the anaconda prompt: 5. conda install -c anaconda ipykernel 6. python -m ipykernel install –user –name=firstEnv 5. Update the pathway to the directory containing all csv files below 6. Set colab_jupyter_flag to “j”</p>
 <p>⭐ Decision point: Would you like to run this code in colab or in a jupyter notebook on your local machine?</p>
 <div id="4ed43a05-ec1d-45cd-8d48-c55d4708826e" class="cell">
@@ -664,8 +670,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="frequently-asked-questions" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="frequently-asked-questions"><span class="header-section-number">6.2</span> Frequently Asked Questions</h2>
+<section id="frequently-asked-questions" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="frequently-asked-questions"><span class="header-section-number">7.2</span> Frequently Asked Questions</h2>
 <p>This section contains more in depth explanations regarding the code itself and how to work with it.</p>
 <p><strong>How do I upload the supporting files (input data, pre trained models etc) to the Colab enviroment?</strong> 1. Once the notebook has loaded on the left hand side of your screen will be a list of icons the bottom being a file that says “file”. Click there to open the Files menu. 2. Identify the directory labeled “content” and drag and drop any files (input data, saved model files etc) needed for the run here. 3. When you first open the menu, content may not be an option, click on the directory labeled “..” to reveal more directories.</p>
 <p><strong>Where do I find the file path to assign to the variable “data_dir”?</strong> 1. Navigate to directory containing the input files using the file menu to the left. 2. Hover the cursor over the directory you need the path to point to and click the three dots that appear to the right of the directory name. 4. When the drop down menu appears click “Copy path” 5. Navigate to the box where “data_dir” is set. Under the section How to Run this Notebook in Colab. And use the keyboard command ctrl+v to paste wihtin the quotes after the r. Keyboard shortcut MUST be used. Right click drop down will not have a paste option.</p>
@@ -679,8 +685,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You may receive an error message from Colab saying you have run out of your allotted GPU time. This notebook does not require connection to a GPU to run. On the top right hand side of the note box is an arrow next to the words RAM and Disk. Clicking on the arrow opens a drop down with the option “Change runtime type”. Opening that menu will show an option for Hardware accelerator. Select the CPU option and hit save. You should no longer receive GPU run time error messages.</p>
 <p><strong>Crashed?</strong></p>
 <p>Some users may encounter runtime timeouts or crashes near the end of the notebook when using Google Colab. If this occurs, we recommend using the Jupyter version of the notebook or utilizing the provided pretrained model files when working in Colab.</p>
-<section id="running-this-notebook-without-training-models" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="running-this-notebook-without-training-models"><span class="header-section-number">6.2.1</span> Running this Notebook without Training Models</h3>
+<section id="running-this-notebook-without-training-models" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="running-this-notebook-without-training-models"><span class="header-section-number">7.2.1</span> Running this Notebook without Training Models</h3>
 <p>Although the primary purpose of this code is to train a deep learning model from scratch, we recognize that a user may not wish to retrain their models every time they start a new session. Included in this code are directions for how to export a trained model so that it will be saved after a run is exited, as well as how to modify the code to import in these model files and bypass the code blocks that initiate model training. For convenience we have included sample model files so a user exploring this tutorial for the first time may bypass model training altogether. However, turning off model training is not the recommended way to interact with the tutorial. The outputs generated by Keras as it trains models are informative and offer valuable context to deepen your understanding of the models themselves.</p>
 <p>⭐Decision point: Would you like to run this code from “scratch” or with a pretrained model?</p>
 <div id="Afz7F-Csehn2" class="cell">
@@ -717,8 +723,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="colab-specific-installations" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="colab-specific-installations"><span class="header-section-number">6.3</span> Colab Specific Installations</h2>
+<section id="colab-specific-installations" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="colab-specific-installations"><span class="header-section-number">7.3</span> Colab Specific Installations</h2>
 <p>Do not run these if running locally in a Jupyter notebook.</p>
 <div id="tU-jE6dWRw2o" class="cell">
 <details open="" class="code-fold">
@@ -777,8 +783,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7"></a>  <span class="op">!</span> pip install shap</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<section id="import-statements" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="import-statements"><span class="header-section-number">6.3.1</span> Import Statements</h3>
+<section id="import-statements" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="import-statements"><span class="header-section-number">7.3.1</span> Import Statements</h3>
 <p>From here onwards, everything is compatible in both Jupyter and Colab.</p>
 <div id="gCO5PsxBSM-j" class="cell">
 <details open="" class="code-fold">
@@ -826,13 +832,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="case-study-a" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="case-study-a"><span class="header-section-number">6.4</span> Case Study A</h2>
+<section id="case-study-a" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="case-study-a"><span class="header-section-number">7.4</span> Case Study A</h2>
 <p><strong>Case Study A: Pre-screening VIIRS active fire data to highlight potential false positives using BNN.</strong></p>
 <p>This study uses a point prediction BNN model, which outputs a single probability score for each detection, indicating the likelihood it is a true positive. Applying a classification threshold to this score yields a binary indicator (true/false positive), primarily for use in pre-screening VIIRS data to identify and remove likely false positives.</p>
 <p><strong>Goal:</strong> The goal of the supervised Bayesian neural network developed in Case Study A is to predict whether a hotspot identified by a satellite-based active fire detection product corresponds to an actual fire on the ground. Note that the training and validation loss will be plotted individually after training each model, but all results (loss curves, confusion matrices, etc.) are presented at the end of the case study in the “Results” section.</p>
-<section id="define-epochs" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="define-epochs"><span class="header-section-number">6.4.1</span> Define epochs</h3>
+<section id="define-epochs" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="define-epochs"><span class="header-section-number">7.4.1</span> Define epochs</h3>
 <div id="8d5b1842-0501-4128-b1c4-dcd950b0a53b" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -841,11 +847,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="model-one" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="model-one"><span class="header-section-number">6.4.2</span> Model One</h3>
+<section id="model-one" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="model-one"><span class="header-section-number">7.4.2</span> Model One</h3>
 <p>Model One closely follows the original Keras tutorial and does not include any hyperparameter tuning. You do not need to run the original Keras tutorial as a prerequiste to this notebook, as we repeat the necessary information here. It uses “raw” input data, defined here as data obtained directly from FIRMS, with no preprocessing beyond the basic steps outlined in Section 2.2. The purpose of this model is to serve as a baseline, demonstrating model performance without additional optimization or customization.</p>
-<section id="importing-and-preparing-the-data" class="level4" data-number="6.4.2.1">
-<h4 data-number="6.4.2.1" class="anchored" data-anchor-id="importing-and-preparing-the-data"><span class="header-section-number">6.4.2.1</span> Importing and preparing the data</h4>
+<section id="importing-and-preparing-the-data" class="level4" data-number="7.4.2.1">
+<h4 data-number="7.4.2.1" class="anchored" data-anchor-id="importing-and-preparing-the-data"><span class="header-section-number">7.4.2.1</span> Importing and preparing the data</h4>
 <p>The notebook expects that the data has been downloaded from source and undergone basic processing steps before beginning this tutorial. See Section 2.2 for further details. We used a 80/20 ratio to split the complete input data set into separate training and testing data sets respectively.</p>
 <div id="6a52b8db-4e96-4846-afb6-75c0f9e0317d" class="cell">
 <details open="" class="code-fold">
@@ -895,8 +901,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="create-and-train-model" class="level4" data-number="6.4.2.2">
-<h4 data-number="6.4.2.2" class="anchored" data-anchor-id="create-and-train-model"><span class="header-section-number">6.4.2.2</span> Create and train model</h4>
+<section id="create-and-train-model" class="level4" data-number="7.4.2.2">
+<h4 data-number="7.4.2.2" class="anchored" data-anchor-id="create-and-train-model"><span class="header-section-number">7.4.2.2</span> Create and train model</h4>
 <p>All of the model training criteria we defined in section 3.3 of the manuscript were set during this section of the code.</p>
 <div id="c22e2812-0ee2-4999-9455-4445f49f55f9" class="cell">
 <details open="" class="code-fold">
@@ -1036,8 +1042,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---skip-model-training" class="level4" data-number="6.4.2.3">
-<h4 data-number="6.4.2.3" class="anchored" data-anchor-id="help-box---skip-model-training"><span class="header-section-number">6.4.2.3</span> Help Box - Skip model training</h4>
+<section id="help-box---skip-model-training" class="level4" data-number="7.4.2.3">
+<h4 data-number="7.4.2.3" class="anchored" data-anchor-id="help-box---skip-model-training"><span class="header-section-number">7.4.2.3</span> Help Box - Skip model training</h4>
 <p>By setting the variable “read_in_file” to True at the beginning of the code, the user activates sections of the code provided to allow the time intensive model training steps to be skipped. It is assumed that if a user is activating these sections of the code they have uploaded the appropriately named files to the same directory that the input data is stored in. File names are set by default to call the sample files that have provided with this tutorial.</p>
 <div id="x7dd1v0feMGx" class="cell">
 <details open="" class="code-fold">
@@ -1077,8 +1083,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---saving-model-files" class="level4" data-number="6.4.2.4">
-<h4 data-number="6.4.2.4" class="anchored" data-anchor-id="help-box---saving-model-files"><span class="header-section-number">6.4.2.4</span> Help Box - Saving model files</h4>
+<section id="help-box---saving-model-files" class="level4" data-number="7.4.2.4">
+<h4 data-number="7.4.2.4" class="anchored" data-anchor-id="help-box---saving-model-files"><span class="header-section-number">7.4.2.4</span> Help Box - Saving model files</h4>
 <p>By default, once a model has been trained the notebook will export the model file and outputs from its training runs to files saved within the working directory. If the notebook is being run on Colab these files WILL NOT be saved once the Colab run is exited. If a user wishes to retain these files download them to a local directory. If these users does not care about these outputs, they will automatically be deleted when the notebook is closed. If the user is running local on Jupyter the files will have to be deleted by hand.</p>
 <div id="MwwgItnfSOBf" class="cell">
 <details open="" class="code-fold">
@@ -1125,8 +1131,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="compute-predictions" class="level4" data-number="6.4.2.5">
-<h4 data-number="6.4.2.5" class="anchored" data-anchor-id="compute-predictions"><span class="header-section-number">6.4.2.5</span> Compute predictions</h4>
+<section id="compute-predictions" class="level4" data-number="7.4.2.5">
+<h4 data-number="7.4.2.5" class="anchored" data-anchor-id="compute-predictions"><span class="header-section-number">7.4.2.5</span> Compute predictions</h4>
 <div id="485cfad3-0b55-4e25-ba33-3f49854c53d5" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1144,8 +1150,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="visualize-training-and-validation-loss" class="level4" data-number="6.4.2.6">
-<h4 data-number="6.4.2.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss"><span class="header-section-number">6.4.2.6</span> Visualize training and validation loss</h4>
+<section id="visualize-training-and-validation-loss" class="level4" data-number="7.4.2.6">
+<h4 data-number="7.4.2.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss"><span class="header-section-number">7.4.2.6</span> Visualize training and validation loss</h4>
 <p>Visualize the training and validation loss for Case Study A Model One.</p>
 <div id="XNmCzz21nqx1" class="cell">
 <details open="" class="code-fold">
@@ -1200,11 +1206,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="model-two" class="level3" data-number="6.4.3">
-<h3 data-number="6.4.3" class="anchored" data-anchor-id="model-two"><span class="header-section-number">6.4.3</span> Model Two</h3>
+<section id="model-two" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="model-two"><span class="header-section-number">7.4.3</span> Model Two</h3>
 <p>For the second model, we expanded on the tutorial code by including more advanced data preprocessing functions. When applying machine learning methods, it is crucial to understand the characteristics of the input data, including any inherent limitations and biases. In Model One, no effort was made to balance the classes, which can significantly impair the network’s ability to learn the key features needed to distinguish between true and false positives (Lee et al., 2016). In Model Two, we address this issue by balancing the dataset before training the model. To achieve this, we apply random undersampling to the original dataset, ensuring balance not only between classes (true and false positives) but also between satellite sources (NOAA-20 and Suomi-NPP). This helps prevent the model from learning satellite-specific noise patterns or resolution/angle biases instead of features associated with actual fire detections. Once data preprocessing was complete, model compiling and training were implemented in the same way as the previous model.</p>
-<section id="create-dataset" class="level4" data-number="6.4.3.1">
-<h4 data-number="6.4.3.1" class="anchored" data-anchor-id="create-dataset"><span class="header-section-number">6.4.3.1</span> Create dataset</h4>
+<section id="create-dataset" class="level4" data-number="7.4.3.1">
+<h4 data-number="7.4.3.1" class="anchored" data-anchor-id="create-dataset"><span class="header-section-number">7.4.3.1</span> Create dataset</h4>
 <div id="04cc9809-caed-41c6-8dc7-0895a59a4199" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1220,11 +1226,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="create-and-train-model-1" class="level4" data-number="6.4.3.2">
-<h4 data-number="6.4.3.2" class="anchored" data-anchor-id="create-and-train-model-1"><span class="header-section-number">6.4.3.2</span> Create and train model</h4>
+<section id="create-and-train-model-1" class="level4" data-number="7.4.3.2">
+<h4 data-number="7.4.3.2" class="anchored" data-anchor-id="create-and-train-model-1"><span class="header-section-number">7.4.3.2</span> Create and train model</h4>
 </section>
-<section id="help-box---skip-model-training-1" class="level4" data-number="6.4.3.3">
-<h4 data-number="6.4.3.3" class="anchored" data-anchor-id="help-box---skip-model-training-1"><span class="header-section-number">6.4.3.3</span> Help Box - Skip model training</h4>
+<section id="help-box---skip-model-training-1" class="level4" data-number="7.4.3.3">
+<h4 data-number="7.4.3.3" class="anchored" data-anchor-id="help-box---skip-model-training-1"><span class="header-section-number">7.4.3.3</span> Help Box - Skip model training</h4>
 <p>By setting the variable “read_in_file” to at the beginning of the code, the user activates sections of the code provided to allow the time intensive model training steps to be skipped. It is assumed that if a user is activating these sections of the code they have uploaded the appropriately named files to the same directory that the input data is stored in. File names are set by default to call the sample files that have provided with this tutorial.</p>
 <div id="kE7D9Ao1Y-Bv" class="cell">
 <details open="" class="code-fold">
@@ -1262,8 +1268,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---saving-model-files-1" class="level4" data-number="6.4.3.4">
-<h4 data-number="6.4.3.4" class="anchored" data-anchor-id="help-box---saving-model-files-1"><span class="header-section-number">6.4.3.4</span> Help Box - Saving model files</h4>
+<section id="help-box---saving-model-files-1" class="level4" data-number="7.4.3.4">
+<h4 data-number="7.4.3.4" class="anchored" data-anchor-id="help-box---saving-model-files-1"><span class="header-section-number">7.4.3.4</span> Help Box - Saving model files</h4>
 <p>By default, once a model has been trained the notebook will export the model file and outputs from its training runs to files saved within the working directory. If the notebook is being run on Colab these files WILL NOT be saved once the Colab run is exited. If a user wishes to retain these files download them to a local directory. If these users does not care about these outputs, they will automatically be delated when the notebook is closed. If the user is running local on Jupyter the files will have to be deleted by hand.</p>
 <div id="tUnVvAbaaBUj" class="cell">
 <details open="" class="code-fold">
@@ -1287,8 +1293,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="compute-predictions-1" class="level4" data-number="6.4.3.5">
-<h4 data-number="6.4.3.5" class="anchored" data-anchor-id="compute-predictions-1"><span class="header-section-number">6.4.3.5</span> Compute predictions</h4>
+<section id="compute-predictions-1" class="level4" data-number="7.4.3.5">
+<h4 data-number="7.4.3.5" class="anchored" data-anchor-id="compute-predictions-1"><span class="header-section-number">7.4.3.5</span> Compute predictions</h4>
 <div id="3ef23955-2549-4661-9c71-92fa45570446" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1297,8 +1303,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="visualize-training-and-validation-loss-1" class="level4" data-number="6.4.3.6">
-<h4 data-number="6.4.3.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss-1"><span class="header-section-number">6.4.3.6</span> Visualize training and validation loss</h4>
+<section id="visualize-training-and-validation-loss-1" class="level4" data-number="7.4.3.6">
+<h4 data-number="7.4.3.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss-1"><span class="header-section-number">7.4.3.6</span> Visualize training and validation loss</h4>
 <p>Visualize the training and validation loss for Case Study A Model Two.</p>
 <div id="_rpDmwjWqIEP" class="cell">
 <details open="" class="code-fold">
@@ -1308,12 +1314,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="model-three" class="level3" data-number="6.4.4">
-<h3 data-number="6.4.4" class="anchored" data-anchor-id="model-three"><span class="header-section-number">6.4.4</span> Model Three</h3>
+<section id="model-three" class="level3" data-number="7.4.4">
+<h3 data-number="7.4.4" class="anchored" data-anchor-id="model-three"><span class="header-section-number">7.4.4</span> Model Three</h3>
 <p>For the third model, we utilized the balanced data that was used in Model Two, and expanded the model-building code beyond what was provided by the tutorial to include hyperparameter tuning into the workflow.</p>
 </section>
-<section id="define-epochs-1" class="level3" data-number="6.4.5">
-<h3 data-number="6.4.5" class="anchored" data-anchor-id="define-epochs-1"><span class="header-section-number">6.4.5</span> Define epochs</h3>
+<section id="define-epochs-1" class="level3" data-number="7.4.5">
+<h3 data-number="7.4.5" class="anchored" data-anchor-id="define-epochs-1"><span class="header-section-number">7.4.5</span> Define epochs</h3>
 <p>Number of epochs used for trianing is increased.</p>
 <div id="iT4r8ekhFh-h" class="cell">
 <details open="" class="code-fold">
@@ -1321,8 +1327,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>epochs <span class="op">=</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<section id="create-and-train-model-2" class="level4" data-number="6.4.5.1">
-<h4 data-number="6.4.5.1" class="anchored" data-anchor-id="create-and-train-model-2"><span class="header-section-number">6.4.5.1</span> Create and train model</h4>
+<section id="create-and-train-model-2" class="level4" data-number="7.4.5.1">
+<h4 data-number="7.4.5.1" class="anchored" data-anchor-id="create-and-train-model-2"><span class="header-section-number">7.4.5.1</span> Create and train model</h4>
 <div id="d6bf24bd-cdd8-4c4a-bcd2-7d94cb0a3573" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1380,8 +1386,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---prior-distribution-explanation" class="level4" data-number="6.4.5.2">
-<h4 data-number="6.4.5.2" class="anchored" data-anchor-id="help-box---prior-distribution-explanation"><span class="header-section-number">6.4.5.2</span> Help Box - Prior distribution explanation</h4>
+<section id="help-box---prior-distribution-explanation" class="level4" data-number="7.4.5.2">
+<h4 data-number="7.4.5.2" class="anchored" data-anchor-id="help-box---prior-distribution-explanation"><span class="header-section-number">7.4.5.2</span> Help Box - Prior distribution explanation</h4>
 <p>The prior distribution helps control how much uncertainty and flexibility the model has in its weights. The distribution_param1 defines a standard normal prior where each weight has mean 0 and standard deviation of 1. This indicates that the weights should stay near zero. While the distribution_param2 does the same, but with a standard deviation of 20, indicating that the weights could vary widely.</p>
 <div id="6577f68f-5b6d-4180-a994-7bbf89b40fb8" class="cell">
 <details open="" class="code-fold">
@@ -1409,8 +1415,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---skip-model-training-and-tuning" class="level4" data-number="6.4.5.3">
-<h4 data-number="6.4.5.3" class="anchored" data-anchor-id="help-box---skip-model-training-and-tuning"><span class="header-section-number">6.4.5.3</span> Help Box - Skip model training and tuning</h4>
+<section id="help-box---skip-model-training-and-tuning" class="level4" data-number="7.4.5.3">
+<h4 data-number="7.4.5.3" class="anchored" data-anchor-id="help-box---skip-model-training-and-tuning"><span class="header-section-number">7.4.5.3</span> Help Box - Skip model training and tuning</h4>
 <p>This help box allows the user to skip both the training and the parameter tuning steps. In order to read in a saved model file, a user must pre-define structural hyperparameters of the model being inputted. The hyperparameters selected for the given sample data set may differ form the hyperparameters that would be selected for model’s trained on different input data. A comment has been added to the code indicated the line that a user must be updated to match the hyperparameters selected for the new dataset in order for the model files to load properly.</p>
 <p>By setting the variable “read_in_file” to at the beginning of the code, the user activates sections of the code provided to allow the time intensive model training steps to be skipped. It is assumed that if a user is activating these sections of the code they have uploaded the appropriately named files to the same directory that the input data is stored in. File names are set by default to call the sample files that have provided with this tutorial.</p>
 <div id="sfE1oCONdR6G" class="cell">
@@ -1471,8 +1477,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="evaluate-hyperparameters" class="level4" data-number="6.4.5.4">
-<h4 data-number="6.4.5.4" class="anchored" data-anchor-id="evaluate-hyperparameters"><span class="header-section-number">6.4.5.4</span> Evaluate Hyperparameters</h4>
+<section id="evaluate-hyperparameters" class="level4" data-number="7.4.5.4">
+<h4 data-number="7.4.5.4" class="anchored" data-anchor-id="evaluate-hyperparameters"><span class="header-section-number">7.4.5.4</span> Evaluate Hyperparameters</h4>
 <p>The different models generated during hyperparameter tuning will be qualitatively evaluated using a Parallel Coordinates Plot (PCP), a scatter plot comparing training loss to training validation, and a SHapley Additive exPlanations (SHAP) kernel explainer.</p>
 <div id="9b581131-53fb-4631-9dd7-295d4e7e7459" class="cell">
 <details open="" class="code-fold">
@@ -1665,8 +1671,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="model-selection" class="level4" data-number="6.4.5.5">
-<h4 data-number="6.4.5.5" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">6.4.5.5</span> Model selection</h4>
+<section id="model-selection" class="level4" data-number="7.4.5.5">
+<h4 data-number="7.4.5.5" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">7.4.5.5</span> Model selection</h4>
 <p>The hyperparameter combination that produced the model with the lowest validation loss value was selected to be used to evaluate against the models generated from other runs.</p>
 <div id="e1a6e8ec-4b17-4ef4-b7e2-c7312a3a445b" class="cell">
 <details open="" class="code-fold">
@@ -1680,8 +1686,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---saving-model-files-2" class="level4" data-number="6.4.5.6">
-<h4 data-number="6.4.5.6" class="anchored" data-anchor-id="help-box---saving-model-files-2"><span class="header-section-number">6.4.5.6</span> Help Box - Saving model files</h4>
+<section id="help-box---saving-model-files-2" class="level4" data-number="7.4.5.6">
+<h4 data-number="7.4.5.6" class="anchored" data-anchor-id="help-box---saving-model-files-2"><span class="header-section-number">7.4.5.6</span> Help Box - Saving model files</h4>
 <p>By default, once a model has been trained the notebook will export the model file and outputs from its training runs to files saved within the working directory. If the notebook is being run on Colab these files WILL NOT be saved once the Colab run is exited. If a user wishes to retain these files download them to a local directory. If these users does not care about these outputs, they will automatically be delated when the notebook is closed. If the user is running local on jupyter the files will have to be deleted by hand.</p>
 <div id="-ZRMYW6F26sK" class="cell">
 <details open="" class="code-fold">
@@ -1705,8 +1711,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="compute-predictions-2" class="level4" data-number="6.4.5.7">
-<h4 data-number="6.4.5.7" class="anchored" data-anchor-id="compute-predictions-2"><span class="header-section-number">6.4.5.7</span> Compute predictions</h4>
+<section id="compute-predictions-2" class="level4" data-number="7.4.5.7">
+<h4 data-number="7.4.5.7" class="anchored" data-anchor-id="compute-predictions-2"><span class="header-section-number">7.4.5.7</span> Compute predictions</h4>
 <div id="5c2ca55b-771f-400c-9cb4-2ee456517c15" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1715,8 +1721,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="visualize-training-and-validation-loss-2" class="level4" data-number="6.4.5.8">
-<h4 data-number="6.4.5.8" class="anchored" data-anchor-id="visualize-training-and-validation-loss-2"><span class="header-section-number">6.4.5.8</span> Visualize training and validation loss</h4>
+<section id="visualize-training-and-validation-loss-2" class="level4" data-number="7.4.5.8">
+<h4 data-number="7.4.5.8" class="anchored" data-anchor-id="visualize-training-and-validation-loss-2"><span class="header-section-number">7.4.5.8</span> Visualize training and validation loss</h4>
 <p>Visualize the training and validation loss for Case Study A Model Three.</p>
 <div id="0_MlIXultwW8" class="cell">
 <details open="" class="code-fold">
@@ -1726,8 +1732,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="results-all-models" class="level3" data-number="6.4.6">
-<h3 data-number="6.4.6" class="anchored" data-anchor-id="results-all-models"><span class="header-section-number">6.4.6</span> Results (All Models)</h3>
+<section id="results-all-models" class="level3" data-number="7.4.6">
+<h3 data-number="7.4.6" class="anchored" data-anchor-id="results-all-models"><span class="header-section-number">7.4.6</span> Results (All Models)</h3>
 <p>Class label threshold values were optimized for each model. This was done by generating class labels using a range of threshold values from 0.25 - 0.75. Threshold value vs performance metrics were plotted on a muti-line plot, and the threshold value that maximized the most metrics for a model was selected. An accuracy assessment was implemented for every model, producing: accuracy, precision, recall, and F1 scores for each set of labeled predictions. Using these optimized threshold values, confusion matrices were generated and finalized accuracy, precision and recall scores were reported. A precision recall curve was also generated for each model, so the choice of epoch for model training could be qualitatively evaluated.</p>
 <div id="37128841-0cc4-40a6-8cbf-6d69ced9de3c" class="cell">
 <details open="" class="code-fold">
@@ -1941,16 +1947,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="case-study-b" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="case-study-b"><span class="header-section-number">6.5</span> Case Study B</h2>
+<section id="case-study-b" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="case-study-b"><span class="header-section-number">7.5</span> Case Study B</h2>
 <p><strong>Case Study B: Assigning multi-source EO active fire confidence using a probabilistic BNN.</strong></p>
 <p>This study uses a probabilistic BNN architecture that outputs a full probability distribution for each detection, not just a single point estimate. The resulting output includes a quantified measure of uncertainty (the standard deviation), which allows for the calculation of a confidence interval around the predicted probability. Furthermore, this case study integrates data from multiple Earth Observation sources (MODIS and VIIRS) to assess the impact of sensor differences on classification uncertainty.</p>
 <p><strong>Goal:</strong> The goal of Case Study B is to evaluate the null hypothesis that the uncertainty in the classification of an observed hotspot does not differ significantly in regard to the observation source. Case Study B analyzes fire hotspots detected by the VIIRS 375 m active fire product from the Suomi NPP and NOAA-20 satellites, alongside hotspots from the MODIS active fire product onboard the Aqua and Terra satellites. The data preparation methods were consistent with that of Case Study A, with the primary difference being the inclusion of standard-quality MODIS hotspots in addition to those from VIIRS. Note that instead of plotting results individually after training each model (loss curves, confusion matrices, etc.) , we present all results at the end of the case study in the “Results” section.</p>
-<section id="model-one-1" class="level3" data-number="6.5.1">
-<h3 data-number="6.5.1" class="anchored" data-anchor-id="model-one-1"><span class="header-section-number">6.5.1</span> Model One</h3>
+<section id="model-one-1" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="model-one-1"><span class="header-section-number">7.5.1</span> Model One</h3>
 <p>Model One uses the same architecture and hyperparameter tuning steps as Case Study A Model Three, but was trained with the updated data to contain both VIIRS and MODIS.</p>
-<section id="create-dataset-1" class="level4" data-number="6.5.1.1">
-<h4 data-number="6.5.1.1" class="anchored" data-anchor-id="create-dataset-1"><span class="header-section-number">6.5.1.1</span> Create dataset</h4>
+<section id="create-dataset-1" class="level4" data-number="7.5.1.1">
+<h4 data-number="7.5.1.1" class="anchored" data-anchor-id="create-dataset-1"><span class="header-section-number">7.5.1.1</span> Create dataset</h4>
 <div id="b5df4c04-333d-4eaf-a654-e5bfd82ff564" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1965,11 +1971,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="create-and-train-model-3" class="level4" data-number="6.5.1.2">
-<h4 data-number="6.5.1.2" class="anchored" data-anchor-id="create-and-train-model-3"><span class="header-section-number">6.5.1.2</span> Create and train model</h4>
+<section id="create-and-train-model-3" class="level4" data-number="7.5.1.2">
+<h4 data-number="7.5.1.2" class="anchored" data-anchor-id="create-and-train-model-3"><span class="header-section-number">7.5.1.2</span> Create and train model</h4>
 </section>
-<section id="help-box---skip-model-training-and-tuning-1" class="level4" data-number="6.5.1.3">
-<h4 data-number="6.5.1.3" class="anchored" data-anchor-id="help-box---skip-model-training-and-tuning-1"><span class="header-section-number">6.5.1.3</span> Help Box - Skip model training and tuning</h4>
+<section id="help-box---skip-model-training-and-tuning-1" class="level4" data-number="7.5.1.3">
+<h4 data-number="7.5.1.3" class="anchored" data-anchor-id="help-box---skip-model-training-and-tuning-1"><span class="header-section-number">7.5.1.3</span> Help Box - Skip model training and tuning</h4>
 <p>Additional note if using your own input data. This help box allows the user to skip both the training and the parameter tuning steps. In order to read in a saved model file, a user must pre-define structural hyperparameters of the model being inputted. The hyperparameters selected for the given sample data set may differ form the hyperparameters that would be selected for model’s trained on different input data. A comment has been added to the code indicated the line that a user must be updated to match the hyperparameters selected for the new dataset in order for the model files to load properly.</p>
 <p>By setting the variable “read_in_file” to at the beginning of the code, the user activates sections of the code provided to allow the time intensive model training steps to be skipped. It is assumed that if a user is activating these sections of the code they have uploaded the appropriately named files to the same directory that the input data is stored in. File names are set by default to call the sample files that have provided with this tutorial.</p>
 <div id="7wM8ouddX416" class="cell">
@@ -2053,8 +2059,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---saving-model-files-3" class="level4" data-number="6.5.1.4">
-<h4 data-number="6.5.1.4" class="anchored" data-anchor-id="help-box---saving-model-files-3"><span class="header-section-number">6.5.1.4</span> Help Box - Saving model files</h4>
+<section id="help-box---saving-model-files-3" class="level4" data-number="7.5.1.4">
+<h4 data-number="7.5.1.4" class="anchored" data-anchor-id="help-box---saving-model-files-3"><span class="header-section-number">7.5.1.4</span> Help Box - Saving model files</h4>
 <p>By default, once a model has been trained the notebook will export the model file and outputs from its training runs to files saved within the working directory. If the notebook is being run on Colab these files WILL NOT be saved once the Colab run is exited. If a user wishes to retain these files download them to a local directory. If these users does not care about these outputs, they will automatically be delated when the notebook is closed. If the user is running local on Jupyter the files will have to be deleted by hand.</p>
 <div id="EdURS5u-c4ki" class="cell">
 <details open="" class="code-fold">
@@ -2078,8 +2084,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="compute-predictions-3" class="level4" data-number="6.5.1.5">
-<h4 data-number="6.5.1.5" class="anchored" data-anchor-id="compute-predictions-3"><span class="header-section-number">6.5.1.5</span> Compute predictions</h4>
+<section id="compute-predictions-3" class="level4" data-number="7.5.1.5">
+<h4 data-number="7.5.1.5" class="anchored" data-anchor-id="compute-predictions-3"><span class="header-section-number">7.5.1.5</span> Compute predictions</h4>
 <div id="63032735-fa6d-4841-a3af-d77702a9b61c" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -2087,8 +2093,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="visualize-training-and-validation-loss-3" class="level4" data-number="6.5.1.6">
-<h4 data-number="6.5.1.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss-3"><span class="header-section-number">6.5.1.6</span> Visualize training and validation loss</h4>
+<section id="visualize-training-and-validation-loss-3" class="level4" data-number="7.5.1.6">
+<h4 data-number="7.5.1.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss-3"><span class="header-section-number">7.5.1.6</span> Visualize training and validation loss</h4>
 <p>Visualize the training and validation loss for Case Study B Model One.</p>
 <div id="_ZraZnTzQkJr" class="cell">
 <details open="" class="code-fold">
@@ -2098,11 +2104,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="model-two-1" class="level3" data-number="6.5.2">
-<h3 data-number="6.5.2" class="anchored" data-anchor-id="model-two-1"><span class="header-section-number">6.5.2</span> Model Two</h3>
+<section id="model-two-1" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="model-two-1"><span class="header-section-number">7.5.2</span> Model Two</h3>
 <p>Model Two introduces a new architecture, a probabilistic Bayesian neural network (BNN), which outputs predictive distributions rather than single point estimates. From these distributions, we extract the mean as the predicted value and the standard deviation as a measure of model uncertainty. These predictions were grouped based on the source of the original observation (MODIS or VIIRS), and a Student’s t-test was performed to compare the mean standard deviation between groups. A statistically significant result would suggest that the model’s uncertainty differs depending on the data source. To further explore this, we generated histograms of the standard deviations for each group to visualize their distributions.</p>
-<section id="create-and-train-model-4" class="level4" data-number="6.5.2.1">
-<h4 data-number="6.5.2.1" class="anchored" data-anchor-id="create-and-train-model-4"><span class="header-section-number">6.5.2.1</span> Create and train model</h4>
+<section id="create-and-train-model-4" class="level4" data-number="7.5.2.1">
+<h4 data-number="7.5.2.1" class="anchored" data-anchor-id="create-and-train-model-4"><span class="header-section-number">7.5.2.1</span> Create and train model</h4>
 <div id="1d8117dd-f77f-4c4f-b9b8-fed61422254f" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -2138,8 +2144,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---negative-log-likelihood-explanation" class="level4" data-number="6.5.2.2">
-<h4 data-number="6.5.2.2" class="anchored" data-anchor-id="help-box---negative-log-likelihood-explanation"><span class="header-section-number">6.5.2.2</span> Help Box - Negative Log-Likelihood Explanation</h4>
+<section id="help-box---negative-log-likelihood-explanation" class="level4" data-number="7.5.2.2">
+<h4 data-number="7.5.2.2" class="anchored" data-anchor-id="help-box---negative-log-likelihood-explanation"><span class="header-section-number">7.5.2.2</span> Help Box - Negative Log-Likelihood Explanation</h4>
 <p>The output of our model is a probability distribution, not a point estimate. In order to understand how likely it is that our model explains the “true data,” we use the negative log-likelihood as our loss function.</p>
 <div id="82857b93-0f51-40f4-88bd-002562bd1b42" class="cell">
 <details open="" class="code-fold">
@@ -2149,8 +2155,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---skip-model-training-2" class="level4" data-number="6.5.2.3">
-<h4 data-number="6.5.2.3" class="anchored" data-anchor-id="help-box---skip-model-training-2"><span class="header-section-number">6.5.2.3</span> Help Box - Skip model training</h4>
+<section id="help-box---skip-model-training-2" class="level4" data-number="7.5.2.3">
+<h4 data-number="7.5.2.3" class="anchored" data-anchor-id="help-box---skip-model-training-2"><span class="header-section-number">7.5.2.3</span> Help Box - Skip model training</h4>
 <p>By setting the variable “read_in_file” to at the begining of the code, the user activates sections of the code provided to allow the time intensive model training steps to be skipped. It is assumed that if a user is activating these sections of the code they have uploaded the approrpiately named files to the same directory that the input data is stored in. File names are set by default to call the sample files that have provided with this tutorial.</p>
 <div id="gw5wZuBEe41x" class="cell">
 <details open="" class="code-fold">
@@ -2188,8 +2194,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="help-box---saving-model-files-4" class="level4" data-number="6.5.2.4">
-<h4 data-number="6.5.2.4" class="anchored" data-anchor-id="help-box---saving-model-files-4"><span class="header-section-number">6.5.2.4</span> Help Box - Saving model files</h4>
+<section id="help-box---saving-model-files-4" class="level4" data-number="7.5.2.4">
+<h4 data-number="7.5.2.4" class="anchored" data-anchor-id="help-box---saving-model-files-4"><span class="header-section-number">7.5.2.4</span> Help Box - Saving model files</h4>
 <p>By default, once a model has been trained the notebook will export the model file and outputs from its training runs to files saved within the working directory. If the notebook is being run on Colab these files WILL NOT be saved once the Colab run is exited. If a user wishes to retain these files download them to a local directory. If these users does not care about these outputs, they will automatically be delated when the notebook is closed. If the user is running local on jupyter the files will have to be deleted by hand.</p>
 <div id="A2dEb4r5g5t-" class="cell">
 <details open="" class="code-fold">
@@ -2213,8 +2219,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="compute-predictions-4" class="level4" data-number="6.5.2.5">
-<h4 data-number="6.5.2.5" class="anchored" data-anchor-id="compute-predictions-4"><span class="header-section-number">6.5.2.5</span> Compute predictions</h4>
+<section id="compute-predictions-4" class="level4" data-number="7.5.2.5">
+<h4 data-number="7.5.2.5" class="anchored" data-anchor-id="compute-predictions-4"><span class="header-section-number">7.5.2.5</span> Compute predictions</h4>
 <div id="b8133e9a-9b65-4c31-bf2d-67e6afc29582" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -2234,8 +2240,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="visualize-training-and-validation-loss-4" class="level4" data-number="6.5.2.6">
-<h4 data-number="6.5.2.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss-4"><span class="header-section-number">6.5.2.6</span> Visualize training and validation loss</h4>
+<section id="visualize-training-and-validation-loss-4" class="level4" data-number="7.5.2.6">
+<h4 data-number="7.5.2.6" class="anchored" data-anchor-id="visualize-training-and-validation-loss-4"><span class="header-section-number">7.5.2.6</span> Visualize training and validation loss</h4>
 <p>Visualize the training and validation loss for Case Study B Model Two.</p>
 <div id="rk3OkdY3Ri1x" class="cell">
 <details open="" class="code-fold">
@@ -2245,8 +2251,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="results-all-models-1" class="level3" data-number="6.5.3">
-<h3 data-number="6.5.3" class="anchored" data-anchor-id="results-all-models-1"><span class="header-section-number">6.5.3</span> Results (All Models)</h3>
+<section id="results-all-models-1" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="results-all-models-1"><span class="header-section-number">7.5.3</span> Results (All Models)</h3>
 <div id="9333dae0-68b1-45ed-b13c-ebad91bea744" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -2434,8 +2440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
-<section id="hypothesis-review" class="level3" data-number="6.5.4">
-<h3 data-number="6.5.4" class="anchored" data-anchor-id="hypothesis-review"><span class="header-section-number">6.5.4</span> Hypothesis review</h3>
+<section id="hypothesis-review" class="level3" data-number="7.5.4">
+<h3 data-number="7.5.4" class="anchored" data-anchor-id="hypothesis-review"><span class="header-section-number">7.5.4</span> Hypothesis review</h3>
 <div id="6d0796cb-3f95-4d26-9a91-fa702142f097" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -2927,12 +2933,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../../05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html" class="pagination-link" aria-label="Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../../07_Transfer_Learning/index.html" class="pagination-link" aria-label="Transfer Learning">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transfer Learning</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Transfer Learning</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
