@@ -14,6 +14,7 @@ author:
     affiliations:
       - name: University of San Francisco
       - name: Spatial Informatics Group
+date: "6/1/2026"
 ---
 
 # Introduction {.unnumbered}
