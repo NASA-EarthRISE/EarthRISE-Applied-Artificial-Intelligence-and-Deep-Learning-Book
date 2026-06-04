@@ -1,20 +1,4 @@
----
-author:
-  - name: Tim Mayer
-    orcid: 0000-0001-9489-9392
-    affiliations:
-      - name: NASA - EarthRISE
-      - name: The University of Alabama in Huntsville
-  - name: Biplov Bhandari
-    orcid: 0000-0001-6169-8236
-    affiliations:
-      - name: Earth Resources Technology
-  - name: David Saah
-    orcid: 0000-0001-9999-1219
-    affiliations:
-      - name: University of San Francisco
-      - name: Spatial Informatics Group
----
+
 
 # Introduction {.unnumbered}
 Editors
