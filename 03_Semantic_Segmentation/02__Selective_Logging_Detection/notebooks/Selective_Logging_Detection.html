@@ -521,6 +521,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       
   
     
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/https://doi.org/10.5281/zenodo.20547803">https://doi.org/10.5281/zenodo.20547803</a>
+      </p>
+    </div>
+  </div>
   </div>
   
 
@@ -528,6 +536,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>How to cite this chapter:</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://doi.org/10.5281/zenodo.20547803"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20547803.svg" class="img-fluid figure-img"></a></p>
+<figcaption>DOI</figcaption>
+</figure>
+</div>
+<p>Yupanqui, O., &amp; Quispe, M. (2026). Selective Logging Detection with Deep Learning and Very-High Resolution Imagery. Zenodo. https://doi.org/10.5281/zenodo.20547803</p>
+<p><strong>Part of:</strong> <a href="https://doi.org/10.5281/zenodo.20547797"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg" class="img-fluid" alt="DOI"></a><br>
+Mayer, T., Bhandari, B., &amp; Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. https://doi.org/10.5281/zenodo.20547797</p>
+</div>
+</div>
+</div>
 <p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">View on GitHub</a></p>
 <section id="understanding-the-selective-logging-activity" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="understanding-the-selective-logging-activity"><span class="header-section-number">3.1</span> Understanding the selective logging activity</h2>
@@ -557,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This section presents a simple workflow for processing satellite data on the Google Earth Engine (GEE) platform and exporting it to an optimized format (TFRecord) to Google Drive. It should be noted that all sections in this application example have been developed to run on Google Colab (free version), using CPUs for reference data export and inference (Part I and Part III), and GPUs for model training (Part II). Therefore, we recommend using this platform for execution. If you wish to run it locally, we suggest using Visual Studio Code, after installing the <a href="https://marketplace.visualstudio.com/items?itemName=Google.colab">Google Colab VS Code Extension</a>.</p>
 <p>All the files needed to implement this application example are available on <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/02__Selective_Logging_Detection">GitHub</a>. In addition, the benchmark data used can be found on <a href="https://zenodo.org/records/19614389">Zenodo</a>. We recommend downloading and reviewing its contents to better understand the data structure or, if you prefer, proceeding directly to model training (Part II). However, it is not necessary to download it to run this section (Part I), as it includes the process of exporting the reference data from scratch directly to Google Drive. The complete export of the reference data takes approximately 1 hour and 20 minutes and generates a set of files with a total size of approximately 17 MB.</p>
 <p>To avoid future complications and as a good practice, create the main working folder named <code>DL_Book</code> before running the main code. This folder should be located in the main storage path; in our case, on Google Drive.</p>
-<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:18201,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364126875,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="af5726d3-592e-4df5-8147-a0d31bf38937">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:18201,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364126875,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="af5726d3-592e-4df5-8147-a0d31bf38937">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># We are going to connect Google Drive with Google Colab</span></span>
@@ -565,7 +592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3"></a>drive.mount(<span class="st">'/content/drive'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-7" class="cell">
+<div id="cell-8" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Next, we create the main working folder</span></span>
@@ -574,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Additionally, print the available computational resources in Google Colab to understand the characteristics of the environment in which the notebook will run.</p>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:454,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364141201,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="12338dd3-7597-459d-a661-0d9d34208bdd">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:454,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364141201,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="12338dd3-7597-459d-a661-0d9d34208bdd">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">print</span>(<span class="st">"─── Google Colab resources report ───"</span>)</span>
@@ -596,14 +623,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-exploration" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="data-exploration"><span class="header-section-number">3.2.2</span> Data exploration</h3>
 <p>First, we will import the official <a href="https://developers.google.com/earth-engine/guides/python_install">Earth Engine library</a> in <strong>Python</strong>, for the data visualization and processing, using <code>import</code></p>
-<div id="cell-12" class="cell">
+<div id="cell-13" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> ee</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Because the Earth Engine API requires a personal account, we will proceed to authenticate our account and initialize Earth Engine. When we run the following cell, a link will appear, where we must provide authorizations. Note that we have to introduce our <strong>project ID</strong> in <code>ee.Initialize()</code>.</p>
-<div id="cell-14" class="cell">
+<div id="cell-15" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>ee.Authenticate()</span>
@@ -612,14 +639,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Finally, we will import another important library called <a href="https://geemap.org/">Geemap</a>, which will allow us to visualize the data using <a href="https://github.com/jupyter-widgets/ipyleaflet">ipyleaflet</a>. If we do not have <strong>geemap</strong>, we can download it using the <code>!pip install</code> command.</p>
-<div id="cell-16" class="cell">
+<div id="cell-17" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> geemap</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Using the Earth Engine API we can visualize the data using python and geemap. We will load a very high resolution (0.5 m) SkySat satellite image as well as the collected training data (polygons).</p>
-<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:14,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364206758,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="109be765-cb15-425f-ad0a-fde0d8cfcac9">
+<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:14,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364206758,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="109be765-cb15-425f-ad0a-fde0d8cfcac9">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>img <span class="op">=</span> ee.Image(<span class="st">'projects/ACCA-SERVIR/Colaboraton/Skysat_Fatima'</span>) <span class="co"># This imports the SkySat image as an ee.Image()</span></span>
@@ -627,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>The <strong>Geemap library</strong> is very useful for visualizing our data.</p>
-<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1969,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364211415,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="6ad2df62-17a5-4d61-e3c6-5ca4c1216a49">
+<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1969,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364211415,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="6ad2df62-17a5-4d61-e3c6-5ca4c1216a49">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>Map <span class="op">=</span> geemap.Map(center <span class="op">=</span> (<span class="op">-</span><span class="fl">9.653</span>, <span class="op">-</span><span class="fl">74.198</span>), zoom <span class="op">=</span> <span class="dv">15</span>) <span class="co"># This creates a map using ipyleaflet</span></span>
@@ -637,7 +664,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will also print the amount of polygons that we have.</p>
-<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:120,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364215589,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="4ea51bfb-52cd-4e33-8dde-771d56f0fe78">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:120,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364215589,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="4ea51bfb-52cd-4e33-8dde-771d56f0fe78">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">print</span>(polygons.size().getInfo()) <span class="co"># The .size() method retrieves the amount of polygons in our feature collection, .getInfo() brings the response to the client synchronously</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -656,14 +683,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Our database consists of polygons, which all have a string attribute called <strong>tipo</strong> (type in english), which is not numeric. We will create a function to create an attribute called <strong>class</strong> with the value of 1 in our feature collection. If this exercise were a multiclass segmentation, more types besides <strong>tala</strong> (logging) would be expected.</p>
 <p>We will print the attributes of the first polygon. Note that it is advisable to have attributes that refer to the image used in the digitalization of the polygons.</p>
 <p><em>Notice the attributes at the end</em>.</p>
-<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:120,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364220585,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="a4bcdc0c-4ff0-4079-e348-09d5bd5d550a">
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:120,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364220585,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="a4bcdc0c-4ff0-4079-e348-09d5bd5d550a">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">print</span>(polygons.first().getInfo())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>This creates the function to create an attribute called <strong>class</strong> with the value of 1. Since all of our polygons are logging, a filter won’t be needed.</p>
-<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:12,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364224151,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="613ddaa0-5184-413f-cf2e-78bb768d6daf">
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:12,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364224151,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="613ddaa0-5184-413f-cf2e-78bb768d6daf">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> add1(f):</span>
@@ -671,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will print the first feature in our collection, notice the presence of the new attribute created.</p>
-<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:690,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364227732,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="2d7799d3-cb1a-4bfe-d9e7-eaf799c54f60">
+<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:690,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364227732,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="2d7799d3-cb1a-4bfe-d9e7-eaf799c54f60">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>polygons <span class="op">=</span> polygons.<span class="bu">map</span>(add1) <span class="co"># With the .map() method we apply a function to each feature inside of our feature collection</span></span>
@@ -683,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="3.2.3.2" class="anchored" data-anchor-id="create-the-class-band-of-the-image"><span class="header-section-number">3.2.3.2</span> Create the “class” band of the image</h4>
 <p>As we mentioned before, we need an image label. For this, we will create a band, using our processed polygons. This image label will have two pixel values, 1 for logging and 0 for everything else (background).</p>
 <p>To do this, we will create a function that <a href="https://developers.google.com/earth-engine/apidocs/ee-featurecollection-reducetoimage">transforms</a> our feature collection (polygons) to a binary image.</p>
-<div id="cell-30" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:15,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364239138,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="99f3ac62-8465-4a92-d491-a4a38e580bd6">
+<div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:15,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364239138,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="99f3ac62-8465-4a92-d491-a4a38e580bd6">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> createLabel (feature):</span>
@@ -692,21 +719,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Now, we apply the createLabel() function and add the created band to our SkySat image.</p>
-<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:13,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364240825,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="e2f4208f-a960-472c-91a9-6cbbb001a267">
+<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:13,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364240825,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="e2f4208f-a960-472c-91a9-6cbbb001a267">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>img <span class="op">=</span> img.addBands(createLabel(polygons)) <span class="co"># The .addBands() method adds an image (or band) to another image</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Again, we print the bands in the image. Note the existence of the band <strong>class</strong>, which will become the label, in this case logging.</p>
-<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:370,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364243110,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="7413d510-a9aa-4022-cd76-868203da60c9">
+<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:370,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364243110,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="7413d510-a9aa-4022-cd76-868203da60c9">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="bu">print</span>(img.bandNames().getInfo())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Let’s visualize our newly created label! You will see that it is very similar to the previou ipyleaflet map. But now our label is an image, instead of a feature collection (polygons).</p>
-<div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1746,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364247595,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="b20bb8f2-d5c1-4d46-aff6-8f65afcc0e4c">
+<div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1746,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364247595,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="b20bb8f2-d5c1-4d46-aff6-8f65afcc0e4c">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>Map <span class="op">=</span> geemap.Map(center <span class="op">=</span> (<span class="op">-</span><span class="fl">9.653</span>, <span class="op">-</span><span class="fl">74.198</span>), zoom <span class="op">=</span> <span class="dv">15</span>) <span class="co"># This creates a map using ipyleaflet</span></span>
@@ -727,7 +754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For the third method, we will transform our SkySat image (including the class band). In this neighborhood image, each pixel is a matrix representation of its neighboring pixels. This allows that when exporting a point, the neighborhood its contained as attributes (tensors).</p>
 <p>For this, a kernel or matrix is needed. To build a kernel we will use a repetition of lists, with the value of 1 (this value is the weight that each component of the matrix will have).</p>
 <p>Note that the size of the kernel will be the size of each exported patch. It is very important that the patch size/kernel contains the object that we want to detect. For this exercise we will export image patches with a size of 128 by 128.</p>
-<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:11,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364253030,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="f7648ec2-eb1c-4e23-9cd2-9e28fd7a67af">
+<div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:11,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364253030,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="f7648ec2-eb1c-4e23-9cd2-9e28fd7a67af">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>row <span class="op">=</span> ee.List.repeat(<span class="dv">1</span>, <span class="dv">128</span>) <span class="co"># This creates a list of 128 numbers with the value of 1</span></span>
@@ -736,21 +763,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can print our kernel. Note that it has a size of 128 pixels wide, and 128 pixels height.</p>
-<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:152,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364256789,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="bac6f999-309c-47c5-c3c4-7724479e95e8">
+<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:152,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364256789,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="bac6f999-309c-47c5-c3c4-7724479e95e8">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="bu">print</span>(kernel.getInfo())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Using the kernel, we can perform the image transformation, with the <code>.neightborhoodToArray()</code> method.</p>
-<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:42,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364259417,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="bf4be640-f473-4ee5-93ce-56ce13882bb9">
+<div id="cell-43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:42,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364259417,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="bf4be640-f473-4ee5-93ce-56ce13882bb9">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>img_final <span class="op">=</span> img.neighborhoodToArray(kernel, <span class="dv">0</span>) <span class="co"># The value of 0 adds the background value to the masked pixels</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Finally, we will select the predictor variables, which will be part of the export and training.</p>
-<div id="cell-44" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:22,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364262261,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="e14c8b1a-d7d4-4424-a66a-118aced0d128">
+<div id="cell-45" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:22,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364262261,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="e14c8b1a-d7d4-4424-a66a-118aced0d128">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>featureNames <span class="op">=</span> [<span class="st">'b1'</span>, <span class="st">'b2'</span>, <span class="st">'b3'</span>, <span class="st">'b4'</span>, <span class="st">'class'</span>]</span>
@@ -758,7 +785,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>To verify, we will print the bands.</p>
-<div id="cell-46" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:119,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364265188,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="49c35306-284b-44f0-ca3a-ad5612cdf287">
+<div id="cell-47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:119,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364265188,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="49c35306-284b-44f0-ca3a-ad5612cdf287">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="bu">print</span>(img_final.bandNames().getInfo())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -773,7 +800,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For example, a widely used ratio in machine learning, due to its alignment with the Pareto principle, is the 80:20 split between training and testing. From this basic configuration, multiple variations have emerged, most of which now incorporate a validation set. These ratios depend, to a large extent, on factors such as the amount of available data, the heterogeneity of the information, and the complexity of the problem being modeled. Consequently, it is possible to adjust the proportion of data allocated to training by reducing or expanding the validation and test sets according to the specific needs of the analysis, but, generally, without straying too far from the most common ratios, such as 80:20 (training/testing) or its variant, 70:20:10 (training/validation/testing). An inappropriate data splitting strategy can compromise the proper evaluation of the model and lead to unreliable performance estimates.</p>
 <p>In this workflow, the dataset (polygons) will be divided into training (70%), validation (20%), and test (10%) subsets. Similar proportions have been used in other studies; for example, <a href="https://www.sciencedirect.com/science/article/pii/S0034425724004061?via%3Dihub">Slagter et al.&nbsp;(2024)</a> used a 75/15/10 (training/validation/testing) split in the monitoring of forest roads in the Republic of the Congo.</p>
 <p>First, we will assign a random value to each polygon using the <code>.randomColumn()</code> method. Then, we will sort the dataset based on this random value and split the polygons into training, validation, and test subsets.</p>
-<div id="cell-48" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:220,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364299698,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="21f35fbb-d8c1-47e5-904a-cb2e485666b8">
+<div id="cell-49" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:220,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364299698,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="21f35fbb-d8c1-47e5-904a-cb2e485666b8">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Create random column</span></span>
@@ -786,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can see that the first polygon now has an additional attribute called <strong>random</strong>, which is used to reproducibly sort the dataset. Based on this ordered random value, we then split the dataset into training, validation, and test subsets using exact proportions.</p>
-<div id="cell-50" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:21,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364307111,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="98a42adf-45e6-4aea-d9e4-6a39eb1feabd">
+<div id="cell-51" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:21,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364307111,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="98a42adf-45e6-4aea-d9e4-6a39eb1feabd">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Get total number of polygons</span></span>
@@ -807,7 +834,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can verify the number of training, validation and test polygons.</p>
-<div id="cell-52" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:994,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364324201,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="a4b3716a-523a-47de-961d-a73c21bf75d0">
+<div id="cell-53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:994,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364324201,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="a4b3716a-523a-47de-961d-a73c21bf75d0">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="bu">print</span>(training_pols.size().getInfo())</span>
@@ -816,7 +843,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will create lists in which the polygons will be included.</p>
-<div id="cell-54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:19,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364355956,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="52c74336-6d49-4e0f-8a2c-cd483b410f57">
+<div id="cell-55" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:19,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364355956,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="52c74336-6d49-4e0f-8a2c-cd483b410f57">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>trainingList <span class="op">=</span> training_pols.toList(training_pols.size())</span>
@@ -826,7 +853,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Finally, the data is exported to <strong>Google Drive</strong> (it can also be exported to Google Cloud Platform or an asset). A loop will be used to export a random pixel of our processed image, that intersects with the polygons, into a TFRecord file (this is the sampling). Remember that each pixel of the image is a representation of its neighborhood (128 by 128), so we are exporting patches as a TFRecord. We will use the <code>for</code> statement for this.</p>
 <p><em>Notice that we are exporting our data into a Google Drive folder called DL_Book, feel free to change it but remember the path</em>.</p>
-<div id="cell-56" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:45652,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774365103286,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="6bab48b7-1f5a-4d97-fde2-2f3e0a469bf5">
+<div id="cell-57" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:45652,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774365103286,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="6bab48b7-1f5a-4d97-fde2-2f3e0a469bf5">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(training_pols.size().getInfo()):</span>
@@ -916,7 +943,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-collection-and-initial-settings" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="data-collection-and-initial-settings"><span class="header-section-number">3.3.1</span> Data collection and initial settings</h3>
 <p>We are going to connect <strong>Google Drive</strong> with <strong>Google Colab</strong> to manage the exported data (patches) from the previous section.</p>
-<div id="cell-60" class="cell">
+<div id="cell-61" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
@@ -924,7 +951,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>If you have not completed Part I, you will need to download the benchmark data, which is stored at: Yupanqui Carrasco, O., &amp; Quispe Sedano, M. J. (2026). Selective Logging Detection with Deep Learning and Very-High Resolution Imagery_TF_records [Data set]. Zenodo. https://doi.org/10.5281/zenodo.19614389</p>
-<div id="cell-62" class="cell">
+<div id="cell-63" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> os</span>
@@ -992,7 +1019,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Let’s see the contents of our Drive folder using the linux command <code>!ls</code>.</p>
 <p><em>Note: This command only runs on Google Colab</em>.</p>
-<div id="cell-64" class="cell">
+<div id="cell-65" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="op">!</span>ls <span class="op">-</span>F <span class="op">/</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>DL_Book</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1006,7 +1033,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Those files are our exported patches from the previous section. If you do not wish to run the previous section , you can create a copy from the original folder. Click <a href="https://drive.google.com/drive/folders/1v30R0-2j5WkgekRxYUw4PHS04c2N9YJR">here</a> to go to the Drive folder. Make sure to modify the paths to match the current section.</p>
 <p>We will also import some libraries that will contribute to the training of the model. This section was built and tested using Google Colab, so the libraries used correspond to the latest version available on this platform at the time of construction and testing (e.g.&nbsp;Tensorflow 2.19.0). Check the latest versions of TensorFlow <a href="https://www.tensorflow.org/">here</a>.</p>
-<div id="cell-66" class="cell">
+<div id="cell-67" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
@@ -1014,21 +1041,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p><a href="https://numpy.org/">Numpy</a> is another important library, that allow us to perform operations with tensors, matrices and vectors.</p>
-<div id="cell-68" class="cell">
+<div id="cell-69" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We will also import <a href="https://matplotlib.org/">Matplotlib</a>, for the data visualization.</p>
-<div id="cell-70" class="cell">
+<div id="cell-71" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Finally, we will also import <a href="https://docs.python.org/3/library/os.html">os</a>, to read files and manipulate paths.</p>
-<div id="cell-72" class="cell">
+<div id="cell-73" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">import</span> os</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1039,7 +1066,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">3.3.2</span> Data visualization</h3>
 <p>First, we will analyze a single TFRecord file, if we explore the folder where the files were downloaded, we can see that they are “compressed” with a special <code>.gz</code> format, Tensorflow allows the use of this special format, without the need to decompress the files.</p>
 <p>We will start by creating a variable called record, which will include in a container <code>tf.data.TFRecordDataset()</code> the path of an exported file. <em>Please verify that the export path is the same, in the previous example we exported our data to the DL_Book folder in Google Drive</em></p>
-<div id="cell-74" class="cell">
+<div id="cell-75" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>record <span class="op">=</span> tf.data.TFRecordDataset(<span class="st">'/content/drive/MyDrive/DL_Book/testing_0.tfrecord.gz'</span>, compression_type <span class="op">=</span> <span class="st">'GZIP'</span>) <span class="co"># This loads our TFRecord into a TFRecordDataset container</span></span>
@@ -1048,7 +1075,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can see that the TFRecordDataset does not show all the information, we cannot know the <code>shape</code> of the tensors, even though we know based on the previous code that they have a 128 by 128 shape. We also cannot know the <code>dtype</code> (the data type) neither the number of elements that our TFRecordDataset has.</p>
 <p>Because TFRecords are binary storage files, we must transform them into a readable structure. To do this, we will create a dictionary that contains the bands that we exported in the previous code and assign each band a shape with <code>tf.io.FixedLenFeature()</code> and a data type.</p>
-<div id="cell-76" class="cell">
+<div id="cell-77" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>features <span class="op">=</span> {</span>
@@ -1061,7 +1088,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will create a function to read a serialized example into the structure defined by the dictionary created above.</p>
-<div id="cell-78" class="cell">
+<div id="cell-79" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">def</span> parse_tfrecord(example_proto):</span>
@@ -1069,7 +1096,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will apply the newly created function to our TFRecordDataset using the <code>.map()</code> function, which allows iterating through each element of our TFRecordDataset.</p>
-<div id="cell-80" class="cell">
+<div id="cell-81" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>serialized <span class="op">=</span> record.<span class="bu">map</span>(parse_tfrecord) <span class="co"># With .map() we loop through each element of our TFRecordDataset</span></span>
@@ -1078,7 +1105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can see that the newly created object named <code>serialized</code> has a different form than the original TFRecordDataset. This new object has the structure defined by the dictionary created.</p>
 <p>To display the numerical values of each of the bands of our new object, we will use the function <code>get_single_element()</code>.</p>
-<div id="cell-82" class="cell">
+<div id="cell-83" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>element <span class="op">=</span> serialized.get_single_element() <span class="co"># With .get_single_element() we retrieve an individual element from our TFRecordDataset</span></span>
@@ -1086,7 +1113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>The result is a dictionary, from which we can extract each band using <code>get()</code> followed by the <code>key</code>, which in this case is the name of the exported band.</p>
-<div id="cell-84" class="cell">
+<div id="cell-85" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>b1 <span class="op">=</span> element.get(<span class="st">'b1'</span>)</span>
@@ -1098,7 +1125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can now view the numerical values ​​of any exported band. We can also transform the objects to a numpy array using the <code>numpy()</code> function.</p>
 <p>Now, we will create an “image” to be able to visualize it, concatenating the values ​​of the created bands, into a single tensor.</p>
-<div id="cell-86" class="cell">
+<div id="cell-87" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>img <span class="op">=</span> tf.constant([b3.numpy(), b2.numpy(), b1.numpy()]) <span class="co"># This appends each band to a constant tensor</span></span>
@@ -1106,14 +1133,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>If we visualize the shape of the tensor, we see that it has the shape of (3, 128, 128), in order to plot it we must transform the shape to (128, 128, 3). To do this we will use the <code>.transpose()</code> function. In addition, since Matplotlib does only tolerate values from 0 to 255, we will normalize our image (tensor) with <code>.divide()</code>.</p>
-<div id="cell-88" class="cell">
+<div id="cell-89" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>imgRGB <span class="op">=</span> tf.transpose(tf.divide(img, <span class="dv">12000</span>), [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Now, we will plot the results using the matplotlib library. We will be able to contrast how the logging activity is visualized with a SkySat (0.5 m) image (on the left), and the hand-digitized label (on the right).</p>
-<div id="cell-90" class="cell">
+<div id="cell-91" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">15</span>, <span class="dv">15</span>))</span>
@@ -1145,7 +1172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>epochs</code>: This is the amount of training cycles through all of the samples in the training dataset. This is how many times the model will see the entire training data before completing training. We will set this value to 10.</li>
 <li><code>learning_rate</code>: This controls how much the model’s parameters are adjusted during each training step. This will be set to 0.1.</li>
 </ul>
-<div id="cell-93" class="cell">
+<div id="cell-94" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>bands <span class="op">=</span> [<span class="st">'b1'</span>, <span class="st">'b2'</span>, <span class="st">'b3'</span>, <span class="st">'b4'</span>]</span>
@@ -1183,7 +1210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="3.3.3.2" class="anchored" data-anchor-id="create-a-tfrecorddataset"><span class="header-section-number">3.3.3.2</span> Create a TFRecordDataset</h4>
 <p>TFRecordDataset are a collection of TFRecords, so they are very useful for storing large amounts of data, and are optimized to save memory.</p>
 <p>First, we will create a function called <code>.parse_tfrecord()</code>, which will perform the same functionality as in the data visualization, done previously. We will transform the structure of each TFRecord.</p>
-<div id="cell-95" class="cell">
+<div id="cell-96" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">def</span> parse_tfrecord(example_proto):</span>
@@ -1191,7 +1218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Second, a function called <code>.to_tuple()</code> will be created, which will convert the tensor dictionary to a tuple, with the scheme (inputs, outputs).</p>
-<div id="cell-97" class="cell">
+<div id="cell-98" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">def</span> to_tuple(inputs):</span>
@@ -1202,7 +1229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Third, a function will be created to read the tensors, this function will also apply the functions created previously: <code>.parse_tfrecord()</code> and <code>.to_tuple()</code>.</p>
-<div id="cell-99" class="cell">
+<div id="cell-100" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw">def</span> get_dataset(pattern):</span>
@@ -1214,7 +1241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will create 3 TFRecordDataset, which will contain our training, validation and test data set, respectively. To do this we will use functions, within each one there will be an object called <code>glob</code> that will indicate the path of the data sets.</p>
-<div id="cell-101" class="cell">
+<div id="cell-102" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="kw">def</span> get_patch_from_path(path, batch_size, buffer_size <span class="op">=</span> <span class="dv">1000</span>, shuffle <span class="op">=</span> <span class="va">False</span>, repeat <span class="op">=</span> <span class="va">False</span>):</span>
@@ -1230,7 +1257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>If we print the 3 sets of data we will see that the training and validation data we see are of type <code>RepeatDataset()</code>, that is, they are files that are constantly being generated, which based on the previous functions are being ordered randomly and the Outgoing data set has a size of 1 (based on batch size).</p>
-<div id="cell-103" class="cell">
+<div id="cell-104" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a><span class="bu">print</span>(training_data)</span>
@@ -1253,7 +1280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>This modified architecture allows a superior multi-scale feature extraction (due to the additional encoder and decoder levels). However, this comes with a cost, this architecture has much more parameters compared to the standard U-Net. This will negatively impact training and inference times.</p>
-<div id="cell-105" class="cell">
+<div id="cell-106" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">def</span> conv_block(input_tensor, num_filters):</span>
@@ -1305,7 +1332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now, we will define the model, using the created function <code>.get_model()</code> and compiling it.</p>
 <p>The output of our model will be single channel and binary (0 and 1) because we used a <code>sigmoid</code>activation function. Therefore, we will use the <code>BinaryCrossentropy</code> loss function since it is <a href="https://keras.io/api/losses/probabilistic_losses/">ideal for binary classifications</a>. In addition, we will use the <code>Adam</code> optimizer which is robust on both large and noisy data sets and is considered <a href="http://arxiv.org/abs/1412.6980">computationally efficient</a>.</p>
 <p>Finally, we will use the <code>IoU</code> as a metric as it is ideal for binary image classifications because it evaluates the intersection between prediction and actual values.</p>
-<div id="cell-107" class="cell">
+<div id="cell-108" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>model <span class="op">=</span> get_model()</span>
@@ -1316,7 +1343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Once the model is compiled, we can see the layers it has using the <code>.summary()</code> function.</p>
-<div id="cell-109" class="cell">
+<div id="cell-110" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1326,7 +1353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-training" class="level4" data-number="3.3.4.2">
 <h4 data-number="3.3.4.2" class="anchored" data-anchor-id="model-training"><span class="header-section-number">3.3.4.2</span> Model training</h4>
 <p>Once the model is defined, we will proceed to train it, adjusting it to the already processed data set, using the <code>.fit()</code> function. Feel free to change the parameters and use the GPU environment!</p>
-<div id="cell-111" class="cell">
+<div id="cell-112" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>history <span class="op">=</span> model.fit(</span>
@@ -1340,7 +1367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can plot the training results by epoch using matplotlib.</p>
-<div id="cell-113" class="cell">
+<div id="cell-114" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># Metrics graph</span></span>
@@ -1378,7 +1405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-evaluation" class="level4" data-number="3.3.4.3">
 <h4 data-number="3.3.4.3" class="anchored" data-anchor-id="model-evaluation"><span class="header-section-number">3.3.4.3</span> Model evaluation</h4>
 <p>Now, we will use the test dataset, reserved for this moment. We can get the total metrics for the entire test data set.</p>
-<div id="cell-117" class="cell">
+<div id="cell-118" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>evaluation <span class="op">=</span> model.evaluate(</span>
@@ -1389,7 +1416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can also apply the model to the test dataset, and graph the results.</p>
-<div id="cell-119" class="cell">
+<div id="cell-120" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>prediction <span class="op">=</span> model.predict(</span>
@@ -1400,7 +1427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>By running the following code block we can visualize 3 random images from our test data set, and the model predictions.</p>
-<div id="cell-121" class="cell">
+<div id="cell-122" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>np.random.seed(<span class="dv">42</span>)</span>
@@ -1431,14 +1458,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="3.3.4.4" class="anchored" data-anchor-id="save-the-model"><span class="header-section-number">3.3.4.4</span> Save the model</h4>
 <p>Once we have an adequate model based on the metrics used, we will proceed to save it.</p>
 <p>To do this we will use the <code>tf.keras.save_model()</code> function and we will have to specify the path to save the model.</p>
-<div id="cell-124" class="cell">
+<div id="cell-125" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a><span class="co"># If necessary</span></span>
 <span id="cb57-2"><a href="#cb57-2"></a><span class="op">!</span>mkdir <span class="op">/</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>DL_Book<span class="op">/</span>model<span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-125" class="cell">
+<div id="cell-126" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>modelDir <span class="op">=</span> <span class="st">'/content/drive/MyDrive/DL_Book/model/logging_model.keras'</span></span>
@@ -1461,7 +1488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Matplotlib.</li>
 </ul>
 <p>We will again import the <a href="https://www.tensorflow.org/">TensorFlow</a> library, to load our model and apply it.</p>
-<div id="cell-129" class="cell">
+<div id="cell-130" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
@@ -1469,21 +1496,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Also, <a href="https://numpy.org/">Numpy</a> for manipulating the tensors (patches). Note that TensorFlow has many built-in functions that have the same capabilities as Numpy. However, this notebook will use Numpy.</p>
-<div id="cell-131" class="cell">
+<div id="cell-132" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><a href="https://gdal.org/en/stable/">GDAL</a> is also a fundamental library, that allows us to save, export and manipulate rasters. It is also used in <a href="https://www.qgis.org/">QGIS</a> in many tools. Note that there are other libraries that can read satellite images such as <a href="https://rasterio.readthedocs.io/">Rasterio</a> and <a href="https://corteva.github.io/rioxarray/">Rioxarray</a>. However, GDAL is a core library that is used as a backend by these more modern packages.</p>
-<div id="cell-133" class="cell">
+<div id="cell-134" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a><span class="im">from</span> osgeo <span class="im">import</span> gdal</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Again, we will link our notebook with Google Drive. Note that there are different platforms to store models, such as <a href="https://huggingface.co/">Hugging Face</a>. However, we will work with Google Drive for its practicality.</p>
-<div id="cell-135" class="cell">
+<div id="cell-136" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
@@ -1491,7 +1518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>And finally, import <a href="https://matplotlib.org/">Matplotlib</a> for the visualization.</p>
-<div id="cell-137" class="cell">
+<div id="cell-138" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1501,7 +1528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-loading" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="model-loading"><span class="header-section-number">3.4.1</span> Model loading</h3>
 <p>If you have followed the previous steps, you will have your model stored already in Google Drive, we will load our model with the <code>tf.keras.models.load_model()</code> function.</p>
-<div id="cell-140" class="cell">
+<div id="cell-141" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a>modelDir <span class="op">=</span> <span class="st">'/content/drive/MyDrive/DL_Book/model/logging_model.keras'</span></span>
@@ -1509,21 +1536,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can visualize the structure of our loaded model and the amount of parameters in each layer.</p>
-<div id="cell-142" class="cell">
+<div id="cell-143" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a>model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Next, we will download a very-high resolution image from SkySat (0.5 m), we will use the <code>wget</code> linux command.</p>
-<div id="cell-144" class="cell">
+<div id="cell-145" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a><span class="op">!</span>wget <span class="op">--</span>no<span class="op">-</span>check<span class="op">-</span>certificate <span class="st">'https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/img/Skysat_20201017_ssc2_150055_COG_clip.tif'</span> <span class="op">-</span>O Skysat_20201017_ssc2_150055_COG_clip.tif</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Let’s visualize the downloaded image!</p>
-<div id="cell-146" class="cell">
+<div id="cell-147" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>img_path <span class="op">=</span> <span class="st">'Skysat_20201017_ssc2_150055_COG_clip.tif'</span></span>
@@ -1546,7 +1573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-application" class="level3" data-number="3.4.2">
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="model-application"><span class="header-section-number">3.4.2</span> Model application</h3>
 <p>We will define the input path of our image, and the desired output path.</p>
-<div id="cell-149" class="cell">
+<div id="cell-150" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a>img_path <span class="op">=</span> <span class="st">'Skysat_20201017_ssc2_150055_COG_clip.tif'</span></span>
@@ -1554,14 +1581,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>With <code>gdal.Open()</code> we can get important details about our image and use the <a href="https://gdal.org/en/latest/api/python/index.html">GDAL python API</a>.</p>
-<div id="cell-151" class="cell">
+<div id="cell-152" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>img <span class="op">=</span> gdal.Open(img_path, gdal.GA_ReadOnly)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We are interested in the pixel values, so we will read the image as an array. Since GDAL returns the image with the structure <strong>(Bands, Height, Width)</strong>, we will transpose our image to the following structure <strong>(Height, Width, Bands)</strong>.</p>
-<div id="cell-153" class="cell">
+<div id="cell-154" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>img_array <span class="op">=</span> img.ReadAsArray().transpose([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>])</span>
@@ -1569,7 +1596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Since our model is object-based, it operates according to patches, and our image must match its input size (in this case 128 by 128). We will add a zero padding to the borders of our image, to have compatible patch sizes. The following code calculates the amount of rows and columns to add with the 0 padding.</p>
-<div id="cell-155" class="cell">
+<div id="cell-156" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a><span class="bu">print</span>(<span class="st">'rows (heigth) to add with 0: '</span>, <span class="dv">128</span> <span class="op">-</span> img_array.shape[<span class="dv">0</span>] <span class="op">%</span> <span class="dv">128</span>)</span>
@@ -1577,7 +1604,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>This block of code will create a zero row padding, and append it to the original image.</p>
-<div id="cell-157" class="cell">
+<div id="cell-158" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a>row_padding <span class="op">=</span> np.zeros([<span class="dv">128</span> <span class="op">-</span> img_array.shape[<span class="dv">0</span>] <span class="op">%</span> <span class="dv">128</span>, img_array.shape[<span class="dv">1</span>], img_array.shape[<span class="dv">2</span>]])</span>
@@ -1586,7 +1613,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>This will add a zero column padding. Notice that the final size of the image is entirely divisible by the patch size (128).</p>
-<div id="cell-159" class="cell">
+<div id="cell-160" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>col_padding <span class="op">=</span> np.zeros([img_rdy.shape[<span class="dv">0</span>], <span class="dv">128</span> <span class="op">-</span> img_array.shape[<span class="dv">1</span>] <span class="op">%</span> <span class="dv">128</span>, img_array.shape[<span class="dv">2</span>]])</span>
@@ -1595,7 +1622,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will use some functions of the <a href="https://github.com/dovahcrow/patchify.py">Patchify</a> library. To extract patches of equal size from our input image, this function uses Numpy.</p>
-<div id="cell-161" class="cell">
+<div id="cell-162" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a><span class="co"># Patchification</span></span>
@@ -1633,7 +1660,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>This block of code uses the previously created function to extract our patches. Notice that by using <code>.reshape()</code> we are concatenating each patch and now we have an extra dimesion. Our structure now is (Batch, Height, Width, Band). In this case, the batch is the number of patches on which the model will be applied.</p>
-<div id="cell-163" class="cell">
+<div id="cell-164" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>patches <span class="op">=</span> patchification(img_rdy, [<span class="dv">128</span>, <span class="dv">128</span>, <span class="dv">4</span>], <span class="dv">128</span>) <span class="op">\</span></span>
@@ -1642,7 +1669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Finally, we apply our model to our structured patches.</p>
-<div id="cell-165" class="cell">
+<div id="cell-166" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a><span class="co"># Apply the model on the processed array</span></span>
@@ -1650,7 +1677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We will create another function, that unpatchifies our predictions.</p>
-<div id="cell-167" class="cell">
+<div id="cell-168" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a><span class="co"># Function to merge the patches</span></span>
@@ -1669,7 +1696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Notice the <code>.transpose()</code> function, that will restore the original shape used by GDAL (Band, Width, Height).</p>
-<div id="cell-169" class="cell">
+<div id="cell-170" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># The predictions must be reshaped to the same dimensions of the input image</span></span>
@@ -1679,7 +1706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Finally, we will load our predictions, and register its metadata to GDAL. The most important aspect in this step is the <strong>projection</strong>. It must match the input image. Otherwise, our image won’t have a location in the space.</p>
-<div id="cell-171" class="cell">
+<div id="cell-172" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># Now we will register a new image using GDAL</span></span>
@@ -1696,7 +1723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>We can visualize our predictions and the input image.</p>
-<div id="cell-173" class="cell">
+<div id="cell-174" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">25</span>, <span class="dv">25</span>))</span>
@@ -1727,7 +1754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="optional---cleaning-your-folder" class="level3" data-number="3.4.4">
 <h3 data-number="3.4.4" class="anchored" data-anchor-id="optional---cleaning-your-folder"><span class="header-section-number">3.4.4</span> Optional - cleaning your folder</h3>
 <p>Use the following code to clean the contents of your folder.</p>
-<div id="cell-178" class="cell">
+<div id="cell-179" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1"></a><span class="co">#!rm -rf /content/drive/MyDrive/DL_Book/*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

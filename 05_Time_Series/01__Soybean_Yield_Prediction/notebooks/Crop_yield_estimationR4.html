@@ -544,6 +544,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       
   
     
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/https://doi.org/10.5281/zenodo.20547807">https://doi.org/10.5281/zenodo.20547807</a>
+      </p>
+    </div>
+  </div>
   </div>
   
 
@@ -551,6 +559,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>How to cite this chapter:</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://doi.org/10.5281/zenodo.20547807"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20547807.svg" class="img-fluid figure-img"></a></p>
+<figcaption>DOI</figcaption>
+</figure>
+</div>
+<p>Zhang, C., &amp; Diao, C. (2026). Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction. Zenodo. https://doi.org/10.5281/zenodo.20547807</p>
+<p><strong>Part of:</strong> <a href="https://doi.org/10.5281/zenodo.20547797"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg" class="img-fluid" alt="DOI"></a><br>
+Mayer, T., Bhandari, B., &amp; Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. https://doi.org/10.5281/zenodo.20547797</p>
+</div>
+</div>
+</div>
 <p><a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.ipynb"><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid"> Run in Colab</a></p>
 <p><strong>Authors:</strong> Chishan Zhang, Chunyuan Diao</p>
 <section id="overview" class="level2" data-number="6.1">
@@ -649,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Temporal Generalization</strong>: Tests model robustness across different growing seasons</li>
 </ul>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/0mqivFOlF1k" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="53e572fd-dd11-4c8b-d8d7-fefd853565c3">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="53e572fd-dd11-4c8b-d8d7-fefd853565c3">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">"""</span></span>
@@ -731,7 +758,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-77"><a href="#cb1-77"></a><span class="bu">print</span>(tf.keras.__version__)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="cd5b4dac-e78e-4302-9015-99a8c060d77d">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="cd5b4dac-e78e-4302-9015-99a8c060d77d">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Google Drive mount is optional; skip when using local download_dir.</span></span>
@@ -827,7 +854,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="target-variable-y" class="level4" data-number="6.5.3.2">
 <h4 data-number="6.5.3.2" class="anchored" data-anchor-id="target-variable-y"><span class="header-section-number">6.5.3.2</span> Target Variable (Y)</h4>
 <p>The target variable for prediction (<code>Y_train.npy</code>, <code>Y_test.npy</code>) is: * <strong>County-Level Soybean Yield:</strong> * <em>Unit:</em> Bushels per acre (bu/ac). * <em>Significance:</em> This is the primary measure of agricultural productivity for soybeans. Accurate and timely yield prediction is crucial for farmers, policymakers, insurers, and commodity markets for planning, risk assessment, and economic forecasting.</p>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="53811d50-9179-4a36-f729-2aea450f1b6f">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="53811d50-9179-4a36-f729-2aea450f1b6f">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># --- Automatic Data Download and Extraction ---</span></span>
@@ -892,7 +919,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-60"><a href="#cb3-60"></a><span class="bu">print</span>(<span class="ss">f"Timesteps per sample: </span><span class="sc">{</span>X_train<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="225ad206-2f44-4fff-eff0-f55160864a78">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="225ad206-2f44-4fff-eff0-f55160864a78">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># --- Displaying a sample of the input data (X_train) ---</span></span>
@@ -914,7 +941,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.5.4" class="anchored" data-anchor-id="visualizing-input-feature-dynamics"><span class="header-section-number">6.5.4</span> Visualizing Input Feature Dynamics</h3>
 <p>To provide a more intuitive understanding of the input data (<code>X</code>) fed into our models, the plots below showcase the time series for three key predictors—EVI2, Maximum Temperature, and Precipitation—across the six phenological stages. These visualizations are for three randomly selected county-year samples from the training dataset and display the data in its <em>[Specify: ‘original (pre-normalization)’ OR ‘normalized’]</em> form.</p>
 <p>Observing these plots helps to: * Illustrate the temporal patterns of different environmental variables through the defined soybean growth stages. * Appreciate the sample-to-sample variability in these predictors. * Better understand the nature of the 3D input <code>(samples, timesteps, features)</code> that the LSTM and 1D-CNN models process. Each line in a subplot represents the sequence of values for one feature across the 6 phenological stages (timesteps) for one sample.</p>
-<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:732}}" data-outputid="2184ab17-963a-4dd5-eeee-7964408bb339">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:732}}" data-outputid="2184ab17-963a-4dd5-eeee-7964408bb339">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>data_to_sample_from <span class="op">=</span> X_train</span>
@@ -992,7 +1019,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-73"><a href="#cb5-73"></a>    <span class="bu">print</span>(<span class="st">"No samples to plot."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="5014014f-e0d3-46b6-cfc4-63d4d3b34dbc">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="5014014f-e0d3-46b6-cfc4-63d4d3b34dbc">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># === DATA NORMALIZATION FUNCTIONS ===</span></span>
@@ -1084,7 +1111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Model Rationale:</strong> LSTM networks excel at modeling sequential data with long-term dependencies, making them ideal for crop yield prediction where: - Early season conditions influence late season development - Critical growth stages occur at different times - Weather patterns show temporal autocorrelation</p>
 <p><strong>Architecture Details:</strong> - <strong>Input Layer</strong>: Accepts time series of shape (timesteps, features) - <strong>LSTM Layer</strong>: 100 hidden units with built-in memory mechanisms - <strong>Dense Layers</strong>: 100-unit ReLU layer followed by 2-unit output - <strong>Probabilistic Output</strong>: Learns both mean (μ) and uncertainty (σ) parameters</p>
 <p><strong>Training Configuration:</strong> - <strong>Loss Function</strong>: Negative Log-Likelihood (NLL) for probabilistic training - <strong>Optimizer</strong>: Adam with learning rate 1e-4 - <strong>Batch Size</strong>: 64 samples - <strong>Early Stopping</strong>: Monitors validation loss with patience=10</p>
-<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="39abee29-37bb-4e0f-f559-b1bdd4b94366">
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="39abee29-37bb-4e0f-f559-b1bdd4b94366">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># === PROBABILISTIC LSTM MODEL IMPLEMENTATION ===</span></span>
@@ -1286,7 +1313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-197"><a href="#cb7-197"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:416}}" data-outputid="92c22626-a933-41e8-a06d-37d89dc1d874">
+<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:416}}" data-outputid="92c22626-a933-41e8-a06d-37d89dc1d874">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># --- Plotting Training and Validation Loss (Full and Zoomed Views) ---</span></span>
@@ -1338,7 +1365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-47"><a href="#cb8-47"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:963}}" data-outputid="cdf35417-9352-4f65-84af-e37dd7e15265">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:963}}" data-outputid="cdf35417-9352-4f65-84af-e37dd7e15265">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> evaluate_model(model, X_test, Y_test, model_name<span class="op">=</span><span class="st">"Model"</span>):</span>
@@ -1461,7 +1488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-118"><a href="#cb9-118"></a>plot_predictions_with_uncertainty(Y_test, predictions)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="f8f67908-887d-4384-dd3a-f6c72a764838">
+<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="f8f67908-887d-4384-dd3a-f6c72a764838">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># === MODEL PERSISTENCE ===</span></span>
@@ -1480,7 +1507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Model Rationale:</strong> 1D CNNs are particularly effective for time series analysis because they: - Detect local temporal patterns and seasonal cycles - Require fewer parameters than LSTM networks - Process data more efficiently for shorter sequences - Capture translation-invariant patterns across the growing season</p>
 <p><strong>Architecture Design:</strong> - <strong>Multi-scale Feature Extraction</strong>: Three convolutional blocks with different receptive fields - <strong>Hierarchical Learning</strong>: Filters progress from 32→32→16 to learn features at multiple scales - <strong>Pooling Strategy</strong>: MaxPooling reduces temporal dimension while preserving important features - <strong>Probabilistic Head</strong>: Same as LSTM - outputs mean and uncertainty estimates</p>
 <p><strong>Key Differences from LSTM:</strong> - <strong>Computational Efficiency</strong>: Faster training and inference - <strong>Local Pattern Focus</strong>: Better at detecting short-term temporal signatures - <strong>Parameter Efficiency</strong>: Fewer trainable parameters than equivalent LSTM - <strong>Parallel Processing</strong>: Convolutions can be parallelized more effectively</p>
-<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="d4ef3132-cb44-4f0f-d3a0-38aef14ac932">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="d4ef3132-cb44-4f0f-d3a0-38aef14ac932">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
@@ -1596,7 +1623,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-111"><a href="#cb11-111"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6ea1e0ee-381e-4afe-f9d7-abaadacdd30d">
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="6ea1e0ee-381e-4afe-f9d7-abaadacdd30d">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Save the trained CNN model</span></span>
@@ -1605,7 +1632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-4"><a href="#cb12-4"></a><span class="bu">print</span>(<span class="ss">f"CNN model saved to: </span><span class="sc">{</span>cnn_save_path<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:416}}" data-outputid="c07db056-1382-4245-eadb-0961896172a4">
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:416}}" data-outputid="c07db056-1382-4245-eadb-0961896172a4">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># --- Plotting Training and Validation Loss (Full and Zoomed Views) ---</span></span>
@@ -1657,7 +1684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-47"><a href="#cb13-47"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:963}}" data-outputid="0df22cc5-f1a7-4a07-f1aa-e12d4a861a9f">
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:963}}" data-outputid="0df22cc5-f1a7-4a07-f1aa-e12d4a861a9f">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Evaluate CNN model</span></span>
@@ -1673,7 +1700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Model Rationale:</strong> Gaussian Processes provide a Bayesian approach to regression that: - Naturally quantifies uncertainty without architectural modifications - Works well with limited training data - Provides theoretical guarantees about uncertainty calibration - Serves as a strong baseline for comparison with neural networks</p>
 <p><strong>Key Advantages:</strong> - <strong>Natural Uncertainty</strong>: Uncertainty estimates are theoretically grounded - <strong>Non-parametric</strong>: Flexible model that adapts to data complexity - <strong>Interpretable</strong>: Kernel functions have clear mathematical meaning - <strong>Calibrated</strong>: Uncertainty estimates are typically well-calibrated</p>
 <p><strong>Implementation Notes:</strong> - <strong>Computational Complexity</strong>: O(n³) scaling requires subsampling for large datasets - <strong>Kernel Choice</strong>: RBF + White noise kernel for smooth trends with observation noise - <strong>Hyperparameter Optimization</strong>: Automatic optimization of kernel parameters - <strong>Data Preprocessing</strong>: Requires flattening of time series for traditional ML interface</p>
-<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="07121043-4138-4ab4-c1ef-e9e8eeb781fb">
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="07121043-4138-4ab4-c1ef-e9e8eeb781fb">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">### Gaussian Process Regression (GPR)</span></span>
@@ -1733,7 +1760,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-55"><a href="#cb15-55"></a><span class="bu">print</span>(<span class="ss">f"Log-marginal-likelihood: </span><span class="sc">{</span>gpr_model<span class="sc">.</span>log_marginal_likelihood_value_<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:911}}" data-outputid="aab78949-e9f6-4450-aeb0-ca5a554d8e6b">
+<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:911}}" data-outputid="aab78949-e9f6-4450-aeb0-ca5a554d8e6b">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Make predictions with uncertainty</span></span>
@@ -1809,7 +1836,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Identify Model Weaknesses</strong>: Which years or conditions challenge each model most?</li>
 </ul>
 <p><strong>Key Evaluation Aspects:</strong> - <strong>Year-by-Year Performance</strong>: R² and RMSE metrics for each test year - <strong>Visual Pattern Analysis</strong>: Scatter plots reveal model behavior and outliers</p>
-<div id="cell-31" class="cell">
+<div id="cell-32" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">def</span> plot_prediction_scatter(all_years_data, figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">20</span>)):</span>
@@ -1884,7 +1911,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-70"><a href="#cb17-70"></a>    <span class="cf">return</span> fig, axes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="2cec420b-eae0-49ec-ab87-a4bb53b0fe74">
+<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="2cec420b-eae0-49ec-ab87-a4bb53b0fe74">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># load the lstm model again</span></span>
@@ -1924,7 +1951,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-35"><a href="#cb18-35"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="dba264d1-9d28-436e-8025-5305ac03b01d">
+<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="dba264d1-9d28-436e-8025-5305ac03b01d">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># load the CNN model again</span></span>
@@ -2003,7 +2030,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 <p>The output is a list of importance scores, corresponding to each feature, indicating their relative contributions to the model’s predictive power on the given dataset and metric.</p>
-<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:310}}" data-outputid="da65d648-c02d-4871-ba25-bc9d4333cfb2">
+<div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:310}}" data-outputid="da65d648-c02d-4871-ba25-bc9d4333cfb2">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># load the whole data again</span></span>
@@ -2032,7 +2059,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-24"><a href="#cb20-24"></a>    model <span class="op">=</span> load_model(os.path.join(file_folder, <span class="st">'model_lstm.h5'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="d41b917f-bbf2-46fc-c912-58b345d2d51b">
+<div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="d41b917f-bbf2-46fc-c912-58b345d2d51b">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Set professional plotting parameters</span></span>
@@ -2167,7 +2194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Scientific Understanding:</strong> - <strong>Phenological Insights</strong>: Validate known critical periods (flowering, grain filling) - <strong>Climate Sensitivity</strong>: Understand when crops are most vulnerable to weather stress - <strong>Yield Formation</strong>: Quantify relative importance of different developmental stages</p>
 <p><strong>Model Interpretation</strong>: - <strong>Temporal Attention</strong>: Understand which time periods the model focuses on - <strong>Seasonal Patterns</strong>: Identify consistent vs.&nbsp;variable importance across the season - <strong>Data Collection Priority</strong>: Guide decisions about temporal resolution of monitoring</p>
 <p><strong>Methodology</strong>: Instead of permuting individual features, we permute <strong>entire time steps</strong>, disrupting the temporal relationships while preserving the feature distributions at each time point.</p>
-<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="1508a710-fe20-4f25-8b7e-d59662e4f6f9">
+<div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="1508a710-fe20-4f25-8b7e-d59662e4f6f9">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">def</span> timestep_importance(model, X, y, metric, n_repeats<span class="op">=</span><span class="dv">10</span>):</span>
@@ -2308,7 +2335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Spatial Pattern Analysis:</strong> - <strong>Regional Performance</strong>: How well does the model perform in different geographic areas? - <strong>Spatial Uncertainty Patterns</strong>: Are there geographic regions where the model is less confident? - <strong>Agricultural Zone Validation</strong>: Do predictions align with known agricultural productivity zones?</p>
 <p><strong>Temporal Consistency:</strong> - <strong>Year-to-Year Stability</strong>: How consistent are predictions across different growing seasons? - <strong>Climate Impact Visualization</strong>: Spatial patterns of model response to variable weather - <strong>Risk Assessment</strong>: Geographic identification of high-uncertainty areas for targeted monitoring</p>
 <p><strong>Visualization Features:</strong> - <strong>Choropleth Maps</strong>: County-level prediction and uncertainty visualization - <strong>Consistent Color Scales</strong>: Enable cross-year comparison - <strong>Uncertainty Quantification</strong>: Visual representation of model confidence</p>
-<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="53091a91-8a34-40cf-a7e3-40719c237021">
+<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="53091a91-8a34-40cf-a7e3-40719c237021">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">def</span> get_overall_ranges(df_all, years_range):</span>
@@ -2502,7 +2529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-189"><a href="#cb23-189"></a>    plt.close(fig_uncertainty)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="6873d0c5-900d-48d5-ab1a-0df6ad54d5af">
+<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="6873d0c5-900d-48d5-ab1a-0df6ad54d5af">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Load the LSTM model</span></span>
