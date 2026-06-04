@@ -10,6 +10,7 @@ author:
     affiliations:
       - name: Earth Resources Technology
   - name: David Saah
+    orcid: 0000-0001-9999-1219
     affiliations:
       - name: University of San Francisco
       - name: Spatial Informatics Group
@@ -164,4 +165,4 @@ Above all, we thank the readers and practitioners who engage with this material,
 
 <img src="Images/David_img_400_410.png" width="200"/>
 
-**David Saah** — *Bio forthcoming.*
+**David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> is Managing Principal and Co-founder of Spatial Informatics Group, Professor and Director of the Geospatial Analysis Lab at the University of San Francisco. Broadly trained as an environmental scientist, David is recognized as a global leader in geospatial analysis, remote sensing, wildfire science, and natural hazard modeling. He has authored dozens of peer-reviewed journal articles, book chapters, and technical reports, and is dedicated to the broad dissemination of his research through presentations, publications, and workshops.
