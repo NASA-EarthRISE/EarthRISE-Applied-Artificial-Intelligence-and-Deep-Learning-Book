@@ -68,6 +68,8 @@ format:
       header-includes:
         - \usepackage{graphicx}
         - \newenvironment{CSLReferences}[2]{}{}
+        - \usepackage{fvextra}
+        - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
 execute:
   enabled: false
