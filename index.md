@@ -1,14 +1,10 @@
-
-
 # Introduction {.unnumbered}
-Editors
-::: {.author-info}
-**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · NASA - EarthRISE · University of Alabama in Huntsville
 
-**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · Earth Resources Technology
+**Editors**
 
+**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · NASA - EarthRISE · University of Alabama in Huntsville<br>
+**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · Earth Resources Technology<br>
 **David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · University of San Francisco · Spatial Informatics Group
-:::
 
 <p style="font-size:0.85em; color:#404040;">
 First edition. Published electronically June 1st 2026 &nbsp;&nbsp; DOI: XXXXXXX
