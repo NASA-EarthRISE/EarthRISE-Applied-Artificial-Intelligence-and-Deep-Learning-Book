@@ -14,11 +14,10 @@ author:
     affiliations:
       - name: University of San Francisco
       - name: Spatial Informatics Group
-date: "6/1/2026"
 ---
 
 # Introduction {.unnumbered}
-
+Editors
 ::: {.author-info}
 **Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · NASA - EarthRISE · University of Alabama in Huntsville
 
