@@ -25,6 +25,7 @@ book:
 
   date: "6/1/2026"
   cover-image: Images/Book_Cover.png
+  site-url: https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/
   repo-url: https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
   repo-actions: [source, edit, issue]
   downloads: [pdf]
