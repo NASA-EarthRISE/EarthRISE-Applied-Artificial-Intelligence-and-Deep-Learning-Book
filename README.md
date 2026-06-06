@@ -76,22 +76,10 @@ This book is distributed under the terms of the [CC BY 4.0 License](https://crea
 
 This book abides by NASA's privacy and terms of use, available at [nasa.gov/privacy](https://www.nasa.gov/privacy/).
 
-<!-- zenodo-doi-injected -->
 ## Citation
 
-If you use this book or any chapter, please cite using the DOIs below.
-
-**Book:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg)](https://doi.org/10.5281/zenodo.20547797)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg)](https://doi.org/10.5281/zenodo.20547797)
 
 > Mayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. https://doi.org/10.5281/zenodo.20547797
 
-### Chapter DOIs
-
-| # | Chapter | DOI | Cite as |
-|---|---------|-----|---------|
-| 3.1 | [Crop Mapping: Rice Mapping in Bhutan](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/01__Crop_Mapping) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547799.svg)](https://doi.org/10.5281/zenodo.20547799) | Bhandari, B., & Mayer, T. (2026). Crop Mapping: Rice Mapping in Bhutan. Zenodo. https://doi.org/10.5281/zenodo.20547799 |
-| 3.2 | [Selective Logging Detection with Deep Learning and Very-High Resolution Imagery](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/02__Selective_Logging_Detection) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547803.svg)](https://doi.org/10.5281/zenodo.20547803) | Yupanqui, O., & Quispe, M. (2026). Selective Logging Detection with Deep Learning and Very-High Resolution Imagery. Zenodo. https://doi.org/10.5281/zenodo.20547803 |
-| 3.3 | [Clay Deforestation Segmentation Model](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547805.svg)](https://doi.org/10.5281/zenodo.20547805) | Poortinga, A., dela Torre, D. M., Saisaward, C., Wafiq, M. W., Weerapanpisit, P., Teck, V., Suaruang, W., & Khamnoi, W. (2026). Clay Deforestation Segmentation Model. Zenodo. https://doi.org/10.5281/zenodo.20547805 |
-| 5.1 | [Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/05_Time_Series/01__Soybean_Yield_Prediction) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547807.svg)](https://doi.org/10.5281/zenodo.20547807) | Zhang, C., & Diao, C. (2026). Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction. Zenodo. https://doi.org/10.5281/zenodo.20547807 |
-| 6.1 | [Understanding Active Fire Detection Uncertainty with Bayesian Neural Networks](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/06_Eco_Process_Sim/01__Active_Fire_Detection) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547811.svg)](https://doi.org/10.5281/zenodo.20547811) | Harvie, J. E., Zammit, K. E., Engle, B. T., Oliver, J. A., Johnston, L. M., Cantin, A. S., & Crowley, M. A. (2026). Understanding Active Fire Detection Uncertainty with Bayesian Neural Networks. Zenodo. https://doi.org/10.5281/zenodo.20547811 |
-| 10.1 | [Evaluating Foundation Models Trained with Earth Observation Data](https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547814.svg)](https://doi.org/10.5281/zenodo.20547814) | Thomas, L., Leong, W. J., Wiesmann, D., & Ranjan, S. (2026). Evaluating Foundation Models Trained with Earth Observation Data. Zenodo. https://doi.org/10.5281/zenodo.20547814 |
+For individual chapter DOIs and BibTeX, see the [How to Cite](https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/citing.html) page.
