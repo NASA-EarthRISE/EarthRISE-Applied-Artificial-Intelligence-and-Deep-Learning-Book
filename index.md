@@ -7,7 +7,7 @@
 **David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · University of San Francisco · Spatial Informatics Group
 
 <p style="font-size:0.85em; color:#404040;">
-First edition. Published electronically June 1st 2026 &nbsp;&nbsp; DOI: XXXXXXX
+First edition. Published electronically June 1st 2026 &nbsp;&nbsp; DOI: [10.5281/zenodo.20547797](https://doi.org/10.5281/zenodo.20547797)
 </p>
 
 <p style="font-size:0.85em; color:#404040;">
@@ -27,11 +27,7 @@ National Space Science and Technology Center<br>
 
 ---
 
-<div style="max-width:50%;">
-
-![The Lena River, some 2,800 miles (4,400 km) long, is one of the largest rivers in the world. The Lena Delta Reserve is the most extensive protected wilderness area in Russia. It is an important refuge and breeding ground for many species of Siberian wildlife. This image was acquired by Landsat 7's Enhanced Thematic Mapper plus (ETM+) sensor on July 27, 2000. This is a false-color composite image made using shortwave infrared, infrared, and red wavelengths. Image provided by the USGS EROS Data Center Satellite Systems Branch. This image is part of the Landsat Earth as Art series.](Images/Lena_river.png)
-
-</div>
+![The Lena River, some 2,800 miles (4,400 km) long, is one of the largest rivers in the world. The Lena Delta Reserve is the most extensive protected wilderness area in Russia. It is an important refuge and breeding ground for many species of Siberian wildlife. This image was acquired by Landsat 7's Enhanced Thematic Mapper plus (ETM+) sensor on July 27, 2000. This is a false-color composite image made using shortwave infrared, infrared, and red wavelengths. Image provided by the USGS EROS Data Center Satellite Systems Branch. This image is part of the Landsat Earth as Art series.](Images/Lena_river.png){width=50% fig-align="center"}
 
 ---
 

@@ -6,7 +6,7 @@ book:
   author:
     - name: Tim Mayer
       affiliations:
-        - id: nasa-earthtrise
+        - id: nasa-earthrise
           name: NASA - EarthRISE
         - id: UofA-huntsville
           name: The University of Alabama in Huntsville
@@ -47,6 +47,7 @@ book:
           - 10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.ipynb
       - 11_Ethics/index.ipynb
       - 12_Conclusions/index.ipynb
+      - citing.qmd
       - references.qmd
 
 bibliography: references.bib
@@ -56,11 +57,9 @@ format:
     theme:
       light: flatly
       dark: darkly
-    page-tools: ["colab", "github", "source", "edit", "issue"]
     include-in-header: _includes/ga.html
   pdf:
       documentclass: scrreprt
-      page-tools: []
       code-fold: false
       output-fold: false
       keep-tex: false

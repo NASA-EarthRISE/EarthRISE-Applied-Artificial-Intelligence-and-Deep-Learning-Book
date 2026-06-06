@@ -20,18 +20,18 @@ authors:
     affiliation: "Earth Resources Technology"
   - given-names: David
     family-names: Saah
+    orcid: "https://orcid.org/0000-0001-9999-1219"
     affiliation: "University of San Francisco; Spatial Informatics Group"
 version: "1.0.0"
 date-released: "2026-06-01"
 license: CC-BY-4.0
 repository-code: "https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book"
 url: "https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/"
-# Once a DOI is registered, uncomment and fill:
-# doi: "10.xxxx/xxxxxx"
-# identifiers:
-#   - type: doi
-#     value: "10.xxxx/xxxxxx"
-#     description: "Concept DOI for all versions"
+doi: "10.5281/zenodo.20547797"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20547797"
+    description: "Concept DOI for all versions"
 keywords:
   - deep learning
   - artificial intelligence
