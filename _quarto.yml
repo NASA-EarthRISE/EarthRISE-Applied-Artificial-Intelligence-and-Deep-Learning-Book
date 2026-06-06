@@ -78,3 +78,4 @@ format:
 
 execute:
   enabled: false
+  freeze: auto
