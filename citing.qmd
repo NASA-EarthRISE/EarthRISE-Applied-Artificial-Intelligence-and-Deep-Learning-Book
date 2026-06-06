@@ -1,0 +1,31 @@
+# How to Cite {.unnumbered}
+
+If you use this book or any individual chapter, please cite using the DOIs below.
+
+## Book
+
+Mayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. [https://doi.org/10.5281/zenodo.20547797](https://doi.org/10.5281/zenodo.20547797) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg)](https://doi.org/10.5281/zenodo.20547797)
+
+**BibTeX:**
+
+```bibtex
+@book{mayer2026earthrise,
+  title     = {EarthRISE Applied Artificial Intelligence and Deep Learning Book},
+  author    = {Mayer, Tim and Bhandari, Biplov and Saah, David},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.20547797},
+  url       = {https://doi.org/10.5281/zenodo.20547797}
+}
+```
+
+## Chapters
+
+| # | Chapter | Authors | DOI |
+|---|---------|---------|-----|
+| 3.1 | Crop Mapping: Rice Mapping in Bhutan | Bhandari, B., & Mayer, T. | [10.5281/zenodo.20547799](https://doi.org/10.5281/zenodo.20547799) |
+| 3.2 | Selective Logging Detection with Deep Learning and Very-High Resolution Imagery | Yupanqui, O., & Quispe, M. | [10.5281/zenodo.20547803](https://doi.org/10.5281/zenodo.20547803) |
+| 3.3 | Clay Deforestation Segmentation Model | Poortinga, A., dela Torre, D. M., Saisaward, C., Wafiq, M. W., Weerapanpisit, P., Teck, V., Suaruang, W., & Khamnoi, W. | [10.5281/zenodo.20547805](https://doi.org/10.5281/zenodo.20547805) |
+| 5.1 | Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction | Zhang, C., & Diao, C. | [10.5281/zenodo.20547807](https://doi.org/10.5281/zenodo.20547807) |
+| 6.1 | Understanding Active Fire Detection Uncertainty with Bayesian Neural Networks | Harvie, J. E., Zammit, K. E., Engle, B. T., Oliver, J. A., Johnston, L. M., Cantin, A. S., & Crowley, M. A. | [10.5281/zenodo.20547811](https://doi.org/10.5281/zenodo.20547811) |
+| 10.1 | Evaluating Foundation Models Trained with Earth Observation Data | Thomas, L., Leong, W. J., Wiesmann, D., & Ranjan, S. | [10.5281/zenodo.20547814](https://doi.org/10.5281/zenodo.20547814) |
