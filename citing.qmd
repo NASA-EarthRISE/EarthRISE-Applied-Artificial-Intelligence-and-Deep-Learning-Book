@@ -4,7 +4,11 @@ If you use this book or any individual chapter, please cite using the DOIs below
 
 ## Book
 
-Mayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. [https://doi.org/10.5281/zenodo.20547797](https://doi.org/10.5281/zenodo.20547797) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg)](https://doi.org/10.5281/zenodo.20547797)
+Mayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. [https://doi.org/10.5281/zenodo.20547797](https://doi.org/10.5281/zenodo.20547797)
+
+::: {.content-visible when-format="html"}
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg)](https://doi.org/10.5281/zenodo.20547797)
+:::
 
 **BibTeX:**
 
