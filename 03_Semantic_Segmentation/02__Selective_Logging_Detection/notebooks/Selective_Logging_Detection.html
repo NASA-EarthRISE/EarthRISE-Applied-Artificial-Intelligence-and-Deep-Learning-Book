@@ -8,6 +8,7 @@
 
 <meta name="author" content="Osmar Yupanqui">
 <meta name="author" content="Marvin Quispe">
+<meta name="description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 
 <title>3&nbsp; Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
@@ -72,6 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../">
 <link href="../../../03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html" rel="next">
 <link href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" rel="prev">
+<link href="../../../Images/favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -86,6 +88,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/bootstrap/bootstrap-92f3cf769593a58be848ceeec9558dfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark-24de15af17bdbfd16d885fbbd080e274.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../../site_libs/bootstrap/bootstrap-92f3cf769593a58be848ceeec9558dfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,8 +126,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   gtag('js', new Date());
   gtag('config', 'G-FSHTGR1D98');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "EarthRISE Applied Artificial Intelligence and Deep Learning Book",
+  "author": [
+    {"@type": "Person", "name": "Tim Mayer"},
+    {"@type": "Person", "name": "Biplov Bhandari"},
+    {"@type": "Person", "name": "David Saah"}
+  ],
+  "datePublished": "2026-06-01",
+  "publisher": {"@type": "Organization", "name": "NASA EarthRISE"},
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/",
+  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.5281/zenodo.20547797"}
+}
+</script>
 
 
+<meta property="og:title" content="3&nbsp; Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book">
+<meta property="og:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
+<meta property="og:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta property="og:site_name" content="Applied Artificial Intelligence and Deep Learning Book">
+<meta name="twitter:title" content="3&nbsp; Selective Logging Detection with Deep Learning and Very-High Resolution Imagery – Applied Artificial Intelligence and Deep Learning Book">
+<meta name="twitter:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
+<meta name="twitter:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -392,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
   </div>
 </li>
@@ -425,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
   </div>
 </li>
@@ -546,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">View on GitHub</a></p>
+<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid" alt="Open in Colab"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid" alt="View on GitHub"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">View on GitHub</a></p>
 <section id="understanding-the-selective-logging-activity" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="understanding-the-selective-logging-activity"><span class="header-section-number">3.1</span> Understanding the selective logging activity</h2>
 <p>Forest conservation faces a threat that is difficult to detect but highly devastating: <strong>selective logging</strong>. Unlike deforestation, which can be identified relatively easily from space using freely available satellite imagery, selective logging involves the removal of only <strong>commercially valuable trees</strong> from the forest cover, leaving a deceptive appearance of normality in the forest. For this reason, detecting this activity poses a considerable technological and logistical challenge.</p>
@@ -557,14 +587,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Below is an image comparing, in the same location, logging activity with a SkySat image (0.5 m) and a drone image (3 cm). Logs are visible, and a blue canister can be seen for refilling fuel for the chainsaws used for logging.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_A.jpg" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_A.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Comparison between a SkySat image (0.5 m) and a drone image (3 cm)"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_A.jpg" class="img-fluid figure-img" alt="Comparison between a SkySat image (0.5 m) and a drone image (3 cm)"></a></p>
 <figcaption>Comparison between a SkySat image (0.5 m) and a drone image (3 cm)</figcaption>
 </figure>
 </div>
 <p>Selective logging is often associated to <strong>infrastructures</strong> such as logging roads, logging yards, camps, among others. Identifying these critical infrastructures makes it easier to detect logging activities. The presence of these infrastructures occurs in areas where logging is common, such as timber forest concessions and forest plantations. However, in remote areas where the activity is generally illegal, it is possible to observe a network of trails, usually beneath the forest canopy.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_B.png" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_B.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Diferent infrastructures associated with selective logging"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_B.png" class="img-fluid figure-img" alt="Diferent infrastructures associated with selective logging"></a></p>
 <figcaption>Diferent infrastructures associated with selective logging</figcaption>
 </figure>
 </div>
@@ -908,21 +938,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can check the status of your exports in the Google Earth Engine Code Editor, specifically in the Tasks tab. There, you can view the status of each of your tasks. It’s important to monitor them to identify potential export errors or check their progress.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_Tab.png" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_Tab.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="GEE Tasks (Code Editor)"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_Tab.png" class="img-fluid figure-img" alt="GEE Tasks (Code Editor)"></a></p>
 <figcaption>GEE Tasks (Code Editor)</figcaption>
 </figure>
 </div>
 <p>Additionally, there are options for monitoring task status in a more advanced way. Currently, it has also become important to evaluate the quota consumption (EECU) associated with exports. For this type of more detailed analysis, we recommend using the Google Cloud Platform, accessing the Tasks section and supplementing it with “Monitoring Tool” to explore metrics and platform resource usage.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_GCP.png" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_GCP.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="GEE Tasks (GCP)"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_GCP.png" class="img-fluid figure-img" alt="GEE Tasks (GCP)"></a></p>
 <figcaption>GEE Tasks (GCP)</figcaption>
 </figure>
 </div>
 <p>The workflow summarizes the steps followed in this section.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Workflow_A.png" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Workflow_A.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Data processing and exporting workflow"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Workflow_A.png" class="img-fluid figure-img" alt="Data processing and exporting workflow"></a></p>
 <figcaption>Data processing and exporting workflow</figcaption>
 </figure>
 </div>
@@ -1266,7 +1296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To represent the architecture we will use some layers of <code>tensorflow.keras</code>. This modified version of U-Net has more encoding and decoding blocks than the original architecture, which increases the depth of the model and its learnability. Unlike the original design, which starts and ends with 64 filters, this implementation starts and ends with a layer of 32 filters, slightly reducing the initial complexity before continuing with the standard progression. Below is a diagram of the modified U-Net architecture used.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/UNET-MODIFIED.png" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/UNET-MODIFIED.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Modified U-Net architecture"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/UNET-MODIFIED.png" class="img-fluid figure-img" alt="Modified U-Net architecture"></a></p>
 <figcaption>Modified U-Net architecture</figcaption>
 </figure>
 </div>
@@ -1385,7 +1415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Training_Results.png" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Training_Results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Learning curves"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Training_Results.png" class="img-fluid figure-img" alt="Learning curves"></a></p>
 <figcaption>Learning curves</figcaption>
 </figure>
 </div>
@@ -1730,7 +1760,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Inference_Results.png" class="img-fluid figure-img"></p>
+<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Inference_Results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Detection of selective logging using the trained model"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Inference_Results.png" class="img-fluid figure-img" alt="Detection of selective logging using the trained model"></a></p>
 <figcaption>Detection of selective logging using the trained model</figcaption>
 </figure>
 </div>
@@ -1844,7 +1874,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/nasa-earthrise\.github\.io\/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2171,6 +2201,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book";
+    script.dataset.repoId = "R_kgDOMKoOkw";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOMKoOk84C-pix";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" class="pagination-link" aria-label="Crop Mapping — Rice Mapping in Bhutan with U-Net">
@@ -2184,8 +2246,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

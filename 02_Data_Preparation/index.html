@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 
 <title>1&nbsp; Data Preparation – Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
@@ -35,6 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <link href="../03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html" rel="next">
 <link href="../index.html" rel="prev">
+<link href="../Images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -84,8 +86,31 @@ ul.task-list li input[type="checkbox"] {
   gtag('js', new Date());
   gtag('config', 'G-FSHTGR1D98');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "EarthRISE Applied Artificial Intelligence and Deep Learning Book",
+  "author": [
+    {"@type": "Person", "name": "Tim Mayer"},
+    {"@type": "Person", "name": "Biplov Bhandari"},
+    {"@type": "Person", "name": "David Saah"}
+  ],
+  "datePublished": "2026-06-01",
+  "publisher": {"@type": "Organization", "name": "NASA EarthRISE"},
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/",
+  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.5281/zenodo.20547797"}
+}
+</script>
 
 
+<meta property="og:title" content="1&nbsp; Data Preparation – Applied Artificial Intelligence and Deep Learning Book">
+<meta property="og:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
+<meta property="og:site_name" content="Applied Artificial Intelligence and Deep Learning Book">
+<meta name="twitter:title" content="1&nbsp; Data Preparation – Applied Artificial Intelligence and Deep Learning Book">
+<meta name="twitter:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -355,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
   </div>
 </li>
@@ -388,7 +413,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
   </div>
 </li>
@@ -540,7 +565,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/nasa-earthrise\.github\.io\/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -867,6 +892,38 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book";
+    script.dataset.repoId = "R_kgDOMKoOkw";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOMKoOk84C-pix";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../index.html" class="pagination-link" aria-label="Introduction">

@@ -10,6 +10,7 @@
 <meta name="author" content="Biplov Bhandari">
 <meta name="author" content="David Saah">
 <meta name="dcterms.date" content="2026-06-01">
+<meta name="description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
 
 <title>Applied Artificial Intelligence and Deep Learning Book</title>
 <style>
@@ -38,6 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./02_Data_Preparation/index.html" rel="next">
+<link href="./Images/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -52,6 +54,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-f612c0b93c12eebe6fcd9882f38f9fc2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-29ab83c079eee0e33d5a0de9724cd501.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-f612c0b93c12eebe6fcd9882f38f9fc2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -87,8 +92,37 @@ ul.task-list li input[type="checkbox"] {
   gtag('js', new Date());
   gtag('config', 'G-FSHTGR1D98');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "EarthRISE Applied Artificial Intelligence and Deep Learning Book",
+  "author": [
+    {"@type": "Person", "name": "Tim Mayer"},
+    {"@type": "Person", "name": "Biplov Bhandari"},
+    {"@type": "Person", "name": "David Saah"}
+  ],
+  "datePublished": "2026-06-01",
+  "publisher": {"@type": "Organization", "name": "NASA EarthRISE"},
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/",
+  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.5281/zenodo.20547797"}
+}
+</script>
 
 
+<meta property="og:title" content="Applied Artificial Intelligence and Deep Learning Book">
+<meta property="og:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
+<meta property="og:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/Images/Book_Cover.png">
+<meta property="og:site_name" content="Applied Artificial Intelligence and Deep Learning Book">
+<meta property="og:image:height" content="1400">
+<meta property="og:image:width" content="1056">
+<meta name="twitter:title" content="Applied Artificial Intelligence and Deep Learning Book">
+<meta name="twitter:description" content="A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.">
+<meta name="twitter:image" content="https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/Images/Book_Cover.png">
+<meta name="twitter:image-height" content="1400">
+<meta name="twitter:image-width" content="1056">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -358,7 +392,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
+  <a href="./06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Understanding active fire detection uncertainty with Bayesian Neural Networks</span></span></a>
   </div>
 </li>
@@ -391,7 +425,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="./10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Evaluating Foundation Models Trained with Earth Observation Data</span></span></a>
   </div>
 </li>
@@ -467,6 +501,11 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="title">Applied Artificial Intelligence and Deep Learning Book</h1>
 </div>
 
+<div>
+  <div class="description">
+    A practitioner’s guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models.
+  </div>
+</div>
 
 <div class="quarto-title-meta-author">
   <div class="quarto-title-meta-heading">Authors</div>
@@ -542,7 +581,11 @@ EarthRISE Program Office<br> National Space Science and Technology Center<br> 32
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Images/Lena_river.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="Images/Lena_river.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The Lena River, some 2,800 miles (4,400 km) long, is one of the largest rivers in the world. The Lena Delta Reserve is the most extensive protected wilderness area in Russia. It is an important refuge and breeding ground for many species of Siberian wildlife. This image was acquired by Landsat 7’s Enhanced Thematic Mapper plus (ETM+) sensor on July 27, 2000. This is a false-color composite image made using shortwave infrared, infrared, and red wavelengths. Image provided by the USGS EROS Data Center Satellite Systems Branch. This image is part of the Landsat Earth as Art series."><img src="Images/Lena_river.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="The Lena River, some 2,800 miles (4,400 km) long, is one of the largest rivers in the world. The Lena Delta Reserve is the most extensive protected wilderness area in Russia. It is an important refuge and breeding ground for many species of Siberian wildlife. This image was acquired by Landsat 7’s Enhanced Thematic Mapper plus (ETM+) sensor on July 27, 2000. This is a false-color composite image made using shortwave infrared, infrared, and red wavelengths. Image provided by the USGS EROS Data Center Satellite Systems Branch. This image is part of the Landsat Earth as Art series."></a></p>
+</figure>
+</div>
 <figcaption>The Lena River, some 2,800 miles (4,400 km) long, is one of the largest rivers in the world. The Lena Delta Reserve is the most extensive protected wilderness area in Russia. It is an important refuge and breeding ground for many species of Siberian wildlife. This image was acquired by Landsat 7’s Enhanced Thematic Mapper plus (ETM+) sensor on July 27, 2000. This is a false-color composite image made using shortwave infrared, infrared, and red wavelengths. Image provided by the USGS EROS Data Center Satellite Systems Branch. This image is part of the Landsat Earth as Art series.</figcaption>
 </figure>
 </div>
@@ -735,7 +778,7 @@ EarthRISE Program Office<br> National Space Science and Technology Center<br> 32
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/nasa-earthrise\.github\.io\/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1062,6 +1105,38 @@ EarthRISE Program Office<br> National Space Science and Technology Center<br> 32
     }
   });
   </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book";
+    script.dataset.repoId = "R_kgDOMKoOkw";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOMKoOk84C-pix";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
   </div>
@@ -1072,8 +1147,40 @@ EarthRISE Program Office<br> National Space Science and Technology Center<br> 32
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/index.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/edit/main/index.md" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/index.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/edit/main/index.md" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>
