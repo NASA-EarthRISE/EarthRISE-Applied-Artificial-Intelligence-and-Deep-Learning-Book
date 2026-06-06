@@ -1,6 +1,8 @@
 project:
   type: book
 
+lang: en
+
 book:
   title: "Applied Artificial Intelligence and Deep Learning Book"
   author:
@@ -22,7 +24,12 @@ book:
           name: Spatial Informatics Group
 
   date: "6/1/2026"
+  description: "A practitioner's guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models."
   cover-image: Images/Book_Cover.png
+  favicon: Images/favicon.png
+  open-graph: true
+  twitter-card: true
+  site-url: https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/
   repo-url: https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
   repo-actions: [source, edit, issue]
   downloads: [pdf]
@@ -38,13 +45,13 @@ book:
       - part: "Time Series"
         chapters:
           - 05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.ipynb
-      - 06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.ipynb
+      - 06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb
       - 07_Transfer_Learning/index.ipynb
       - 08_Fusion/index.ipynb
       - 09_Downscaling/index.ipynb
       - part: "Future of Deep Learning and Foundational Models"
         chapters:
-          - 10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.ipynb
+          - 10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.ipynb
       - 11_Ethics/index.ipynb
       - 12_Conclusions/index.ipynb
       - citing.qmd
@@ -57,7 +64,13 @@ format:
     theme:
       light: flatly
       dark: darkly
-    include-in-header: _includes/ga.html
+    lightbox: auto
+    comments:
+      giscus:
+        repo: NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
+    include-in-header:
+      - _includes/ga.html
+      - _includes/schema.html
   pdf:
       documentclass: scrreprt
       code-fold: false
@@ -72,3 +85,4 @@ format:
 
 execute:
   enabled: false
+  freeze: auto

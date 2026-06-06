@@ -54,7 +54,7 @@ Chapters that include the following elements tend to render well in the publishe
 - **Video embed** using the Quarto shortcode `{{< video https://www.youtube.com/embed/VIDEO_ID >}}` (added by the editors after the chapter video is produced)
 - **Acknowledgements section** at the end of the notebook for funding attribution
 
-See the Chapter 6 notebook (`06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.ipynb`) for an example that includes all of these elements.
+See the Chapter 6 notebook (`06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb`) for an example that includes all of these elements.
 
 ### Data Hosting
 
