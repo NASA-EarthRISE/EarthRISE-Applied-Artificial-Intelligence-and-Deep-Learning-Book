@@ -20,6 +20,7 @@ authors:
     affiliation: "Earth Resources Technology"
   - given-names: David
     family-names: Saah
+    orcid: "https://orcid.org/0000-0001-9999-1219"
     affiliation: "University of San Francisco; Spatial Informatics Group"
 version: "1.0.0"
 date-released: "2026-06-01"
