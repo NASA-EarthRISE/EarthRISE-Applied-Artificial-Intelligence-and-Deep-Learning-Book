@@ -24,6 +24,7 @@ book:
           name: Spatial Informatics Group
 
   date: "6/1/2026"
+  description: "A practitioner's guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models."
   cover-image: Images/Book_Cover.png
   site-url: https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/
   repo-url: https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
