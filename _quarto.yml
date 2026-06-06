@@ -45,7 +45,7 @@ book:
       - part: "Time Series"
         chapters:
           - 05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.ipynb
-      - 06_Eco_Process_Sim/01__Active_Fire_Detection/notebook/BNN_Active_Fire_Detection.ipynb
+      - 06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb
       - 07_Transfer_Learning/index.ipynb
       - 08_Fusion/index.ipynb
       - 09_Downscaling/index.ipynb
