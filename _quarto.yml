@@ -65,6 +65,9 @@ format:
       light: flatly
       dark: darkly
     lightbox: auto
+    comments:
+      giscus:
+        repo: NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
     include-in-header:
       - _includes/ga.html
       - _includes/schema.html
