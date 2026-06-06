@@ -63,6 +63,7 @@ format:
     theme:
       light: flatly
       dark: darkly
+    lightbox: auto
     include-in-header: _includes/ga.html
   pdf:
       documentclass: scrreprt
