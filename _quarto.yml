@@ -56,7 +56,6 @@ format:
     theme:
       light: flatly
       dark: darkly
-    page-tools: ["colab", "github", "source", "edit", "issue"]
     include-in-header: _includes/ga.html
   pdf:
       documentclass: scrreprt
