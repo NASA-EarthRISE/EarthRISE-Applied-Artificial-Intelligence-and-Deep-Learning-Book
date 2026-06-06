@@ -47,6 +47,7 @@ book:
           - 10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/Chapter_Practical_EOFM_Evaluation.ipynb
       - 11_Ethics/index.ipynb
       - 12_Conclusions/index.ipynb
+      - citing.qmd
       - references.qmd
 
 bibliography: references.bib
