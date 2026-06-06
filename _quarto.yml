@@ -59,7 +59,6 @@ format:
     include-in-header: _includes/ga.html
   pdf:
       documentclass: scrreprt
-      page-tools: []
       code-fold: false
       output-fold: false
       keep-tex: false
