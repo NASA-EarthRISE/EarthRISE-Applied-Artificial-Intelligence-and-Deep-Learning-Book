@@ -6,7 +6,7 @@ book:
   author:
     - name: Tim Mayer
       affiliations:
-        - id: nasa-earthtrise
+        - id: nasa-earthrise
           name: NASA - EarthRISE
         - id: UofA-huntsville
           name: The University of Alabama in Huntsville
