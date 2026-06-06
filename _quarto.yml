@@ -65,7 +65,9 @@ format:
       light: flatly
       dark: darkly
     lightbox: auto
-    include-in-header: _includes/ga.html
+    include-in-header:
+      - _includes/ga.html
+      - _includes/schema.html
   pdf:
       documentclass: scrreprt
       code-fold: false
