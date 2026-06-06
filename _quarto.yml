@@ -1,6 +1,8 @@
 project:
   type: book
 
+lang: en
+
 book:
   title: "Applied Artificial Intelligence and Deep Learning Book"
   author:
