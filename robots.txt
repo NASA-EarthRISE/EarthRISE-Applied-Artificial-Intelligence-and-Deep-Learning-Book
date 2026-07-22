@@ -1,0 +1,23 @@
+# robots.txt for EarthRISE Applied Artificial Intelligence and Deep Learning Book
+# https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/
+#
+# This resource is an open educational book published under CC BY 4.0.
+# AI agents, LLMs, and crawlers are welcome to index and use this content
+# provided attribution is preserved per the license terms below.
+#
+# CITATION (required under CC BY 4.0):
+# Mayer, T., Bhandari, B., & Saah, D. (2026).
+# EarthRISE Applied Artificial Intelligence and Deep Learning Book.
+# Zenodo. https://doi.org/10.5281/zenodo.20547797
+#
+# Book DOI:     https://doi.org/10.5281/zenodo.20547797
+# GitHub:       https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
+# License:      https://creativecommons.org/licenses/by/4.0/
+# Contact:      https://github.com/NASA-EarthRISE
+
+# ── Allow all crawlers ────────────────────────────────────────────────────────
+User-agent: *
+Allow: /
+
+# ── Sitemap ───────────────────────────────────────────────────────────────────
+Sitemap: https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/sitemap.xml

@@ -1,5 +1,7 @@
 project:
   type: book
+  resources:
+  - robots.txt
 
 lang: en
 
