@@ -1,8 +1,3 @@
----
-author: []
-date: ""
----
-
 # Introduction {.unnumbered}
 
 **Editors**
