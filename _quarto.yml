@@ -5,23 +5,23 @@ lang: en
 
 book:
   title: "Applied Artificial Intelligence and Deep Learning Book"
-  author:
-    - name: Tim Mayer
-      affiliations:
-        - id: nasa-earthrise
-          name: NASA - EarthRISE
-        - id: UofA-huntsville
-          name: The University of Alabama in Huntsville
-    - name: Biplov Bhandari
-      affiliations:
-        - id: ert
-          name: Earth Resources Technology
-    - name: David Saah
-      affiliations:
-        - id: USF
-          name: University of San Francisco
-        - id: spatial-informatics-group
-          name: Spatial Informatics Group
+  # author:
+  #   - name: Tim Mayer
+  #     affiliations:
+  #       - id: nasa-earthrise
+  #         name: NASA - EarthRISE
+  #       - id: UofA-huntsville
+  #         name: The University of Alabama in Huntsville
+  #   - name: Biplov Bhandari
+  #     affiliations:
+  #       - id: ert
+  #         name: Earth Resources Technology
+  #   - name: David Saah
+  #     affiliations:
+  #       - id: USF
+  #         name: University of San Francisco
+  #       - id: spatial-informatics-group
+  #         name: Spatial Informatics Group
 
   date: "6/1/2026"
   description: "A practitioner's guide to applied deep learning for Earth observation, covering semantic segmentation, time series, and foundation models."
