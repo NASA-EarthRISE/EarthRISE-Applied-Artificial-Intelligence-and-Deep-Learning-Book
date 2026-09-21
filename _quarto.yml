@@ -35,25 +35,41 @@ book:
   downloads: [pdf]
   chapters:
       - index.md
-      - 02_Data_Preparation/index.ipynb
-      - part: "Semantic Segmentation"
+      - part: "2. Data Preparation"
+        chapters:
+          - 02_Data_Preparation/index.ipynb
+      - part: "3. Semantic Segmentation"
         chapters:
           - 03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb
           - 03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb
           - 03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb
-      - 04_Object_Detection/index.ipynb
-      - part: "Time Series"
+      - part: "4. Object Detection"
+        chapters:
+          - 04_Object_Detection/index.ipynb
+      - part: "5. Time Series"
         chapters:
           - 05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.ipynb
-      - 06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb
-      - 07_Transfer_Learning/index.ipynb
-      - 08_Fusion/index.ipynb
-      - 09_Downscaling/index.ipynb
-      - part: "Future of Deep Learning and Foundational Models"
+      - part: "6. Ecological Process Simulation"
+        chapters:
+          - 06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb
+      - part: "7. Transfer Learning"
+        chapters:
+          - 07_Transfer_Learning/index.ipynb
+      - part: "8. Fusion"
+        chapters:
+          - 08_Fusion/index.ipynb
+      - part: "9. Downscaling"
+        chapters:
+          - 09_Downscaling/index.ipynb
+      - part: "10. Future of Deep Learning and Foundation Models"
         chapters:
           - 10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.ipynb
-      - 11_Ethics/index.ipynb
-      - 12_Conclusions/index.ipynb
+      - part: "11. Ethics"
+        chapters:
+          - 11_Ethics/index.ipynb
+      - part: "12. Conclusions"
+        chapters:
+          - 12_Conclusions/index.ipynb
       - citing.qmd
       - references.qmd
 
@@ -61,6 +77,7 @@ bibliography: references.bib
 
 format:
   html:
+    number-sections: false
     theme:
       light: flatly
       dark: darkly
@@ -72,6 +89,7 @@ format:
       - _includes/ga.html
       - _includes/schema.html
   pdf:
+      number-sections: false
       documentclass: scrreprt
       code-fold: false
       output-fold: false
