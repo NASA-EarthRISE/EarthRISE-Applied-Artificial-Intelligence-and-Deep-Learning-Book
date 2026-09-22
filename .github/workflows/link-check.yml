@@ -28,7 +28,6 @@ jobs:
         with:
           args: >-
             --no-progress
-            --exclude-mail
             --exclude 'localhost'
             --exclude 'meet.google.com'
             --exclude 'drive.google.com'
