@@ -33,9 +33,12 @@ book:
   repo-url: https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
   repo-actions: [source, edit, issue]
   downloads: [pdf]
+  search: true
+  page-footer:
+    center: "Part of the [Geo-AI Working Group](https://tinyurl.com/geo-ai-wg) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
   chapters:
       - index.md
-      - part: "2. Data Preparation"
+      - part: "2. Data Preparation (coming soon)"
         chapters:
           - 02_Data_Preparation/index.ipynb
       - part: "3. Semantic Segmentation"
@@ -43,7 +46,7 @@ book:
           - 03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb
           - 03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb
           - 03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb
-      - part: "4. Object Detection"
+      - part: "4. Object Detection (coming soon)"
         chapters:
           - 04_Object_Detection/index.ipynb
       - part: "5. Time Series"
@@ -52,23 +55,23 @@ book:
       - part: "6. Ecological Process Simulation"
         chapters:
           - 06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb
-      - part: "7. Transfer Learning"
+      - part: "7. Transfer Learning (coming soon)"
         chapters:
           - 07_Transfer_Learning/index.ipynb
-      - part: "8. Fusion"
+      - part: "8. Fusion (coming soon)"
         chapters:
           - 08_Fusion/index.ipynb
-      - part: "9. Downscaling"
+      - part: "9. Downscaling (coming soon)"
         chapters:
           - 09_Downscaling/index.ipynb
       - part: "10. Future of Deep Learning and Foundation Models"
         chapters:
           - 10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.ipynb
           - 10_Future/02__Comprehensive_EOFM_Benchmarking/notebooks/Chapter_Comprehensive_EOFM_Benchmarking.ipynb
-      - part: "11. Ethics"
+      - part: "11. Ethics (coming soon)"
         chapters:
           - 11_Ethics/index.ipynb
-      - part: "12. Conclusions"
+      - part: "12. Conclusions (coming soon)"
         chapters:
           - 12_Conclusions/index.ipynb
       - citing.qmd
@@ -79,6 +82,9 @@ bibliography: references.bib
 format:
   html:
     number-sections: false
+    back-to-top-navigation: true
+    link-external-newwindow: true
+    smooth-scroll: true
     theme:
       light: flatly
       dark: darkly

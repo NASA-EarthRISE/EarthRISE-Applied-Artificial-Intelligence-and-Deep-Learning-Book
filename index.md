@@ -2,24 +2,24 @@
 
 **Editors**
 
-**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · NASA - EarthRISE · University of Alabama in Huntsville<br>
-**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · Earth Resources Technology<br>
-**David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · University of San Francisco · Spatial Informatics Group
+**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a> · NASA - EarthRISE · University of Alabama in Huntsville<br>
+**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a> · Earth Resources Technology<br>
+**David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a> · University of San Francisco · Spatial Informatics Group
 
-<p style="font-size:0.85em; color:#404040;">
+<p class="text-muted" style="font-size:0.85em;">
 First edition. Published electronically June 1st 2026 &nbsp;&nbsp; DOI: [10.5281/zenodo.20547797](https://doi.org/10.5281/zenodo.20547797)
 </p>
 
-<p style="font-size:0.85em; color:#404040;">
+<p class="text-muted" style="font-size:0.85em;">
 <strong>DISCLAIMER:</strong><br>
 The views expressed in this publication are not necessarily those of the agencies cooperating in this project. Mention of a commercial company or product in this report does not imply endorsement by NASA. The use of information from this publication concerning proprietary products for advertising or publicity is not permitted. Trademark names and symbols are used in an editorial fashion with no intention of infringement on trademark or copyright laws.
 </p>
 
-<p style="font-size:0.85em; color:#404040;">
+<p class="text-muted" style="font-size:0.85em;">
 Figures and maps in this handbook contain material from: Google Maps data: Imagery © 2018 Landsat/Copernicus, DigitalGlobe, Mapdata © 2018 Google. Sentinel-1 data: Earth Big Data, LLC 2018, contains modified Copernicus Sentinel data 2014–2018, processed by ESA. ALOS data: Earth Big Data, LLC 2018; includes Material © JAXA/METI 2007–2018
 </p>
 
-<p style="font-size:0.85em; color:#404040;">
+<p class="text-muted" style="font-size:0.85em;">
 EarthRISE Program Office<br>
 National Space Science and Technology Center<br>
 320 Sparkman Drive, Huntsville, AL 35805
@@ -135,18 +135,18 @@ Above all, we thank the readers and practitioners who engage with this material,
 
 ## About the Editors
 
-<img src="Images/Tim_img_410_410.png" width="200"/>
+<img src="Images/Tim_img_410_410.png" alt="Photo of Tim Mayer" width="200"/>
 
-**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> is a Research Scientist at the University of Alabama in Huntsville and Lead Data Scientist of the NASA EarthRISE program. Tim has worked at the intersection of applied research and Geospatial Artificial Intelligence for over a decade with NASA. Tim co-leads the Geospatial Artificial Intelligence Working Group. His primary research interest surrounds the applied intersection of Ecology and advanced deep learning techniques.
-
----
-
-<img src="Images/Biplov_img_410_410.png" width="200"/>
-
-**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> is a computational Earth scientist at Earth Resources Technology, where he turns satellite and geospatial data into decisions by building cloud-native pipelines, predictive models, and geospatial AI agents. His work spans climate and environmental risk — wildfire, flood, drought, and infrastructure resilience — and extends to disaster response and humanitarian programs with public-sector partners. He also serves as Secretary of the Sahana Software Foundation, a free and open-source disaster-management community.
+**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID"/></a> is a Research Scientist at the University of Alabama in Huntsville and Lead Data Scientist of the NASA EarthRISE program. Tim has worked at the intersection of applied research and Geospatial Artificial Intelligence for over a decade with NASA. Tim co-leads the Geospatial Artificial Intelligence Working Group. His primary research interest surrounds the applied intersection of Ecology and advanced deep learning techniques.
 
 ---
 
-<img src="Images/David_img_400_410.png" width="200"/>
+<img src="Images/Biplov_img_410_410.png" alt="Photo of Biplov Bhandari" width="200"/>
 
-**David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"/></a> is Managing Principal and Co-founder of Spatial Informatics Group, Professor and Director of the Geospatial Analysis Lab at the University of San Francisco. Broadly trained as an environmental scientist, David is recognized as a global leader in geospatial analysis, remote sensing, wildfire science, and natural hazard modeling. He has authored dozens of peer-reviewed journal articles, book chapters, and technical reports, and is dedicated to the broad dissemination of his research through presentations, publications, and workshops.
+**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID"/></a> is a computational Earth scientist at Earth Resources Technology, where he turns satellite and geospatial data into decisions by building cloud-native pipelines, predictive models, and geospatial AI agents. His work spans climate and environmental risk — wildfire, flood, drought, and infrastructure resilience — and extends to disaster response and humanitarian programs with public-sector partners. He also serves as Secretary of the Sahana Software Foundation, a free and open-source disaster-management community.
+
+---
+
+<img src="Images/David_img_400_410.png" alt="Photo of David Saah" width="200"/>
+
+**David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID"/></a> is Managing Principal and Co-founder of Spatial Informatics Group, Professor and Director of the Geospatial Analysis Lab at the University of San Francisco. Broadly trained as an environmental scientist, David is recognized as a global leader in geospatial analysis, remote sensing, wildfire science, and natural hazard modeling. He has authored dozens of peer-reviewed journal articles, book chapters, and technical reports, and is dedicated to the broad dissemination of his research through presentations, publications, and workshops.
