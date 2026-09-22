@@ -8,7 +8,21 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  build-html:
+    name: Build HTML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render HTML
+        run: quarto render --to html
+
+  build-pdf:
+    name: Build PDF
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,5 +36,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Render book
-        run: quarto render
+      - name: Render PDF
+        run: quarto render --to pdf
+
+  validate-notebooks:
+    name: Validate Notebooks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate notebook JSON
+        run: |
+          exit_code=0
+          for f in $(find . -name '*.ipynb' -not -path './_book/*' -not -path './.quarto/*'); do
+            if ! python3 -c "import json; json.load(open('$f'))" 2>/dev/null; then
+              echo "INVALID JSON: $f"
+              exit_code=1
+            fi
+          done
+          if [ $exit_code -eq 0 ]; then
+            echo "All notebooks are valid JSON"
+          fi
+          exit $exit_code
