@@ -33,6 +33,9 @@ book:
   repo-url: https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book
   repo-actions: [source, edit, issue]
   downloads: [pdf]
+  search: true
+  page-footer:
+    center: "Part of the [Geo-AI Working Group](https://tinyurl.com/geo-ai-wg) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
   chapters:
       - index.md
       - part: "2. Data Preparation (coming soon)"
@@ -78,6 +81,9 @@ bibliography: references.bib
 format:
   html:
     number-sections: false
+    back-to-top-navigation: true
+    link-external-newwindow: true
+    smooth-scroll: true
     theme:
       light: flatly
       dark: darkly
