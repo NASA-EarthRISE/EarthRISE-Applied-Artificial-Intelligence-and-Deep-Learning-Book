@@ -8,8 +8,16 @@
 
 /.quarto/
 /_book/
+/_freeze/
 *.keras
 /dev/
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+
+# Environment
+.env
 
 **/*.quarto_ipynb
 
