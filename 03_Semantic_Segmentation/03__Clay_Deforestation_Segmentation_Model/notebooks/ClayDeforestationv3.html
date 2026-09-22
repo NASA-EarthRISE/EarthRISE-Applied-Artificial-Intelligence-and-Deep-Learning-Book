@@ -94,9 +94,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-78a910f4612d4747d3744d8f4b04bc46.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-1f846c7865d629590e2cadd4f479fcb7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-78a910f4612d4747d3744d8f4b04bc46.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a33118adf84808803f3611f003e4bc4b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-21d6fceeb25172fe2fb34cb0b56a437d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-a33118adf84808803f3611f003e4bc4b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -127,6 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <!-- Google Analytics 4 -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-FSHTGR1D98"></script>
 <script>
@@ -2748,6 +2749,11 @@ A TensorBoard interface displaying training progress, including metrics like IoU
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -3106,7 +3112,20 @@ A TensorBoard interface displaying training progress, including metrics like IoU
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Part of the <a href="https://tinyurl.com/geo-ai-wg">Geo-AI Working Group</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.dev/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -3142,4 +3161,5 @@ A TensorBoard interface displaying training progress, including metrics like IoU
 
 
 
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

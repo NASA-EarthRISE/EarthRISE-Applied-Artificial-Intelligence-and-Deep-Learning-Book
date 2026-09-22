@@ -51,9 +51,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c117ac82edef17e21c58c619b1d4b9e4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-3686e73f2b10d5e0866cac69e1e072da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-c117ac82edef17e21c58c619b1d4b9e4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8a0ecfc9849cba475cd369d60704c941.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-4dc5810a0ca2761c5abee21657872ed5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8a0ecfc9849cba475cd369d60704c941.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -84,6 +84,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <!-- Google Analytics 4 -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-FSHTGR1D98"></script>
 <script>
@@ -832,6 +833,11 @@ EarthRISE Program Office<br> National Space Science and Technology Center<br> 32
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1187,7 +1193,20 @@ EarthRISE Program Office<br> National Space Science and Technology Center<br> 32
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/index.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/edit/main/index.md" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Part of the <a href="https://tinyurl.com/geo-ai-wg">Geo-AI Working Group</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/index.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/edit/main/index.md" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -1223,4 +1242,5 @@ EarthRISE Program Office<br> National Space Science and Technology Center<br> 32
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
