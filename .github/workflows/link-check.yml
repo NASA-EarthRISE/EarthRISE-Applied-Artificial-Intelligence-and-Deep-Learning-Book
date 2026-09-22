@@ -1,0 +1,40 @@
+name: Link Check
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 9 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  check-links:
+    name: Check Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render HTML
+        run: quarto render --to html
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --exclude-mail
+            --exclude 'localhost'
+            --exclude 'meet.google.com'
+            --exclude 'drive.google.com'
+            --exclude 'colab.research.google.com'
+            --exclude 'earthengine.google.com'
+            --exclude 'urs.earthdata.nasa.gov'
+            --suggest
+            '_book/**/*.html'
+          fail: true
