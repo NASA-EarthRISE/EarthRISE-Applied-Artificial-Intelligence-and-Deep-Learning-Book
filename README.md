@@ -17,23 +17,23 @@ The NASA EarthRISE program harnesses NASA Earth Action capabilities to deliver t
 ## Book Outline
 
 * [Introduction](index.md)
-* [Data Preparation](02_Data_Preparation/) *(coming soon)*
-* **Semantic Segmentation**
-  * [Crop Mapping — Rice Mapping in Bhutan with U-Net](03_Semantic_Segmentation/01__Crop_Mapping/)
-  * [Selective Logging Detection with Very-High Resolution Imagery](03_Semantic_Segmentation/02__Selective_Logging_Detection/)
-  * [Clay Deforestation Segmentation Model](03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/)
-* [Object Detection](04_Object_Detection/) *(coming soon)*
-* **Time Series**
-  * [Soybean Yield Prediction](05_Time_Series/01__Soybean_Yield_Prediction/)
-* **Ecological Processes Simulation**
-  * [Active Fire Detection with Bayesian Neural Networks](06_Eco_Process_Sim/01__Active_Fire_Detection/)
-* [Transfer Learning](07_Transfer_Learning/) *(coming soon)*
-* [Fusion](08_Fusion/) *(coming soon)*
-* [Downscaling](09_Downscaling/) *(coming soon)*
-* **Future of Deep Learning and Foundational Models**
-  * [Evaluating Foundation Models Trained with Earth Observation Data](10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/)
-* [Ethics and Artificial Intelligence](11_Ethics/) *(coming soon)*
-* [Conclusions](12_Conclusions/) *(coming soon)*
+* **2. Data Preparation** *(coming soon)*
+* **3. Semantic Segmentation**
+  * [3.1 Crop Mapping - Rice Mapping in Bhutan with U-Net](03_Semantic_Segmentation/01__Crop_Mapping/)
+  * [3.2 Selective Logging Detection with Very-High Resolution Imagery](03_Semantic_Segmentation/02__Selective_Logging_Detection/)
+  * [3.3 Clay Deforestation Segmentation Model](03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/)
+* **4. Object Detection** *(coming soon)*
+* **5. Time Series**
+  * [5.1 Soybean Yield Prediction](05_Time_Series/01__Soybean_Yield_Prediction/)
+* **6. Ecological Process Simulation**
+  * [6.1 Active Fire Detection with Bayesian Neural Networks](06_Eco_Process_Sim/01__Active_Fire_Detection/)
+* **7. Transfer Learning** *(coming soon)*
+* **8. Fusion** *(coming soon)*
+* **9. Downscaling** *(coming soon)*
+* **10. Future of Deep Learning and Foundation Models**
+  * [10.1 Evaluating Foundation Models Trained with Earth Observation Data](10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/)
+* **11. Ethics** *(coming soon)*
+* **12. Conclusions** *(coming soon)*
 
 ---
 
