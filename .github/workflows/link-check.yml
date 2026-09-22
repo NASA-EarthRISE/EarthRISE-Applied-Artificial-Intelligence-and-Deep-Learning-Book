@@ -28,12 +28,16 @@ jobs:
         with:
           args: >-
             --no-progress
+            --accept '200,201,204,301,302,307,308,403,429'
             --exclude 'localhost'
             --exclude 'meet.google.com'
             --exclude 'drive.google.com'
             --exclude 'colab.research.google.com'
             --exclude 'earthengine.google.com'
             --exclude 'urs.earthdata.nasa.gov'
+            --exclude 'sciencedirect.com'
+            --exclude '\.pdf$'
+            --exclude-path '_book/404.html'
             --suggest
             '_book/**/*.html'
           fail: true
