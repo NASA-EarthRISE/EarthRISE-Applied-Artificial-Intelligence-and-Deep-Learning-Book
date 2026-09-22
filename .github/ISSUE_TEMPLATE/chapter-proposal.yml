@@ -1,0 +1,61 @@
+name: Chapter Proposal
+description: Propose a new chapter for the book
+labels: ["chapter-proposal"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Chapter title
+      placeholder: e.g., Flood Mapping with SAR and Deep Learning
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Book section
+      options:
+        - 2. Data Preparation
+        - 3. Semantic Segmentation
+        - 4. Object Detection
+        - 5. Time Series
+        - 6. Ecological Process Simulation
+        - 7. Transfer Learning
+        - 8. Fusion
+        - 9. Downscaling
+        - 10. Future of Deep Learning and Foundation Models
+        - 11. Ethics
+        - New section (describe below)
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief description of the chapter content and its value to practitioners
+    validations:
+      required: true
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors and affiliations
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data sources and hosting
+      description: What datasets will be used and where will they be hosted?
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Primary framework
+      options:
+        - PyTorch
+        - TensorFlow / Keras
+        - JAX
+        - Other
+  - type: input
+    id: timeline
+    attributes:
+      label: Estimated completion timeline
+      placeholder: e.g., 3 months
