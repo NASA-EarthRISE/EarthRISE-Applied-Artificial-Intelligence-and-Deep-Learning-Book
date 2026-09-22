@@ -64,6 +64,7 @@ book:
       - part: "10. Future of Deep Learning and Foundation Models"
         chapters:
           - 10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.ipynb
+          - 10_Future/02__Comprehensive_EOFM_Benchmarking/notebooks/Chapter_Comprehensive_EOFM_Benchmarking.ipynb
       - part: "11. Ethics"
         chapters:
           - 11_Ethics/index.ipynb
