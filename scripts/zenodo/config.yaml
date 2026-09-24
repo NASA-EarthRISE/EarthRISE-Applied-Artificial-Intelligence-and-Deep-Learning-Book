@@ -244,12 +244,29 @@ chapters:
     title: "Earth Observation Foundation Models: Encoder Representation Analysis and Downstream Task Benchmarking"
     notebook: "10_Future/02__Comprehensive_EOFM_Benchmarking/notebooks/Chapter_Comprehensive_EOFM_Benchmarking.ipynb"
     pdf_folder: "Comprehensive EOFM Benchmarking"
-    authors: []
+    authors:
+      - name: "DeMilt, Ryan P."
+        orcid: ""
+        affiliation: "Spatial Informatics Group"
+      - name: "LaHaye, Nicholas"
+        orcid: "0000-0001-6584-7315"
+        affiliation: "Jet Propulsion Laboratory; Spatial Informatics Group"
+      - name: "Truong, Myscon"
+        orcid: ""
+        affiliation: "Spatial Informatics Group"
+      - name: "Tenneson, Karis"
+        orcid: "0000-0001-5842-0663"
+        affiliation: "Spatial Informatics Group"
+      - name: "Saah, David"
+        orcid: "0000-0001-9999-1219"
+        affiliation: "University of San Francisco; Spatial Informatics Group"
     description: >
       <p>This chapter explores how to inter-compare different Earth Observation
       Foundation Models' requirements, behavior, and performance on two related
       wildfire monitoring tasks, including encoder representation analysis and
       downstream task benchmarking.</p>
+      <p>* Ryan P. DeMilt, Nicholas LaHaye, and Myscon Truong contributed
+      equally to this work.</p>
       <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
       Learning Book</em>, Chapter 10: The Future of Deep Learning and
       Foundational Models.</p>
