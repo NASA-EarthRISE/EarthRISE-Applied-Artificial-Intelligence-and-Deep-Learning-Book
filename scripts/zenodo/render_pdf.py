@@ -9,7 +9,7 @@ import yaml
 
 from common import REPO_DIR, load_config, filter_chapters
 
-PROFILE_PREFIX = "_quarto-chpdf"
+PROFILE_PREFIX = "chpdf"
 BOOK_PDF_FORMAT = None  # loaded from _quarto.yml at runtime
 
 

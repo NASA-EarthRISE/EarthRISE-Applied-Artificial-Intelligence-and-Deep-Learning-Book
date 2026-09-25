@@ -129,7 +129,7 @@ Individual chapter PDF rendering uses Quarto profiles.
 The book's chapter list lives in `_quarto-book.yml` (the default profile), not in `_quarto.yml`.
 This separation lets `render_pdf.py` create a temporary profile for one chapter without affecting the full book render.
 
-- `quarto render` (default) renders the full book as HTML using the `book` profile.
+- `quarto render` (default) renders the full book using the `book` profile.
 - `render_pdf.py` creates a temporary `_quarto-chpdf.yml` profile, renders one chapter to PDF, and deletes the temporary file.
 
 ## CLI Reference
