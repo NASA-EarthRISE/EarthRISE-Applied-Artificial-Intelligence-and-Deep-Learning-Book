@@ -1,0 +1,279 @@
+book:
+  title: "EarthRISE Applied Artificial Intelligence and Deep Learning Book"
+  year: 2026
+  license: "cc-by-4.0"
+  language: "eng"
+  community: "nasa-earthrise"
+  github_url: "https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book"
+  authors:
+    - name: "Mayer, Tim"
+      orcid: "0000-0001-9489-9392"
+      affiliation: "NASA EarthRISE; University of Alabama in Huntsville"
+    - name: "Bhandari, Biplov"
+      orcid: "0000-0001-6169-8236"
+      affiliation: "Earth Resources Technology"
+    - name: "Saah, David"
+      orcid: "0000-0001-9999-1219"
+      affiliation: "University of San Francisco; Spatial Informatics Group"
+  description: >
+    <p>The NASA EarthRISE Applied Artificial Intelligence and Deep Learning Book
+    provides practitioners with applied examples of Remote Sensing AI and Deep
+    Learning across NASA Earth Action thematic areas. Each chapter focuses on a
+    specific problem domain -- semantic segmentation, time series analysis,
+    ecological process simulation, and foundation model evaluation -- combining
+    theoretical background with practical hands-on Jupyter notebooks.</p>
+    <p>The book spans multiple frameworks (TensorFlow, PyTorch) and thematic
+    areas including agriculture, forestry, fire ecology, and geospatial AI
+    foundation model evaluation.</p>
+  keywords:
+    - deep learning
+    - remote sensing
+    - GeoAI
+    - earth observation
+    - NASA
+    - EarthRISE
+    - semantic segmentation
+    - time series
+    - foundation models
+    - Jupyter notebooks
+    - applied AI
+
+chapters:
+  - id: ch3.1
+    title: "Crop Mapping: Rice Mapping in Bhutan"
+    notebook: "03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb"
+    pdf_folder: "Crop Mapping Rice Mapping in Bhutan"
+    authors:
+      - name: "Bhandari, Biplov"
+        orcid: "0000-0001-6169-8236"
+        affiliation: "Earth Resources Technology; ERT, Inc"
+      - name: "Mayer, Tim"
+        orcid: "0000-0001-9489-9392"
+        affiliation: "NASA; University of Alabama in Huntsville"
+    description: >
+      <p>This chapter demonstrates semantic segmentation for crop type mapping,
+      using Bhutan rice paddy mapping as the applied case study. It covers deep
+      learning model development, training strategies, and evaluation using
+      satellite imagery and Earth observation data.</p>
+      <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
+      Learning Book</em>, Chapter 3: Semantic Segmentation.</p>
+    keywords:
+      - crop mapping
+      - rice mapping
+      - semantic segmentation
+      - Bhutan
+      - agriculture
+      - deep learning
+      - remote sensing
+
+  - id: ch3.2
+    title: "Selective Logging Detection with Deep Learning and Very-High Resolution Imagery"
+    notebook: "03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb"
+    pdf_folder: "Selective_Logging_Detection"
+    authors:
+      - name: "Yupanqui, Osmar"
+        orcid: "0000-0002-1900-6846"
+        affiliation: "Conservación Amazónica - ACCA"
+      - name: "Quispe, Marvin"
+        orcid: "0000-0003-1427-6799"
+        affiliation: "Conservación Amazónica - ACCA"
+    description: >
+      <p>This chapter applies deep learning semantic segmentation to detect
+      selective logging events in tropical forests using very-high resolution
+      satellite imagery. It covers data preparation, U-Net model training,
+      and end-to-end inference workflows.</p>
+      <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
+      Learning Book</em>, Chapter 3: Semantic Segmentation.</p>
+    keywords:
+      - selective logging
+      - deforestation
+      - semantic segmentation
+      - very-high resolution
+      - U-Net
+      - tropical forest
+      - remote sensing
+
+  - id: ch3.3
+    title: "Clay Deforestation Segmentation Model"
+    notebook: "03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb"
+    pdf_folder: "Clay Deforestation Segmentation Model"
+    authors:
+      - name: "Poortinga, Ate"
+        orcid: "0000-0001-9647-2317"
+        affiliation: "Spatial Informatics Group"
+      - name: "dela Torre, Daniel Marc"
+        orcid: "0000-0003-4598-224X"
+        affiliation: "Spatial Informatics Group"
+      - name: "Saisaward, Chanarun"
+        orcid: "0009-0007-2660-7205"
+        affiliation: "Spatial Informatics Group"
+      - name: "Wafiq, M Warizmi"
+        orcid: "0009-0002-4164-8631"
+        affiliation: "Spatial Informatics Group"
+      - name: "Weerapanpisit, Ponlawat"
+        orcid: ""
+        affiliation: "Spatial Informatics Group"
+      - name: "Teck, Vanna"
+        orcid: "0000-0002-8191-1580"
+        affiliation: "Spatial Informatics Group"
+      - name: "Suaruang, Weraphong"
+        orcid: "0009-0006-9165-0886"
+        affiliation: "Spatial Informatics Group"
+      - name: "Khamnoi, Wipawinee"
+        orcid: "0000-0002-1963-843X"
+        affiliation: "Spatial Informatics Group"
+    description: >
+      <p>This chapter presents a deforestation segmentation model built on the
+      Clay Earth observation foundation model, demonstrating how large pre-trained
+      geospatial models can be fine-tuned for binary change detection using
+      satellite imagery.</p>
+      <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
+      Learning Book</em>, Chapter 3: Semantic Segmentation.</p>
+    keywords:
+      - deforestation
+      - Clay foundation model
+      - semantic segmentation
+      - earth observation
+      - transfer learning
+      - remote sensing
+
+  - id: ch5.1
+    title: "Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction"
+    notebook: "05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.ipynb"
+    pdf_folder: "Soybean_Yield_Prediction"
+    authors:
+      - name: "Zhang, Chishan"
+        orcid: "0000-0001-9026-6037"
+        affiliation: "The University of Illinois at Urbana-Champaign"
+      - name: "Diao, Chunyuan"
+        orcid: "0000-0002-1480-8444"
+        affiliation: "The University of Illinois at Urbana-Champaign"
+    description: >
+      <p>This chapter demonstrates phenology-guided deep learning for soybean
+      yield prediction using satellite-derived vegetation index time series,
+      incorporating Bayesian uncertainty quantification for robust agricultural
+      forecasting.</p>
+      <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
+      Learning Book</em>, Chapter 5: Time Series.</p>
+    keywords:
+      - yield prediction
+      - soybean
+      - phenology
+      - time series
+      - uncertainty quantification
+      - deep learning
+      - remote sensing
+
+  - id: ch6.1
+    title: "Understanding Active Fire Detection Uncertainty with Bayesian Neural Networks"
+    notebook: "06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb"
+    pdf_folder: "Understanding active fire detection uncertainty with Bayesian Neural Networks"
+    authors:
+      - name: "Harvie, Julia E."
+        orcid: "0009-0004-7463-0176"
+        affiliation: "Great Lakes Forestry Centre; Natural Resources Canada"
+      - name: "Zammit, Karlee E."
+        orcid: "0009-0007-4454-1051"
+        affiliation: "Northern Forestry Centre; Natural Resources Canada"
+      - name: "Engle, Brittany T."
+        orcid: "0009-0000-4295-6885"
+        affiliation: "Earth Observation for Ecosystem Management; Technical University of Munich"
+      - name: "Oliver, Jacqueline A."
+        orcid: "0000-0001-9209-4304"
+        affiliation: "Great Lakes Forestry Centre; Natural Resources Canada"
+      - name: "Johnston, Lynn M."
+        orcid: "0000-0001-7499-3568"
+        affiliation: "Great Lakes Forestry Centre; Natural Resources Canada"
+      - name: "Cantin, Alan S."
+        orcid: "0000-0002-5004-8737"
+        affiliation: "Great Lakes Forestry Centre; Natural Resources Canada"
+      - name: "Crowley, Morgan A."
+        orcid: "0000-0001-5946-529X"
+        affiliation: "Great Lakes Forestry Centre; Natural Resources Canada"
+    description: >
+      <p>This chapter covers active fire detection using Bayesian Neural Networks
+      (BNN), quantifying prediction uncertainty in wildfire mapping from
+      satellite-derived thermal and reflectance data. It presents two case studies
+      and a framework for uncertainty-aware ecological monitoring.</p>
+      <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
+      Learning Book</em>, Chapter 6: Ecological Process Simulation.</p>
+    keywords:
+      - active fire
+      - Bayesian neural networks
+      - uncertainty quantification
+      - wildfire
+      - ecological monitoring
+      - remote sensing
+
+  - id: ch10.1
+    title: "Evaluating Foundation Models Trained with Earth Observation Data"
+    notebook: "10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.ipynb"
+    pdf_folder: "Evaluating Foundation Models Trained with Earth Observation Data"
+    authors:
+      - name: "Thomas, Lillianne"
+        orcid: "0000-0002-2085-9168"
+        affiliation: "Development Seed"
+      - name: "Leong, Wei Ji"
+        orcid: "0000-0003-2354-1988"
+        affiliation: "Development Seed"
+      - name: "Wiesmann, Daniel"
+        orcid: "0000-0002-3190-4278"
+        affiliation: "Development Seed"
+      - name: "Ranjan, Soumya"
+        orcid: "0009-0009-4822-5181"
+        affiliation: "Development Seed"
+    description: >
+      <p>This chapter evaluates large foundation models trained on Earth
+      observation data, examining benchmark performance, transferability, and
+      practical considerations for deploying geospatial AI at scale. It includes
+      a practical evaluation notebook and discussion of future directions for
+      EO foundation models.</p>
+      <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
+      Learning Book</em>, Chapter 10: The Future of Deep Learning and
+      Foundational Models.</p>
+    keywords:
+      - foundation models
+      - earth observation
+      - model evaluation
+      - GeoAI
+      - benchmark
+      - geospatial AI
+      - remote sensing
+
+  - id: ch10.2
+    title: "Earth Observation Foundation Models: Encoder Representation Analysis and Downstream Task Benchmarking"
+    notebook: "10_Future/02__Comprehensive_EOFM_Benchmarking/notebooks/Chapter_Comprehensive_EOFM_Benchmarking.ipynb"
+    pdf_folder: "Comprehensive EOFM Benchmarking"
+    authors:
+      - name: "DeMilt, Ryan P."
+        orcid: ""
+        affiliation: "Spatial Informatics Group"
+      - name: "LaHaye, Nicholas"
+        orcid: "0000-0001-6584-7315"
+        affiliation: "Jet Propulsion Laboratory; Spatial Informatics Group"
+      - name: "Truong, Myscon"
+        orcid: "0009-0005-5421-771X"
+        affiliation: "Spatial Informatics Group"
+      - name: "Tenneson, Karis"
+        orcid: "0000-0001-5842-0663"
+        affiliation: "Spatial Informatics Group"
+      - name: "Saah, David"
+        orcid: "0000-0001-9999-1219"
+        affiliation: "University of San Francisco; Spatial Informatics Group"
+    description: >
+      <p>This chapter explores how to inter-compare different Earth Observation
+      Foundation Models' requirements, behavior, and performance on two related
+      wildfire monitoring tasks, including encoder representation analysis and
+      downstream task benchmarking.</p>
+      <p>* Ryan P. DeMilt, Nicholas LaHaye, and Myscon Truong contributed
+      equally to this work.</p>
+      <p>Part of the <em>EarthRISE Applied Artificial Intelligence and Deep
+      Learning Book</em>, Chapter 10: The Future of Deep Learning and
+      Foundational Models.</p>
+    keywords:
+      - foundation models
+      - benchmarking
+      - earth observation
+      - encoder analysis
+      - wildfire monitoring
+      - remote sensing

@@ -36,6 +36,7 @@ jobs:
             --exclude 'earthengine.google.com'
             --exclude 'urs.earthdata.nasa.gov'
             --exclude 'sciencedirect.com'
+            --exclude 'zenodo.org/badge'
             --exclude '\.pdf$'
             --exclude-path '_book/404.html'
             --suggest
