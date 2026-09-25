@@ -13,7 +13,7 @@
 
 - [ ] Folder follows naming convention (`NN_Section/NN__Chapter/notebooks/`)
 - [ ] Chapter title includes Section.Chapter prefix (e.g., `# 3.1 ...`)
-- [ ] Images stored in local `assets/` folder with relative paths
+- [ ] Images stored in `notebooks/images/` with markdown syntax (not HTML `<img>`)
 - [ ] All images have descriptive `alt` attributes
 - [ ] Colab and GitHub badges present and link to the correct file
 - [ ] Video embed wrapped in `content-visible` format guard (if applicable)
