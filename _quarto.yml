@@ -67,6 +67,7 @@ format:
       fig-format: png
       header-includes:
         - \usepackage{graphicx}
+        - \usepackage{orcidlink}
         - \newenvironment{CSLReferences}[2]{}{}
         - \usepackage{fvextra}
         - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
