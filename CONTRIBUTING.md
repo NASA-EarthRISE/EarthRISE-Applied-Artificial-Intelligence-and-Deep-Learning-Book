@@ -13,9 +13,10 @@ NN_Section_Name/
   NN__Chapter_Name/
     notebooks/
       Your_Notebook.ipynb
-    assets/
-      figure1.png
-      figure2.png
+      images/
+        figure1.png
+        figure2.png
+    data/              # optional, for data files (.tif, .csv, etc.)
 ```
 
 - Section folders use a **single underscore** after the number: `06_Eco_Process_Sim`
@@ -25,7 +26,8 @@ NN_Section_Name/
 Each chapter should include:
 
 - **`notebooks/`** - one primary Jupyter notebook with pre-computed cell outputs
-- **`assets/`** - chapter images stored locally (not hosted on external repos)
+- **`notebooks/images/`** - chapter images stored locally (not hosted on external repos)
+- **`data/`** (optional) - data files (.tif, .csv, etc.) used by the notebook
 
 ### Chapter Numbering
 
@@ -39,15 +41,13 @@ The section number matches the top-level folder (`03_` = Section 3), and the cha
 
 ### Image Hosting
 
-Store all chapter images in a local `assets/` subfolder within your chapter directory. Reference them using relative paths from the notebook:
+Store all chapter images in `notebooks/images/` within your chapter directory. Use markdown image syntax (not HTML `<img>` tags) so images render correctly in both HTML and PDF:
 
-```html
-<img style="display: block; margin-left: auto; margin-right: auto; width: 60%;"
-     src="../assets/figure1.png"
-     alt="Description of the figure for accessibility"/>
+```markdown
+![Description of the figure for accessibility](images/figure1.png){width="60%" fig-align="center"}
 ```
 
-Do **not** host images on external repositories. All images must include a descriptive `alt` attribute for accessibility.
+Do **not** host images on external repositories or reference them via URLs. All images must include a descriptive alt text for accessibility.
 
 ### Updating `_quarto.yml`
 
@@ -80,11 +80,12 @@ Watch the video walkthrough for this chapter at [https://www.youtube.com/watch?v
 Chapters should include the following elements in order:
 
 1. **YAML frontmatter** (raw cell) with author names, ORCIDs, affiliations, `license: "CC BY 4.0"`, and citation metadata
-2. **Citation/DOI callout** (markdown cell) with a Zenodo DOI badge (coordinated with the editors after acceptance)
-3. **Title heading** with Section.Chapter prefix, followed by Colab and GitHub badges
-4. **Video embed** with PDF format guard (added by the editors after the chapter video is produced)
-5. **Chapter content**
-6. **Acknowledgements section** at the end for funding attribution
+2. **Title heading** with Section.Chapter prefix, followed by Colab and GitHub badges
+3. **Author attribution** (markdown cell) for PDF output using `content-visible when-format="pdf"`
+4. **Citation/DOI callout** (markdown cell) with a Zenodo DOI badge (coordinated with the editors after acceptance)
+5. **Video embed** with PDF format guard (added by the editors after the chapter video is produced)
+6. **Chapter content**
+7. **Acknowledgements section** at the end for funding attribution
 
 See Ch 6.1 (`06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb`) for a complete example.
 
