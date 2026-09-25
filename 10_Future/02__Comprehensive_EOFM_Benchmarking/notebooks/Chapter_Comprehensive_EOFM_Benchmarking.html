@@ -94,6 +94,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/bootstrap/bootstrap-a33118adf84808803f3611f003e4bc4b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark-21d6fceeb25172fe2fb34cb0b56a437d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../../site_libs/bootstrap/bootstrap-a33118adf84808803f3611f003e4bc4b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -853,10 +856,16 @@ window.Quarto = {
 <p>Transfer learning is a powerful machine learning technique that allows a model trained on one task to leverage previously learned features for a different but related task. Instead of starting from scratch, transfer learning leverages the knowledge a model has already gained from a separate, and usually large, dataset and applies it to a new problem. This is particularly useful when a dataset is small or annotations for the new task are limited. Once initial training has been completed, the layers toward the front (closer to the input layer) of these models have typically learned general features, such as edges in images or syntactic patterns in text, which can be useful across a wide range of tasks.</p>
 <p>Ideally, by fine-tuning the initial layers of a pretrained model or adding new layers specific to the new task, practitioners can adapt it to perform well with far fewer training samples. This also has the potential to improve performance thresholds for a given smaller or imbalanced dataset, as the pretrained model already has latent feature extraction capabilities from prior training. Properly executed transfer learning not only has the potential to boost performance, but also saves computational resources and significantly reduces training time. You can think of this as skill reuse: a model that has already learned to recognize generic shapes and textures in one dataset can adapt more quickly to a new dataset.</p>
 <p>Many different strategies can be applied to achieve transfer learning, such as freezing different sets of layers during training or allowing all layers to be updated, depending on the similarity between the source (initial) and target (new) tasks. For example, in medical imaging, models trained on natural images have been fine-tuned to detect tumors or classify X-rays by retraining only a few layers.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 60%;" src="../assets/pretraining_workflow.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/pretraining_workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Diagram of a foundation model pretraining workflow feeding into downstream tasks"><img src="images/pretraining_workflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram of a foundation model pretraining workflow feeding into downstream tasks"></a></p>
+</figure>
+</div>
+<figcaption>Diagram of a foundation model pretraining workflow feeding into downstream tasks</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 1. Simplified foundation model pretraining workflow
 </div>
@@ -872,10 +881,16 @@ Figure 1. Simplified foundation model pretraining workflow
 </section>
 <section id="masked-autoencoding-mae" class="level4">
 <h4 class="anchored" data-anchor-id="masked-autoencoding-mae"><u>Masked Autoencoding (MAE)</u></h4>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 50%;" src="../assets/mae.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/mae.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Masked autoencoder diagram showing image patches masked and reconstructed by a decoder"><img src="images/mae.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Masked autoencoder diagram showing image patches masked and reconstructed by a decoder"></a></p>
+</figure>
+</div>
+<figcaption>Masked autoencoder diagram showing image patches masked and reconstructed by a decoder</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 2. Diagram depicting masked autoencoder training from (He et al., 2022). Images are broken into small sections, called patches. A percentage of these patches are hidden (masked). The decoder is tasked with reconstructing the original image from the remaining unmasked patches.
 </div>
@@ -884,10 +899,16 @@ Figure 2. Diagram depicting masked autoencoder training from (He et al., 2022). 
 </section>
 <section id="contrastive-learning" class="level4">
 <h4 class="anchored" data-anchor-id="contrastive-learning"><u>Contrastive Learning</u></h4>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 50%;" src="../assets/simclr.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/simclr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="SimCLR contrastive learning diagram showing augmented image pairs and embeddings"><img src="images/simclr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="SimCLR contrastive learning diagram showing augmented image pairs and embeddings"></a></p>
+</figure>
+</div>
+<figcaption>SimCLR contrastive learning diagram showing augmented image pairs and embeddings</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 3. Diagram for SimCLR training paradigm from (Chen et al., 2020).
 </div>
@@ -898,10 +919,16 @@ Figure 3. Diagram for SimCLR training paradigm from (Chen et al., 2020).
 </section>
 <section id="non-contrastive-self-distillation" class="level4">
 <h4 class="anchored" data-anchor-id="non-contrastive-self-distillation"><u>Non-contrastive Self Distillation</u></h4>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 50%;" src="../assets/dino.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dino.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="DINO self-distillation diagram with student and teacher networks processing augmented views"><img src="images/dino.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="DINO self-distillation diagram with student and teacher networks processing augmented views"></a></p>
+</figure>
+</div>
+<figcaption>DINO self-distillation diagram with student and teacher networks processing augmented views</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 4. Diagram for DINO training paradigm from (Caron et al., 2021).
 </div>
@@ -914,10 +941,16 @@ Figure 4. Diagram for DINO training paradigm from (Caron et al., 2021).
 </section>
 <section id="linear-probe" class="level4">
 <h4 class="anchored" data-anchor-id="linear-probe">Linear Probe</h4>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/linear.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/linear.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Diagram of a simple linear probe decoder with a single linear layer"><img src="images/linear.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram of a simple linear probe decoder with a single linear layer"></a></p>
+</figure>
+</div>
+<figcaption>Diagram of a simple linear probe decoder with a single linear layer</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 5. Simplified structure of a single linear layer.
 </div>
@@ -925,10 +958,16 @@ Figure 5. Simplified structure of a single linear layer.
 <p>A linear probe, as displayed in Figure 5, is the simplest type of decoder typically used in this paradigm. It is a single linear layer, or a small multi-layer perceptron (MLP). This technique is taken from the language domain where large language models are often evaluated on downstream tasks with linear probes on frozen embeddings before doing full fine-tuning. In practice, this isn’t typically used for many Earth observation tasks due to limited model complexity. But this decoder is still useful in assessing representation quality as it is cheap to train and can be implemented consistently, making it an ideal tool for benchmarking. Since the model is so simple, the performance of a linear decoder can be used to analyze how easily separable the encoder has made the samples from our dataset.</p>
 <section id="fully-convolutional-network-fcn" class="level5">
 <h5 class="anchored" data-anchor-id="fully-convolutional-network-fcn">Fully Convolutional Network (FCN)</h5>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 60%;" src="../assets/fcn.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fcn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Fully convolutional network architecture diagram with stacked convolutional layers"><img src="images/fcn.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Fully convolutional network architecture diagram with stacked convolutional layers"></a></p>
+</figure>
+</div>
+<figcaption>Fully convolutional network architecture diagram with stacked convolutional layers</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 6. Full convolutional neural network architectural diagram from (Long et al., 2014).
 </div>
@@ -937,10 +976,16 @@ Figure 6. Full convolutional neural network architectural diagram from (Long et 
 </section>
 <section id="segformer" class="level5">
 <h5 class="anchored" data-anchor-id="segformer">SegFormer</h5>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 60%;" src="../assets/segformer.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/segformer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="SegFormer architecture diagram for semantic segmentation with a lightweight decoder"><img src="images/segformer.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="SegFormer architecture diagram for semantic segmentation with a lightweight decoder"></a></p>
+</figure>
+</div>
+<figcaption>SegFormer architecture diagram for semantic segmentation with a lightweight decoder</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 7. SegFormer-style network architectural diagram for semantic segmentation from (Xie et al., 2021).
 </div>
@@ -949,10 +994,16 @@ Figure 7. SegFormer-style network architectural diagram for semantic segmentatio
 </section>
 <section id="upernet" class="level5">
 <h5 class="anchored" data-anchor-id="upernet">UperNet</h5>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 60%;" src="../assets/upernet.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/upernet.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="UperNet architecture diagram showing multi-scale hierarchical feature pooling"><img src="images/upernet.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="UperNet architecture diagram showing multi-scale hierarchical feature pooling"></a></p>
+</figure>
+</div>
+<figcaption>UperNet architecture diagram showing multi-scale hierarchical feature pooling</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 8. UperNet architectural diagram from (Xiao et al., 2018).
 </div>
@@ -961,10 +1012,16 @@ Figure 8. UperNet architectural diagram from (Xiao et al., 2018).
 </section>
 <section id="muster" class="level5">
 <h5 class="anchored" data-anchor-id="muster">MUSTER</h5>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 60%;" src="../assets/muster.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/muster.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="MUSTER decoder architecture diagram showing transformer-based hierarchical feature extraction"><img src="images/muster.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="MUSTER decoder architecture diagram showing transformer-based hierarchical feature extraction"></a></p>
+</figure>
+</div>
+<figcaption>MUSTER decoder architecture diagram showing transformer-based hierarchical feature extraction</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 9. Architectural diagram of MUSTER decoder from (Xu et al., 2022).
 </div>
@@ -1002,10 +1059,16 @@ Figure 9. Architectural diagram of MUSTER decoder from (Xu et al., 2022).
 <section id="manifold-projections-for-qualitative-analysis-and-dimension-reduction" class="level5">
 <h5 class="anchored" data-anchor-id="manifold-projections-for-qualitative-analysis-and-dimension-reduction"><u>Manifold Projections for Qualitative Analysis and Dimension Reduction</u></h5>
 <p>The Uniform Manifold Approximation and Projection (UMAP) methodology for Dimension Reduction can be used both as a general dimension reduction tool and as an interpretability/visualization tool, and here we use it for both. UMAP assumes data lies on a manifold and utilizes local approximations (k-nearest neighbor graphs) to represent the data’s topological and metric structure. Each local neighborhood is encoded as a fuzzy simplicial set, and then merged probabilistically to form a global topological structure (McInnes et al., 2020). Figure 10 provides a couple of examples of embeddings from different models and geospatial datasets projected into a lower-dimension feature space using UMAP, and overlaid with each sample’s target or label value.</p>
-<img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 80%;" src="../assets/UMAP_Examples.png">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/UMAP_Examples.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="UMAP scatter plots of embeddings for datasets with 4, 2, and 7 classes"><img src="images/UMAP_Examples.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="UMAP scatter plots of embeddings for datasets with 4, 2, and 7 classes"></a></p>
+</figure>
+</div>
+<figcaption>UMAP scatter plots of embeddings for datasets with 4, 2, and 7 classes</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 10. Embeddings from different models and geospatial datasets with 4 classes (left), 2 classes (center), and 7 classes (right) projected into a 2D feature space using UMAP.
 </div>
@@ -1034,10 +1097,16 @@ Figure 10. Embeddings from different models and geospatial datasets with 4 class
 <h2 class="anchored" data-anchor-id="section-b-the-framework">Section B: The Framework</h2>
 <p><a href="https://github.com/VMarsocci/pangaea-bench">Link to original repository</a></p>
 <p>We apply the Pangaea Bench benchmarking framework originally developed by the ESA Phi Lab team (Marsocci et al., 2024). While other teams are developing frameworks, Pangaea conveniently integrates many of the more popular remote sensing foundation models into its pure PyTorch framework, along with several well-established benchmarking datasets. Figure 11 shows the design of the Pangaea framework. It also includes a relatively simple dataset integration scheme along with additional decoder heads and encoder evaluation methodologies integrated by the team at Spatial Informatics Group. The limited dependency list is especially beneficial for small-scale demonstrations such as this learning notebook. You will find similar themes to those found in previous chapters of the <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book">Applied Deep Learning Book</a>, such as dataloaders, PyTorch modules, loss functions, etc. These are not exclusive to training end-to-end models, and in fact, the workflow is almost the same! The EOFMs are intended to solve the same segmentation, classification, or regression problems differently. Here, we focus on the additional considerations that come with using an EOFM for segmentation.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/pangaea_workflow.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/pangaea_workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Diagram of the Pangaea-Bench benchmarking framework structure"><img src="images/pangaea_workflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram of the Pangaea-Bench benchmarking framework structure"></a></p>
+</figure>
+</div>
+<figcaption>Diagram of the Pangaea-Bench benchmarking framework structure</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 11. Diagram of Pangaea’s general structure.
 </div>
@@ -1073,20 +1142,32 @@ Figure 11. Diagram of Pangaea’s general structure.
 <h3 class="anchored" data-anchor-id="highlighted-models">Highlighted Models</h3>
 <p>For the encoder evaluation, we will take a look at a large set of pretrained encoders available within Pangaea-Bench. From there, we will focus fine-tuning on a single task for 3 frozen encoder variations: Dynamic One-For-All (DOFA), Contrastive Radar-Optical Masked Autoencoder (CROMA), and Prithvi 1.0 (described below). Below is a brief introduction to the models we will focus on in the fine-tuning process and beyond. #### DOFA</p>
 <p>DOFA is a transformer-based model (Figure 12a) that is optimized on both a mask image modeling objective and a self-distillation objective (Figure 12b). DOFA’s major contribution is its wavelength-conditioned dynamic patch embedding, in which the central wavelength of a given sensor is used to derive the weights for processing the respective data (Xiong et al., 2024). It is apparent from this that the model developers’ approach is targeting flexibility and generalizability across multiple modalities and does so fairly well. And yet, there are still open questions. For example, wavelength and reflectance do not necessarily translate to amplitude data from SAR; does this matter? Benchmarking metrics will tell you no, but do keep in mind the underlying reasons for these behaviors.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/dofa.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dofa.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="DOFA architecture diagram showing dynamic patch embedding and weight generator"><img src="images/dofa.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="DOFA architecture diagram showing dynamic patch embedding and weight generator"></a></p>
+</figure>
+</div>
+<figcaption>DOFA architecture diagram showing dynamic patch embedding and weight generator</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 12: (a) Architecture design. DOFA builds on masked image modeling by processing input images with any number of channels within a single framework. (b) Dynamic weight generator and continual training framework from (Xiong et al., 2024).
 </div>
 <section id="prithvi-1.0" class="level4">
 <h4 class="anchored" data-anchor-id="prithvi-1.0">Prithvi 1.0</h4>
 <p>Prithvi v1.0 is one of the earliest foundation models and the simplest of the three models tested in this demonstration (Jakubik et al., 2023). Developed by the NASA IMPACT team, Prithvi v1.0 (Figure 13) is a masked autoencoder trained exclusively on Harmonized Landsat and Sentinel (HLS) data, with an added module for handling spatial and temporal context. The Prithvi model’s training on HLS data provides an interesting opportunity for discussion in our benchmarking: do we expect a model pretrained on HLS data to perform best on tasks using similar HLS imagery? Equally, to what extent do we expect models to adapt to similar but distinct modalities? Especially those which overlap, such as Sentinel-2 and non-harmonized Landsat. As with other models described in this chapter, the Prithvi team is actively working to improve their model and has released new versions of their architecture and model weights. If the reader is interested, we recommend working towards reproducing the results of these experiments, with Prithvi v2.0 (Szwarcman et al., 2025).</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/prithvi.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/prithvi.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Prithvi masked autoencoder pretraining architecture diagram"><img src="images/prithvi.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Prithvi masked autoencoder pretraining architecture diagram"></a></p>
+</figure>
+</div>
+<figcaption>Prithvi masked autoencoder pretraining architecture diagram</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 13: Masked autoencoder diagram for Prithvi’s pretraining from (Jakubik et al., 2023).
 </div>
@@ -1094,10 +1175,16 @@ Figure 13: Masked autoencoder diagram for Prithvi’s pretraining from (Jakubik 
 <section id="croma" class="level4">
 <h4 class="anchored" data-anchor-id="croma">CROMA</h4>
 <p>CROMA (Figure 14) is another transformer-based model whose pretraining approach combines both MIM and contrastive learning (Fuller et al., 2023). Rather than contrasting positive and negative samples, the CROMA framework contrasts optical and radar data using separate encoders, then combines those embeddings using cross-attention with an additional transformer encoder. The output of this joint encoder is then randomly masked and trained in a typical encoder-decoder MIM style. The optical encoder requires all 12 spectral bands from Sentinel 2, while the radar encoder requires the 2 polarization bands from Sentinel 1. In our downstream task, we are limited to 6 harmonized spectral bands. How can we expect this to impact our results?</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/chroma.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/chroma.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="CROMA pretraining framework and encoding workflow diagram"><img src="images/chroma.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="CROMA pretraining framework and encoding workflow diagram"></a></p>
+</figure>
+</div>
+<figcaption>CROMA pretraining framework and encoding workflow diagram</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 14: (Left) Pretraining framework for CROMA. (Right) Encoding workflow for leveraging internal representations.
 </div>
@@ -1138,10 +1225,16 @@ Figure 14: (Left) Pretraining framework for CROMA. (Right) Encoding workflow for
 </div>
 <p>Additional details are produced in plots generated by the commands run, but we will use the per-layer <span class="math inline">\(\alpha\)</span> plots in Figure 15 to provide a top-level summary of the findings. These plots summarize each layer’s empirical spectral density using the power-law exponent <span class="math inline">\(\alpha\)</span>; Lower <span class="math inline">\(\alpha\)</span> values indicate heavier tails and potential overfitting, whereas higher <span class="math inline">\(\alpha\)</span> values suggest lighter tails and possible underfitting. . CROMA appears to have the most consistently well-trained layers, with most <span class="math inline">\(\alpha\)</span> values staying within the desired [2,5] range, and deviations outside this range being very minimal. Prithvi appears to have a handful of layers that are overfit to a small degree, and DOFA has a somewhat evenly distributed set of layers throughout the model that appear to be underfit.</p>
 <p>There are a few layers that deviate below 2 at the beginning of each model, which is a pattern identified in previous studies of vision models using the weight watcher tool. The current hypothesis is that most high-level features learned in early layers of vision models are similar across all scenes in a large training set, so the early layers in a model, typically the ones that learn these high-level features, tend toward overfitting/a lack of generalizability. Here, the deviations only appear to be minor.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 50%;" src="../assets/Combined_Alpha_vs_Depth_Plots.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Combined_Alpha_vs_Depth_Plots.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Alpha parameter versus layer depth plots for CROMA, Prithvi, and DOFA"><img src="images/Combined_Alpha_vs_Depth_Plots.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Alpha parameter versus layer depth plots for CROMA, Prithvi, and DOFA"></a></p>
+</figure>
+</div>
+<figcaption>Alpha parameter versus layer depth plots for CROMA, Prithvi, and DOFA</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 15. Plots containing the <span class="math inline">\(\alpha\)</span> summary parameter from the model weight matrix analysis done for CROMA (top left), Prithvi (bottom center), and DOFA (top right).
 </div>
@@ -1171,10 +1264,16 @@ Figure 15. Plots containing the <span class="math inline">\(\alpha\)</span> summ
 <span id="cb6-11"><a href="#cb6-11" aria-label="11"></a><span class="op">!</span>python3 compute_flops.py dataset<span class="op">=</span>mtbs   encoder<span class="op">=</span>prithvi  preprocessing<span class="op">=</span>seg_irregular_images    task<span class="op">=</span>segmentation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 80%;" src="../assets/Resource_Consumption_Table.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Resource_Consumption_Table.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Table comparing resource consumption of CROMA, DOFA, and Prithvi models"><img src="images/Resource_Consumption_Table.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Table comparing resource consumption of CROMA, DOFA, and Prithvi models"></a></p>
+</figure>
+</div>
+<figcaption>Table comparing resource consumption of CROMA, DOFA, and Prithvi models</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Table 1. Resource consumption of the three encoders relative to common pretrained and randomly initialized models. Note the diversity in the amount of calculations required by the different models. We will touch on this in the following section.
 </div>
@@ -1255,10 +1354,16 @@ Table 1. Resource consumption of the three encoders relative to common pretraine
 <p>We can use these plots first to do a qualitative analysis if we compare these UMAP plots to those in Figures 16 and 17, where we can see weak to moderate separations of the classes for all models and can take away the fact that these are not an easy task for these models out of the box.</p>
 <section id="umap-analysis-hls-burn-scars" class="level5">
 <h5 class="anchored" data-anchor-id="umap-analysis-hls-burn-scars">UMAP Analysis HLS Burn Scars</h5>
-<img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 50%;" src="../assets/HLS_UMAP.png">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/HLS_UMAP.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="UMAP embedding plots for CROMA, DOFA, and Prithvi on HLS Burn Scars data"><img src="images/HLS_UMAP.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="UMAP embedding plots for CROMA, DOFA, and Prithvi on HLS Burn Scars data"></a></p>
+</figure>
+</div>
+<figcaption>UMAP embedding plots for CROMA, DOFA, and Prithvi on HLS Burn Scars data</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 16. A plot of the embeddings generated from CROMA (top left), Dofa (top right), and Prithvi (bottom left) for samples from the test split of the HLS Burn Scars dataset projected onto a low-dimensional (2D) manifold via UMAP and overlaid with their associated target value. The key for the targets is on the bottom right.
 </div>
@@ -1267,10 +1372,16 @@ Figure 16. A plot of the embeddings generated from CROMA (top left), Dofa (top r
 </section>
 <section id="umap-analysis-mtbs" class="level5">
 <h5 class="anchored" data-anchor-id="umap-analysis-mtbs">UMAP Analysis MTBS</h5>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 50%;" src="../assets/MTBS_UMAP.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/MTBS_UMAP.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="UMAP embedding plots for CROMA, DOFA, and Prithvi on the MTBS dataset"><img src="images/MTBS_UMAP.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="UMAP embedding plots for CROMA, DOFA, and Prithvi on the MTBS dataset"></a></p>
+</figure>
+</div>
+<figcaption>UMAP embedding plots for CROMA, DOFA, and Prithvi on the MTBS dataset</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 17. A plot of the embeddings generated from CROMA (left), DOFA (center), and Prithvi (right) for samples from the test split of the MTBS dataset projected onto a low-dimensional (2D) manifold via UMAP and overlaid with their associated target value. The key for the targets is on the bottom right.
 </div>
@@ -1299,36 +1410,60 @@ Figure 17. A plot of the embeddings generated from CROMA (left), DOFA (center), 
 <section id="embedding-space-comparisons---hls-burn-scars" class="level5">
 <h5 class="anchored" data-anchor-id="embedding-space-comparisons---hls-burn-scars">Embedding Space Comparisons - HLS Burn Scars</h5>
 <p>Figure 18 provides sample-wise scatter plots for a subset of samples projected into the uniform collective embedding space. This is shown for the models in focus (top left), a larger set of models supported by Pangaea-Bench (top right), as well as individual plots for each model in focus, with an additional visualization of spatial density (bottom), which will come in handy in this analysis.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 50%;" src="../assets/Embed_Scatter_HLS.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Embed_Scatter_HLS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Scatter plots of joint embedding projections for HLS Burn Scars across models"><img src="images/Embed_Scatter_HLS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Scatter plots of joint embedding projections for HLS Burn Scars across models"></a></p>
+</figure>
+</div>
+<figcaption>Scatter plots of joint embedding projections for HLS Burn Scars across models</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 18. A depiction of the joint embedding projection for the embeddings of a subset of the HLS Burn Scar data for the three models of focus here (top left) as well as a larger set of models supported by Pangaea-Bench (top right). The bottom row depicts a zoom-in of CROMA’s (left), DOFA’s (center), and Prithvi’s (right) samples in the embedding space, with opacity used to represent the spatial density of samples. The red box in the top-right figure indicates the subsetted area in the full embedding where these models have samples projected. The plots in the top-left and bottom rows contain only this subset area.
 </div>
 <p><br></p>
 <p>In Figure 19, we can see that DOFA and Prithvi are relatively close together, although it does not appear that they belong to a distinct single cluster of models.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 45%;" src="../assets/Embed_Space_Dist_Mtx_HLS.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Embed_Space_Dist_Mtx_HLS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Distance matrix plot of collapsed embedding spaces for HLS models"><img src="images/Embed_Space_Dist_Mtx_HLS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Distance matrix plot of collapsed embedding spaces for HLS models"></a></p>
+</figure>
+</div>
+<figcaption>Distance matrix plot of collapsed embedding spaces for HLS models</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 19. A depiction of collapsing the embedding spaces into single points to visualize and measure population-level representational differences.
 </div>
 <p><br></p>
 <p>Figures 20 and 21 show pairwise comparison plots and the pairwise p-value distributions of differences between the two representations of the same samples, as described above. We can see that the representations are somewhat similar in the case of DOFA vs Prithvi, but otherwise clearly not the same. This is demonstrated by the number of samples with small p-values (less opaque samples in Figure 20) as well as p-value distribution plots in Figure 21. The p-value distributions in the comparisons of CROMA vs DOFA and CROMA vs Prithvi indicate strong dissimilarity, with heavy leftward shifts of the distribution (blue line) indicating rejection of the null hypothesis. In the case of DOFA vs Prithvi, the rightward shift indicates representational similarity.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/Scatter_P_Val_HLS.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Scatter_P_Val_HLS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Scatterplots comparing pairwise representational similarity between models using p-values, HLS data"><img src="images/Scatter_P_Val_HLS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Scatterplots comparing pairwise representational similarity between models using p-values, HLS data"></a></p>
+</figure>
+</div>
+<figcaption>Scatterplots comparing pairwise representational similarity between models using p-values, HLS data</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 20. Scatterplots of the embedding projections being used to measure population-level representational shifts between pairs of models. Here, the sample set from the model being compared against is plotted, and the model we are measuring deviation from has its samples overlaid on top. The opacity has an inverse relationship to the p-value of a given sample. All values with a p-value close to or equal to 1 are colored white here and therefore do not show up. Comparison datasets are on the left of the arrow and reference datasets are on the right for each plot title.
 </div>
 <p><br></p>
-<img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/P_Value_Dist_HLS.png">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/P_Value_Dist_HLS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Distribution plots of p-values for each pair of models, HLS dataset"><img src="images/P_Value_Dist_HLS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Distribution plots of p-values for each pair of models, HLS dataset"></a></p>
+</figure>
+</div>
+<figcaption>Distribution plots of p-values for each pair of models, HLS dataset</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 21. The distribution of p-values under the null hypothesis for each ordered pair of models. Comparison datasets are on the left of the arrow and reference datasets are on the right for each plot title.
 </div>
@@ -1338,36 +1473,60 @@ Figure 21. The distribution of p-values under the null hypothesis for each order
 <section id="embedding-space-comparisons---mtbs" class="level5">
 <h5 class="anchored" data-anchor-id="embedding-space-comparisons---mtbs">Embedding Space Comparisons - MTBS</h5>
 <p>Figure 22 provides sample-wise scatter plots for a subset of samples projected into the uniform collective embedding space for the MTBS case. Because the reprojected embeddings for these models and this data span a wider set of the embedding field, we do not subsample for the 3-model and single-model scatterplots, as in Figure 18.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/Embed_Scatter_MTBS.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Embed_Scatter_MTBS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Scatter plots of joint embedding projections for the MTBS dataset across models"><img src="images/Embed_Scatter_MTBS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Scatter plots of joint embedding projections for the MTBS dataset across models"></a></p>
+</figure>
+</div>
+<figcaption>Scatter plots of joint embedding projections for the MTBS dataset across models</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 22. A depiction of the joint embedding projection for the embeddings of the MTBS dataset and the three models of focus here (top left) as well as a larger set of models supported by Pangaea-Bench (top right). The bottom row depicts CROMA’s (left), DOFA’s (center), and Prithvi’s (right) samples in the embedding space, with opacity used here to represent the spatial density of samples.
 </div>
 <p><br></p>
 <p>In the reduced-dimension single-point mapping in Figure 23, we can see that CROMA, DOFA, and Prithvi are all in distinct clusters, meaning that this measure of their representational structure shows strong distinctions. This gives us one point of information in our model selection and representation analysis journey, but should not be used as a comprehensive indicator on its own.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 45%;" src="../assets/Embed_Space_Dist_Mtx_MTBS.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Embed_Space_Dist_Mtx_MTBS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Distance matrix plot of collapsed embedding spaces for MTBS models"><img src="images/Embed_Space_Dist_Mtx_MTBS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Distance matrix plot of collapsed embedding spaces for MTBS models"></a></p>
+</figure>
+</div>
+<figcaption>Distance matrix plot of collapsed embedding spaces for MTBS models</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 23. A depiction of collapsing the embedding spaces into single points to visualize and measure population-level representational differences for the MTBS dataset test case.
 </div>
 <p><br></p>
 <p>Figures 24 and 25 show different visualizations from pairwise comparisons of the p-value distributions of differences between the two representations of the same samples, as described above. Here, we can see that the representations are distinct. This is demonstrated by the number of samples with low p-values and by the p-value distribution plots in Figure 25, which show strong leftward shifts. In this case, no model’s class separation really stands out in the UMAP plots, and all models have distinct representations.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/Scatter_P_Val_MTBS.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/Scatter_P_Val_MTBS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Scatterplots comparing pairwise representational similarity between models using p-values, MTBS data"><img src="images/Scatter_P_Val_MTBS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Scatterplots comparing pairwise representational similarity between models using p-values, MTBS data"></a></p>
+</figure>
+</div>
+<figcaption>Scatterplots comparing pairwise representational similarity between models using p-values, MTBS data</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 24. Scatterplots of the MTBS embedding projections being used to measure population-level representational shifts between pairs of models. Here, the sample set from the model being compared against is plotted, and the model we are measuring deviation from has its samples overlaid on top. The opacity has an inverse relationship to the p-value of a given sample. All values with a p-value close to or equal to 1 are colored white here and therefore do not show up. Comparison datasets are on the left of the arrow and reference datasets are on the right for each plot title.
 </div>
 <p><br></p>
-<img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/P_Value_Dist_MTBS.png">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/P_Value_Dist_MTBS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Distribution plots of p-values for each pair of models, MTBS dataset"><img src="images/P_Value_Dist_MTBS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Distribution plots of p-values for each pair of models, MTBS dataset"></a></p>
+</figure>
+</div>
+<figcaption>Distribution plots of p-values for each pair of models, MTBS dataset</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 25. The distribution of p-values under the null hypothesis for each ordered pair of models and the MTBS data. Comparison datasets are on the left of the arrow and reference datasets are on the right for each plot title.
 </div>
@@ -1644,10 +1803,16 @@ Figure 25. The distribution of p-values under the null hypothesis for each order
 <section id="training-graphs" class="level4">
 <h4 class="anchored" data-anchor-id="training-graphs">Training Graphs</h4>
 <p>Despite a limited training window, we see a fairly distinct training curve, which suggests the models have learned some useful features. Whether this is due to the pretraining or the simple nature of the task is still an open question. A straightforward test for that is to train using a randomly initialized encoder by adjusting the last configuration in each training command to null. In addition, there is a clear loss difference between the models, with DOFA generally having a higher cross-entropy loss.</p>
-<img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/training_graph.png">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/training_graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Line chart of training loss per step for all model variations"><img src="images/training_graph.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Line chart of training loss per step for all model variations"></a></p>
+</figure>
+</div>
+<figcaption>Line chart of training loss per step for all model variations</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 26: Training loss per step for all model variations. Each model was optimized using cross-entropy loss.
 </div>
@@ -1656,10 +1821,16 @@ Figure 26: Training loss per step for all model variations. Each model was optim
 <section id="decoder-choice" class="level4">
 <h4 class="anchored" data-anchor-id="decoder-choice">Decoder Choice</h4>
 <p>The test metrics for the checkpoint saved at the final epoch, shown in Figure 29, tell a slightly different story. Overall, the CROMA combinations appear to be the most effective in terms of overall performance metrics (F1 and IoU). The PRITHVI encoder consistently shows good performance across different decoders, with the Linear Probe surprisingly being the top performer in this group. The DOFA Linear Probe combination stands out as an outlier with extremely low performance for burn scar detection. The lower performance of the probe into DOFA suggests its internal representation may not be appropriate for this task, and the decoder might be doing the bulk of the heavy lifting in the other runs, which aligns with our evaluation of the encoder analysis in the above sections. More experimentation is required to confirm this. It’s worth noting that even with the same encoder, varying the decoder has a visible effect on performance that is comparable in magnitude to the differences between encoders.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 70%;" src="../assets/test_metrics.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/test_metrics.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Bar chart of test metrics for each encoder-decoder combination"><img src="images/test_metrics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Bar chart of test metrics for each encoder-decoder combination"></a></p>
+</figure>
+</div>
+<figcaption>Bar chart of test metrics for each encoder-decoder combination</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 27: Test metrics per encoder-decoder variation
 </div>
@@ -1667,10 +1838,16 @@ Figure 27: Test metrics per encoder-decoder variation
 <section id="per-class-metrics" class="level4">
 <h4 class="anchored" data-anchor-id="per-class-metrics">Per Class Metrics</h4>
 <p>Looking at per-class metrics in Figure 28 gives a bit more insight into what’s happening. Aside from the DOFA-linear-probe outlier, the differences from model to model are realistically negligible, although further statistical testing would be recommended to confirm this. However, when we look at per-class metrics, we see a more noticeable difference between each model’s ability to segment the positive class. This suggests a class imbalance issue. While this may accurately reflect the task, it needs to be taken into account when designing a benchmark dataset and evaluation framework.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 90%;" src="../assets/per_class.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/per_class.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Bar chart of per-class performance metrics for each model"><img src="images/per_class.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Bar chart of per-class performance metrics for each model"></a></p>
+</figure>
+</div>
+<figcaption>Bar chart of per-class performance metrics for each model</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 28: Per class metrics
 </div>
@@ -1679,14 +1856,26 @@ Figure 28: Per class metrics
 <section id="run-times-and-compute-costs" class="level4">
 <h4 class="anchored" data-anchor-id="run-times-and-compute-costs">Run Times and Compute Costs</h4>
 <p>Based on the above metrics alone, CROMA seems to be a top performer; nevertheless, we must consider one more aspect: compute. In Figure 29, we see that CROMA consumed up to ~3 times the memory and up to ~9 times the training time as some of the other models for the same number of epochs. This is consistent with the FLOP calculations found in Table 1. This is likely due to the large number of dimensions in the released CROMA model compared to its peers (1024 as opposed to more common 768). In other words, for the same resources, DOFA combined with an even larger decoder trained for 128 epochs instead of 16 may very well outperform the CROMA models. In the same vein, Prithvi consumed a comparable amount of memory to CROMA but is far simpler to implement and fine-tunes several times faster. Theoretically, these models are modular and can be compared at a variety of sizes for each model. However, most models are released with pretrained versions only at a single size, so comparisons must be taken as-is.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 60%;" src="../assets/memory.png"></p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 60%;" src="../assets/training_time.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/memory.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Bar chart of GPU memory usage per encoder-decoder combination"><img src="images/memory.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Bar chart of GPU memory usage per encoder-decoder combination"></a></p>
+</figure>
+</div>
+<figcaption>Bar chart of GPU memory usage per encoder-decoder combination</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/training_time.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Bar chart of training run time in seconds for each model"><img src="images/training_time.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Bar chart of training run time in seconds for each model"></a></p>
+</figure>
+</div>
+<figcaption>Bar chart of training run time in seconds for each model</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 29: (Top) GPU VRAM usage per encoder-decoder combination. (Bottom) Run time in seconds to reach 16 epochs.
 </div>
@@ -1695,15 +1884,18 @@ Figure 29: (Top) GPU VRAM usage per encoder-decoder combination. (Bottom) Run ti
 <section id="output-masks" class="level4">
 <h4 class="anchored" data-anchor-id="output-masks">Output Masks</h4>
 <p>We have all these metrics, and they all tell a similar story. The first thing you should notice from Figure 30 is that the annotation is not perfect. So the metrics above should be interpreted carefully. For example, the Prithvi masks from all decoders look vastly different while the metrics say otherwise. When the benchmark dataset was created, chip labels with multiple annotations in proximity were likely left unfiltered. This does offer an opportunity to see how a model behaves in such situations, which are unfortunately all too common. Interestingly, whether or not the model captures the false negatives depends mostly on the decoder. In addition, artifacts in the images arise from the structure of the decoder itself rather than anything meaningful in the image.</p>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 80%;" src="../assets/masks.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/masks.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="Grid of predicted segmentation masks from all model and decoder combinations"><img src="images/masks.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Grid of predicted segmentation masks from all model and decoder combinations"></a></p>
+</figure>
+</div>
+<figcaption>Grid of predicted segmentation masks from all model and decoder combinations</figcaption>
+</figure>
+</div>
 <div style="display: flex; justify-content: center; gap: 20px;">
-<p>&lt;img style=“display: block; margin-left: auto; margin-right: auto; width: 40%”; src=“../assets/hls_label.png” /&gt; <img style="display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 40%;" src="../assets/hls_image.png"></p>
+<p><img src="images/hls_label.png" class="img-fluid quarto-figure quarto-figure-center" style="width:40.0%" alt="Original ground truth annotation mask for the HLS burn scar sample"> <img src="images/hls_image.png" class="img-fluid quarto-figure quarto-figure-center" style="width:40.0%" alt="Source satellite image corresponding to the HLS burn scar sample"></p>
 </div>
 <div style="text-align: center;">
 Figure 30: (Top) Grid table of mask outputs of all models with all decoders. (Bottom Left) Original annotation. (Bottom Right) Source Image
@@ -1965,10 +2157,16 @@ Figure 30: (Top) Grid table of mask outputs of all models with all decoders. (Bo
 <section id="overall-metrics" class="level4">
 <h4 class="anchored" data-anchor-id="overall-metrics">Overall Metrics</h4>
 <p>Unlike the previous task, Figure 31 shows markedly poorer results. Using the typical hyperparameter settings a practitioner would apply in their first pass (i.e., cross-entropy loss, moderate learning rate, etc.), we find that this is insufficient to produce meaningful results. Understandably, the burn intensity dataset has a greater number of classes, an additional temporal reasoning component, and regional differences that are not depicted here. Burn severity labels themselves are highly contextual, with evaluation for each fire and each region specific to those contexts, creating a very difficult challenge for all of our models. These results are also consistent with the embedding analysis in Figure 17, where we see limited separation between classes. Clever fine-tuning techniques may be able to compensate for these shortcomings; however, they could negate any pretraining benefits and, worse still, may not achieve comparable results to an end-to-end trained network.</p>
-<p><img style="display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;" src="../assets/mtbs_test_metrics.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/mtbs_test_metrics.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Bar chart of best test metrics per encoder and decoder combination, MTBS"><img src="images/mtbs_test_metrics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Bar chart of best test metrics per encoder and decoder combination, MTBS"></a></p>
+</figure>
+</div>
+<figcaption>Bar chart of best test metrics per encoder and decoder combination, MTBS</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 Figure 31: Best metrics per best decoder with each encoder.
 </div>
@@ -1977,27 +2175,21 @@ Figure 31: Best metrics per best decoder with each encoder.
 <h4 class="anchored" data-anchor-id="interpretation">Interpretation</h4>
 <p>Change detection/attribution is a difficult topic, as even the veterans of the remote sensing world will tell you. It is often multivariate and involves very subtle landscape dynamics which are not clear to the human eye without aid. For example, Figure 32 shows a sample pulled from the MTBS dataset. These are scenes from the Boulder Lake, WA Fire in August 2022. Between the second and third image, it is clear where the fire had occurred (vegetation turned to bare soil) despite the smoke and other artifacts in the third image. Given our results from the first fine-tuning workflow, detecting this would be easy for all models. Yet when we extend the problem to intensity, the model must additionally reason what vegetation was present before the fire, what vegetation died, and also what vegetation experienced a low enough fire temperature to survive and regrow the following year, all while contending with the strong noisy signals ever present in all images and the variations between them. An extremely complex task.</p>
 <div style="display: flex; justify-content: center; gap: 10px;">
-<p><img style="display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 20%;" src="../assets/boulderlake1.png"> <img style="display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 20%; " src="../assets/boulderlake2.png"> <img style="display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 20%;" src="../assets/boulderlake3.png"> <img style="display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 20%;" src="../assets/boulderlake4.png"></p>
+<p><img src="images/boulderlake1.png" class="img-fluid quarto-figure quarto-figure-center" style="width:24.0%" alt="Landsat image of Boulder Lake, Washington one year before the 2022 fire"> <img src="images/boulderlake2.png" class="img-fluid quarto-figure quarto-figure-center" style="width:24.0%" alt="Landsat image of Boulder Lake, Washington two months after the 2022 fire"> <img src="images/boulderlake3.png" class="img-fluid quarto-figure quarto-figure-center" style="width:24.0%" alt="Landsat image of Boulder Lake, Washington one year after the 2022 fire"> <img src="images/boulderlake4.png" class="img-fluid quarto-figure quarto-figure-center" style="width:24.0%" alt="Landsat image of Boulder Lake, Washington two years after the 2022 fire"></p>
 </div>
 <div style="text-align: center;">
 (a)
 </div>
-<p><img style="display: block;
-           margin-left: auto;
-           margin-right: auto;
-           width: 20%;" src="../assets/boulderlake4wlabels.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/boulderlake4wlabels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="Landsat image of Boulder Lake, Washington two years post-fire with burn severity labels overlaid"><img src="images/boulderlake4wlabels.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:24.0%" alt="Landsat image of Boulder Lake, Washington two years post-fire with burn severity labels overlaid"></a></p>
+</figure>
+</div>
+<figcaption>Landsat image of Boulder Lake, Washington two years post-fire with burn severity labels overlaid</figcaption>
+</figure>
+</div>
 <div style="text-align: center;">
 (b)
 </div>
@@ -2526,6 +2718,38 @@ Figure 32: (a) Landsat imagery from the Boulder Lake, WA fire in August 2022. Fr
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

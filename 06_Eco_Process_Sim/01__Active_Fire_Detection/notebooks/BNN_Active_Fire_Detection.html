@@ -723,6 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid" alt="Open in Colab"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid" alt="View on GitHub"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb">View on GitHub</a></p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -735,10 +736,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid" alt="Open in Colab"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid" alt="View on GitHub"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb">View on GitHub</a></p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/e6lqjTUAvmI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p>This tutorial accompanies the work titled “Understanding active fire detection uncertainty with Bayesian Neural Networks”. This notebook is intended to be accompanied by the written document and is not meant to be a standalone notebook. Please reference the written text to find further information and explanations of the steps and plots produced here.</p>
 <p>This work was based off of the <a href="https://keras.io/examples/keras_recipes/bayesian_neural_networks/">Keras Bayesian Neural Networks tutorial</a>. Note that this tutorial uses specific versions of packages that are compatible with Keras 2.0, as Keras version 3 (at the time of development) did not support the tensorflow probabilistic layers. The import statements note the correct versions. We also provide a yml file which forces Keras 2 if you would like to run locally. Additionally, the Keras tutorial is set up for regression, and so this notebook altered the tutorial to be compatible for classification tasks.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/e6lqjTUAvmI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <section id="important-notes-read-before-running" class="level2">
 <h2 class="anchored" data-anchor-id="important-notes-read-before-running">Important Notes (Read Before Running)</h2>
 <section id="python-versioning" class="level3">
@@ -762,7 +762,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Hit the “Run all” button located above the script</li>
 <li>A prompt will appear asking the user to select a python version. Select version 3.10 and see the notebook sectional labeled ‘Colab Specific Instructions’ for a more detailed explanation</li>
 </ol>
-<p>####Files to upload: 1. <strong>train-final-raw.csv:</strong> this csv file contains raw VIIRS active fire data and contains imbalanced classes. This will be used in Case Study A, Model One to serve as a baseline dataset for this study. 2. <strong>train-final-balanced.csv:</strong> this is the class-balanced version of the train-final-raw.csv. It is used in Case Stdy A, Model Two to show the impact of balancing classes on model performance and in Case Study A, Model Three as an input for hyperparameter tuning. 3. <strong>train-final-balanced-case-study-2.csv:</strong> this dataset integrates data from both VIIRS and MODIS. It is used in Case Study B, Model One and Two to help test if fire detection varies based on satellite source.</p>
+<section id="files-to-upload" class="level4">
+<h4 class="anchored" data-anchor-id="files-to-upload">Files to upload:</h4>
+<ol type="1">
+<li><strong>train-final-raw.csv:</strong> this csv file contains raw VIIRS active fire data and contains imbalanced classes. This will be used in Case Study A, Model One to serve as a baseline dataset for this study.</li>
+<li><strong>train-final-balanced.csv:</strong> this is the class-balanced version of the train-final-raw.csv. It is used in Case Stdy A, Model Two to show the impact of balancing classes on model performance and in Case Study A, Model Three as an input for hyperparameter tuning.</li>
+<li><strong>train-final-balanced-case-study-2.csv:</strong> this dataset integrates data from both VIIRS and MODIS. It is used in Case Study B, Model One and Two to help test if fire detection varies based on satellite source.</li>
+</ol>
 <p>For more information regarding the datasets, please refer to section 2.2 Data in the corresponding article.</p>
 <div id="8aOJChvBvOVA" class="cell">
 <details open="" class="code-fold">
@@ -790,6 +796,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21" aria-label="21"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">All files saved to: </span><span class="sc">{</span>upload_dir<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+</section>
 </section>
 <section id="how-to-run-this-notebook-on-local" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-run-this-notebook-on-local">How to Run This Notebook on Local</h3>

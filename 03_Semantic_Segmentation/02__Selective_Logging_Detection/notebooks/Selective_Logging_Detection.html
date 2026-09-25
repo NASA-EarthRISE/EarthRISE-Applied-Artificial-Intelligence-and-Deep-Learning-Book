@@ -650,6 +650,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid" alt="Open in Colab"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid" alt="View on GitHub"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">View on GitHub</a></p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -662,7 +663,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><img src="https://www.tensorflow.org/images/colab_logo_32px.png" class="img-fluid" alt="Open in Colab"> <a href="https://colab.research.google.com/github/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">Run in Colab</a> <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" class="img-fluid" alt="View on GitHub"> <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/blob/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.ipynb">View on GitHub</a></p>
 <section id="understanding-the-selective-logging-activity" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-the-selective-logging-activity">Understanding the selective logging activity</h2>
 <p>Forest conservation faces a threat that is difficult to detect but highly devastating: <strong>selective logging</strong>. Unlike deforestation, which can be identified relatively easily from space using freely available satellite imagery, selective logging involves the removal of only <strong>commercially valuable trees</strong> from the forest cover, leaving a deceptive appearance of normality in the forest. For this reason, detecting this activity poses a considerable technological and logistical challenge.</p>
@@ -673,14 +673,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Below is an image comparing, in the same location, logging activity with a SkySat image (0.5 m) and a drone image (3 cm). Logs are visible, and a blue canister can be seen for refilling fuel for the chainsaws used for logging.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_A.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Comparison between a SkySat image (0.5 m) and a drone image (3 cm)"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_A.jpg" class="img-fluid figure-img" alt="Comparison between a SkySat image (0.5 m) and a drone image (3 cm)"></a></p>
+<p><a href="images/Logging_A.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Comparison between a SkySat image (0.5 m) and a drone image (3 cm)"><img src="images/Logging_A.jpg" class="img-fluid figure-img" alt="Comparison between a SkySat image (0.5 m) and a drone image (3 cm)"></a></p>
 <figcaption>Comparison between a SkySat image (0.5 m) and a drone image (3 cm)</figcaption>
 </figure>
 </div>
 <p>Selective logging is often associated to <strong>infrastructures</strong> such as logging roads, logging yards, camps, among others. Identifying these critical infrastructures makes it easier to detect logging activities. The presence of these infrastructures occurs in areas where logging is common, such as timber forest concessions and forest plantations. However, in remote areas where the activity is generally illegal, it is possible to observe a network of trails, usually beneath the forest canopy.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_B.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Diferent infrastructures associated with selective logging"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Logging_B.png" class="img-fluid figure-img" alt="Diferent infrastructures associated with selective logging"></a></p>
+<p><a href="images/Logging_B.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Diferent infrastructures associated with selective logging"><img src="images/Logging_B.png" class="img-fluid figure-img" alt="Diferent infrastructures associated with selective logging"></a></p>
 <figcaption>Diferent infrastructures associated with selective logging</figcaption>
 </figure>
 </div>
@@ -691,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This section presents a simple workflow for processing satellite data on the Google Earth Engine (GEE) platform and exporting it to an optimized format (TFRecord) to Google Drive. It should be noted that all sections in this application example have been developed to run on Google Colab (free version), using CPUs for reference data export and inference (Part I and Part III), and GPUs for model training (Part II). Therefore, we recommend using this platform for execution. If you wish to run it locally, we suggest using Visual Studio Code, after installing the <a href="https://marketplace.visualstudio.com/items?itemName=Google.colab">Google Colab VS Code Extension</a>.</p>
 <p>All the files needed to implement this application example are available on <a href="https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/tree/main/03_Semantic_Segmentation/02__Selective_Logging_Detection">GitHub</a>. In addition, the benchmark data used can be found on <a href="https://zenodo.org/records/19614389">Zenodo</a>. We recommend downloading and reviewing its contents to better understand the data structure or, if you prefer, proceeding directly to model training (Part II). However, it is not necessary to download it to run this section (Part I), as it includes the process of exporting the reference data from scratch directly to Google Drive. The complete export of the reference data takes approximately 1 hour and 20 minutes and generates a set of files with a total size of approximately 17 MB.</p>
 <p>To avoid future complications and as a good practice, create the main working folder named <code>DL_Book</code> before running the main code. This folder should be located in the main storage path; in our case, on Google Drive.</p>
-<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:18201,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364126875,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="af5726d3-592e-4df5-8147-a0d31bf38937">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:18201,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364126875,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="af5726d3-592e-4df5-8147-a0d31bf38937">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="co"># We are going to connect Google Drive with Google Colab</span></span>
@@ -699,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>drive.mount(<span class="st">'/content/drive'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-8" class="cell">
+<div id="cell-9" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="co"># Next, we create the main working folder</span></span>
@@ -707,7 +707,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>os.makedirs(<span class="st">'/content/drive/MyDrive/DL_Book'</span>, exist_ok <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Additionally, print the available computational resources in Google Colab to understand the characteristics of the environment in which the notebook will run.</p>
 <div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:454,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1774364141201,&quot;user&quot;:{&quot;displayName&quot;:&quot;GIS ACCA&quot;,&quot;userId&quot;:&quot;02089411144221939467&quot;},&quot;user_tz&quot;:300}}" data-outputid="12338dd3-7597-459d-a661-0d9d34208bdd">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1024,21 +1023,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can check the status of your exports in the Google Earth Engine Code Editor, specifically in the Tasks tab. There, you can view the status of each of your tasks. It’s important to monitor them to identify potential export errors or check their progress.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_Tab.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="GEE Tasks (Code Editor)"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_Tab.png" class="img-fluid figure-img" alt="GEE Tasks (Code Editor)"></a></p>
+<p><a href="images/GEE_Tasks_Tab.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="GEE Tasks (Code Editor)"><img src="images/GEE_Tasks_Tab.png" class="img-fluid figure-img" alt="GEE Tasks (Code Editor)"></a></p>
 <figcaption>GEE Tasks (Code Editor)</figcaption>
 </figure>
 </div>
 <p>Additionally, there are options for monitoring task status in a more advanced way. Currently, it has also become important to evaluate the quota consumption (EECU) associated with exports. For this type of more detailed analysis, we recommend using the Google Cloud Platform, accessing the Tasks section and supplementing it with “Monitoring Tool” to explore metrics and platform resource usage.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_GCP.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="GEE Tasks (GCP)"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/GEE_Tasks_GCP.png" class="img-fluid figure-img" alt="GEE Tasks (GCP)"></a></p>
+<p><a href="images/GEE_Tasks_GCP.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="GEE Tasks (GCP)"><img src="images/GEE_Tasks_GCP.png" class="img-fluid figure-img" alt="GEE Tasks (GCP)"></a></p>
 <figcaption>GEE Tasks (GCP)</figcaption>
 </figure>
 </div>
 <p>The workflow summarizes the steps followed in this section.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Workflow_A.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Data processing and exporting workflow"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Workflow_A.png" class="img-fluid figure-img" alt="Data processing and exporting workflow"></a></p>
+<p><a href="images/Workflow_A.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Data processing and exporting workflow"><img src="images/Workflow_A.png" class="img-fluid figure-img" alt="Data processing and exporting workflow"></a></p>
 <figcaption>Data processing and exporting workflow</figcaption>
 </figure>
 </div>
@@ -1097,23 +1096,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-34"><a href="#cb28-34" aria-label="34"></a><span class="bu">print</span>(<span class="st">"Extracting final files..."</span>)</span>
 <span id="cb28-35"><a href="#cb28-35" aria-label="35"></a></span>
 <span id="cb28-36"><a href="#cb28-36" aria-label="36"></a><span class="cf">with</span> zipfile.ZipFile(zip_path, <span class="st">'r'</span>) <span class="im">as</span> outer_zip:</span>
-<span id="cb28-37"><a href="#cb28-37" aria-label="37"></a>    <span class="cf">for</span> member <span class="kw">in</span> outer_zip.infolist():    </span>
+<span id="cb28-37"><a href="#cb28-37" aria-label="37"></a>    <span class="cf">for</span> member <span class="kw">in</span> outer_zip.infolist():</span>
 <span id="cb28-38"><a href="#cb28-38" aria-label="38"></a></span>
 <span id="cb28-39"><a href="#cb28-39" aria-label="39"></a>        <span class="cf">if</span> member.filename.endswith(<span class="st">".zip"</span>):</span>
 <span id="cb28-40"><a href="#cb28-40" aria-label="40"></a>            <span class="bu">print</span>(<span class="ss">f"Found inner zip: </span><span class="sc">{</span>member<span class="sc">.</span>filename<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb28-41"><a href="#cb28-41" aria-label="41"></a>            </span>
+<span id="cb28-41"><a href="#cb28-41" aria-label="41"></a></span>
 <span id="cb28-42"><a href="#cb28-42" aria-label="42"></a>            <span class="cf">with</span> outer_zip.<span class="bu">open</span>(member) <span class="im">as</span> inner_file:</span>
 <span id="cb28-43"><a href="#cb28-43" aria-label="43"></a>                inner_bytes <span class="op">=</span> io.BytesIO(inner_file.read())</span>
-<span id="cb28-44"><a href="#cb28-44" aria-label="44"></a>                </span>
+<span id="cb28-44"><a href="#cb28-44" aria-label="44"></a></span>
 <span id="cb28-45"><a href="#cb28-45" aria-label="45"></a>                <span class="cf">with</span> zipfile.ZipFile(inner_bytes) <span class="im">as</span> inner_zip:</span>
 <span id="cb28-46"><a href="#cb28-46" aria-label="46"></a>                    <span class="cf">for</span> inner_member <span class="kw">in</span> inner_zip.infolist():</span>
 <span id="cb28-47"><a href="#cb28-47" aria-label="47"></a>                        filename <span class="op">=</span> os.path.basename(inner_member.filename)</span>
-<span id="cb28-48"><a href="#cb28-48" aria-label="48"></a>                        </span>
+<span id="cb28-48"><a href="#cb28-48" aria-label="48"></a></span>
 <span id="cb28-49"><a href="#cb28-49" aria-label="49"></a>                        <span class="cf">if</span> <span class="kw">not</span> filename:</span>
 <span id="cb28-50"><a href="#cb28-50" aria-label="50"></a>                            <span class="cf">continue</span></span>
-<span id="cb28-51"><a href="#cb28-51" aria-label="51"></a>                        </span>
+<span id="cb28-51"><a href="#cb28-51" aria-label="51"></a></span>
 <span id="cb28-52"><a href="#cb28-52" aria-label="52"></a>                        target_path <span class="op">=</span> os.path.join(base_path, filename)</span>
-<span id="cb28-53"><a href="#cb28-53" aria-label="53"></a>                        </span>
+<span id="cb28-53"><a href="#cb28-53" aria-label="53"></a></span>
 <span id="cb28-54"><a href="#cb28-54" aria-label="54"></a>                        <span class="cf">with</span> inner_zip.<span class="bu">open</span>(inner_member) <span class="im">as</span> source, <span class="bu">open</span>(target_path, <span class="st">"wb"</span>) <span class="im">as</span> target:</span>
 <span id="cb28-55"><a href="#cb28-55" aria-label="55"></a>                            target.write(source.read())</span>
 <span id="cb28-56"><a href="#cb28-56" aria-label="56"></a></span>
@@ -1382,7 +1381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To represent the architecture we will use some layers of <code>tensorflow.keras</code>. This modified version of U-Net has more encoding and decoding blocks than the original architecture, which increases the depth of the model and its learnability. Unlike the original design, which starts and ends with 64 filters, this implementation starts and ends with a layer of 32 filters, slightly reducing the initial complexity before continuing with the standard progression. Below is a diagram of the modified U-Net architecture used.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/UNET-MODIFIED.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Modified U-Net architecture"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/UNET-MODIFIED.png" class="img-fluid figure-img" alt="Modified U-Net architecture"></a></p>
+<p><a href="images/UNET-MODIFIED.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Modified U-Net architecture"><img src="images/UNET-MODIFIED.png" class="img-fluid figure-img" alt="Modified U-Net architecture"></a></p>
 <figcaption>Modified U-Net architecture</figcaption>
 </figure>
 </div>
@@ -1501,7 +1500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Training_Results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Learning curves"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Training_Results.png" class="img-fluid figure-img" alt="Learning curves"></a></p>
+<p><a href="images/Training_Results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Learning curves"><img src="images/Training_Results.png" class="img-fluid figure-img" alt="Learning curves"></a></p>
 <figcaption>Learning curves</figcaption>
 </figure>
 </div>
@@ -1653,7 +1652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="cell-145" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-label="1"></a><span class="op">!</span>wget <span class="op">--</span>no<span class="op">-</span>check<span class="op">-</span>certificate <span class="st">'https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/img/Skysat_20201017_ssc2_150055_COG_clip.tif'</span> <span class="op">-</span>O Skysat_20201017_ssc2_150055_COG_clip.tif</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-label="1"></a><span class="op">!</span>wget <span class="op">--</span>no<span class="op">-</span>check<span class="op">-</span>certificate <span class="st">'../data/Skysat_20201017_ssc2_150055_COG_clip.tif'</span> <span class="op">-</span>O Skysat_20201017_ssc2_150055_COG_clip.tif</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Let’s visualize the downloaded image!</p>
@@ -1846,7 +1845,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Inference_Results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Detection of selective logging using the trained model"><img src="https://raw.githubusercontent.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/main/03_Semantic_Segmentation/02__Selective_Logging_Detection/pictures/Inference_Results.png" class="img-fluid figure-img" alt="Detection of selective logging using the trained model"></a></p>
+<p><a href="images/Inference_Results.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Detection of selective logging using the trained model"><img src="images/Inference_Results.png" class="img-fluid figure-img" alt="Detection of selective logging using the trained model"></a></p>
 <figcaption>Detection of selective logging using the trained model</figcaption>
 </figure>
 </div>
