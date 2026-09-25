@@ -3,11 +3,14 @@ import sys
 from pathlib import Path
 
 import yaml
+from dotenv import load_dotenv
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parent.parent
 CONFIG_PATH = SCRIPT_DIR / "config.yaml"
 SUMMARY_PATH = SCRIPT_DIR / "zenodo_summary.json"
+
+load_dotenv(REPO_DIR / ".env")
 
 
 def load_config(path: Path = CONFIG_PATH) -> dict:
