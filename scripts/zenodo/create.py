@@ -172,12 +172,22 @@ def build_chapter_metadata(ch: dict, book_doi: str, book_config: dict) -> dict:
     }
 
 
-def find_chapter_pdf(ch: dict, pdf_dir: Path) -> Path | None:
-    folder = pdf_dir / ch["pdf_folder"]
-    if not folder.exists():
-        return None
-    pdfs = sorted(folder.glob("*.pdf"))
-    return pdfs[0] if pdfs else None
+def find_chapter_pdf(ch: dict, repo_dir: Path, pdf_dir: Path | None = None) -> Path | None:
+    """Find the chapter PDF. Checks _book/ first (Quarto profile output),
+    then falls back to --pdf-dir if provided."""
+    stem = Path(ch["notebook"]).stem
+    book_pdf = repo_dir / "_book" / f"{stem}.pdf"
+    if book_pdf.exists():
+        return book_pdf
+
+    if pdf_dir:
+        folder = pdf_dir / ch["pdf_folder"]
+        if folder.exists():
+            pdfs = sorted(folder.glob("*.pdf"))
+            if pdfs:
+                return pdfs[0]
+
+    return None
 
 
 def find_chapter_notebooks(ch: dict, repo_dir: Path) -> list[Path]:
@@ -206,11 +216,11 @@ def preflight(config: dict, pdf_dir: Path | None, chapter_id: str | None) -> boo
             print("  Authors: MISSING")
             all_ok = False
 
-        pdf = find_chapter_pdf(ch, pdf_dir) if pdf_dir else None
+        pdf = find_chapter_pdf(ch, REPO_DIR, pdf_dir)
         if pdf:
             print(f"  PDF: {pdf.name}")
-        elif pdf_dir:
-            print(f"  PDF: not found in {pdf_dir / ch['pdf_folder']}")
+        else:
+            print(f"  PDF: not found (render with: python scripts/zenodo/render_pdf.py {ch['id']})")
 
         notebooks = find_chapter_notebooks(ch, REPO_DIR)
         for nb in notebooks:
@@ -268,6 +278,14 @@ def run(args: argparse.Namespace) -> None:
             sys.exit(f"ERROR: {ch['id']} has empty authors in config.yaml")
 
     for ch in new_chapters:
+        pdf = find_chapter_pdf(ch, REPO_DIR, pdf_dir)
+        if not pdf and not args.dry_run:
+            sys.exit(
+                f"ERROR: PDF not found for {ch['id']}.\n"
+                f"  Render it first: python scripts/zenodo/render_pdf.py {ch['id']}"
+            )
+
+    for ch in new_chapters:
         print(f"\n  {ch['id']}: {ch['title'][:60]}")
         deposit = client.create_deposit()
         chapter_doi = deposit["metadata"]["prereserve_doi"]["doi"]
@@ -275,10 +293,9 @@ def run(args: argparse.Namespace) -> None:
         metadata = build_chapter_metadata(ch, book_doi, config["book"])
         client.update_metadata(deposit["id"], metadata)
 
-        if pdf_dir:
-            pdf = find_chapter_pdf(ch, pdf_dir)
-            if pdf:
-                client.upload_file(deposit, pdf)
+        pdf = find_chapter_pdf(ch, REPO_DIR, pdf_dir)
+        if pdf:
+            client.upload_file(deposit, pdf)
 
         for notebook in find_chapter_notebooks(ch, REPO_DIR):
             client.upload_file(deposit, notebook)
@@ -319,7 +336,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--publish", action="store_true", help="Publish deposits instead of leaving them as drafts"
     )
     parser.add_argument(
-        "--pdf-dir", metavar="PATH", help="Directory containing per-chapter PDF subfolders"
+        "--pdf-dir", metavar="PATH", help="Override PDF directory (default: looks in _book/)"
     )
     parser.add_argument(
         "--skip-preflight", action="store_true", help="Skip the file and author preflight check"
