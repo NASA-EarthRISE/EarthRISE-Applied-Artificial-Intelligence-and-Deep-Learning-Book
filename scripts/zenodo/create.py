@@ -93,7 +93,7 @@ class ZenodoClient:
         if self.dry_run:
             print("  [dry-run] would create draft with payload:")
             print(json.dumps(payload, indent=2, ensure_ascii=False))
-            return {"id": "DRY"}
+            return {"id": "DRY", "parent": {"id": "DRY_PARENT"}}
         resp = self._request(
             "POST",
             f"{self.base_url}/records",
@@ -206,6 +206,14 @@ class ZenodoClient:
                 f"  The record may already be published; check it on {self.host}."
             )
         return request.get("links", {}).get("self_html") or f"https://{self.host}/me/requests"
+
+
+def concept_doi_for(draft: dict, version_doi: str) -> str:
+    """The concept DOI Zenodo gives the draft's parent record once published."""
+    # Zenodo formats every DOI it mints as "{prefix}/zenodo.{id}" (its
+    # DATACITE_FORMAT setting); the concept DOI uses the parent record's id.
+    prefix = version_doi.split("/", 1)[0]
+    return f"{prefix}/zenodo.{draft['parent']['id']}"
 
 
 def parse_author_name(name: str) -> tuple[str, str]:
@@ -410,9 +418,10 @@ def run(args: argparse.Namespace) -> None:
 
     client = ZenodoClient(token, sandbox=args.sandbox, dry_run=args.dry_run)
 
-    book_doi = summary.get("book", {}).get("doi", "")
+    # Chapters link to the book's concept DOI, which always opens its latest version.
+    book_doi = (summary.get("book") or {}).get("concept_doi")
     if not book_doi:
-        sys.exit("ERROR: book DOI not in zenodo_summary.json")
+        sys.exit("ERROR: book concept_doi not in zenodo_summary.json")
 
     pdf_dir = Path(args.pdf_dir).expanduser() if args.pdf_dir else None
     chapters = filter_chapters(config["chapters"], args.chapter)
@@ -475,7 +484,10 @@ def run(args: argparse.Namespace) -> None:
         review_url = client.submit_review(record_id)
 
         if args.dry_run:
-            print(f"  [dry-run] would record {ch['id']} -> record {record_id}, DOI {doi}")
+            print(
+                f"  [dry-run] would record {ch['id']} -> record {record_id}, "
+                f"concept DOI {concept_doi_for(draft, doi)}"
+            )
             continue
 
         # Saved after each chapter, not once at the end, so a mid-run
@@ -483,7 +495,7 @@ def run(args: argparse.Namespace) -> None:
         # skips them instead of creating duplicate records.
         summary.setdefault("chapters", {})[ch["id"]] = {
             "deposit_id": int(record_id),
-            "doi": doi,
+            "concept_doi": concept_doi_for(draft, doi),
         }
         save_summary(summary)
         submitted.append((ch["id"], review_url))
