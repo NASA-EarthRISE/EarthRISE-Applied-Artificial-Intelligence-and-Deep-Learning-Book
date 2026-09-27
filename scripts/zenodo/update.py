@@ -6,25 +6,21 @@ import sys
 from pathlib import Path
 
 from common import (
+    DRAFT_STATUS,
     REPO_DIR,
+    author_cell_problem,
     chapter_sort_key,
     filter_chapters,
+    find_chapter_notebooks,
+    find_chapter_pdf,
     load_config,
     load_summary,
+    pdf_upload_name,
     save_summary,
     summary_path,
 )
-from create import (
-    DRAFT_STATUS,
-    ZenodoClient,
-    author_cell_problem,
-    build_book_payload,
-    build_chapter_payload,
-    find_chapter_notebooks,
-    find_chapter_pdf,
-    pdf_upload_name,
-    to_rdm_creators,
-)
+from metadata import build_book_payload, build_chapter_payload, to_rdm_creators
+from zenodo_api import ZenodoClient
 
 
 def book_pdf_path(book_config: dict) -> Path:
