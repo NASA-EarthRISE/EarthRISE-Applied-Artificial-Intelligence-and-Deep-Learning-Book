@@ -14,6 +14,7 @@ from common import (
     filter_chapters,
     load_config,
     load_summary,
+    summary_path,
 )
 
 SENTINEL = "# zenodo-doi-injected"
@@ -92,6 +93,8 @@ def build_badge_cell(ch: dict, ch_doi: str, book: dict, book_doi: str) -> dict:
     book_cite = build_citation_text(book["authors"], book["year"], book["title"], book_doi)
     book_badge = build_badge_svg_md(book_doi)
 
+    # The PDF block has no badges: Zenodo's SVG badges do not render in the
+    # LaTeX PDF, and the DOI link carries the same information.
     body = (
         '::: {.content-visible when-format="html"}\n'
         "::: {.callout-note appearance='minimal'}\n"
@@ -102,6 +105,12 @@ def build_badge_cell(ch: dict, ch_doi: str, book: dict, book_doi: str) -> dict:
         f"**Part of:** {book_cite} {book_badge}\n"
         ":::\n"
         "\n"
+        ":::\n"
+        "\n"
+        '::: {.content-visible when-format="pdf"}\n'
+        f"**How to cite this chapter:** {ch_cite}\n"
+        "\n"
+        f"**Part of:** {book_cite}\n"
         ":::\n"
     )
     return {
@@ -121,9 +130,33 @@ def badge_insert_index(cells: list[dict]) -> int | None:
     return None
 
 
+def strip_citation_block(front_matter: str) -> str:
+    """Remove the citation block this script added earlier, marked by SENTINEL."""
+    kept, in_block = [], False
+    for line in front_matter.split("\n"):
+        if line == SENTINEL:
+            in_block = True
+            continue
+        if in_block and (line == "citation:" or line.startswith("  ")):
+            continue
+        in_block = False
+        kept.append(line)
+    return "\n".join(kept)
+
+
+def add_citation_block(front_matter: str, doi: str, book_doi: str) -> str:
+    """Insert the citation block just before the closing '---'."""
+    yaml_block = build_citation_yaml_block(doi, book_doi)
+    closing = re.search(r"\n---\s*$", front_matter)
+    if closing:
+        return front_matter[: closing.start()] + "\n" + yaml_block + "---"
+    return front_matter.rstrip() + "\n" + yaml_block + "---"
+
+
 def inject_notebook(
     nb_path: Path, ch: dict, doi: str, book_doi: str, book: dict, dry_run: bool
 ) -> bool:
+    """Add or update the citation YAML and badge cell; True if the notebook changes."""
     if not nb_path.exists():
         print(f"  WARNING: not found: {nb_path}")
         return False
@@ -134,11 +167,6 @@ def inject_notebook(
     except (json.JSONDecodeError, KeyError) as exc:
         print(f"  WARNING: could not parse {nb_path.name}: {exc}")
         return False
-
-    for cell in cells:
-        if cell.get("id") == BADGE_CELL_ID:
-            print(f"  SKIP (already injected): {nb_path.name}")
-            return False
 
     raw_idx = next(
         (i for i, cell in enumerate(cells) if cell.get("cell_type") == "raw"), None
@@ -159,40 +187,46 @@ def inject_notebook(
         raw_idx = 0
 
     raw_src = "".join(cells[raw_idx].get("source", []))
-
-    if SENTINEL in raw_src:
-        print(f"  SKIP (sentinel found): {nb_path.name}")
+    base_src = strip_citation_block(raw_src)
+    if re.search(r"^citation:", base_src, flags=re.MULTILINE):
+        # A second `citation:` key would make the front matter invalid YAML.
+        print(
+            f"  SKIP (front matter has its own 'citation:' key): {nb_path.name}\n"
+            "    Remove it, then rerun; inject.py manages the citation block."
+        )
         return False
+    new_src = add_citation_block(base_src, doi, book_doi)
+    old_doi = re.search(r'^  doi: "([^"]+)"', raw_src, flags=re.MULTILINE)
 
-    yaml_block = build_citation_yaml_block(doi, book_doi)
-    closing = re.search(r"\n---\s*$", raw_src)
-    if closing:
-        new_src = raw_src[: closing.start()] + "\n" + yaml_block + "---"
+    badge = build_badge_cell(ch, doi, book, book_doi)
+    # Looked up after the front-matter cell may have been inserted, so the
+    # indexes account for it.
+    badge_idx = next((i for i, cell in enumerate(cells) if cell.get("id") == BADGE_CELL_ID), None)
+    if badge_idx is not None:
+        if new_src == raw_src and cells[badge_idx].get("source") == badge["source"]:
+            print(f"  SKIP (up to date): {nb_path.name}")
+            return False
+        # Updated in place so the badge keeps its position and cell metadata.
+        cells[badge_idx]["source"] = badge["source"]
+        action = f"DOI {old_doi.group(1) if old_doi else '?'} -> {doi}, badge updated in place"
     else:
-        new_src = raw_src.rstrip() + "\n" + yaml_block + "---"
-
+        badge_idx = badge_insert_index(cells)
+        if badge_idx is None:
+            print(
+                f"  SKIP (no '{AUTHOR_CELL_ID}' cell): {nb_path.name}\n"
+                "    Add the author cell after the chapter title (README: Prepare the notebook), then rerun."
+            )
+            return False
+        cells.insert(badge_idx, badge)
+        action = f"DOI {doi}, badge after cell '{cells[badge_idx - 1].get('id')}'"
     cells[raw_idx]["source"] = to_jupyter_lines(new_src)
 
-    # Computed after the front-matter cell may have been inserted, so the
-    # index accounts for it.
-    badge_idx = badge_insert_index(cells)
-    if badge_idx is None:
-        print(
-            f"  SKIP (no '{AUTHOR_CELL_ID}' cell): {nb_path.name}\n"
-            "    Add the author cell after the chapter title (README: Prepare the notebook), then rerun."
-        )
-        return False
-    cells.insert(badge_idx, build_badge_cell(ch, doi, book, book_doi))
-
     if dry_run:
-        print(
-            f"  [dry-run] would inject DOI {doi} into {nb_path.name} "
-            f"(badge after cell '{cells[badge_idx - 1].get('id')}')"
-        )
+        print(f"  [dry-run] would update {nb_path.name} ({action})")
         return True
 
     nb_path.write_text(json.dumps(nb, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"  INJECTED: {nb_path.name} (DOI: {doi})")
+    print(f"  UPDATED: {nb_path.name} ({action})")
     return True
 
 
@@ -219,7 +253,7 @@ def update_citing_qmd(path: Path, config: dict, summary: dict, dry_run: bool) ->
         table_end += 1
 
     new_rows = [
-        build_chapter_table_row(ch, summary["chapters"][ch["id"]]["doi"])
+        build_chapter_table_row(ch, summary["chapters"][ch["id"]]["concept_doi"])
         for ch in sorted(config["chapters"], key=chapter_sort_key)
         if ch["id"] in summary["chapters"]
     ]
@@ -241,28 +275,35 @@ def update_citing_qmd(path: Path, config: dict, summary: dict, dry_run: bool) ->
 
 def run(args: argparse.Namespace) -> None:
     config = load_config()
-    summary = load_summary()
+    path = summary_path(args.sandbox)
+    summary = load_summary(path)
+    print(f"Summary: {path.name}")
 
     if not summary.get("chapters"):
-        sys.exit("ERROR: no chapters in zenodo_summary.json. Run create.py first.")
+        sys.exit(f"ERROR: no chapters in {path.name}. Run create.py first.")
 
-    book_doi = summary.get("book", {}).get("doi", "")
+    # The book cites concept DOIs, which always open the latest version.
+    book_doi = (summary.get("book") or {}).get("concept_doi")
     if not book_doi:
-        sys.exit("ERROR: book DOI not in zenodo_summary.json")
+        sys.exit(f"ERROR: book concept_doi not in {path.name}")
     chapters = filter_chapters(config["chapters"], args.chapter)
 
     changed = []
     for ch in chapters:
         if ch["id"] not in summary["chapters"]:
-            print(f"  SKIP {ch['id']}: no DOI in summary (run create.py first)")
+            print(f"  SKIP {ch['id']}: no DOI in {path.name} (run create.py first)")
             continue
-        doi = summary["chapters"][ch["id"]]["doi"]
+        doi = summary["chapters"][ch["id"]]["concept_doi"]
         nb_path = REPO_DIR / ch["notebook"]
         if inject_notebook(nb_path, ch, doi, book_doi, config["book"], args.dry_run):
             changed.append(ch["id"])
 
     citing_path = REPO_DIR / "citing.qmd"
-    if citing_path.exists():
+    if args.sandbox:
+        # The table is rebuilt from the summary, and the sandbox summary lists
+        # only rehearsed chapters, so it would drop every other row.
+        print("  citing.qmd: skipped for sandbox runs")
+    elif citing_path.exists():
         update_citing_qmd(citing_path, config, summary, args.dry_run)
 
     if args.dry_run:
@@ -281,6 +322,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--dry-run", action="store_true", help="Preview changes without writing files"
+    )
+    parser.add_argument(
+        "--sandbox",
+        action="store_true",
+        help="Read DOIs from zenodo_summary.sandbox.json (sandbox rehearsal); citing.qmd is left alone",
     )
     return parser.parse_args(argv)
 
