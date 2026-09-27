@@ -6,6 +6,7 @@ from pathlib import Path
 from create import (
     author_cell_problem,
     build_chapter_payload,
+    concept_doi_for,
     parse_author_name,
     to_rdm_creators,
 )
@@ -125,6 +126,20 @@ class NotebookCheckTests(unittest.TestCase):
             self.assertIsNone(author_cell_problem(with_authors))
             self.assertIn("author-attribution", author_cell_problem(without_authors))
             self.assertIn("cannot read", author_cell_problem(Path(tmp, "missing.ipynb")))
+
+
+class ConceptDoiTests(unittest.TestCase):
+    def test_concept_doi_uses_parent_id_and_the_environment_prefix(self):
+        # Matches production ch10.2: version 23001199, concept 23001198.
+        self.assertEqual(
+            concept_doi_for({"parent": {"id": "23001198"}}, "10.5281/zenodo.23001199"),
+            "10.5281/zenodo.23001198",
+        )
+        self.assertEqual(
+            concept_doi_for({"parent": {"id": "609985"}}, "10.5072/zenodo.609986"),
+            "10.5072/zenodo.609985",
+            "sandbox DOIs keep the sandbox prefix",
+        )
 
 
 class PayloadTests(unittest.TestCase):
