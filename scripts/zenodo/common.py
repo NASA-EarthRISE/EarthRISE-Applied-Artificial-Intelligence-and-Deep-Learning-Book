@@ -9,6 +9,9 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parent.parent
 CONFIG_PATH = SCRIPT_DIR / "config.yaml"
 SUMMARY_PATH = SCRIPT_DIR / "zenodo_summary.json"
+# Sandbox runs record here (gitignored) so a rehearsal never touches the
+# committed summary.
+SANDBOX_SUMMARY_PATH = SCRIPT_DIR / "zenodo_summary.sandbox.json"
 
 # Cell ids in chapter notebooks. "author-attribution" prints the author list
 # in the PDF; "author-notes" optionally follows it (e.g. equal contribution).
@@ -39,6 +42,10 @@ def save_summary(data: dict, path: Path = SUMMARY_PATH):
         encoding="utf-8",
     )
     tmp.replace(path)
+
+
+def summary_path(sandbox: bool) -> Path:
+    return SANDBOX_SUMMARY_PATH if sandbox else SUMMARY_PATH
 
 
 def filter_chapters(chapters: list[dict], chapter_id: str | None) -> list[dict]:
