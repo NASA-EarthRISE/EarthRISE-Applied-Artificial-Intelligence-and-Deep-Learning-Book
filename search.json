@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Applied Artificial Intelligence and Deep Learning Book",
     "section": "",
-    "text": "Introduction\nEditors\nTim Mayer  · NASA - EarthRISE · University of Alabama in Huntsville Biplov Bhandari  · Earth Resources Technology David Saah  · University of San Francisco · Spatial Informatics Group\nFirst edition. Published electronically June 1st 2026    DOI: 10.5281/zenodo.20547797\nDISCLAIMER: The views expressed in this publication are not necessarily those of the agencies cooperating in this project. Mention of a commercial company or product in this report does not imply endorsement by NASA. The use of information from this publication concerning proprietary products for advertising or publicity is not permitted. Trademark names and symbols are used in an editorial fashion with no intention of infringement on trademark or copyright laws.\nFigures and maps in this handbook contain material from: Google Maps data: Imagery © 2018 Landsat/Copernicus, DigitalGlobe, Mapdata © 2018 Google. Sentinel-1 data: Earth Big Data, LLC 2018, contains modified Copernicus Sentinel data 2014–2018, processed by ESA. ALOS data: Earth Big Data, LLC 2018; includes Material © JAXA/METI 2007–2018\nEarthRISE Program Office National Space Science and Technology Center 320 Sparkman Drive, Huntsville, AL 35805",
+    "text": "Introduction\nEditors\nTim Mayer  · NASA - EarthRISE · University of Alabama in Huntsville Biplov Bhandari  · Earth Resources Technology David Saah  · University of San Francisco · Spatial Informatics Group\nFirst edition. Published electronically June 1st 2026    DOI: 10.5281/zenodo.20547796\nDISCLAIMER: The views expressed in this publication are not necessarily those of the agencies cooperating in this project. Mention of a commercial company or product in this report does not imply endorsement by NASA. The use of information from this publication concerning proprietary products for advertising or publicity is not permitted. Trademark names and symbols are used in an editorial fashion with no intention of infringement on trademark or copyright laws.\nFigures and maps in this handbook contain material from: Google Maps data: Imagery © 2018 Landsat/Copernicus, DigitalGlobe, Mapdata © 2018 Google. Sentinel-1 data: Earth Big Data, LLC 2018, contains modified Copernicus Sentinel data 2014–2018, processed by ESA. ALOS data: Earth Big Data, LLC 2018; includes Material © JAXA/METI 2007–2018\nEarthRISE Program Office National Space Science and Technology Center 320 Sparkman Drive, Huntsville, AL 35805",
     "crumbs": [
       "Introduction"
     ]
@@ -800,7 +800,7 @@
     "href": "citing.html",
     "title": "How to Cite",
     "section": "",
-    "text": "Book\nIf you use this book or any individual chapter, please cite using the DOIs below.\nMayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. https://doi.org/10.5281/zenodo.20547797\nBibTeX:",
+    "text": "Book\nIf you use this book or any individual chapter, please cite using the DOIs below.\nMayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. https://doi.org/10.5281/zenodo.20547796\nBibTeX:",
     "crumbs": [
       "How to Cite"
     ]
@@ -810,7 +810,7 @@
     "href": "citing.html#book",
     "title": "How to Cite",
     "section": "",
-    "text": "DOI\n\n\n\n@book{mayer2026earthrise,\n  title     = {EarthRISE Applied Artificial Intelligence and Deep Learning Book},\n  author    = {Mayer, Tim and Bhandari, Biplov and Saah, David},\n  year      = {2026},\n  publisher = {Zenodo},\n  doi       = {10.5281/zenodo.20547797},\n  url       = {https://doi.org/10.5281/zenodo.20547797}\n}",
+    "text": "DOI\n\n\n\n@book{mayer2026earthrise,\n  title     = {EarthRISE Applied Artificial Intelligence and Deep Learning Book},\n  author    = {Mayer, Tim and Bhandari, Biplov and Saah, David},\n  year      = {2026},\n  publisher = {Zenodo},\n  doi       = {10.5281/zenodo.20547796},\n  url       = {https://doi.org/10.5281/zenodo.20547796}\n}",
     "crumbs": [
       "How to Cite"
     ]
@@ -820,7 +820,7 @@
     "href": "citing.html#chapters",
     "title": "How to Cite",
     "section": "Chapters",
-    "text": "Chapters\n\n\n\n#\nChapter\nAuthors\nDOI\n\n\n\n\n3.1\nCrop Mapping: Rice Mapping in Bhutan\nBhandari, B., & Mayer, T.\n10.5281/zenodo.20547799\n\n\n3.2\nSelective Logging Detection with Deep Learning and Very-High Resolution Imagery\nYupanqui, O., & Quispe, M.\n10.5281/zenodo.20547803\n\n\n3.3\nClay Deforestation Segmentation Model\nPoortinga, A., dela Torre, D. M., Saisaward, C., Wafiq, M. W., Weerapanpisit, P., Teck, V., Suaruang, W., & Khamnoi, W.\n10.5281/zenodo.20547805\n\n\n5.1\nPhenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction\nZhang, C., & Diao, C.\n10.5281/zenodo.20547807\n\n\n6.1\nUnderstanding Active Fire Detection Uncertainty with Bayesian Neural Networks\nHarvie, J. E., Zammit, K. E., Engle, B. T., Oliver, J. A., Johnston, L. M., Cantin, A. S., & Crowley, M. A.\n10.5281/zenodo.20547811\n\n\n10.1\nEvaluating Foundation Models Trained with Earth Observation Data\nThomas, L., Leong, W. J., Wiesmann, D., & Ranjan, S.\n10.5281/zenodo.20547814\n\n\n10.2\nEarth Observation Foundation Models: Encoder Representation Analysis and Downstream Task Benchmarking\nDeMilt, R. P., LaHaye, N., Truong, M., Tenneson, K., & Saah, D.\n10.5281/zenodo.23001199",
+    "text": "Chapters\n\n\n\n#\nChapter\nAuthors\nDOI\n\n\n\n\n3.1\nCrop Mapping: Rice Mapping in Bhutan\nBhandari, B., & Mayer, T.\n10.5281/zenodo.20547798\n\n\n3.2\nSelective Logging Detection with Deep Learning and Very-High Resolution Imagery\nYupanqui, O., & Quispe, M.\n10.5281/zenodo.20547802\n\n\n3.3\nClay Deforestation Segmentation Model\nPoortinga, A., dela Torre, D. M., Saisaward, C., Wafiq, M. W., Weerapanpisit, P., Teck, V., Suaruang, W., & Khamnoi, W.\n10.5281/zenodo.20547804\n\n\n5.1\nPhenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction\nZhang, C., & Diao, C.\n10.5281/zenodo.20547806\n\n\n6.1\nUnderstanding Active Fire Detection Uncertainty with Bayesian Neural Networks\nHarvie, J. E., Zammit, K. E., Engle, B. T., Oliver, J. A., Johnston, L. M., Cantin, A. S., & Crowley, M. A.\n10.5281/zenodo.20547810\n\n\n10.1\nEvaluating Foundation Models Trained with Earth Observation Data\nThomas, L., Leong, W. J., Wiesmann, D., & Ranjan, S.\n10.5281/zenodo.20547813\n\n\n10.2\nEarth Observation Foundation Models: Encoder Representation Analysis and Downstream Task Benchmarking\nDeMilt, R. P., LaHaye, N., Truong, M., Tenneson, K., & Saah, D.\n10.5281/zenodo.23001198",
     "crumbs": [
       "How to Cite"
     ]
