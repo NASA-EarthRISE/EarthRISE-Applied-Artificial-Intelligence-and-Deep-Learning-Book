@@ -11,6 +11,7 @@ from urllib.parse import quote
 import requests
 
 from common import (
+    AUTHOR_CELL_ID,
     REPO_DIR,
     filter_chapters,
     load_config,
@@ -331,6 +332,17 @@ def find_chapter_pdf(ch: dict, repo_dir: Path, pdf_dir: Path | None = None) -> P
     return None
 
 
+def author_cell_problem(nb_path: Path) -> str | None:
+    """Why the notebook is not ready to deposit, or None if it has the author cell."""
+    try:
+        nb = json.loads(nb_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return f"cannot read {nb_path.name}: {exc}"
+    if not any(cell.get("id") == AUTHOR_CELL_ID for cell in nb.get("cells", [])):
+        return f"{nb_path.name} has no '{AUTHOR_CELL_ID}' cell, so its PDF would have no author list"
+    return None
+
+
 def find_chapter_notebooks(ch: dict, repo_dir: Path) -> list[Path]:
     notebook_dir = (repo_dir / ch["notebook"]).parent
     if not notebook_dir.exists():
@@ -368,6 +380,11 @@ def preflight(config: dict, pdf_dir: Path | None, chapter_id: str | None) -> boo
             print(f"  Notebook: {nb.name}")
         if not notebooks:
             print("  Notebook: none found")
+
+        problem = author_cell_problem(REPO_DIR / ch["notebook"])
+        print(f"  Author cell: {'found' if problem is None else 'MISSING (' + problem + ')'}")
+        if problem:
+            all_ok = False
 
         if not pdf and not notebooks:
             print("  WARNING: nothing to upload for this chapter")
@@ -424,6 +441,12 @@ def run(args: argparse.Namespace) -> None:
             to_rdm_creators(ch["authors"])
         except ValueError as exc:
             sys.exit(f"ERROR: {ch['id']} in config.yaml: {exc}")
+        problem = author_cell_problem(REPO_DIR / ch["notebook"])
+        if problem:
+            sys.exit(
+                f"ERROR: {ch['id']}: {problem}.\n"
+                "  Add the author cell (README: Prepare the notebook), re-render the PDF, then rerun."
+            )
 
     for ch in new_chapters:
         pdf = find_chapter_pdf(ch, REPO_DIR, pdf_dir)
