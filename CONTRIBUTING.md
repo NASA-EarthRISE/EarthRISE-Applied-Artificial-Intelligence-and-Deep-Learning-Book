@@ -81,11 +81,15 @@ Chapters should include the following elements in order:
 
 1. **YAML frontmatter** (raw cell) with author names, ORCIDs, affiliations, `license: "CC BY 4.0"`, and citation metadata
 2. **Title heading** with Section.Chapter prefix, followed by Colab and GitHub badges
-3. **Author attribution** (markdown cell) for PDF output using `content-visible when-format="pdf"`
-4. **Citation/DOI callout** (markdown cell) with a Zenodo DOI badge (coordinated with the editors after acceptance)
-5. **Video embed** with PDF format guard (added by the editors after the chapter video is produced)
-6. **Chapter content**
-7. **Acknowledgements section** at the end for funding attribution
+3. **Author attribution** (markdown cell, cell id `author-attribution`) for PDF output using `content-visible when-format="pdf"`
+4. **Author notes** (optional markdown cell, cell id `author-notes`), e.g. an equal-contribution statement
+5. **Citation/DOI callout** (markdown cell) with a Zenodo DOI badge (coordinated with the editors after acceptance)
+6. **Video embed** with PDF format guard (added by the editors after the chapter video is produced)
+7. **Chapter content**
+8. **Acknowledgements section** at the end for funding attribution
+
+The editors' Zenodo scripts find these cells by id: a chapter without the `author-attribution` cell cannot be deposited, and the DOI callout is inserted after `author-notes` (or after `author-attribution` if there are no notes).
+Jupyter does not show cell ids; to set one, open the `.ipynb` as text and change the cell's `"id"` value.
 
 See Ch 6.1 (`06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb`) for a complete example.
 
