@@ -1,94 +1,80 @@
 # Zenodo DOI Pipeline
 
-Scripts for creating Zenodo deposits and injecting DOI citations into chapter notebooks.
+Scripts that publish the book and each chapter as Zenodo records and put their citations into the notebooks and PDFs.
 
-## Design
+## How it works
 
-Two data files serve as the single source of truth:
+Each chapter and the book is one Zenodo record in the [NASA EarthRISE community](https://zenodo.org/communities/nasa-earthrise).
+Every record has two DOIs:
 
-- **`config.yaml`** (human-edited) defines all book and chapter metadata: titles, authors, ORCIDs, affiliations, descriptions, keywords, and notebook paths.
-  To add a new chapter, add an entry here.
-- **`zenodo_summary.json`** (machine-generated) records the Zenodo deposit IDs and DOIs created by `create.py`.
-  Both files are tracked in git.
+- A **concept DOI**, which always opens the latest version. The book cites this one everywhere: notebooks, PDFs, `citing.qmd`.
+- A **version DOI** per version, which always opens that exact version.
 
-Three scripts operate on these files:
+When a chapter changes, it gets a new version on Zenodo; its concept DOI, and so every citation, stays the same.
 
-- **`render_pdf.py`** renders a single chapter as a standalone PDF using a temporary Quarto profile.
-- **`create.py`** creates a Zenodo draft per chapter, reserves its DOI, uploads the chapter PDF and notebook, submits the draft to the community for review, and writes the DOI to `zenodo_summary.json`.
-  It uses Zenodo's InvenioRDM REST API; the record is published when a community curator accepts the review request.
-- **`inject.py`** injects DOI citations into notebook front-matter cells and updates the chapter table in `citing.qmd`.
+Two data files are the single source of truth:
 
-A shared module (`common.py`) provides path constants, config/summary I/O, and chapter filtering.
+- **`config.yaml`** (edited by hand): book and chapter metadata, including titles, authors, ORCIDs, affiliations, descriptions, keywords, and notebook paths.
+- **`zenodo_summary.json`** (written by the scripts): for the book and each chapter, `deposit_id` (the record ID of the latest version) and `concept_doi`.
+  A chapter started with `create.py` but not yet submitted also has `"status": "draft"`.
+
+Sandbox runs use `zenodo_summary.sandbox.json` instead, which is gitignored.
 
 ```
 scripts/zenodo/
-  config.yaml          # human-edited: chapters, authors, metadata
-  zenodo_summary.json  # machine-generated: deposit IDs and DOIs
-  common.py            # shared: path constants, config/summary I/O
-  render_pdf.py        # render a single chapter PDF via Quarto profiles
-  create.py            # create Zenodo drafts, upload files, submit for community review
-  inject.py            # inject DOIs into notebooks + citing.qmd
-  test_create.py       # unit tests for the create.py metadata mapping
-  test_inject.py       # unit tests for the inject.py badge placement
-  requirements.txt     # Python dependencies
-  .env.example         # template for Zenodo API token
+  config.yaml             # edited by hand: book, chapters, authors, metadata
+  zenodo_summary.json     # written by the scripts: record IDs and concept DOIs
+  render_pdf.py           # render one chapter PDF via a Quarto profile
+  create.py               # new chapter: draft + DOI, then upload and submit for review
+  update.py               # existing records: publish a new version
+  inject.py               # write citations into notebooks and citing.qmd
+  common.py               # shared: paths, config/summary I/O, chapter file helpers
+  metadata.py             # builds the Zenodo metadata for chapters and the book
+  zenodo_api.py           # client for Zenodo's API
+  tests/                  # unit tests (no network)
+  requirements.txt        # Python dependencies
+  .env.example            # template for the Zenodo API token
 ```
 
 ## Prerequisites
 
-Install dependencies:
+Install dependencies, and install Quarto for rendering PDFs:
 
 ```bash
 pip install -r scripts/zenodo/requirements.txt
 ```
 
-Quarto must be installed for PDF rendering (`render_pdf.py`).
+### Zenodo API token
 
-### Zenodo API Token
-
-Create a `.env` file at the repo root (already gitignored):
+Create a `.env` file at the repo root (gitignored) from the template, then add your token:
 
 ```bash
 cp scripts/zenodo/.env.example .env
-# Edit .env and add your token
 ```
 
-Or export directly:
+To get a token, go to [zenodo.org](https://zenodo.org) (or [sandbox.zenodo.org](https://sandbox.zenodo.org) for testing), open Settings > Applications > Personal access tokens, and create a token with the scopes `deposit:write` and `deposit:actions`.
 
-```bash
-export ZENODO_TOKEN="your_token_here"
-```
-
-To get a token:
-1. Go to [zenodo.org](https://zenodo.org) (or [sandbox.zenodo.org](https://sandbox.zenodo.org) for testing).
-2. Navigate to Settings > Applications > Personal access tokens.
-3. Create a token with scopes: `deposit:write` and `deposit:actions`.
-
-Sandbox and production use separate accounts and separate tokens.
+Sandbox and production are separate systems with separate accounts and tokens.
 `.env` holds one `ZENODO_TOKEN`, so swap it when switching between `--sandbox` and production.
 
-### Zenodo Community
+### Zenodo community
 
-Every chapter record is submitted to the community named by `book.community` in `config.yaml` (`nasa-earthrise`).
-`create.py` stops before creating anything if that community does not exist on the target host.
-
-The sandbox needs its own `nasa-earthrise` community, because sandbox and production are separate systems.
-Give it the same settings as production so sandbox runs behave like production runs:
+New chapters are submitted to the community named by `book.community` in `config.yaml` (`nasa-earthrise`), and `create.py` stops before creating anything if that community does not exist.
+The sandbox needs its own `nasa-earthrise` community, with the same settings as production:
 
 - Record submission: members only.
 - Review policy: curators, managers, and owners may publish without review.
 
-`create.py` always asks for a review (`require_review: true`), so a record is never published until someone accepts the request, even for managers.
+`create.py` always asks for a review, so a new chapter is never published until someone accepts the request, even when the submitter is a manager.
 
-## Workflow: Adding a New Chapter
+## Adding a new chapter
 
-Replace `<ID>` with the chapter id (e.g., `ch10.2`) in all commands below.
+The DOI is reserved before the PDF is rendered, so the chapter's first PDF already carries its citation.
+Commands run from `scripts/zenodo`; replace `<ID>` with the chapter id (for example `ch11.1`).
 
-### 1. Add chapter to config.yaml
+### 1. Add the chapter to config.yaml
 
-Add an entry under `chapters:` with all metadata (id, title, authors, notebook path, etc.).
-Use `authors: []` as a placeholder if the author list is not yet available.
-
+Add an entry under `chapters:` with its id, title, notebook path, description, keywords, and authors.
 Write each author as `Last, First`, with an `affiliations` list holding one item per affiliation, exactly as it should appear on Zenodo:
 
 ```yaml
@@ -103,7 +89,7 @@ authors:
 
 Separate organizations are separate items.
 A unit and its parent organization, or two names for the same organization, form one item.
-The older single-string `affiliation:` key is rejected; chapters deposited before September 2026 still use it and are converted when they get a new version.
+An optional `youtube_url` adds the chapter video as a related link on Zenodo.
 
 ### 2. Prepare the notebook
 
@@ -115,7 +101,7 @@ Chapter notebooks start with the same cells, in this order:
 | 2 | Chapter title (`# 10.2 ...`) and Colab link | any | HTML and PDF |
 | 3 | Author list with ORCID links | `author-attribution` (required) | PDF only |
 | 4 | Author notes, e.g. equal contribution (optional) | `author-notes` | HTML and PDF |
-| 5 | "How to cite" badge, added by `inject.py` | `zenodo-doi-badge` | HTML only |
+| 5 | "How to cite" block, added by `inject.py` | `zenodo-doi-badge` | HTML (with badges) and PDF (text and links) |
 
 Copy the `author-attribution` cell from an existing chapter and change the names and ORCIDs:
 
@@ -127,80 +113,92 @@ Copy the `author-attribution` cell from an existing chapter and change the names
 
 Jupyter assigns random cell ids and has no easy way to rename them.
 To set an id, open the `.ipynb` as text (in VS Code: right-click the file, **Open With...**, **Text Editor**) and change that cell's `"id"` value.
+`create.py` and `update.py` stop if the `author-attribution` cell is missing, because the PDF would have no author list.
 
-Both scripts check for the author cell:
-`create.py` stops before creating anything if it is missing, because the deposited PDF would have no author list.
-`inject.py` puts the badge after `author-notes` if present, otherwise after `author-attribution`, and skips notebooks that have neither.
-
-### 3. Render the chapter PDF
+### 3. Create the draft and reserve its DOI
 
 ```bash
-python scripts/zenodo/render_pdf.py <ID>
+python create.py --chapter <ID> --dry-run
+python create.py --chapter <ID>
 ```
 
-This creates a temporary Quarto profile, renders just that chapter to PDF, and places the output in `_book/`.
-The `--no-clean` flag is used internally to preserve existing HTML output.
+The dry run prints the full metadata without calling Zenodo.
+The real run creates the draft, reserves its DOI, and records the chapter in `zenodo_summary.json` with `"status": "draft"`.
 
-### 4. Create the Zenodo record and submit it for review
-
-Test on sandbox first (with the sandbox token in `.env`):
+### 4. Inject the citation and render the PDF
 
 ```bash
-python scripts/zenodo/create.py --chapter <ID> --dry-run
-python scripts/zenodo/create.py --chapter <ID> --sandbox
+python inject.py --chapter <ID>
+python render_pdf.py <ID>
+git diff
 ```
 
-The dry run prints the full metadata payload without calling Zenodo.
-The sandbox run prints the draft URL, the reserved DOI, and the review request URL.
-Open the review request (or the community's Requests tab), check the draft, and accept it.
-Accepting publishes the record into the community with the reserved DOI.
+`inject.py` adds the citation block to the front matter and the "How to cite" cell after the author block, and updates the chapter table in `citing.qmd`.
+`render_pdf.py` renders the chapter to `_book/`, now including the citation.
 
-The sandbox run writes its DOI to `zenodo_summary.json`.
-Discard that entry before the production run:
+### 5. Upload and submit for review
 
 ```bash
-git checkout scripts/zenodo/zenodo_summary.json
+python create.py --chapter <ID> --submit
 ```
 
-When ready for production, swap `.env` to the production token and run:
+This refreshes the draft's metadata from `config.yaml` (so edits made since step 3 are included), uploads the PDF and notebook, and submits the draft for community review.
+Accept the request it prints, or use the community's Requests tab; accepting publishes the chapter with the DOI reserved in step 3.
+
+### 6. Add the chapter to the book record
+
+The book record lists its chapters, so it needs a new version too:
 
 ```bash
-python scripts/zenodo/create.py --chapter <ID>
+quarto render --to pdf
+python update.py --book
 ```
 
-Then accept the request at [zenodo.org/communities/nasa-earthrise/requests](https://zenodo.org/communities/nasa-earthrise/requests).
+Run the first command from the repo root.
+Then commit the notebook, `citing.qmd`, and `zenodo_summary.json`.
 
-`create.py` looks for the chapter PDF in `_book/` by default (output of `render_pdf.py`).
-Use `--pdf-dir` to override with a custom PDF location.
-On Zenodo the PDF is named `<pdf_prefix>_<pdf_folder>.pdf`, matching the chapters deposited in June 2026.
+## Publishing new versions of existing records
 
-If a step fails after the draft is created, the draft is left on Zenodo and the script has printed its URL.
-Delete it from the uploads page before rerunning, or the rerun creates a second draft.
-A draft with an open review request must have the request cancelled before it can be deleted.
+Use this when a chapter's PDF or metadata changes, for example after renumbering chapters or editing the text.
+Commands run from `scripts/zenodo`.
 
-### 5. Inject DOIs into notebooks
+1. Update the citations if needed: `python inject.py` (all chapters) or `python inject.py --chapter <ID>`.
+   It rewrites a notebook only when its citation changed.
+2. Render the PDFs: `python render_pdf.py <ID>` for each chapter, and `quarto render --to pdf` from the repo root for the book.
+3. Preview, then publish:
 
-Run this only after the review request is accepted, because the DOI does not resolve until the record is published.
+   ```bash
+   python update.py --dry-run
+   python update.py --chapter <ID>
+   python update.py --book
+   ```
 
-Preview changes:
+   Without `--chapter` or `--book`, `update.py` processes every chapter.
+4. Commit `zenodo_summary.json`, which now holds the new version IDs.
 
-```bash
-python scripts/zenodo/inject.py --chapter <ID> --dry-run
-```
+For each record, `update.py` creates the next version, sets its metadata from `config.yaml` (version label `v2`, `v3`, and so on; today's date), uploads the files fresh, prints a preview link, and asks before publishing.
+If Zenodo attaches a review to the new version, it submits that instead and prints the link to accept.
+If you answer no, or a run stops midway, rerun it: Zenodo returns the unfinished draft instead of creating a second one.
 
-Apply:
+On Zenodo the chapter PDF is named `<pdf_prefix>_<pdf_folder>.pdf` and the book PDF `<pdf_prefix>.pdf`, matching the files deposited in June 2026.
 
-```bash
-python scripts/zenodo/inject.py --chapter <ID>
-```
+## Sandbox rehearsal
 
-This injects:
-- A Quarto citation YAML block into the notebook's raw front-matter cell.
-- A DOI badge callout cell (visible in HTML output only) after the author block: after the cell with id `author-notes` if the notebook has one, otherwise after the `author-attribution` cell.
-  Notebooks without an `author-attribution` cell are skipped with a message, so the badge never lands above the chapter title.
-- A new row in `citing.qmd`'s chapter table.
+Rehearse either workflow on sandbox.zenodo.org before production:
 
-## Quarto Profile Setup
+1. Put the sandbox token in `.env`.
+2. Add `--sandbox` to `create.py`, `inject.py`, and `update.py`.
+   They then read and write `zenodo_summary.sandbox.json`, so the committed summary is never touched.
+3. `zenodo_summary.sandbox.json` needs a `book` entry with a `concept_doi` before any sandbox run; chapters can borrow the production book's concept DOI there.
+
+`inject.py --sandbox` writes the sandbox DOI into the notebook and skips `citing.qmd`.
+The production `inject.py` run later replaces that DOI, so never commit a notebook while it holds a sandbox DOI (`10.5072/...`).
+
+If a step fails after a draft exists, the scripts print its URL.
+Reruns continue where they stopped: `create.py` skips chapters already recorded, `create.py --submit` clears and re-uploads the draft's files, and `update.py` reuses the unfinished version.
+To start over instead, delete the draft from the uploads page; a draft with an open review request must have that request cancelled first.
+
+## Quarto profile setup
 
 Individual chapter PDF rendering uses Quarto profiles.
 The book's chapter list lives in `_quarto-book.yml` (the default profile), not in `_quarto.yml`.
@@ -209,73 +207,59 @@ This separation lets `render_pdf.py` create a temporary profile for one chapter 
 - `quarto render` (default) renders the full book using the `book` profile.
 - `render_pdf.py` creates a temporary `_quarto-chpdf.yml` profile, renders one chapter to PDF, and deletes the temporary file.
 
-## CLI Reference
+## CLI reference
 
 ### render_pdf.py
 
 ```
-python scripts/zenodo/render_pdf.py <ID> [--dry-run]
+python render_pdf.py <ID> [--dry-run]
 ```
 
-Renders a single chapter as a standalone PDF in `_book/`.
+Renders one chapter as a standalone PDF in `_book/`.
 
 ### create.py
 
 ```
-python scripts/zenodo/create.py [OPTIONS]
-
-Options:
-  --chapter ID         Process only this chapter
-  --dry-run            Simulate without calling the Zenodo API
-  --sandbox            Use sandbox.zenodo.org instead of production
-  --pdf-dir PATH       Override PDF location (default: _book/)
-  --skip-preflight     Skip the file/author readiness check
+python create.py [--chapter ID] [--submit] [--dry-run] [--sandbox] [--pdf-dir PATH] [--skip-preflight]
 ```
 
-Without `--chapter`, processes all chapters not yet in `zenodo_summary.json`.
-Chapters with empty `authors` in config.yaml will cause the script to exit before any API calls.
-A chapter PDF must exist (either in `_book/` or `--pdf-dir`) before a deposit can be created.
-Author names must be written as `Last, First`; any other form stops the run before any API call.
-There is no publish flag: records are published by accepting the community review request.
+Without `--submit`: creates a draft and reserves a DOI for each chapter not yet in the summary file.
+With `--submit`: uploads the PDF and notebook of each chapter marked `draft` and submits it for review.
+Before any API call it stops on empty authors, author names not written as `Last, First`, malformed affiliations, a missing `author-attribution` cell, or (with `--submit`) a missing PDF.
+`--submit` also prints a preflight report of authors, PDF, notebooks, and author cell; `--skip-preflight` hides it.
+
+### update.py
+
+```
+python update.py [--chapter ID | --book] [--dry-run] [--sandbox]
+```
+
+Publishes a new version of existing records: every chapter by default, one chapter with `--chapter`, or the book with `--book`.
+It refuses chapters still marked `draft`; finish those with `create.py --submit`.
 
 ### inject.py
 
 ```
-python scripts/zenodo/inject.py [OPTIONS]
-
-Options:
-  --chapter ID         Process only this chapter
-  --dry-run            Preview changes without writing files
+python inject.py [--chapter ID] [--dry-run] [--sandbox]
 ```
 
-Without `--chapter`, processes all chapters that have a DOI in `zenodo_summary.json`.
-Already-injected notebooks are detected and skipped (idempotent).
+Writes each chapter's concept DOI into its notebook and rebuilds the chapter table in `citing.qmd`.
+Adds the citation on the first run and updates it when the DOI changes; notebooks already up to date are left untouched.
+A notebook whose front matter has its own `citation:` key is skipped, because a second key would make the YAML invalid.
 
-## Preflight Check
+## Running tests
 
-`create.py` runs a preflight check before creating deposits (skip with `--skip-preflight`).
-It reports:
-- Whether each chapter has authors listed in config.yaml.
-- Whether a PDF exists for each chapter.
-- Whether notebook files exist in the repo.
-- Whether the chapter notebook has the `author-attribution` cell.
+The tests in `tests/` cover the metadata sent to Zenodo, the author-cell check, and how `inject.py` edits notebooks.
+They use Python's built-in `unittest` and make no network calls.
 
-The preflight check is informational only.
-The actual hard blockers, checked before any API call, are empty authors, malformed author names or affiliations, a missing `author-attribution` cell, and a missing PDF.
-
-## Running Tests
-
-`test_create.py` covers the metadata mapping in `create.py` (author name splitting, the `affiliations` list, ORCID handling, payload shape).
-`test_inject.py` covers where `inject.py` places the DOI badge.
-It uses Python's built-in `unittest` and makes no network calls.
 From the repo root:
 
 ```bash
-python -m unittest discover -s scripts/zenodo -p "test_*.py" -v
+python -m unittest discover -s scripts/zenodo/tests -t scripts/zenodo -v
 ```
 
 From inside `scripts/zenodo`:
 
 ```bash
-python -m unittest -v test_create test_inject
+python -m unittest discover -s tests -t . -v
 ```

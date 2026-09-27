@@ -78,8 +78,8 @@ This book abides by NASA's privacy and terms of use, available at [nasa.gov/priv
 
 ## Citation
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547797.svg)](https://doi.org/10.5281/zenodo.20547797)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20547796.svg)](https://doi.org/10.5281/zenodo.20547796)
 
-> Mayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. https://doi.org/10.5281/zenodo.20547797
+> Mayer, T., Bhandari, B., & Saah, D. (2026). EarthRISE Applied Artificial Intelligence and Deep Learning Book. Zenodo. https://doi.org/10.5281/zenodo.20547796
 
 For individual chapter DOIs and BibTeX, see the [How to Cite](https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/citing.html) page.

@@ -7,7 +7,7 @@
 **David Saah** <a href="https://orcid.org/0000-0001-9999-1219"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a> · University of San Francisco · Spatial Informatics Group
 
 <p class="text-muted" style="font-size:0.85em;">
-First edition. Published electronically June 1st 2026 &nbsp;&nbsp; DOI: [10.5281/zenodo.20547797](https://doi.org/10.5281/zenodo.20547797)
+First edition. Published electronically June 1st 2026 &nbsp;&nbsp; DOI: [10.5281/zenodo.20547796](https://doi.org/10.5281/zenodo.20547796)
 </p>
 
 <p class="text-muted" style="font-size:0.85em;">

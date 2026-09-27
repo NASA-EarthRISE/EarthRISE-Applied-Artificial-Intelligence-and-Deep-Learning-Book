@@ -1,11 +1,9 @@
-import json
-import tempfile
 import unittest
-from pathlib import Path
 
-from create import (
-    author_cell_problem,
+from metadata import (
+    build_book_payload,
     build_chapter_payload,
+    concept_doi_for,
     parse_author_name,
     to_rdm_creators,
 )
@@ -112,19 +110,18 @@ class CreatorMappingTests(unittest.TestCase):
                 to_rdm_creators([author])
 
 
-class NotebookCheckTests(unittest.TestCase):
-    def test_notebook_must_have_author_cell_before_deposit(self):
-        # The author-attribution cell prints the author list in the PDF, so a
-        # notebook without it would be deposited with an author-less PDF.
-        with tempfile.TemporaryDirectory() as tmp:
-            with_authors = Path(tmp, "with_authors.ipynb")
-            with_authors.write_text(json.dumps({"cells": [{"id": "author-attribution"}]}))
-            without_authors = Path(tmp, "without_authors.ipynb")
-            without_authors.write_text(json.dumps({"cells": [{"id": "title"}]}))
-
-            self.assertIsNone(author_cell_problem(with_authors))
-            self.assertIn("author-attribution", author_cell_problem(without_authors))
-            self.assertIn("cannot read", author_cell_problem(Path(tmp, "missing.ipynb")))
+class ConceptDoiTests(unittest.TestCase):
+    def test_concept_doi_uses_parent_id_and_the_environment_prefix(self):
+        # Matches production ch10.2: version 23001199, concept 23001198.
+        self.assertEqual(
+            concept_doi_for({"parent": {"id": "23001198"}}, "10.5281/zenodo.23001199"),
+            "10.5281/zenodo.23001198",
+        )
+        self.assertEqual(
+            concept_doi_for({"parent": {"id": "609985"}}, "10.5072/zenodo.609986"),
+            "10.5072/zenodo.609985",
+            "sandbox DOIs keep the sandbox prefix",
+        )
 
 
 class PayloadTests(unittest.TestCase):
@@ -186,6 +183,40 @@ class PayloadTests(unittest.TestCase):
             [r["resource_type"]["id"] for r in without_video["metadata"]["related_identifiers"]],
             ["publication-book", "software"],
             "a chapter without youtube_url must not get a video link",
+        )
+
+    def test_book_payload_lists_chapters_by_concept_doi(self):
+        book = {
+            **BOOK_CONFIG,
+            "title": "EarthRISE Book\n",
+            "description": "<p>Book.</p>\n",
+            "keywords": ["deep learning"],
+            "authors": [{"name": "Mayer, Tim", "orcid": "", "affiliations": ["NASA EarthRISE"]}],
+        }
+        chapters = ["10.5281/zenodo.20547798", "10.5281/zenodo.23001198"]
+        metadata = build_book_payload(book, chapters, "v2", publication_date="2026-09-27")["metadata"]
+
+        # Same field set as the existing book record (20547797), plus version.
+        self.assertEqual(
+            set(metadata),
+            {
+                "creators", "description", "languages", "publication_date", "publisher",
+                "related_identifiers", "resource_type", "rights", "subjects", "title", "version",
+            },
+        )
+        self.assertEqual(metadata["resource_type"], {"id": "publication-book"})
+        self.assertEqual(metadata["title"], "EarthRISE Book")
+        self.assertEqual(metadata["version"], "v2")
+        self.assertEqual(
+            [(r["relation_type"]["id"], r["identifier"]) for r in metadata["related_identifiers"]],
+            [
+                ("issupplementedby", BOOK_CONFIG["github_url"]),
+                ("haspart", "10.5281/zenodo.20547798"),
+                ("haspart", "10.5281/zenodo.23001198"),
+            ],
+        )
+        self.assertTrue(
+            all(r["resource_type"]["id"] == "publication-section" for r in metadata["related_identifiers"][1:])
         )
 
 
