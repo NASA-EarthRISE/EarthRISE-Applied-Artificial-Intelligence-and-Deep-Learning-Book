@@ -5,31 +5,31 @@
   },
   "chapters": {
     "ch3.1": {
-      "deposit_id": 20547799,
+      "deposit_id": 23002978,
       "concept_doi": "10.5281/zenodo.20547798"
     },
     "ch3.2": {
-      "deposit_id": 20547803,
+      "deposit_id": 23003012,
       "concept_doi": "10.5281/zenodo.20547802"
     },
     "ch3.3": {
-      "deposit_id": 20547805,
+      "deposit_id": 23003020,
       "concept_doi": "10.5281/zenodo.20547804"
     },
     "ch5.1": {
-      "deposit_id": 20547807,
+      "deposit_id": 23003034,
       "concept_doi": "10.5281/zenodo.20547806"
     },
     "ch6.1": {
-      "deposit_id": 20547811,
+      "deposit_id": 23003042,
       "concept_doi": "10.5281/zenodo.20547810"
     },
     "ch10.1": {
-      "deposit_id": 20547814,
+      "deposit_id": 23003068,
       "concept_doi": "10.5281/zenodo.20547813"
     },
     "ch10.2": {
-      "deposit_id": 23001199,
+      "deposit_id": 23003082,
       "concept_doi": "10.5281/zenodo.23001198"
     }
   }
