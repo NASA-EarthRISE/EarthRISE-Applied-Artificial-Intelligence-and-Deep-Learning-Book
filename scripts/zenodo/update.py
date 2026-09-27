@@ -15,6 +15,7 @@ from common import (
     summary_path,
 )
 from create import (
+    DRAFT_STATUS,
     ZenodoClient,
     author_cell_problem,
     build_book_payload,
@@ -48,10 +49,12 @@ def book_target(config: dict, summary: dict, dry_run: bool) -> dict:
             sys.exit(f"ERROR: book PDF not found: {pdf}\n  Render it first: quarto render --to pdf")
         print(f"  [dry-run] book PDF not rendered yet: {pdf.name}")
         files = []
+    recorded = summary.get("chapters", {})
+    # A draft's DOI is not registered until the chapter is published.
     chapter_dois = [
-        summary["chapters"][ch["id"]]["concept_doi"]
+        recorded[ch["id"]]["concept_doi"]
         for ch in sorted(config["chapters"], key=chapter_sort_key)
-        if ch["id"] in summary.get("chapters", {})
+        if ch["id"] in recorded and recorded[ch["id"]].get("status") != DRAFT_STATUS
     ]
     return {
         "name": "book",
@@ -65,6 +68,8 @@ def chapter_target(ch: dict, config: dict, summary: dict, dry_run: bool) -> dict
     entry = summary.get("chapters", {}).get(ch["id"])
     if not entry:
         sys.exit(f"ERROR: {ch['id']} has no record in the summary file; use create.py for new chapters")
+    if entry.get("status") == DRAFT_STATUS:
+        sys.exit(f"ERROR: {ch['id']} is still a draft; finish it with: create.py --chapter {ch['id']} --submit")
     try:
         to_rdm_creators(ch["authors"])
     except ValueError as exc:
