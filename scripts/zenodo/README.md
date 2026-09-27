@@ -29,6 +29,7 @@ scripts/zenodo/
   create.py            # create Zenodo drafts, upload files, submit for community review
   inject.py            # inject DOIs into notebooks + citing.qmd
   test_create.py       # unit tests for the create.py metadata mapping
+  test_inject.py       # unit tests for the inject.py badge placement
   requirements.txt     # Python dependencies
   .env.example         # template for Zenodo API token
 ```
@@ -104,7 +105,34 @@ Separate organizations are separate items.
 A unit and its parent organization, or two names for the same organization, form one item.
 The older single-string `affiliation:` key is rejected; chapters deposited before September 2026 still use it and are converted when they get a new version.
 
-### 2. Render the chapter PDF
+### 2. Prepare the notebook
+
+Chapter notebooks start with the same cells, in this order:
+
+| Order | Cell | Cell id | Shown in |
+|---|---|---|---|
+| 1 | Quarto front matter (raw cell) | `quarto-yaml-front-matter` | metadata |
+| 2 | Chapter title (`# 10.2 ...`) and Colab link | any | HTML and PDF |
+| 3 | Author list with ORCID links | `author-attribution` (required) | PDF only |
+| 4 | Author notes, e.g. equal contribution (optional) | `author-notes` | HTML and PDF |
+| 5 | "How to cite" badge, added by `inject.py` | `zenodo-doi-badge` | HTML only |
+
+Copy the `author-attribution` cell from an existing chapter and change the names and ORCIDs:
+
+```markdown
+::: {.content-visible when-format="pdf"}
+**Authors:** Jane Doe `\orcidlink{0000-0000-0000-0000}`{=latex}, John Roe
+:::
+```
+
+Jupyter assigns random cell ids and has no easy way to rename them.
+To set an id, open the `.ipynb` as text (in VS Code: right-click the file, **Open With...**, **Text Editor**) and change that cell's `"id"` value.
+
+Both scripts check for the author cell:
+`create.py` stops before creating anything if it is missing, because the deposited PDF would have no author list.
+`inject.py` puts the badge after `author-notes` if present, otherwise after `author-attribution`, and skips notebooks that have neither.
+
+### 3. Render the chapter PDF
 
 ```bash
 python scripts/zenodo/render_pdf.py <ID>
@@ -113,7 +141,7 @@ python scripts/zenodo/render_pdf.py <ID>
 This creates a temporary Quarto profile, renders just that chapter to PDF, and places the output in `_book/`.
 The `--no-clean` flag is used internally to preserve existing HTML output.
 
-### 3. Create the Zenodo record and submit it for review
+### 4. Create the Zenodo record and submit it for review
 
 Test on sandbox first (with the sandbox token in `.env`):
 
@@ -150,7 +178,7 @@ If a step fails after the draft is created, the draft is left on Zenodo and the 
 Delete it from the uploads page before rerunning, or the rerun creates a second draft.
 A draft with an open review request must have the request cancelled before it can be deleted.
 
-### 4. Inject DOIs into notebooks
+### 5. Inject DOIs into notebooks
 
 Run this only after the review request is accepted, because the DOI does not resolve until the record is published.
 
@@ -168,7 +196,8 @@ python scripts/zenodo/inject.py --chapter <ID>
 
 This injects:
 - A Quarto citation YAML block into the notebook's raw front-matter cell.
-- A DOI badge callout cell (visible in HTML output only) after the front-matter.
+- A DOI badge callout cell (visible in HTML output only) after the author block: after the cell with id `author-notes` if the notebook has one, otherwise after the `author-attribution` cell.
+  Notebooks without an `author-attribution` cell are skipped with a message, so the badge never lands above the chapter title.
 - A new row in `citing.qmd`'s chapter table.
 
 ## Quarto Profile Setup
@@ -229,13 +258,15 @@ It reports:
 - Whether each chapter has authors listed in config.yaml.
 - Whether a PDF exists for each chapter.
 - Whether notebook files exist in the repo.
+- Whether the chapter notebook has the `author-attribution` cell.
 
 The preflight check is informational only.
-The actual hard blockers are the empty-authors validation and the PDF existence check.
+The actual hard blockers, checked before any API call, are empty authors, malformed author names or affiliations, a missing `author-attribution` cell, and a missing PDF.
 
 ## Running Tests
 
 `test_create.py` covers the metadata mapping in `create.py` (author name splitting, the `affiliations` list, ORCID handling, payload shape).
+`test_inject.py` covers where `inject.py` places the DOI badge.
 It uses Python's built-in `unittest` and makes no network calls.
 From the repo root:
 
@@ -246,5 +277,5 @@ python -m unittest discover -s scripts/zenodo -p "test_*.py" -v
 From inside `scripts/zenodo`:
 
 ```bash
-python -m unittest -v test_create
+python -m unittest -v test_create test_inject
 ```
