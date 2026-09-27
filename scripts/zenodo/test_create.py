@@ -5,6 +5,7 @@ from pathlib import Path
 
 from create import (
     author_cell_problem,
+    build_book_payload,
     build_chapter_payload,
     concept_doi_for,
     parse_author_name,
@@ -201,6 +202,40 @@ class PayloadTests(unittest.TestCase):
             [r["resource_type"]["id"] for r in without_video["metadata"]["related_identifiers"]],
             ["publication-book", "software"],
             "a chapter without youtube_url must not get a video link",
+        )
+
+    def test_book_payload_lists_chapters_by_concept_doi(self):
+        book = {
+            **BOOK_CONFIG,
+            "title": "EarthRISE Book\n",
+            "description": "<p>Book.</p>\n",
+            "keywords": ["deep learning"],
+            "authors": [{"name": "Mayer, Tim", "orcid": "", "affiliations": ["NASA EarthRISE"]}],
+        }
+        chapters = ["10.5281/zenodo.20547798", "10.5281/zenodo.23001198"]
+        metadata = build_book_payload(book, chapters, "v2", publication_date="2026-09-27")["metadata"]
+
+        # Same field set as the existing book record (20547797), plus version.
+        self.assertEqual(
+            set(metadata),
+            {
+                "creators", "description", "languages", "publication_date", "publisher",
+                "related_identifiers", "resource_type", "rights", "subjects", "title", "version",
+            },
+        )
+        self.assertEqual(metadata["resource_type"], {"id": "publication-book"})
+        self.assertEqual(metadata["title"], "EarthRISE Book")
+        self.assertEqual(metadata["version"], "v2")
+        self.assertEqual(
+            [(r["relation_type"]["id"], r["identifier"]) for r in metadata["related_identifiers"]],
+            [
+                ("issupplementedby", BOOK_CONFIG["github_url"]),
+                ("haspart", "10.5281/zenodo.20547798"),
+                ("haspart", "10.5281/zenodo.23001198"),
+            ],
+        )
+        self.assertTrue(
+            all(r["resource_type"]["id"] == "publication-section" for r in metadata["related_identifiers"][1:])
         )
 
 
