@@ -44,6 +44,7 @@ chapters:
     title: "Crop Mapping: Rice Mapping in Bhutan"
     notebook: "03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb"
     pdf_folder: "Crop Mapping Rice Mapping in Bhutan"
+    youtube_url: "https://youtu.be/l3Tv5UBlw9I"
     authors:
       - name: "Bhandari, Biplov"
         orcid: "0000-0001-6169-8236"
@@ -98,6 +99,7 @@ chapters:
     title: "Clay Deforestation Segmentation Model"
     notebook: "03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.ipynb"
     pdf_folder: "Clay Deforestation Segmentation Model"
+    youtube_url: "https://youtu.be/DnPosJ6IJ0Y"
     authors:
       - name: "Poortinga, Ate"
         orcid: "0000-0001-9647-2317"
@@ -142,6 +144,7 @@ chapters:
     title: "Phenology-Guided Deep Learning with Uncertainty Quantification for Soybean Yield Prediction"
     notebook: "05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.ipynb"
     pdf_folder: "Soybean_Yield_Prediction"
+    youtube_url: "https://youtu.be/0mqivFOlF1k"
     authors:
       - name: "Zhang, Chishan"
         orcid: "0000-0001-9026-6037"
@@ -169,6 +172,7 @@ chapters:
     title: "Understanding Active Fire Detection Uncertainty with Bayesian Neural Networks"
     notebook: "06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.ipynb"
     pdf_folder: "Understanding active fire detection uncertainty with Bayesian Neural Networks"
+    youtube_url: "https://youtu.be/e6lqjTUAvmI"
     authors:
       - name: "Harvie, Julia E."
         orcid: "0009-0004-7463-0176"
@@ -210,6 +214,7 @@ chapters:
     title: "Evaluating Foundation Models Trained with Earth Observation Data"
     notebook: "10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.ipynb"
     pdf_folder: "Evaluating Foundation Models Trained with Earth Observation Data"
+    youtube_url: "https://youtu.be/kINuYpZroPA"
     authors:
       - name: "Thomas, Lillianne"
         orcid: "0000-0002-2085-9168"
