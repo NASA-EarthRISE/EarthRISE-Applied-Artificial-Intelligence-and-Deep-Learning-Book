@@ -5,6 +5,7 @@ book:
   language: "eng"
   community: "nasa-earthrise"
   github_url: "https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book"
+  pdf_prefix: "Applied-Artificial-Intelligence-and-Deep-Learning-Book"
   authors:
     - name: "Mayer, Tim"
       orcid: "0000-0001-9489-9392"
@@ -244,22 +245,23 @@ chapters:
     title: "Earth Observation Foundation Models: Encoder Representation Analysis and Downstream Task Benchmarking"
     notebook: "10_Future/02__Comprehensive_EOFM_Benchmarking/notebooks/Chapter_Comprehensive_EOFM_Benchmarking.ipynb"
     pdf_folder: "Comprehensive EOFM Benchmarking"
+    youtube_url: "https://youtu.be/c7_GxZ6apqY"
     authors:
       - name: "DeMilt, Ryan P."
         orcid: ""
-        affiliation: "Spatial Informatics Group"
+        affiliations: ["Spatial Informatics Group"]
       - name: "LaHaye, Nicholas"
         orcid: "0000-0001-6584-7315"
-        affiliation: "Jet Propulsion Laboratory; Spatial Informatics Group"
+        affiliations: ["Jet Propulsion Laboratory", "Spatial Informatics Group"]
       - name: "Truong, Myscon"
         orcid: "0009-0005-5421-771X"
-        affiliation: "Spatial Informatics Group"
+        affiliations: ["Spatial Informatics Group"]
       - name: "Tenneson, Karis"
         orcid: "0000-0001-5842-0663"
-        affiliation: "Spatial Informatics Group"
+        affiliations: ["Spatial Informatics Group"]
       - name: "Saah, David"
         orcid: "0000-0001-9999-1219"
-        affiliation: "University of San Francisco; Spatial Informatics Group"
+        affiliations: ["University of San Francisco", "Spatial Informatics Group"]
     description: >
       <p>This chapter explores how to inter-compare different Earth Observation
       Foundation Models' requirements, behavior, and performance on two related

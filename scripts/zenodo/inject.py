@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 
 from common import (
+    AUTHOR_CELL_ID,
+    AUTHOR_NOTES_CELL_ID,
     REPO_DIR,
     chapter_sort_key,
     filter_chapters,
@@ -16,6 +18,11 @@ from common import (
 
 SENTINEL = "# zenodo-doi-injected"
 BADGE_CELL_ID = "zenodo-doi-badge"
+
+# Chapter notebooks open with front matter, title, author list, optional
+# author notes, then the DOI badge. Checked in order; the first cell found
+# is the one to follow.
+BADGE_ANCHOR_IDS = (AUTHOR_NOTES_CELL_ID, AUTHOR_CELL_ID)
 
 # Matches the container-title in deployed notebook citation YAML. Fixed here
 # rather than read from config.yaml because build_citation_yaml_block only
@@ -72,14 +79,19 @@ def build_citation_yaml_block(doi: str, book_doi: str) -> str:
     )
 
 
+def to_jupyter_lines(text: str) -> list[str]:
+    """Split cell text the way Jupyter stores it: one string per line, newlines kept."""
+    # A single joined string is valid JSON but differs from what Jupyter saves,
+    # so git would show the whole cell as rewritten.
+    return text.splitlines(keepends=True)
+
+
 def build_badge_cell(ch: dict, ch_doi: str, book: dict, book_doi: str) -> dict:
     ch_cite = build_citation_text(ch["authors"], book["year"], ch["title"], ch_doi)
     ch_badge = build_badge_svg_md(ch_doi)
     book_cite = build_citation_text(book["authors"], book["year"], book["title"], book_doi)
     book_badge = build_badge_svg_md(book_doi)
 
-    # A single joined string, matching the one-element source list format
-    # used in existing badge cells.
     body = (
         '::: {.content-visible when-format="html"}\n'
         "::: {.callout-note appearance='minimal'}\n"
@@ -96,8 +108,17 @@ def build_badge_cell(ch: dict, ch_doi: str, book: dict, book_doi: str) -> dict:
         "cell_type": "markdown",
         "id": BADGE_CELL_ID,
         "metadata": {},
-        "source": [body],
+        "source": to_jupyter_lines(body),
     }
+
+
+def badge_insert_index(cells: list[dict]) -> int | None:
+    """Index right after the author block, or None if the notebook has no author list."""
+    ids = [cell.get("id") for cell in cells]
+    for anchor in BADGE_ANCHOR_IDS:
+        if anchor in ids:
+            return ids.index(anchor) + 1
+    return None
 
 
 def inject_notebook(
@@ -132,7 +153,7 @@ def inject_notebook(
                 "cell_type": "raw",
                 "id": "quarto-yaml-front-matter",
                 "metadata": {},
-                "source": ["---\nformat:\n  html:\n    code-fold: true\n---"],
+                "source": to_jupyter_lines("---\nformat:\n  html:\n    code-fold: true\n---"),
             },
         )
         raw_idx = 0
@@ -150,11 +171,24 @@ def inject_notebook(
     else:
         new_src = raw_src.rstrip() + "\n" + yaml_block + "---"
 
-    cells[raw_idx]["source"] = [new_src]
-    cells.insert(raw_idx + 1, build_badge_cell(ch, doi, book, book_doi))
+    cells[raw_idx]["source"] = to_jupyter_lines(new_src)
+
+    # Computed after the front-matter cell may have been inserted, so the
+    # index accounts for it.
+    badge_idx = badge_insert_index(cells)
+    if badge_idx is None:
+        print(
+            f"  SKIP (no '{AUTHOR_CELL_ID}' cell): {nb_path.name}\n"
+            "    Add the author cell after the chapter title (README: Prepare the notebook), then rerun."
+        )
+        return False
+    cells.insert(badge_idx, build_badge_cell(ch, doi, book, book_doi))
 
     if dry_run:
-        print(f"  [dry-run] would inject DOI {doi} into {nb_path.name}")
+        print(
+            f"  [dry-run] would inject DOI {doi} into {nb_path.name} "
+            f"(badge after cell '{cells[badge_idx - 1].get('id')}')"
+        )
         return True
 
     nb_path.write_text(json.dumps(nb, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")

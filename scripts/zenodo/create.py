@@ -1,14 +1,17 @@
-"""Create Zenodo deposits for book chapters and record their DOIs."""
+"""Create Zenodo chapter records and submit them to the community for review."""
 
 import argparse
 import json
 import os
 import sys
+from datetime import date
 from pathlib import Path
+from urllib.parse import quote
 
 import requests
 
 from common import (
+    AUTHOR_CELL_ID,
     REPO_DIR,
     filter_chapters,
     load_config,
@@ -19,23 +22,36 @@ from common import (
 REQUEST_TIMEOUT = 30
 UPLOAD_TIMEOUT = 300
 
+# Zenodo answers plain application/json on record endpoints with its legacy
+# JSON shape; this media type returns the native InvenioRDM shape.
+NATIVE_JSON = "application/vnd.inveniordm.v1+json"
+
+RESOURCE_TYPE = "publication-section"
+# Same publisher as the chapters deposited in June 2026.
+PUBLISHER = "Zenodo"
+REVIEW_MESSAGE = "Book chapter submitted by the EarthRISE book Zenodo pipeline."
+
 
 class ZenodoClient:
-    """Wraps the Zenodo deposit API. Holds base URL, token, and dry-run
+    """Wraps the Zenodo InvenioRDM API. Holds host, token, and dry-run
     state as instance attributes so each method call stays clean."""
 
     def __init__(self, token: str, sandbox: bool = False, dry_run: bool = False):
-        self.base_url = (
-            "https://sandbox.zenodo.org/api" if sandbox else "https://zenodo.org/api"
-        )
+        self.host = "sandbox.zenodo.org" if sandbox else "zenodo.org"
+        self.base_url = f"https://{self.host}/api"
         self.token = token
         self.dry_run = dry_run
 
-    def _headers(self, content_type: str = "application/json") -> dict:
-        headers = {"Authorization": f"Bearer {self.token}"}
+    def _headers(
+        self, content_type: str | None = "application/json", accept: str = NATIVE_JSON
+    ) -> dict:
+        headers = {"Authorization": f"Bearer {self.token}", "Accept": accept}
         if content_type:
             headers["Content-Type"] = content_type
         return headers
+
+    def _draft_url(self, record_id: str, path: str = "") -> str:
+        return f"{self.base_url}/records/{record_id}/draft{path}"
 
     def _request(self, method: str, url: str, *, timeout: int, **kwargs) -> requests.Response:
         # Centralized here so every call gets a bounded timeout and a clean
@@ -48,128 +64,254 @@ class ZenodoClient:
     def _check(self, resp: requests.Response, action: str) -> None:
         if resp.ok:
             return
-        detail = resp.text[:300]
         try:
-            # resp.json() raises a ValueError subclass on a non-JSON body.
-            detail = json.dumps(resp.json(), indent=2)[:300]
+            # Kept long because InvenioRDM lists every invalid field under "errors".
+            detail = json.dumps(resp.json(), indent=2)[:3000]
         except ValueError:
-            pass
+            detail = resp.text[:500]
         raise SystemExit(f"Zenodo API error [{action}] HTTP {resp.status_code}: {detail}")
 
-    def create_deposit(self) -> dict:
+    def get_community_id(self, slug: str) -> str:
         if self.dry_run:
-            print("  [dry-run] would create deposit")
-            return {
-                "id": "DRY",
-                "links": {"bucket": "DRY_BUCKET"},
-                "metadata": {"prereserve_doi": {"doi": "10.5281/zenodo.DRY"}},
-            }
+            print(f"  [dry-run] would look up community '{slug}' on {self.host}")
+            return "DRY_COMMUNITY"
+        resp = self._request(
+            "GET",
+            f"{self.base_url}/communities/{quote(slug, safe='')}",
+            headers=self._headers(content_type=None, accept="application/json"),
+            timeout=REQUEST_TIMEOUT,
+        )
+        if resp.status_code == 404:
+            raise SystemExit(
+                f"ERROR: community '{slug}' not found on {self.host}.\n"
+                "  Create it there, or fix book.community in config.yaml."
+            )
+        self._check(resp, f"get_community({slug})")
+        return resp.json()["id"]
+
+    def create_draft(self, payload: dict) -> dict:
+        if self.dry_run:
+            print("  [dry-run] would create draft with payload:")
+            print(json.dumps(payload, indent=2, ensure_ascii=False))
+            return {"id": "DRY"}
         resp = self._request(
             "POST",
-            f"{self.base_url}/deposit/depositions",
-            json={},
+            f"{self.base_url}/records",
+            json=payload,
             headers=self._headers(),
             timeout=REQUEST_TIMEOUT,
         )
-        self._check(resp, "create_deposit")
-        deposit = resp.json()
-        doi = deposit["metadata"]["prereserve_doi"]["doi"]
-        print(f"  Created deposit {deposit['id']}, DOI: {doi}")
-        return deposit
+        self._check(resp, "create_draft")
+        draft = resp.json()
+        # Printed before any later step can fail, so an orphan draft is easy to find.
+        html = draft.get("links", {}).get("self_html") or f"https://{self.host}/uploads/{draft['id']}"
+        print(f"  Created draft {draft['id']}: {html}")
+        return draft
 
-    def update_metadata(self, deposit_id: int | str, metadata: dict) -> None:
+    def reserve_doi(self, record_id: str) -> str:
         if self.dry_run:
-            print(f"  [dry-run] metadata: {metadata.get('title', '')[:60]}")
-            return
+            print("  [dry-run] would reserve DOI")
+            return "10.5281/zenodo.DRY"
         resp = self._request(
-            "PUT",
-            f"{self.base_url}/deposit/depositions/{deposit_id}",
-            data=json.dumps({"metadata": metadata}),
-            headers=self._headers(),
+            "POST",
+            self._draft_url(record_id, "/pids/doi"),
+            headers=self._headers(content_type=None),
             timeout=REQUEST_TIMEOUT,
         )
-        self._check(resp, f"update_metadata({deposit_id})")
+        self._check(resp, f"reserve_doi({record_id})")
+        doi = resp.json()["pids"]["doi"]["identifier"]
+        print(f"  Reserved DOI {doi}")
+        return doi
 
-    def upload_file(self, deposit: dict, file_path: Path) -> None:
+    def upload_file(
+        self, record_id: str, file_path: Path, upload_name: str | None = None
+    ) -> None:
         if not file_path.exists():
             print(f"  WARNING: not found, skipping: {file_path}")
             return
+        key = upload_name or file_path.name
         size = file_path.stat().st_size
         if self.dry_run:
-            print(f"  [dry-run] upload {file_path.name} ({size:,} bytes)")
+            print(f"  [dry-run] upload {key} ({size:,} bytes)")
             return
-        with file_path.open("rb") as f:
-            resp = self._request(
-                "PUT",
-                f"{deposit['links']['bucket']}/{file_path.name}",
-                data=f,
-                headers={"Authorization": f"Bearer {self.token}"},
-                timeout=UPLOAD_TIMEOUT,
-            )
-        self._check(resp, f"upload({file_path.name})")
-        print(f"  Uploaded {file_path.name} ({size:,} bytes)")
 
-    def publish(self, deposit_id: int | str) -> str:
-        if self.dry_run:
-            return f"10.5281/zenodo.{deposit_id}"
         resp = self._request(
             "POST",
-            f"{self.base_url}/deposit/depositions/{deposit_id}/actions/publish",
+            self._draft_url(record_id, "/files"),
+            json=[{"key": key}],
             headers=self._headers(),
             timeout=REQUEST_TIMEOUT,
         )
-        self._check(resp, f"publish({deposit_id})")
-        doi = resp.json().get("doi", "")
-        print(f"  Published deposit {deposit_id}, DOI: {doi}")
-        return doi
+        self._check(resp, f"init_upload({key})")
+
+        # The book-prefixed PDF name contains spaces, so the key must be encoded.
+        file_url = self._draft_url(record_id, f"/files/{quote(key, safe='')}")
+        with file_path.open("rb") as f:
+            resp = self._request(
+                "PUT",
+                f"{file_url}/content",
+                data=f,
+                headers=self._headers(content_type="application/octet-stream"),
+                timeout=UPLOAD_TIMEOUT,
+            )
+        self._check(resp, f"upload_content({key})")
+
+        resp = self._request(
+            "POST",
+            f"{file_url}/commit",
+            headers=self._headers(content_type=None),
+            timeout=REQUEST_TIMEOUT,
+        )
+        self._check(resp, f"commit_upload({key})")
+        print(f"  Uploaded {key} ({size:,} bytes)")
+
+    def create_review_request(self, record_id: str, community_id: str) -> None:
+        if self.dry_run:
+            print("  [dry-run] would link the draft to the community for review")
+            return
+        resp = self._request(
+            "PUT",
+            self._draft_url(record_id, "/review"),
+            json={"receiver": {"community": community_id}, "type": "community-submission"},
+            headers=self._headers(),
+            timeout=REQUEST_TIMEOUT,
+        )
+        self._check(resp, f"create_review({record_id})")
+
+    def submit_review(self, record_id: str) -> str:
+        """Submit the draft for review and return the request's web URL."""
+        if self.dry_run:
+            print("  [dry-run] would submit for community review (require_review: true)")
+            return ""
+        resp = self._request(
+            "POST",
+            self._draft_url(record_id, "/actions/submit-review"),
+            json={
+                "payload": {"content": REVIEW_MESSAGE, "format": "html"},
+                # Without this, Zenodo publishes immediately when the submitter
+                # may add records to the community directly (e.g. a manager).
+                "require_review": True,
+            },
+            headers=self._headers(),
+            timeout=REQUEST_TIMEOUT,
+        )
+        self._check(resp, f"submit_review({record_id})")
+        request = resp.json()
+        status = request.get("status")
+        if status == "submitted":
+            print("  Submitted for community review")
+        else:
+            print(
+                f"  WARNING: review request status is '{status}', not 'submitted'.\n"
+                f"  The record may already be published; check it on {self.host}."
+            )
+        return request.get("links", {}).get("self_html") or f"https://{self.host}/me/requests"
 
 
-def to_zenodo_creators(authors: list[dict]) -> list[dict]:
-    """Config author dicts to Zenodo creator format. Drops empty orcid or
-    affiliation rather than sending blank strings the API would still accept."""
+def parse_author_name(name: str) -> tuple[str, str]:
+    """'dela Torre, Daniel Marc' -> ('dela Torre', 'Daniel Marc')."""
+    family, sep, given = name.partition(", ")
+    if not sep or not family.strip() or not given.strip():
+        raise ValueError(f"author name must be 'Last, First': {name!r}")
+    return family.strip(), given.strip()
+
+
+def parse_affiliations(author: dict) -> list[str]:
+    """Return the author's `affiliations` list, one item per organization."""
+    name = author.get("name", "?")
+    # Rejected rather than tolerated: an old-format entry would silently lose
+    # its affiliations, and a bare string would be sent letter by letter.
+    if "affiliation" in author:
+        raise ValueError(
+            f"{name}: 'affiliation' is the old string format; use an 'affiliations' list "
+            "with one item per organization"
+        )
+    affiliations = author.get("affiliations", [])
+    if not isinstance(affiliations, list) or not all(
+        isinstance(item, str) and item.strip() for item in affiliations
+    ):
+        raise ValueError(f"{name}: 'affiliations' must be a list of non-empty names")
+    return [item.strip() for item in affiliations]
+
+
+def to_rdm_creators(authors: list[dict]) -> list[dict]:
+    """Config author dicts to InvenioRDM creators. Drops an empty ORCID or
+    affiliation list rather than sending blank values."""
     creators = []
     for author in authors:
-        creator = {"name": author["name"]}
+        family, given = parse_author_name(author["name"])
+        person = {
+            "type": "personal",
+            "name": author["name"],
+            "family_name": family,
+            "given_name": given,
+        }
         if author.get("orcid"):
-            creator["orcid"] = author["orcid"]
-        if author.get("affiliation"):
-            creator["affiliation"] = author["affiliation"]
+            person["identifiers"] = [{"scheme": "orcid", "identifier": author["orcid"]}]
+        creator = {"person_or_org": person}
+        affiliations = parse_affiliations(author)
+        if affiliations:
+            creator["affiliations"] = [{"name": affiliation} for affiliation in affiliations]
         creators.append(creator)
     return creators
 
 
-def build_chapter_metadata(ch: dict, book_doi: str, book_config: dict) -> dict:
-    """Build the Zenodo metadata payload for one chapter deposit."""
+def _related(identifier: str, scheme: str, relation: str, resource_type: str) -> dict:
+    return {
+        "identifier": identifier,
+        "scheme": scheme,
+        "relation_type": {"id": relation},
+        "resource_type": {"id": resource_type},
+    }
+
+
+def build_chapter_payload(
+    ch: dict,
+    book_doi: str,
+    book_config: dict,
+    version: str = "v1",
+    publication_date: str | None = None,
+) -> dict:
+    """Build the InvenioRDM draft payload for one chapter record."""
     # .as_posix() keeps the GitHub URL correct on Windows, where Path str()
     # would otherwise emit backslashes.
     github_path = Path(ch["notebook"]).parent.parent.as_posix()
     github_url = f"{book_config['github_url']}/tree/main/{github_path}"
 
+    related_identifiers = [
+        _related(book_doi, "doi", "ispartof", "publication-book"),
+        _related(github_url, "url", "issupplementedby", "software"),
+    ]
+    if ch.get("youtube_url"):
+        related_identifiers.append(
+            _related(ch["youtube_url"], "url", "issupplementedby", "video")
+        )
+
     return {
-        "upload_type": "publication",
-        "publication_type": "section",
-        "title": ch["title"].strip(),
-        "description": ch["description"].strip(),
-        "creators": to_zenodo_creators(ch["authors"]),
-        "keywords": ch.get("keywords", []),
-        "license": book_config["license"],
-        "access_right": "open",
-        "language": book_config["language"],
-        "prereserve_doi": True,
-        "communities": [{"identifier": book_config["community"]}],
-        "related_identifiers": [
-            {
-                "identifier": book_doi,
-                "relation": "isPartOf",
-                "resource_type": "publication-book",
-            },
-            {
-                "identifier": github_url,
-                "relation": "isSupplementedBy",
-                "resource_type": "software",
-            },
-        ],
+        "access": {"record": "public", "files": "public"},
+        "files": {"enabled": True},
+        "metadata": {
+            "resource_type": {"id": RESOURCE_TYPE},
+            "title": ch["title"].strip(),
+            "publication_date": publication_date or date.today().isoformat(),
+            "publisher": PUBLISHER,
+            "version": version,
+            "description": ch["description"].strip(),
+            "creators": to_rdm_creators(ch["authors"]),
+            "subjects": [{"subject": keyword} for keyword in ch.get("keywords", [])],
+            "rights": [{"id": book_config["license"]}],
+            "languages": [{"id": book_config["language"]}],
+            "related_identifiers": related_identifiers,
+        },
     }
+
+
+def pdf_upload_name(ch: dict, book_config: dict) -> str | None:
+    """Zenodo file name for the chapter PDF, matching the chapters deposited in June 2026."""
+    prefix = book_config.get("pdf_prefix", "")
+    if prefix and ch.get("pdf_folder"):
+        return f"{prefix}_{ch['pdf_folder']}.pdf"
+    return None
 
 
 def find_chapter_pdf(ch: dict, repo_dir: Path, pdf_dir: Path | None = None) -> Path | None:
@@ -187,6 +329,17 @@ def find_chapter_pdf(ch: dict, repo_dir: Path, pdf_dir: Path | None = None) -> P
             if pdfs:
                 return pdfs[0]
 
+    return None
+
+
+def author_cell_problem(nb_path: Path) -> str | None:
+    """Why the notebook is not ready to deposit, or None if it has the author cell."""
+    try:
+        nb = json.loads(nb_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return f"cannot read {nb_path.name}: {exc}"
+    if not any(cell.get("id") == AUTHOR_CELL_ID for cell in nb.get("cells", [])):
+        return f"{nb_path.name} has no '{AUTHOR_CELL_ID}' cell, so its PDF would have no author list"
     return None
 
 
@@ -228,6 +381,11 @@ def preflight(config: dict, pdf_dir: Path | None, chapter_id: str | None) -> boo
         if not notebooks:
             print("  Notebook: none found")
 
+        problem = author_cell_problem(REPO_DIR / ch["notebook"])
+        print(f"  Author cell: {'found' if problem is None else 'MISSING (' + problem + ')'}")
+        if problem:
+            all_ok = False
+
         if not pdf and not notebooks:
             print("  WARNING: nothing to upload for this chapter")
             all_ok = False
@@ -241,7 +399,10 @@ def run(args: argparse.Namespace) -> None:
     summary = load_summary()
 
     mode = "DRY RUN" if args.dry_run else ("SANDBOX" if args.sandbox else "PRODUCTION")
-    print(f"Mode: {mode}  |  Publish: {args.publish}")
+    community = config["book"].get("community", "")
+    if not community:
+        sys.exit("ERROR: book.community is not set in config.yaml")
+    print(f"Mode: {mode}  |  Community: {community}")
 
     token = os.environ.get("ZENODO_TOKEN", "")
     if not token and not args.dry_run:
@@ -271,11 +432,21 @@ def run(args: argparse.Namespace) -> None:
     if not args.skip_preflight:
         preflight(config, pdf_dir, args.chapter)
 
-    # Validated up front, before any deposit is created, so a bad config
+    # Validated up front, before any draft is created, so a bad config
     # entry never leaves a run half-completed.
     for ch in new_chapters:
         if not ch.get("authors"):
             sys.exit(f"ERROR: {ch['id']} has empty authors in config.yaml")
+        try:
+            to_rdm_creators(ch["authors"])
+        except ValueError as exc:
+            sys.exit(f"ERROR: {ch['id']} in config.yaml: {exc}")
+        problem = author_cell_problem(REPO_DIR / ch["notebook"])
+        if problem:
+            sys.exit(
+                f"ERROR: {ch['id']}: {problem}.\n"
+                "  Add the author cell (README: Prepare the notebook), re-render the PDF, then rerun."
+            )
 
     for ch in new_chapters:
         pdf = find_chapter_pdf(ch, REPO_DIR, pdf_dir)
@@ -285,43 +456,49 @@ def run(args: argparse.Namespace) -> None:
                 f"  Render it first: python scripts/zenodo/render_pdf.py {ch['id']}"
             )
 
+    community_id = client.get_community_id(community)
+
+    submitted = []
     for ch in new_chapters:
         print(f"\n  {ch['id']}: {ch['title'][:60]}")
-        deposit = client.create_deposit()
-        chapter_doi = deposit["metadata"]["prereserve_doi"]["doi"]
-
-        metadata = build_chapter_metadata(ch, book_doi, config["book"])
-        client.update_metadata(deposit["id"], metadata)
+        draft = client.create_draft(build_chapter_payload(ch, book_doi, config["book"]))
+        record_id = draft["id"]
+        doi = client.reserve_doi(record_id)
 
         pdf = find_chapter_pdf(ch, REPO_DIR, pdf_dir)
         if pdf:
-            client.upload_file(deposit, pdf)
-
+            client.upload_file(record_id, pdf, upload_name=pdf_upload_name(ch, config["book"]))
         for notebook in find_chapter_notebooks(ch, REPO_DIR):
-            client.upload_file(deposit, notebook)
+            client.upload_file(record_id, notebook)
 
-        if args.publish:
-            chapter_doi = client.publish(deposit["id"])
+        client.create_review_request(record_id, community_id)
+        review_url = client.submit_review(record_id)
 
         if args.dry_run:
-            print(f"  [dry-run] would record {ch['id']} -> deposit {deposit['id']}")
+            print(f"  [dry-run] would record {ch['id']} -> record {record_id}, DOI {doi}")
             continue
 
         # Saved after each chapter, not once at the end, so a mid-run
         # failure still leaves completed chapters recorded and a rerun
-        # skips them instead of creating duplicate deposits.
+        # skips them instead of creating duplicate records.
         summary.setdefault("chapters", {})[ch["id"]] = {
-            "deposit_id": deposit["id"],
-            "doi": chapter_doi,
+            "deposit_id": int(record_id),
+            "doi": doi,
         }
         save_summary(summary)
+        submitted.append((ch["id"], review_url))
 
     print(f"\nDone. {len(new_chapters)} chapter(s) processed.")
+    if submitted:
+        print("Accept each review request to publish the record into the community:")
+        for chapter_id, url in submitted:
+            print(f"  {chapter_id}: {url}")
+        print("Run inject.py only after the records are published.")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Create Zenodo deposits for book chapters."
+        description="Create Zenodo chapter records and submit them to the community for review."
     )
     parser.add_argument(
         "--chapter", metavar="ID", help="Only process this chapter id, e.g. ch10.2"
@@ -331,9 +508,6 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--sandbox", action="store_true", help="Use sandbox.zenodo.org instead of zenodo.org"
-    )
-    parser.add_argument(
-        "--publish", action="store_true", help="Publish deposits instead of leaving them as drafts"
     )
     parser.add_argument(
         "--pdf-dir", metavar="PATH", help="Override PDF directory (default: looks in _book/)"
