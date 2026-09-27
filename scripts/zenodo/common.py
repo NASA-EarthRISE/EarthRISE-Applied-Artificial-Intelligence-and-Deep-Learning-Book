@@ -10,6 +10,11 @@ REPO_DIR = SCRIPT_DIR.parent.parent
 CONFIG_PATH = SCRIPT_DIR / "config.yaml"
 SUMMARY_PATH = SCRIPT_DIR / "zenodo_summary.json"
 
+# Cell ids in chapter notebooks. "author-attribution" prints the author list
+# in the PDF; "author-notes" optionally follows it (e.g. equal contribution).
+AUTHOR_CELL_ID = "author-attribution"
+AUTHOR_NOTES_CELL_ID = "author-notes"
+
 load_dotenv(REPO_DIR / ".env")
 
 
