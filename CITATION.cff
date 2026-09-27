@@ -27,10 +27,10 @@ date-released: "2026-06-01"
 license: CC-BY-4.0
 repository-code: "https://github.com/NASA-EarthRISE/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book"
 url: "https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/"
-doi: "10.5281/zenodo.20547797"
+doi: "10.5281/zenodo.20547796"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.20547797"
+    value: "10.5281/zenodo.20547796"
     description: "Concept DOI for all versions"
 keywords:
   - deep learning
