@@ -19,6 +19,9 @@ __pycache__/
 # Environment
 .env
 
+# Zenodo sandbox runs (test DOIs only)
+scripts/zenodo/zenodo_summary.sandbox.json
+
 **/*.quarto_ipynb
 
 # LaTeX build artifacts
