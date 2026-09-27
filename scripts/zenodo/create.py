@@ -26,8 +26,9 @@ UPLOAD_TIMEOUT = 300
 # JSON shape; this media type returns the native InvenioRDM shape.
 NATIVE_JSON = "application/vnd.inveniordm.v1+json"
 
-RESOURCE_TYPE = "publication-section"
-# Same publisher as the chapters deposited in June 2026.
+CHAPTER_RESOURCE_TYPE = "publication-section"
+BOOK_RESOURCE_TYPE = "publication-book"
+# Same publisher as the records deposited in June 2026.
 PUBLISHER = "Zenodo"
 REVIEW_MESSAGE = "Book chapter submitted by the EarthRISE book Zenodo pipeline."
 
@@ -207,6 +208,86 @@ class ZenodoClient:
             )
         return request.get("links", {}).get("self_html") or f"https://{self.host}/me/requests"
 
+    def new_version(self, record_id: int | str) -> dict:
+        """Draft of the record's next version. If an earlier run left one, Zenodo returns it."""
+        if self.dry_run:
+            print(f"  [dry-run] would create a new version of record {record_id}")
+            return {"id": "DRY", "versions": {"index": "N"}}
+        resp = self._request(
+            "POST",
+            f"{self.base_url}/records/{record_id}/versions",
+            headers=self._headers(content_type=None),
+            timeout=REQUEST_TIMEOUT,
+        )
+        self._check(resp, f"new_version({record_id})")
+        draft = resp.json()
+        html = draft.get("links", {}).get("self_html") or f"https://{self.host}/uploads/{draft['id']}"
+        print(f"  New version draft {draft['id']} (version {draft['versions']['index']}): {html}")
+        return draft
+
+    def update_draft(self, record_id: str, payload: dict) -> None:
+        if self.dry_run:
+            print("  [dry-run] would set draft metadata to:")
+            print(json.dumps(payload, indent=2, ensure_ascii=False))
+            return
+        resp = self._request(
+            "PUT",
+            self._draft_url(record_id),
+            json=payload,
+            headers=self._headers(),
+            timeout=REQUEST_TIMEOUT,
+        )
+        self._check(resp, f"update_draft({record_id})")
+
+    def clear_draft_files(self, record_id: str) -> None:
+        """Remove files an earlier run left on the draft, so uploads start clean."""
+        if self.dry_run:
+            return
+        resp = self._request(
+            "GET",
+            self._draft_url(record_id, "/files"),
+            headers=self._headers(content_type=None),
+            timeout=REQUEST_TIMEOUT,
+        )
+        self._check(resp, f"list_files({record_id})")
+        for entry in resp.json().get("entries", []):
+            key = entry["key"]
+            resp = self._request(
+                "DELETE",
+                self._draft_url(record_id, f"/files/{quote(key, safe='')}"),
+                headers=self._headers(content_type=None),
+                timeout=REQUEST_TIMEOUT,
+            )
+            self._check(resp, f"delete_file({key})")
+            print(f"  Removed leftover file {key}")
+
+    def get_review(self, record_id: str) -> dict | None:
+        """The draft's review request, or None if it has none."""
+        if self.dry_run:
+            return None
+        resp = self._request(
+            "GET",
+            self._draft_url(record_id, "/review"),
+            headers=self._headers(content_type=None),
+            timeout=REQUEST_TIMEOUT,
+        )
+        if resp.status_code == 404:
+            return None
+        self._check(resp, f"get_review({record_id})")
+        return resp.json()
+
+    def publish(self, record_id: str) -> dict:
+        resp = self._request(
+            "POST",
+            self._draft_url(record_id, "/actions/publish"),
+            headers=self._headers(content_type=None),
+            timeout=REQUEST_TIMEOUT,
+        )
+        self._check(resp, f"publish({record_id})")
+        record = resp.json()
+        print(f"  Published record {record['id']}, DOI {record['pids']['doi']['identifier']}")
+        return record
+
 
 def concept_doi_for(draft: dict, version_doi: str) -> str:
     """The concept DOI Zenodo gives the draft's parent record once published."""
@@ -287,7 +368,7 @@ def build_chapter_payload(
     github_url = f"{book_config['github_url']}/tree/main/{github_path}"
 
     related_identifiers = [
-        _related(book_doi, "doi", "ispartof", "publication-book"),
+        _related(book_doi, "doi", "ispartof", BOOK_RESOURCE_TYPE),
         _related(github_url, "url", "issupplementedby", "software"),
     ]
     if ch.get("youtube_url"):
@@ -295,18 +376,59 @@ def build_chapter_payload(
             _related(ch["youtube_url"], "url", "issupplementedby", "video")
         )
 
+    return _record_payload(
+        book_config,
+        resource_type=CHAPTER_RESOURCE_TYPE,
+        entry=ch,
+        related_identifiers=related_identifiers,
+        version=version,
+        publication_date=publication_date,
+    )
+
+
+def build_book_payload(
+    book_config: dict,
+    chapter_concept_dois: list[str],
+    version: str,
+    publication_date: str | None = None,
+) -> dict:
+    """Build the InvenioRDM draft payload for the book record."""
+    related_identifiers = [
+        _related(book_config["github_url"], "url", "issupplementedby", "software"),
+        *(_related(doi, "doi", "haspart", CHAPTER_RESOURCE_TYPE) for doi in chapter_concept_dois),
+    ]
+    return _record_payload(
+        book_config,
+        resource_type=BOOK_RESOURCE_TYPE,
+        entry=book_config,
+        related_identifiers=related_identifiers,
+        version=version,
+        publication_date=publication_date,
+    )
+
+
+def _record_payload(
+    book_config: dict,
+    *,
+    resource_type: str,
+    entry: dict,
+    related_identifiers: list[dict],
+    version: str,
+    publication_date: str | None,
+) -> dict:
+    """Fields shared by chapter and book records; `entry` is a chapter or the book config."""
     return {
         "access": {"record": "public", "files": "public"},
         "files": {"enabled": True},
         "metadata": {
-            "resource_type": {"id": RESOURCE_TYPE},
-            "title": ch["title"].strip(),
+            "resource_type": {"id": resource_type},
+            "title": entry["title"].strip(),
             "publication_date": publication_date or date.today().isoformat(),
             "publisher": PUBLISHER,
             "version": version,
-            "description": ch["description"].strip(),
-            "creators": to_rdm_creators(ch["authors"]),
-            "subjects": [{"subject": keyword} for keyword in ch.get("keywords", [])],
+            "description": entry["description"].strip(),
+            "creators": to_rdm_creators(entry["authors"]),
+            "subjects": [{"subject": keyword} for keyword in entry.get("keywords", [])],
             "rights": [{"id": book_config["license"]}],
             "languages": [{"id": book_config["language"]}],
             "related_identifiers": related_identifiers,
