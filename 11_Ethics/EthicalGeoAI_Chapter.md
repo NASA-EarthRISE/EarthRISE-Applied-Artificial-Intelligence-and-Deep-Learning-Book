@@ -1,15 +1,16 @@
 # Guidelines for Ethically Applied GeoAI with End-users using Earth Observation and Geospatial Data
 
-**Morgan A. Crowley** <a href="https://orcid.org/0000-0001-5946-529X"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>a*†</sup>, **Erin Trochim** <a href="https://orcid.org/0000-0002-2225-4955"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>b,*</sup>, **Gabriela Gongora-Svartzman** <a href="https://orcid.org/0000-0002-2299-2990"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>c,*</sup>, **Julia Harvie**<a href="https://orcid.org/0009-0004-7463-0176"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>a</sup>, **Karlee Zammit** <a href="https://orcid.org/0009-0007-4454-1051"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></d><sup>d</sup>, **Colin B. McFayden** <a href="https://orcid.org/0000-0001-9471-9822"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>a</sup>
+**Morgan A. Crowley** <a href="https://orcid.org/0000-0001-5946-529X"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>a,&#42;†</sup>, **Erin Trochim** <a href="https://orcid.org/0000-0002-2225-4955"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>b,&#42;</sup>, **Gabriela Gongora-Svartzman** <a href="https://orcid.org/0000-0002-2299-2990"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>c,&#42;</sup>, **Julia Harvie** <a href="https://orcid.org/0009-0004-7463-0176"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>a</sup>, **Karlee Zammit** <a href="https://orcid.org/0009-0007-4454-1051"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>d</sup>, **Colin B. McFayden** <a href="https://orcid.org/0000-0001-9471-9822"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle"/></a><sup>a</sup>
 
 <sup>a</sup> Great Lakes Forestry Centre, Canadian Forest Service, Natural Resources Canada, Sault Ste. Marie, Ontario, Canada<br>
-<sup>b</sup> Institute of Northern Engineering, University of Alaska Fairbanks, Fairbanks, AK, USA.<br>
-<sup>c</sup> Khoury College of Computer Sciences, Northeastern University, Miami, FL, USA.<br>
+<sup>b</sup> Institute of Northern Engineering, University of Alaska Fairbanks, Fairbanks, AK, USA<br>
+<sup>c</sup> Khoury College of Computer Sciences, Northeastern University, Miami, FL, USA<br>
 <sup>d</sup> Northern Forestry Centre, Canadian Forest Service, Natural Resources Canada, Edmonton, Alberta, Canada<br>
 
-**\*These three authors contributed equally to this work and therefore share first authorship**
+**&#42; These three authors contributed equally to this work and therefore share first authorship.**  
 
-<sup>†</sup>Corresponding author. Tel.: +1 249 525 6429; E-mail address: morgan.crowley@nrcan-rncan.gc.ca (M. Crowley).
+† Corresponding author. Tel.: +1 249 525 6429; E-mail address: morgan.crowley@nrcan-rncan.gc.ca (M. Crowley).
+
 
 ## Abstract:
 
