@@ -25,7 +25,7 @@ NN_Section_Name/
 
 Each chapter should include:
 
-- **`notebooks/`** - one primary Jupyter notebook with pre-computed cell outputs
+- **`notebooks/`** - one primary Jupyter notebook (`.ipynb`) with pre-computed cell outputs, or a Markdown file (`.md`) for text-only chapters without code
 - **`notebooks/images/`** - chapter images stored locally (not hosted on external repos)
 - **`data/`** (optional) - data files (.tif, .csv, etc.) used by the notebook
 
