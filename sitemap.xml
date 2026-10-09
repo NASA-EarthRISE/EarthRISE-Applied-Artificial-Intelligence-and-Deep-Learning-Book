@@ -2,74 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.648Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.251Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/02_Data_Preparation/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.202Z</lastmod>
+    <lastmod>2026-10-08T23:59:20.922Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.html</loc>
-    <lastmod>2026-10-05T21:04:56.263Z</lastmod>
+    <lastmod>2026-10-08T23:59:20.968Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/02__Selective_Logging_Detection/notebooks/Selective_Logging_Detection.html</loc>
-    <lastmod>2026-10-05T21:04:56.384Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.057Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/03_Semantic_Segmentation/03__Clay_Deforestation_Segmentation_Model/notebooks/ClayDeforestationv3.html</loc>
-    <lastmod>2026-10-05T21:04:56.477Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.124Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/04_Object_Detection/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.482Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.128Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/05_Time_Series/01__Soybean_Yield_Prediction/notebooks/Crop_yield_estimationR4.html</loc>
-    <lastmod>2026-10-05T21:04:56.483Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.129Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/06_Eco_Process_Sim/01__Active_Fire_Detection/notebooks/BNN_Active_Fire_Detection.html</loc>
-    <lastmod>2026-10-05T21:04:56.532Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.163Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/07_Transfer_Learning/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.533Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.164Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/08_Fusion/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.533Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.164Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/09_Downscaling/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.533Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.164Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/notebooks/Chapter_Practical_EOFM_Evaluation.html</loc>
-    <lastmod>2026-10-05T21:04:56.554Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.179Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/10_Future/02__Comprehensive_EOFM_Benchmarking/notebooks/Chapter_Comprehensive_EOFM_Benchmarking.html</loc>
-    <lastmod>2026-10-05T21:04:56.565Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.188Z</lastmod>
   </url>
   <url>
-    <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/11_Ethics/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.633Z</lastmod>
+    <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/11_Ethics/01__Ethical_GeoAI/notebooks/Ethical_GeoAI.html</loc>
+    <lastmod>2026-10-08T23:59:21.238Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/12_Conclusions/index.html</loc>
-    <lastmod>2026-10-05T21:04:56.633Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.240Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/citing.html</loc>
-    <lastmod>2026-10-05T21:04:56.648Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.251Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/references.html</loc>
-    <lastmod>2026-10-05T21:04:56.648Z</lastmod>
+    <lastmod>2026-10-08T23:59:21.251Z</lastmod>
   </url>
   <url>
     <loc>https://nasa-earthrise.github.io/EarthRISE-Applied-Artificial-Intelligence-and-Deep-Learning-Book/Applied-Artificial-Intelligence-and-Deep-Learning-Book.pdf</loc>
-    <lastmod>2026-10-05T21:09:51.421Z</lastmod>
+    <lastmod>2026-10-09T00:02:43.816Z</lastmod>
   </url>
 </urlset>
