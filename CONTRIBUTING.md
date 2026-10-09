@@ -17,6 +17,7 @@ NN_Section_Name/
         figure1.png
         figure2.png
     data/              # optional, for data files (.tif, .csv, etc.)
+    pdf/               # optional, for companion research papers or presentations
 ```
 
 - Section folders use a **single underscore** after the number: `06_Eco_Process_Sim`
@@ -28,6 +29,8 @@ Each chapter should include:
 - **`notebooks/`** - one primary Jupyter notebook (`.ipynb`) with pre-computed cell outputs, or a Markdown file (`.md`) for text-only chapters without code
 - **`notebooks/images/`** - chapter images stored locally (not hosted on external repos)
 - **`data/`** (optional) - data files (.tif, .csv, etc.) used by the notebook
+- **`notebooks/additional_notebooks/`** (optional) - supplemental notebooks referenced by the primary chapter notebook
+- **`pdf/`** (optional) - companion research papers or presentations (.pdf, .pptx) that accompany the chapter
 
 ### Chapter Numbering
 
