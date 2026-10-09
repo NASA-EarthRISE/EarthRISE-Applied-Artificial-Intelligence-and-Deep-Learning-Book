@@ -32,7 +32,9 @@ The NASA EarthRISE program harnesses NASA Earth Action capabilities to deliver t
 * **9. Downscaling** *(coming soon)*
 * **10. Future of Deep Learning and Foundation Models**
   * [10.1 Evaluating Foundation Models Trained with Earth Observation Data](10_Future/01__Evaluating_Foundation_Models_Trained_with_Earth_Observation_Data/)
-* **11. Ethics** *(coming soon)*
+  * [10.2 Comprehensive EOFM Benchmarking](10_Future/02__Comprehensive_EOFM_Benchmarking/)
+* **11. Ethics**
+  * [11.1 Guidelines for Ethically Applied GeoAI](11_Ethics/01__Ethical_GeoAI/)
 * **12. Conclusions** *(coming soon)*
 
 ---
