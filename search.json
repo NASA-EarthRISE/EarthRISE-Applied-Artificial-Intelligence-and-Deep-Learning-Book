@@ -52,12 +52,89 @@
   {
     "objectID": "02_Data_Preparation/index.html",
     "href": "02_Data_Preparation/index.html",
-    "title": "Data Preparation",
+    "title": "2. Data Preparation",
     "section": "",
-    "text": "This chapter is under development and will be available in a future edition of the book.",
+    "text": "Data Preparation is vital for the success of any Artificial Intelligence or Machine Learning project. Every chapter, workflow, and use case in this book is enabled through decisions made before model training ever begins. The authors have applied their expertise when selecting the preferred sensor, bands, and inputs to address the phenomenon at hand; what spatial or timeseries information contextualizes the problem; how to efficiently scale and normalize values; how data is split and partitioned, to stage and store data for computationally efficient training. The section provides a snapshot across the current chapters to demonstrate the various dimensions required for effective data preparation. This section groups those data preparation choices by problem area, and distills them into practices the reader can adopt and reuse. Going forward, find the chapter closest to your problem, see how its data was shaped, then adapt that approach to your own challenge. Finally, there are a wide array of resources ranging from basic to exhaustive available effectively prepping geospatial data. Please refer to those for further context, this short section is to familiarize you with the workflows available in the book and get the reader started in the hands-on section as fast as possible.",
     "crumbs": [
-      "2. Data Preparation (coming soon)",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Preparation</span>"
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "02_Data_Preparation/index.html#preparation-by-problem-area",
+    "href": "02_Data_Preparation/index.html#preparation-by-problem-area",
+    "title": "2. Data Preparation",
+    "section": "2.2 Preparation by Problem Area",
+    "text": "2.2 Preparation by Problem Area\n\nSemantic segmentation (Chapters 3.1, 3.2, 3.3)\nAll three chapters follow the same pattern: turn labels into a raster band aligned with the imagery, cut fixed-size patches, store them in a format built for streaming into a model, and stitch predictions back into a georeferenced map.\n\nLabels as a band. Polygons are rasterized onto the same grid as the image (Chapter 3.2 stores the label as a byte band to save space). Misalignment between image and label is the most common silent failure in segmentation.\n\nPatch size follows the object. Logging roads fit in 128×128 at 0.5 m (64 m across). Rice terraces need landscape context, so Chapter 3.1 uses 256×256 at 10 m (2.56 km). Chapter 3.3 uses 512×512 at 10 m to capture clearing patterns.\n\nPatch versus point. Chapter 3.1 exports the same sample locations twice: patches for U-Net and single pixels for a DNN. The model type determines the data structure, so choose the model before exporting.\n\nInference mirrors training. Chapter 3.2 pads the scene, cuts it into patches, predicts, and stitches the results, and notes the grid artifacts this creates. Overlapping patches with blended edges remove them.\n\nThe value of this approach is that patches give the model spatial context, a fixed format makes training fast and repeatable, and storing data in the cloud lets anyone rerun the chapter.\nThe three chapters scale their inputs differently, and the contrast is the lesson. Chapter 3.1 uses reflectance values. Chapter 3.2 feeds raw values and lets normalization layers inside the network do the work. Chapter 3.3 must standardize with Clay’s published statistics because a pretrained model expects inputs on the scale it learned from. Training from scratch gives you freedom; a pretrained model removes it.\n\n\nTime series and tabular data (Chapters 5.1, 6.1)\nThese chapters prepare features rather than images, so the work shifts to aggregation, scaling, and balance.\n\nAlign time to biology, not the calendar. Chapter 5.1 groups its predictors into six crop growth stages rather than fixed weeks, so each timestep means the same thing in every county and year.\n\nScale with training statistics only. Chapter 5.1 computes means and standard deviations on the training set and applies them unchanged to every test year.\n\nBalance deliberately. Chapter 6.1 balances true and false fire detections and also balances between satellites, so the model learns fire signatures instead of sensor quirks. Chapter 3.3 handles imbalance differently, by giving the rare deforestation class more weight in the loss.\n\n\n\nFoundation models (Chapters 3.3, 10.1, 10.2)\nWith foundation models, data preparation means matching what the model was trained on: the same bands, band order, units, statistics, and resolution.\n\nClay accepts any band combination, but each band must come with its central wavelength and normalization statistics, plus the pixel size, date, and location.\n\nPrithvi expects six HLS bands as four-date sequences. Apply its published band statistics before use.\n\nChapter 10.2 shows why benchmarks lock splits and preprocessing: comparing models is only fair under identical data conditions.",
+    "crumbs": [
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "02_Data_Preparation/index.html#normalization-norms",
+    "href": "02_Data_Preparation/index.html#normalization-norms",
+    "title": "2. Data Preparation",
+    "section": "2.3 Normalization Norms",
+    "text": "2.3 Normalization Norms\n\n\n\n\n\n\n\n\nMethod\nWhat it does\nWhen to use\n\n\n\n\nFixed scale factor\nDivide by a constant (e.g., 10,000 for reflectance)\nKnown sensor scaling\n\n\nPer-band z-score\nSubtract mean, divide by standard deviation\nDefault for most deep learning; required for pretrained models\n\n\nPercentile clip + rescale\nClip extremes, rescale to 0–1\nData with bright outliers (clouds, fire, urban)\n\n\nIn-network normalization\nNormalization layer inside the model\nTabular data; statistics travel with the model\n\n\n\nRules that hold regardless of method:\n\nCompute statistics on the training data only, then apply them unchanged to validation, test, and new imagery.\n\nSave the statistics with the model. Without them, nobody can prepare new inputs correctly.\n\nMask clouds and nodata first. Fill values of 0 distort the statistics.\n\nRespect units. Convert radar backscatter to decibels and apply sensor scale factors before standardizing.\n\nFor pretrained models, use the model’s statistics, not your own.",
+    "crumbs": [
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "02_Data_Preparation/index.html#data-partitioning",
+    "href": "02_Data_Preparation/index.html#data-partitioning",
+    "title": "2. Data Preparation",
+    "section": "2.4 Data Partitioning",
+    "text": "2.4 Data Partitioning\nThe chapters use 70/20/10 (3.1, 3.2), 80/20 (5.1, 6.1), and a fixed train/validation pair (3.3). The ratio matters less than what you split on.\n\nSplit on independent units, not pixels. Neighboring pixels and overlapping patches are nearly duplicates. If they land in both training and test sets, accuracy is inflated. Chapter 3.2 splits by polygon, so no feature appears in two sets. Spatial blocks work the same way.\n\nHold out time when predicting the future. Chapter 5.1 evaluates by year. For forecasting, train on earlier years and test on later ones.\n\nKeep an independent test set. Chapter 3.1 checks its final map against reference points collected separately in Collect Earth Online, the strongest evidence a model generalizes.\n\nMake splits reproducible. Use a fixed random seed and save the list of samples in each set.\n\nKeep every class in every set. Chapter 10.1 assigns its few images by hand to ensure this; stratified sampling does it at scale.",
+    "crumbs": [
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "02_Data_Preparation/index.html#sensor-specific-choices",
+    "href": "02_Data_Preparation/index.html#sensor-specific-choices",
+    "title": "2. Data Preparation",
+    "section": "2.5 Sensor-Specific Choices",
+    "text": "2.5 Sensor-Specific Choices\nChoose the sensor for the phenomenon, then let the sensor shape the preparation.\n\nObject size sets resolution. Selective logging is small and under the canopy, so Chapter 3.2 needs 0.5 m imagery. Forest clearing is visible at 10 m, so Chapter 3.3 uses free Sentinel-2 data.\n\nCloud cover sets the source. Chapter 3.1 uses Planet monthly mosaics because clouds persist over Paro, and compares pre-season with growing-season composites to separate rice from forest.\n\nHarmonized products simplify multi-sensor work. HLS (Chapters 10.1, 10.2) combines Landsat and Sentinel-2 into one consistent 30 m record.\n\nThe sensor itself can be a bias. Chapter 6.1 shows that prediction uncertainty differs by satellite.\n\nExtra layers are optional. Chapter 3.1 can add elevation, slope, and radar with a setting. Add them when they carry information the optical bands lack.\n\nResample carefully. Use nearest-neighbor for labels and classes so no new values are invented.",
+    "crumbs": [
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "02_Data_Preparation/index.html#to-index-or-not-to-index",
+    "href": "02_Data_Preparation/index.html#to-index-or-not-to-index",
+    "title": "2. Data Preparation",
+    "section": "2.6 To Index or Not to Index",
+    "text": "2.6 To Index or Not to Index\nSpectral indices such as NDVI, EVI, and NDWI are central to classical remote sensing and to models like Random Forest. For Deep Learning they are often unnecessary.\nEvidence from this book. In the study behind Chapter 3.1, a U-Net using four bands plus eight indices reached an F1 score of 85.21% on test data, compared with 84.44% using the four bands alone. The indices were dropped: the gain was small, and fewer inputs meant faster training and prediction. Deep networks learn band combinations, including ratios like NDVI, directly from the raw bands.\nIndices are worth adding when:\n\nthe model is small and the features are summarized or tabular (Chapter 5.1 uses one index, EVI2);\n\ntraining data is scarce and a known physical signal helps the model learn;\n\nresults must connect to an established index-based product.\n\nLeave them out when:\n\nyou train a convolutional or transformer model on full patches with enough labels;\n\nyou use a foundation model, which expects only the bands it was trained on;\n\nstorage or memory is limited, since every extra band adds a full layer to each patch.\n\nThe curse of dimensionality. Each added feature increases the amount of data needed to learn reliably. Indices built from the same few bands are highly correlated, so they add little new information but do add noise and overfitting risk. Before adding a feature, ask whether it tells the model something the existing bands do not, and test it with and without, as Chapter 3.1 did.",
+    "crumbs": [
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "02_Data_Preparation/index.html#storage-formats-and-hosting",
+    "href": "02_Data_Preparation/index.html#storage-formats-and-hosting",
+    "title": "2. Data Preparation",
+    "section": "2.7 Storage, Formats, and Hosting",
+    "text": "2.7 Storage, Formats, and Hosting\n\n\n\n\n\n\n\nFormat\nStrength\n\n\n\n\nTFRecord\nStreams quickly into TensorFlow; compact\n\n\nGeoTIFF / Cloud-Optimized GeoTIFF (COG)\nKeeps location information; COGs allow partial reads over the web\n\n\nNPY\nSimple arrays already in model shape\n\n\nCSV\nReadable tabular data\n\n\nSTAC catalog\nSearch and stream only the imagery needed\n\n\n\nWhy COGs matter. A Cloud-Optimized GeoTIFF is a standard GeoTIFF organized into tiles with built-in lower-resolution previews, so software can read just the area it needs over the internet. Chapter 10.1 streams small chips of HLS imagery without downloading whole scenes. Use COGs for anything you will share, serve as a map layer, or read in pieces.\nHosting. The chapters use Google Cloud Storage (3.1), Google Drive (3.2, 3.3), Zenodo (3.2), GitHub Releases (5.1), and Hugging Face (10.2). Also leveraging ZARR via Icechunk or Xarrays on local/HPC cluster, on a cloud drive, or cloud buckets are also recommended. Zenodo and Hugging Face suit finished training sets that should be versioned and citable.\nGood habits: store imagery as 32-bit floats or scaled integers and labels as 8-bit integers; record the bands, dates, and scaling used for every export; and give published training data a DOI.",
+    "crumbs": [
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "02_Data_Preparation/index.html#from-this-book-to-your-challenge",
+    "href": "02_Data_Preparation/index.html#from-this-book-to-your-challenge",
+    "title": "2. Data Preparation",
+    "section": "2.8 From This Book to Your Challenge",
+    "text": "2.8 From This Book to Your Challenge\n\nDefine what you predict. A pixel class, an object, a county value, or a single detection decides between patches, points, and tables.\n\nMatch the sensor to the phenomenon. Resolution must resolve the object, revisit must catch the event, and cloud cover must allow observation.\n\nStart from the closest chapter. i.e. Segmentation: 3.1–3.3. Tabular or seasonal data: 5.1, 6.1. Few labels or new regions: 3.3, 10.1, 10.2.\n\nStart with core bands. Add indices or extra layers only if a test shows they help.\n\nSize patches to the object plus its surroundings.\n\nSplit on independent units such as polygons, spatial blocks, or years, and keep a separate test set.\n\nNormalize with training statistics, or the pretrained model’s statistics, and save them.\n\nCheck balance across classes and sensors.\n\nStore in a streaming format, version it, and host it where others can find and cite it.\n\nFor Inference prepare new imagery exactly as you prepared training data.\n\nTim Mayer https://orcid.org/0000-0001-9489-9392\nBiplov Bhandari https://orcid.org/0000-0001-6169-8236",
+    "crumbs": [
+      "2. Data Preparation",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>2\\. Data Preparation</span>"
     ]
   },
   {
@@ -844,12 +921,12 @@
   {
     "objectID": "12_Conclusions/index.html",
     "href": "12_Conclusions/index.html",
-    "title": "Conclusions",
+    "title": "12. Conclusions",
     "section": "",
-    "text": "This chapter is under development and will be available in a future edition of the book.",
+    "text": "The chapters in this book were driven by authors with deep knowledge of a specific problem area and expertise in developing and demonstrating Geospatial Artificial Intelligence to address those challenges. The Editor’s goal for this book was to bring together a wide survey of experts with diverse Deep Learning workflows to provide a robust set of examples to support partitioners in growing their skill in the use and application of Deep Learning Techniques, allowing them to adopt these approaches for their challenges.\nA vital takeaway the Editor stresses is that Deep Learning and the field of Artificial Intelligence are moving quickly, and specific libraries, models, and workflows will age. However, the core skills in these chapters will not: matching a sensor to a phenomenon, shaping data to fit a model, effectively interpreting and analyzing model outputs. Those skills transfer from a U-Net to a foundation model, and they are what let practitioners adapt as new technology arrives.\nThe future of Artificial Intelligence and GeoAI is likely to be dominated by large language model (LLM) enabled systems and agentic workflows, in which models call tools, retrieve data, and chain analyses together. Therefore, an agentic system will be able to build a pipeline in minutes; however, having critical skills in integrating every aspect of these workflows will likely be vital going forward. Learning these core elements prepares practitioners to direct and evaluate those systems, not simply consume their output.\nFurther, when developing a workflow for addressing a geospatial challenge, selecting a fit-for-purpose approach is crucial. The newest, biggest, most complicated approach is likely not the place to start. We advise evaluating the whole spectrum, from statistical approaches, classical machine learning, deep learning, and expanding to agentic systems built on foundation models. Across this wide spectrum of complexity and abstraction, seek the best fit-for-purpose approach for your challenge, and balance sophistication with elegance. The book strives to show this and balance the need to demonstrate fit-for-purpose approaches as well as make more novel systems and approaches more transparent. Of course, some of these decisions are also driven by scope, funding and resources.\nAdditionally, evaluating the skill and uncertainty of the model is critical. Constructing a study design to independently evaluate and test the model’s skill and fit-for-purpose utility in a real-world context is essential. In an era of big data and Artificial Intelligence-enabled systems that can rapidly produce outputs, it is essential that practitioners clearly articulate the bounds of their models’ capabilities, especially in a real-world context, rather than just reporting incremental metric score increases to standard benchmarks. For these models to have real value, they need to be applied; this is where a practitioner’s expertise can further advance the field.\nFinally, no model replaces knowing the system you study. Domain knowledge decides which data to collect, which features matter, and whether an output makes sense, and every chapter in this book depends on it. Let your applied knowledge inform every step: the question, the data, the model, and the evaluation. Tools will keep changing. Sound judgment, honest evaluation, and fit-for-purpose design are what make any of them useful.\nThe Editors want to thank the authors who contributed their time and energy to support the GeoAI Working Group community through developing these practitioner-focused workflows. We would also like to thank the 50-plus peer reviewers who donated their time and thoughts to ensure these chapters are robust and provide readers with critical skill-building opportunities. Above all, we thank the readers and practitioners who engage with this material, build upon it, and carry this work forward. Please see the Acknowledgements section for all those who work tirelessly to support this community resource.\nTim Mayer https://orcid.org/0000-0001-9489-9392\nBiplov Bhandari https://orcid.org/0000-0001-6169-8236",
     "crumbs": [
-      "12. Conclusions (coming soon)",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Conclusions</span>"
+      "12. Conclusions",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>12\\. Conclusions</span>"
     ]
   },
   {
