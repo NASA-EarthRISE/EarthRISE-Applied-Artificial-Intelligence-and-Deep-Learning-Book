@@ -1,9 +1,9 @@
 book:
   chapters:
     - index.md
-    - part: "2. Data Preparation (coming soon)"
+    - part: "2. Data Preparation"
       chapters:
-        - 02_Data_Preparation/index.ipynb
+        - 02_Data_Preparation/index.md
     - part: "3. Semantic Segmentation"
       chapters:
         - 03_Semantic_Segmentation/01__Crop_Mapping/notebooks/Rice_Mapping_Bhutan_2021.ipynb
@@ -34,8 +34,8 @@ book:
     - part: "11. Ethics"
       chapters:
         - 11_Ethics/01__Ethical_GeoAI/notebooks/Ethical_GeoAI.md
-    - part: "12. Conclusions (coming soon)"
+    - part: "12. Conclusions"
       chapters:
-        - 12_Conclusions/index.ipynb
+        - 12_Conclusions/index.md
     - citing.qmd
     - references.qmd
