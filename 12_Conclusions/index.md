@@ -1,5 +1,8 @@
 # 12\. Conclusions
 
+**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · NASA - EarthRISE · University of Alabama in Huntsville<br>
+**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · Earth Resources Technology<br>
+
 The chapters in this book were driven by authors with deep knowledge of a specific problem area and expertise in developing and demonstrating Geospatial Artificial Intelligence to address those challenges. The Editor's goal for this book was to bring together a wide survey of experts with diverse Deep Learning workflows to provide a robust set of examples to support partitioners in growing their skill in the use and application of Deep Learning Techniques, allowing them to adopt these approaches for their challenges. 
 
 A vital takeaway the Editor stresses is that Deep Learning and the field of Artificial Intelligence  are moving quickly, and specific libraries, models, and workflows will age. However, the core skills in these chapters will not: matching a sensor to a phenomenon, shaping data to fit a model, effectively interpreting and analyzing model outputs. Those skills transfer from a U-Net to a foundation model, and they are what let practitioners adapt as new technology arrives.
@@ -13,6 +16,3 @@ Additionally, evaluating the skill and uncertainty of the model is critical. Con
 Finally, no model replaces knowing the system you study. Domain knowledge decides which data to collect, which features matter, and whether an output makes sense, and every chapter in this book depends on it. Let your applied knowledge inform every step: the question, the data, the model, and the evaluation. Tools will keep changing. Sound judgment, honest evaluation, and fit-for-purpose design are what make any of them useful.
 
 The Editors want to thank the authors who contributed their time and energy to support the [GeoAI Working Group](https://geoai-working-group.github.io/website/) community through developing these practitioner-focused workflows. We would also like to thank the 50-plus peer reviewers who donated their time and thoughts to ensure these chapters are robust and provide readers with critical skill-building opportunities. Above all, we thank the readers and practitioners who engage with this material, build upon it, and carry this work forward. Please see the Acknowledgements section for all those who work tirelessly to support this community resource. 
-
-**Tim Mayer [https\://orcid.org/0000-0001-9489-9392](https://orcid.org/0000-0001-9489-9392)**  
-**Biplov Bhandari [https\://orcid.org/0000-0001-6169-8236](https://orcid.org/0000-0001-6169-8236)** 

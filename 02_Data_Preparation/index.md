@@ -1,5 +1,8 @@
 # 2\. Data Preparation
 
+**Tim Mayer** <a href="https://orcid.org/0000-0001-9489-9392"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · NASA - EarthRISE · University of Alabama in Huntsville<br>
+**Biplov Bhandari** <a href="https://orcid.org/0000-0001-6169-8236"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="vertical-align:middle"/></a> · Earth Resources Technology<br>
+
 Data Preparation is vital for the success of any Artificial Intelligence or Machine Learning project. Every chapter, workflow, and use case in this book is enabled through decisions made before model training ever begins. The authors have applied their expertise when selecting the preferred sensor, bands, and inputs to address the phenomenon at hand; what spatial or timeseries information contextualizes the problem; how to efficiently scale and normalize values; how data is split and partitioned, to stage and store data for computationally efficient training. The section provides a snapshot across the current chapters to demonstrate the various dimensions required for effective data preparation. This section groups those data preparation choices by problem area, and distills them into practices the reader can adopt and reuse. Going forward, find the chapter closest to your problem, see how its data was shaped, then adapt that approach to your own challenge. Finally, there are a wide array of resources ranging from basic to exhaustive available effectively prepping geospatial data. Please refer to those for further context, this short section is to familiarize you with the workflows available in the book and get the reader started in the hands-on section as fast as possible. 
 
 | Chapter | Task | Sensor / resolution | Model input | Normalization | Partition | Storage / hosting |
@@ -131,6 +134,3 @@ Spectral indices such as NDVI, EVI, and NDWI are central to classical remote sen
 * **Check balance** across classes and sensors.  
 * **Store in a streaming format**, version it, and host it where others can find and cite it.  
 * **For Inference prepare new imagery exactly as you prepared training data.**
-
-**Tim Mayer [https\://orcid.org/0000-0001-9489-9392](https://orcid.org/0000-0001-9489-9392)**  
-**Biplov Bhandari [https\://orcid.org/0000-0001-6169-8236](https://orcid.org/0000-0001-6169-8236)** 
